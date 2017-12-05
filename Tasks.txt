@@ -1,0 +1,8 @@
+Game:
+	Drawables:
+	  Characters:
+		Heros: abdelrhaman
+		Pickaples: aya
+		Monsters : gamal
+		obstcals : sarah
+	generate Maze at random & weapons : muhammed
