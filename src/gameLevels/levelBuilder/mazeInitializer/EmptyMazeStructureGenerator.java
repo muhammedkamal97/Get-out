@@ -5,12 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-/**
- *
- * @author Muhammed
- *
- */
 public class EmptyMazeStructureGenerator {
+
 	static private int[][] maze;
 	static private boolean[][] visited;
 	static private Point end = new Point(0, 0);

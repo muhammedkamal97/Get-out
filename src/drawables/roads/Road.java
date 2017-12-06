@@ -1,9 +1,9 @@
 package drawables.roads;
 
+import java.awt.Point;
+
 import drawables.Drawable;
 import javafx.scene.canvas.Canvas;
-
-import java.awt.*;
 
 public class Road implements Drawable {
 
@@ -14,14 +14,16 @@ public class Road implements Drawable {
 
     }
 
-    @Override
-    public Point getPosition () {
-        return null;
-    }
+	@Override
+	public Point getPosition() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    @Override
-    public void setPosition (Point position) {
-
-    }
+	@Override
+	public void setPosition(Point position) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
