@@ -1,13 +1,10 @@
 package drawables.obstacles;
 
 import drawables.Drawable;
-import drawables.characters.MovingObject;
-import drawables.characters.monsters.Behaviors.MotionBehavior;
+import drawables.ReactorsOnTouch;
 import maze.Maze;
 
-import java.awt.*;
-
-public interface Obstacle extends Drawable{
+public interface Obstacle extends Drawable, ReactorsOnTouch {
 
     public void destroy();
     public void setMaze(Maze maze);
