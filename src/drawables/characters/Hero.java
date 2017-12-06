@@ -1,6 +1,7 @@
 package drawables.characters;
 
 import drawables.obstacles.Trap;
+import drawables.pickables.Gift;
 import drawables.pickables.Weapon;
 
 public interface Hero extends Handler,MovingObject{
@@ -12,6 +13,7 @@ public interface Hero extends Handler,MovingObject{
     public void holdNextWeapon();
     public void holdPreviousWeapon();
     public void addWeapon(Weapon weapon);
+	public void addGift(Gift StandardGift);
 
 
 }

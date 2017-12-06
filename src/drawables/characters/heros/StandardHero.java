@@ -4,6 +4,7 @@ import drawables.characters.Hero;
 import drawables.characters.Monster;
 import drawables.characters.commands.Command;
 import drawables.obstacles.Trap;
+import drawables.pickables.Gift;
 import drawables.pickables.Pickable;
 import drawables.pickables.Weapon;
 import drawables.pickables.weapons.bullets.Bullet;
@@ -17,13 +18,14 @@ import maze.Maze;
 public abstract class StandardHero implements Hero {
 
 
-    private int healthPoints;
+    private int healthPoints = 0;
+    private int coins = 0;
+    private int trials = 0;
     private int armorPoints = 0;
     private int direction = Directions.DOWN;
     private Point position;
     private Weapon currentWeapon;
     private ArrayList<Weapon> allWeapons = new ArrayList<>();
-
     @Override
     public int getHealthPoints() {
         return healthPoints;
@@ -131,4 +133,20 @@ public abstract class StandardHero implements Hero {
         healthPoints = getHeroStartingHealth();
     }
     protected abstract int getHeroStartingHealth();
+    @Override
+	public void addGift(Gift gift) {
+    	healthPoints += gift.giveHealthPoints();
+    	coins += gift.giveCoins();
+    	trials += gift.giveTrial();		
+	}
+
+	public int getCoins() {
+		return coins;
+	}
+
+	public int getTrials() {
+		return trials;
+	}
+
+	
 }

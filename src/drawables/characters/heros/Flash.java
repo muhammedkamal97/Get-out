@@ -1,6 +1,7 @@
 package drawables.characters.heros;
 
 import drawables.characters.commands.Command;
+import drawables.pickables.Gift;
 import drawables.pickables.Weapon;
 import javafx.scene.canvas.Canvas;
 import maze.Maze;
@@ -41,4 +42,6 @@ public class Flash extends StandardHero {
     public void drawOnCanvas(Canvas canvas) {
 
     }
+
+	
 }
