@@ -19,7 +19,4 @@ public interface LevelProperties {
     public ArrayList<Wall> getAllowedWalls();
     public ArrayList<Monster> getAllowedMonsters();
     public ArrayList<Trap> getAllowedTraps();
-
-
-    public void setMonstersShootingBehavior(ShootingBehavior behavior);
 }
