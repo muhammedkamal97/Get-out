@@ -10,10 +10,8 @@ public class Superman extends StandardHero {
     private static final int MOTION_DELAY = 30;
     private static final int WEAPONS_LIMIT = 5;
 
-
-    @Override
-    public int getHealthPoints() {
-        return HEALTH_POINTS;
+    public Superman(){
+        setHealthPoints();
     }
 
     @Override
@@ -24,6 +22,11 @@ public class Superman extends StandardHero {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected int getHeroStartingHealth() {
+        return HEALTH_POINTS;
     }
 
     @Override

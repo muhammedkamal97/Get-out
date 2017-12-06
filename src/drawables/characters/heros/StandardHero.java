@@ -7,7 +7,6 @@ import drawables.obstacles.Trap;
 import drawables.pickables.Pickable;
 import drawables.pickables.Weapon;
 import drawables.pickables.weapons.bullets.Bullet;
-import javafx.scene.canvas.Canvas;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -19,11 +18,16 @@ public abstract class StandardHero implements Hero {
 
 
     private int healthPoints;
-    private int armorPoints;
+    private int armorPoints = 0;
     private int direction = Directions.DOWN;
     private Point position;
     private Weapon currentWeapon;
     private ArrayList<Weapon> allWeapons = new ArrayList<>();
+
+    @Override
+    public int getHealthPoints() {
+        return healthPoints;
+    }
 
     @Override
     public void trapHero(Trap trap) {
@@ -31,22 +35,24 @@ public abstract class StandardHero implements Hero {
         takeDamage(damage);
     }
 
-    private void takeDamage(int damage){
-        if(damage < armorPoints){
-            armorPoints -= damage;
-        } else {
-            damage = damage - armorPoints;
-            armorPoints = 0;
-            if(damage >= healthPoints) {
-                healthPoints = 0;
-            }
-        }
-    }
     @Override
     public void attackedByMonster(Monster monster) {
         int damage = monster.getDamage();
         takeDamage(damage);
     }
+
+        private void takeDamage(int damage){
+            if(damage < armorPoints){
+                armorPoints -= damage;
+            } else {
+                damage = damage - armorPoints;
+                armorPoints = 0;
+                if(damage >= healthPoints) {
+                    healthPoints = 0;
+                    //check or notify
+                }
+            }
+        }
     @Override
     public void shoot() {
         if(currentWeapon != null) {
@@ -80,6 +86,11 @@ public abstract class StandardHero implements Hero {
     }
 
     @Override
+    public void receiveExplosionDamage(int damage) {
+        takeDamage(damage);
+    }
+
+    @Override
     public void move(Command moveCommand, Maze maze) {
         moveCommand.execute(this,maze);
     }
@@ -110,11 +121,14 @@ public abstract class StandardHero implements Hero {
     public void setPosition(Point position) {
         this.position = position;
     }
-
     protected int getNumberOfWeapons(){
         return allWeapons.size();
     }
     protected void removeFirstWeapon(){
         allWeapons.remove(0);
     }
+    protected void setHealthPoints(){
+        healthPoints = getHeroStartingHealth();
+    }
+    protected abstract int getHeroStartingHealth();
 }

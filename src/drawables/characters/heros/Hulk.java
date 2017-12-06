@@ -11,9 +11,8 @@ public class Hulk extends StandardHero {
     private static final int WEAPONS_LIMIT = 3;
 
 
-    @Override
-    public int getHealthPoints() {
-        return HEALTH_POINTS;
+    public Hulk(){
+        setHealthPoints();
     }
 
     @Override
@@ -24,6 +23,11 @@ public class Hulk extends StandardHero {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected int getHeroStartingHealth() {
+        return HEALTH_POINTS;
     }
 
     @Override

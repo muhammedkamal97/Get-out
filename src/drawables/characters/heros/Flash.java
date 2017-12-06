@@ -10,10 +10,8 @@ public class Flash extends StandardHero {
     private static final int MOTION_DELAY = 10;
     private static final int WEAPONS_LIMIT = 1;
 
-
-    @Override
-    public int getHealthPoints() {
-        return HEALTH_POINTS;
+    public Flash(){
+        setHealthPoints();
     }
 
     @Override
@@ -24,6 +22,11 @@ public class Flash extends StandardHero {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected int getHeroStartingHealth() {
+        return HEALTH_POINTS;
     }
 
     @Override

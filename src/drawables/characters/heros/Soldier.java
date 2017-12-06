@@ -12,9 +12,8 @@ public class Soldier extends StandardHero {
     private static final int WEAPONS_LIMIT = 5;
 
 
-    @Override
-    public int getHealthPoints() {
-        return HEALTH_POINTS;
+    public Soldier() {
+        setHealthPoints();
     }
 
     @Override
@@ -25,6 +24,11 @@ public class Soldier extends StandardHero {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected int getHeroStartingHealth() {
+        return HEALTH_POINTS;
     }
 
     @Override
