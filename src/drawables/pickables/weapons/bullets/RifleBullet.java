@@ -8,7 +8,7 @@ public class RifleBullet extends StandardBullet {
     }
 
     @Override
-    public Cloneable clone() {
+    public Cloneable cloneBullet() {
         return new RifleBullet();
     }
 

@@ -19,7 +19,7 @@ public abstract class StandardWeapon implements Weapon{
     public void shoot(int direction, Point initialPosition) {
 
         if(ammo != 0){
-            shotBullet = (Bullet) weaponBullet.clone();
+            shotBullet = (Bullet) weaponBullet.cloneBullet();
             shotBullet.startMotionAfterShooting(initialPosition,direction);
             ammo--;
         }

@@ -21,7 +21,5 @@ public interface LevelProperties {
     public ArrayList<Trap> getAllowedTraps();
 
 
-    public void setMonstersMotionBehavior(MotionBehavior behavior);
-    public void setMonstersPickingBehavior(PickingBehavior behavior);
     public void setMonstersShootingBehavior(ShootingBehavior behavior);
 }

@@ -9,7 +9,7 @@ public class NormalBullet extends StandardBullet {
     }
 
     @Override
-    public Cloneable clone() {
+    public Cloneable cloneBullet() {
         return new NormalBullet();
     }
 

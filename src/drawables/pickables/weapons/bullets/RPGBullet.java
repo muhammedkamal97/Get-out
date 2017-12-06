@@ -8,7 +8,7 @@ public class RPGBullet extends StandardBullet {
     }
 
     @Override
-    public Cloneable clone() {
+    public Cloneable cloneBullet() {
         return new RPGBullet();
     }
 
