@@ -6,8 +6,6 @@ import drawables.characters.commands.Command;
 import drawables.pickables.weapons.bullets.Bullet;
 import maze.Maze;
 
-import java.awt.*;
-
 public interface MovingObject extends Drawable{
 
     public void move(Command moveCommand , Maze maze);

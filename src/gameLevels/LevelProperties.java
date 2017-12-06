@@ -1,8 +1,6 @@
 package gameLevels;
 
 import drawables.characters.Monster;
-import drawables.characters.monsters.Behaviors.MotionBehavior;
-import drawables.characters.monsters.Behaviors.PickingBehavior;
 import drawables.characters.monsters.Behaviors.ShootingBehavior;
 import drawables.obstacles.Trap;
 import drawables.obstacles.Wall;

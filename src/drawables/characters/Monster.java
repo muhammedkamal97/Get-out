@@ -1,10 +1,9 @@
 package drawables.characters;
 
-import drawables.ReactorsOnTouch;
-
-public interface Monster extends MovingObject, ReactorsOnTouch {
+public interface Monster extends MovingObject {
 
     public void attack(Hero hero);
     public int getDamage();
+    public void shoot();
 
 }

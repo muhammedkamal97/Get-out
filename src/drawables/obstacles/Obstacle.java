@@ -1,7 +1,6 @@
 package drawables.obstacles;
 
 import drawables.Drawable;
-import drawables.ReactorsOnTouch;
 import maze.Maze;
 
 public interface Obstacle extends Drawable, ReactorsOnTouch {
