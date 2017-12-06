@@ -126,14 +126,14 @@ public class EmptyMazeStructureGenerator {
 	}
 
 	public static void main(String[] args) {
-		int[][] m = generateRandomMaze(100, 100);
-		for (int i = 0; i < 100; i++) {
-			for (int j = 0; j < 100; j++) {
+		int[][] m = generateRandomMaze(21, 21);
+		for (int i = 0; i < 21; i++) {
+			for (int j = 0; j < 21; j++) {
 				if (m[i][j] != 0)
-					System.out.print(m[i][j]);
+					System.out.print('#');
 				else
 					System.out.print(" ");
-				// System.out.print(" ");
+				System.out.print(" ");
 			}
 			System.out.println();
 		}
