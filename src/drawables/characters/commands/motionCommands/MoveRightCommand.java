@@ -1,26 +1,28 @@
 package drawables.characters.commands.motionCommands;
 
 import drawables.Drawable;
-import drawables.characters.Hero;
+import drawables.characters.MovingObject;
 import drawables.characters.commands.Command;
 import maze.Maze;
 
 import constants.GameContract.Directions;
 import java.awt.*;
 
-public class MoveRightCommand implements Command{
+public class MoveRightCommand implements Command {
     @Override
-    public void execute(Hero hero, Maze maze) {
+    public void execute(MovingObject object, Maze maze) {
 
-        hero.setDirection(Directions.RIGHT);
+        object.setDirection(Directions.RIGHT);
 
         MoveUtilities utilities = new MoveUtilities();
-        Point position = hero.getPosition();
+        Point position = object.getPosition();
         position.x = position.x + 1;
+
+        object.setPosition(position);
         Drawable itemInNextPosition = maze.getItemInPosition(position);
         boolean isValidMove = utilities.isAValidMove(itemInNextPosition);
         if(isValidMove){
-            utilities.performMove(itemInNextPosition,hero);
+            utilities.performMove(itemInNextPosition,object);
         }
 
     }
