@@ -13,6 +13,7 @@ public abstract class Maze {
     ArrayList<Monster> monsters;
     ArrayList<Obstacle> obstacles;
     Hero hero;
+    protected int[][] maze;
 
     public abstract Drawable getItemInPosition(Point position);
 
@@ -28,5 +29,13 @@ public abstract class Maze {
     public void setObstacles(ArrayList<Obstacle> obstacles) {
         this.obstacles = obstacles;
     }
+    
+    public void setMaze(int[][] maze){
+    	this.maze = maze;
+    }
 
+
+	public abstract void mapDrawableIntoMaze(MazeComponents components); 
+	
+    
 }
