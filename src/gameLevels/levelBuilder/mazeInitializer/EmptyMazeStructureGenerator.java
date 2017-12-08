@@ -7,9 +7,9 @@ import java.util.Random;
 
 public class EmptyMazeStructureGenerator {
 
-	static private int[][] maze;
-	static private boolean[][] visited;
-	static private Point end = new Point(0, 0);
+	private int[][] maze;
+	private boolean[][] visited;
+	private Point end = new Point(0, 0);
 
 	/**
 	 * generate a maze in form of 2D integer array.
@@ -20,7 +20,7 @@ public class EmptyMazeStructureGenerator {
 	 *            length the width of the maze.
 	 * @return the maze.
 	 */
-	static public int[][] generateRandomMaze(int wide, int length) {
+	public int[][] generateRandomMaze(int wide, int length) {
 		maze = new int[wide][length];
 		visited = new boolean[wide][length];
 		for (int i = 0; i < wide; i++) {
@@ -46,7 +46,7 @@ public class EmptyMazeStructureGenerator {
 		return maze;
 	}
 
-	static private void dfs(int x, int y) {
+	private void dfs(int x, int y) {
 		Point p = new Point(x, y);
 		Point next;
 		Point wall;
@@ -95,7 +95,7 @@ public class EmptyMazeStructureGenerator {
 
 	}
 
-	static private boolean isAllowed(Point p) {
+	private boolean isAllowed(Point p) {
 		boolean valid = true;
 		valid = valid && (p.x > 0 && p.y > 0);
 		valid = valid && (p.x < maze.length - 1) && (p.y < maze[0].length - 1);
@@ -103,7 +103,7 @@ public class EmptyMazeStructureGenerator {
 		return valid;
 	}
 
-	static private ArrayList<Integer> moves() {
+	private ArrayList<Integer> moves() {
 		ArrayList<Integer> arr = new ArrayList<Integer>();
 		arr.add(0);
 		arr.add(1);
@@ -113,7 +113,7 @@ public class EmptyMazeStructureGenerator {
 		return arr;
 	}
 
-	static private void openCell(Point p) {
+	private void openCell(Point p) {
 		visited[p.x][p.y] = true;
 		maze[p.x][p.y] = 0;
 		if (end.x < p.x || end.y < p.y) {
@@ -121,7 +121,7 @@ public class EmptyMazeStructureGenerator {
 		}
 	}
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		int[][] m = generateRandomMaze(21, 21);
 		for (int i = 0; i < 21; i++) {
 			for (int j = 0; j < 21; j++) {
@@ -136,4 +136,5 @@ public class EmptyMazeStructureGenerator {
 		System.out.println("start at : 1,1");
 		System.out.println("finsih at : " + end);
 	}
+*/
 }
