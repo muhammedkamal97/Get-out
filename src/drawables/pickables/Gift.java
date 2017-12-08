@@ -1,7 +1,7 @@
 package drawables.pickables;
 
-public interface Gift extends Pickable{ 
-	public int giveTrial();
-	public int giveHealthPoints();
-	public int giveCoins();	
+import drawables.characters.Hero;
+
+public interface Gift extends Pickable{
+	public void addGift(Hero hero);
 }

@@ -31,6 +31,8 @@ public abstract class StandardHero implements Hero {
         return healthPoints;
     }
 
+
+
     @Override
     public void trapHero(Trap trap) {
         int damage = trap.getDamage();
@@ -133,20 +135,29 @@ public abstract class StandardHero implements Hero {
         healthPoints = getHeroStartingHealth();
     }
     protected abstract int getHeroStartingHealth();
+
     @Override
-	public void addGift(Gift gift) {
-    	healthPoints += gift.giveHealthPoints();
-    	coins += gift.giveCoins();
-    	trials += gift.giveTrial();		
-	}
+    public void acceptAmmo() {
+        if(currentWeapon != null)
+        currentWeapon.reload();
+    }
 
-	public int getCoins() {
-		return coins;
-	}
+    @Override
+    public void increaseHealthPoints(int Health) {
+        healthPoints += Health;
+        if(healthPoints > getHeroStartingHealth()) {
+            healthPoints = getHeroStartingHealth();
+        }
+    }
 
-	public int getTrials() {
-		return trials;
-	}
+    @Override
+    public void increaseCoins(int coins) {
+        this.coins = coins;
+    }
 
-	
+    @Override
+    public void increaseTrials() {
+        this.trials++;
+    }
+
 }

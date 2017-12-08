@@ -1,5 +1,6 @@
 package drawables.pickables.gifts;
 
+import drawables.characters.Hero;
 import javafx.scene.canvas.Canvas;
 
 public class TrialGift extends StandardGift{
@@ -20,18 +21,7 @@ public class TrialGift extends StandardGift{
 	}
 
 	@Override
-	public int giveTrial() {
-		return TRIAL;
+	public void addGift(Hero hero) {
+		hero.increaseTrials();
 	}
-
-	@Override
-	public int giveHealthPoints() {
-		return 0;
-	}
-
-	@Override
-	public int giveCoins() {
-		return 0;
-	}
-	
 }

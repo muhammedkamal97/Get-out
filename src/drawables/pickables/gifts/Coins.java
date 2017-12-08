@@ -1,5 +1,6 @@
 package drawables.pickables.gifts;
 
+import drawables.characters.Hero;
 import javafx.scene.canvas.Canvas;
 
 public class Coins extends StandardGift{
@@ -18,9 +19,9 @@ public class Coins extends StandardGift{
 		//Gui
 		
 	}
-	@Override
-	public int giveCoins() {
-		return COIN_VALUE;
-	}
 
+	@Override
+	public void addGift(Hero hero) {
+		hero.increaseCoins(COIN_VALUE);
+	}
 }

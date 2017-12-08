@@ -1,5 +1,6 @@
 package drawables.pickables.gifts;
 
+import drawables.characters.Hero;
 import javafx.scene.canvas.Canvas;
 
 /**
@@ -20,10 +21,8 @@ public class HealthCareProvider extends StandardGift{
 		// TODO Auto-generated method stub
 		
 	}
-	
 	@Override
-	public int giveHealthPoints() {
-		return HEALTH_POINTS;
+	public void addGift(Hero hero) {
+		hero.increaseHealthPoints(HEALTH_POINTS);
 	}
-
 }
