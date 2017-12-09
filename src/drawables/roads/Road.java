@@ -7,6 +7,8 @@ import javafx.scene.canvas.Canvas;
 
 public class Road implements Drawable {
 
+    private Point position;
+
     @Override
     public void drawOnCanvas(Canvas canvas) {
 
@@ -14,16 +16,14 @@ public class Road implements Drawable {
 
     }
 
-	@Override
-	public Point getPosition() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public Point getPosition() {
+        return this.position;
+    }
 
-	@Override
-	public void setPosition(Point position) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void setPosition(Point position) {
+        this.position = position;
+    }
 
 }

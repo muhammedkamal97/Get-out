@@ -192,10 +192,7 @@ public abstract class StandardHero implements Hero {
 	public void protectedFromTrap() {
 		this.holdTrapShield = true;
 	}
-	public void protectedFromBullets() {
-		this.holdBulletShield = true;
-		
-	}
+	public void protectedFromBullets() { this.holdBulletShield = true; }
 	public void protectedFromMonester() {
 		this.holdMoneterShield =true;
 	}

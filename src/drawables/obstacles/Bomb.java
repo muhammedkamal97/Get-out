@@ -1,14 +1,12 @@
 package drawables.obstacles;
 
-
-import drawables.Drawable;
-import drawables.characters.Hero;
 import maze.Maze;
 
 public interface Bomb extends Obstacle {
 
-    public void takeBullet();
-    public void damageDrawableInExplosionRange(Drawable drawable);
+    public void takeBullet(int bulletDamage);
+    public void damageDrawableInExplosionRange(Maze maze);
     public void explode();
+    public int getDamage();
 
  }
