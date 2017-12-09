@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.HBox?>
+
+<!--<AnchorPane onKeyPressed="#keyPressed" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"-->
+<!--fx:controller="View.Controller"-->
+<!--prefWidth="${screen.visualBounds.width}"-->
+<!--prefHeight="${screen.visualBounds.height}">-->
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.stage.Screen?>
+<GridPane id="life" onKeyPressed="#keyPressedSwitch" prefHeight="700.0" prefWidth="900.0" stylesheets="@Style.css"
+          xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="View.Controller">
+    <fx:define>
+    <Screen fx:factory="getPrimary" fx:id="screen"/>
+    </fx:define>
+    <!--<Canvas fx:id="mazeCanvas" height="700" width="900"/>-->
+    <!--<Canvas fx:id="heroCanvas" height="700" width="900"/>-->
+    <Canvas fx:id="mazeCanvas" height="${screen.visualBounds.height}" width="${screen.visualBounds.width}"/>
+    <Canvas fx:id="heroCanvas" height="${screen.visualBounds.height}" width="${screen.visualBounds.width}"/>
+    <!--<ToolBar prefHeight="40.0" prefWidth="900" GridPane.valignment="TOP">-->
+    <ToolBar prefHeight="40.0" prefWidth="${screen.visualBounds.width}" GridPane.valignment="TOP">
+    <HBox alignment="CENTER" spacing="10">
+            <Button contentDisplay="CENTER" onAction="#ButtonActionForNow" mnemonicParsing="false" text="Menu"/>
+            <Button mnemonicParsing="false" text="Save"/>
+            <Button mnemonicParsing="false" text="Exit"/>
+        </HBox>
+        <Pane HBox.hgrow="ALWAYS" />
+        <HBox fx:id="HboxRight" alignment="CENTER" spacing="10">
+            <ToggleButton fx:id="musicBtn" mnemonicParsing="false" onAction="#ButtonActionForNow" text="Music"/>
+            <ToggleButton mnemonicParsing="false" text="Sound"/>
+            <ProgressBar prefWidth="150.0" progress="0.0"/>
+            <Label id="life" alignment="CENTER_RIGHT" stylesheets="@Style.css" text="5"/>
+        </HBox>
+    </ToolBar>
+</GridPane>

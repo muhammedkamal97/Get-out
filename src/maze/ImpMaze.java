@@ -29,7 +29,7 @@ public class ImpMaze extends Maze{
 		allowedPosition = new Stack<Point>();
 		for(int i = 0;i < maze.length;i++){
 			for(int j = 0;j < maze[0].length;j++){
-				if(maze[i][j] == 0 && i < maze.length/4 && j < maze[0].length/4)//not a wall position
+				if(maze[i][j] == 0 && i > maze.length/4 && j > maze[0].length/4)//not a wall position
 					allowedPosition.push(new Point(i,j));
 			}
 		}
