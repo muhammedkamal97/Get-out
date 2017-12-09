@@ -1,25 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b8d5eb39-7be2-483f-8186-df5014a703e3" name="Default" comment="Obstacles initial implemtation">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/drawables/obstacles/bombs/Lazer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/drawables/obstacles/bombs/NormalBomb.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/drawables/obstacles/bombs/dynamite.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/drawables/obstacles/traps/Cage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/drawables/obstacles/traps/Fire.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/drawables/obstacles/traps/Hole.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/drawables/obstacles/traps/RandomTeleport.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/drawables/obstacles/walls/Concrete.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/drawables/obstacles/walls/Steal.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/drawables/obstacles/walls/Tree.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/drawables/obstacles/walls/Wood.java" />
+    <list default="true" id="b8d5eb39-7be2-483f-8186-df5014a703e3" name="Default" comment="Momento">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/drawables/characters/heros/StandardHero.java" afterPath="$PROJECT_DIR$/src/drawables/characters/heros/StandardHero.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/drawables/obstacles/Bomb.java" afterPath="$PROJECT_DIR$/src/drawables/obstacles/Bomb.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/drawables/obstacles/Obstacle.java" afterPath="$PROJECT_DIR$/src/drawables/obstacles/Obstacle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/drawables/obstacles/Trap.java" afterPath="$PROJECT_DIR$/src/drawables/obstacles/Trap.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/drawables/obstacles/Wall.java" afterPath="$PROJECT_DIR$/src/drawables/obstacles/Wall.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/drawables/roads/Road.java" afterPath="$PROJECT_DIR$/src/drawables/roads/Road.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,7 +18,7 @@
         <entry file="file://$PROJECT_DIR$/src/drawables/obstacles/walls/Wood.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="432">
-              <caret line="21" column="9" lean-forward="true" selection-start-line="19" selection-start-column="8" selection-end-line="21" selection-end-column="9" />
+              <caret line="21" column="9" lean-forward="false" selection-start-line="19" selection-start-column="8" selection-end-line="21" selection-end-column="9" />
               <folding>
                 <element signature="e#242#243#0" expanded="true" />
                 <element signature="e#278#279#0" expanded="true" />
@@ -58,7 +41,7 @@
         <entry file="file://$PROJECT_DIR$/src/drawables/obstacles/walls/Steal.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="576">
-              <caret line="33" column="15" lean-forward="true" selection-start-line="33" selection-start-column="15" selection-end-line="33" selection-end-column="15" />
+              <caret line="33" column="15" lean-forward="false" selection-start-line="33" selection-start-column="15" selection-end-line="33" selection-end-column="15" />
               <folding>
                 <element signature="e#583#584#0" expanded="true" />
                 <element signature="e#605#606#0" expanded="true" />
@@ -81,7 +64,7 @@
         <entry file="file://$PROJECT_DIR$/src/drawables/obstacles/traps/RandomTeleport.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="792">
-              <caret line="37" column="17" lean-forward="true" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
+              <caret line="37" column="17" lean-forward="false" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -106,7 +89,7 @@
         <entry file="file://$PROJECT_DIR$/src/drawables/obstacles/traps/Cage.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="408">
-              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+              <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -116,7 +99,7 @@
         <entry file="file://$PROJECT_DIR$/src/drawables/obstacles/bombs/NormalBomb.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="936">
-              <caret line="39" column="9" lean-forward="true" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
+              <caret line="39" column="9" lean-forward="false" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -128,7 +111,7 @@
         <entry file="file://$PROJECT_DIR$/src/drawables/obstacles/bombs/Lazer.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-615">
-              <caret line="19" column="13" lean-forward="true" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+              <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -614,7 +597,14 @@
       <option name="project" value="LOCAL" />
       <updated>1512826250864</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Obstacles initial implemtation">
+      <created>1512847373772</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1512847373772</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1040,7 +1030,7 @@
     <entry file="file://$PROJECT_DIR$/src/drawables/obstacles/walls/Wood.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
-          <caret line="21" column="9" lean-forward="true" selection-start-line="19" selection-start-column="8" selection-end-line="21" selection-end-column="9" />
+          <caret line="21" column="9" lean-forward="false" selection-start-line="19" selection-start-column="8" selection-end-line="21" selection-end-column="9" />
           <folding>
             <element signature="e#242#243#0" expanded="true" />
             <element signature="e#278#279#0" expanded="true" />
@@ -1051,7 +1041,7 @@
     <entry file="file://$PROJECT_DIR$/src/drawables/obstacles/walls/Steal.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="576">
-          <caret line="33" column="15" lean-forward="true" selection-start-line="33" selection-start-column="15" selection-end-line="33" selection-end-column="15" />
+          <caret line="33" column="15" lean-forward="false" selection-start-line="33" selection-start-column="15" selection-end-line="33" selection-end-column="15" />
           <folding>
             <element signature="e#583#584#0" expanded="true" />
             <element signature="e#605#606#0" expanded="true" />
@@ -1078,7 +1068,7 @@
     <entry file="file://$PROJECT_DIR$/src/drawables/obstacles/traps/RandomTeleport.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="792">
-          <caret line="37" column="17" lean-forward="true" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
+          <caret line="37" column="17" lean-forward="false" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1099,7 +1089,7 @@
     <entry file="file://$PROJECT_DIR$/src/drawables/obstacles/traps/Cage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
-          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1107,7 +1097,7 @@
     <entry file="file://$PROJECT_DIR$/src/drawables/obstacles/bombs/NormalBomb.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="936">
-          <caret line="39" column="9" lean-forward="true" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
+          <caret line="39" column="9" lean-forward="false" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1117,7 +1107,7 @@
     <entry file="file://$PROJECT_DIR$/src/drawables/obstacles/bombs/Lazer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-615">
-          <caret line="19" column="13" lean-forward="true" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
