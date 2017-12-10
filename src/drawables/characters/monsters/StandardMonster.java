@@ -3,6 +3,7 @@ package drawables.characters.monsters;
 import drawables.characters.Hero;
 import drawables.characters.Monster;
 import drawables.characters.commands.Command;
+import drawables.characters.heros.states.DirectionState;
 import drawables.characters.monsters.Behaviors.ShootingBehavior;
 import drawables.pickables.weapons.bullets.Bullet;
 import maze.Maze;
@@ -14,9 +15,11 @@ public abstract class StandardMonster implements Monster {
     private int damage;
     private int healthPoints;
     private ShootingBehavior shootingBehavior;
-    private int direction;
     private Point position;
 
+    private DirectionState directionState;
+    
+    
     @Override
     public void attack(Hero hero) {
         hero.attackedByMonster(this);
@@ -38,16 +41,12 @@ public abstract class StandardMonster implements Monster {
         return healthPoints;
     }
 
-    @Override
-    public void setDirection(int direction) {
-        this.direction = direction;
-    }
+   @Override
+   public void setDirectionState(DirectionState state) {
+	   directionState = state;
+   }
 
-    @Override
-    public int getDirection() {
-        return direction;
-    }
-
+   
     @Override
     public void takeBullet(Bullet bullet) {
         takeDamage(bullet.getDamage());
@@ -69,7 +68,7 @@ public abstract class StandardMonster implements Monster {
 
     @Override
     public void shoot() {
-        shootingBehavior.shoot(position,direction);
+        shootingBehavior.shoot(position,directionState);
     }
 
     @Override

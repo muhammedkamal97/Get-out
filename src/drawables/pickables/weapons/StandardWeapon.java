@@ -3,6 +3,7 @@ package drawables.pickables.weapons;
 import drawables.characters.Hero;
 import drawables.pickables.Weapon;
 import drawables.pickables.weapons.bullets.Bullet;
+import drawables.pickables.weapons.bullets.bulletDirectionStates.ShootingDirectionState;
 
 import java.awt.*;
 
@@ -16,11 +17,11 @@ public abstract class StandardWeapon implements Weapon{
     private Bullet shotBullet;
 
     @Override
-    public void shoot(int direction, Point initialPosition) {
+    public void shoot(ShootingDirectionState state, Point initialPosition) {
 
         if(ammo != 0){
             shotBullet = (Bullet) weaponBullet.cloneBullet();
-            shotBullet.startMotionAfterShooting(initialPosition,direction);
+            shotBullet.startMotionAfterShooting(initialPosition,state);
             ammo--;
         }
     }

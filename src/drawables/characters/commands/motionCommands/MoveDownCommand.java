@@ -3,10 +3,10 @@ package drawables.characters.commands.motionCommands;
 import drawables.Drawable;
 import drawables.characters.MovingObject;
 import drawables.characters.commands.Command;
+import drawables.characters.heros.states.DirectionDownState;
 import maze.Maze;
 
 import java.awt.*;
-import constants.GameContract.Directions;
 
 public class MoveDownCommand implements Command {
 
@@ -14,7 +14,7 @@ public class MoveDownCommand implements Command {
     @Override
     public void execute(MovingObject object, Maze maze) {
 
-        object.setDirection(Directions.DOWN);
+        object.setDirectionState(new DirectionDownState());
 
         MoveUtilities utilities = new MoveUtilities();
         Point position = object.getPosition();
