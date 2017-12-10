@@ -1,6 +1,8 @@
 package View;
 
+import View.Sprite.MySprite;
 import javafx.animation.AnimationTimer;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -17,6 +19,7 @@ public class Controller {
     public Canvas mazeCanvas;
     private GraphicsContext gcH;
     private GraphicsContext gcM;
+    private MySprite sprite = new MySprite();
     private int i = 10; // remove it
 
     //important to instantiate graphics context
@@ -29,7 +32,11 @@ public class Controller {
         gcH.setFill(Color.RED);
         gcH.fillRect(300, 100, 200, 200);
         i = 0;
-        animation();
+        Image img = new Image("run.png");
+        sprite.SpriteSheetBuffer((int) img.getWidth(), (int) img.getHeight(),
+                4, 4, SwingFXUtils.fromFXImage(img, null));
+
+//        animation();
     }
 
     @FXML
@@ -66,6 +73,11 @@ public class Controller {
                 gcH.clearRect(0, 0, heroCanvas.getHeight(), heroCanvas.getWidth());
                 gcH.fillOval(400, 100 + i, 100, 100);
                 break;
+            case P: // to be removed
+                gcH.clearRect(0, 0, heroCanvas.getHeight(), heroCanvas.getWidth());
+                sprite.drawNextSprite(gcH, 125, 640,64);
+
+                break;
             default:
                 break;
         }
@@ -77,6 +89,7 @@ public class Controller {
         new AnimationTimer() {
             long start = System.currentTimeMillis();
             boolean flag = false;
+
             public void handle(long currentNanoTime) {
                 Image left = new Image("heart.png");
                 Image leftG = new Image("Cod.png");
