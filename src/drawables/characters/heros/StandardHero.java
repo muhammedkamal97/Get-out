@@ -3,6 +3,8 @@ package drawables.characters.heros;
 import drawables.characters.Hero;
 import drawables.characters.Monster;
 import drawables.characters.commands.Command;
+import drawables.characters.heros.states.DirectionDownState;
+import drawables.characters.heros.states.DirectionState;
 import drawables.obstacles.Trap;
 import drawables.pickables.Pickable;
 import drawables.pickables.Weapon;
@@ -11,7 +13,6 @@ import drawables.pickables.weapons.bullets.Bullet;
 import java.awt.*;
 import java.util.ArrayList;
 
-import constants.GameContract.Directions;
 import maze.Maze;
 
 public abstract class StandardHero implements Hero {
@@ -20,7 +21,6 @@ public abstract class StandardHero implements Hero {
 	private int coins = 0;
 	private int trials = 0;
 	private int armorPoints = 0;
-	private int direction = Directions.DOWN;
 	private Point position;
 	private Weapon currentWeapon;
 	private ArrayList<Weapon> allWeapons = new ArrayList<>();
@@ -29,8 +29,7 @@ public abstract class StandardHero implements Hero {
 	private boolean holdflameShield = false;
 	private boolean holdTrapShield = false;
 	private boolean holdbombShield = false;
-
-
+	DirectionState directionState = new DirectionDownState();
 	@Override
 	public int getHealthPoints() {
 		return healthPoints;
@@ -72,7 +71,7 @@ public abstract class StandardHero implements Hero {
 	@Override
 	public void shoot() {
 		if (currentWeapon != null) {
-			currentWeapon.shoot(direction, position);
+			directionState.shoot(currentWeapon,position);
 		}
 	}
 
@@ -112,8 +111,8 @@ public abstract class StandardHero implements Hero {
 	}
 
 	@Override
-	public void setDirection(int direction) {
-		this.direction = direction;
+	public void setDirectionState(DirectionState state) {
+		this.directionState = state;
 	}
 
 	@Override
@@ -126,10 +125,6 @@ public abstract class StandardHero implements Hero {
 		}
 	}
 
-	@Override
-	public int getDirection() {
-		return direction;
-	}
 
 	@Override
 	public void pick(Pickable item) {
