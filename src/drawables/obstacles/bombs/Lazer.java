@@ -1,16 +1,16 @@
 package drawables.obstacles.bombs;
 
+import drawables.characters.Hero;
 import drawables.obstacles.Bomb;
+import drawables.roads.Road;
 import javafx.scene.canvas.Canvas;
 import maze.Maze;
 
 import java.awt.*;
 
-public class Lazer implements Bomb {
+public class Lazer extends StandardBomb implements Bomb {
 
-    private Point position;
     private int health;
-    private int damage;
 
     public void Lazer () {
         this.health = 25;
@@ -26,25 +26,21 @@ public class Lazer implements Bomb {
     }
 
     @Override
-    public void damageDrawableInExplosionRange(Maze maze) {
+    public void damageDrawableInExplosionRange() {
 
-//            for (int j = 0; j <= maze.getHeight; j++) {
-//                if (maze[this.position.getX()][j] != hero) {
-//                    maze[this.position.getX()][j] != hero
-//                }
-//                //display black marks for explosion;
-//            }
+            for (int j = -3; j <= 3; j++) {
+                //display green lazer as one line
+                if (!(maze.getItemInPosition(new Point((int)this.getPosition().getX(),j)) instanceof Hero)) {
+//                    maze.set(new Point((int)this.getPosition().getX(),j) == road;
+                }
+
+            }
     }
 
     @Override
     public void explode() {
-//        this.damageDrawableInExplosionRange();
+        this.damageDrawableInExplosionRange();
         //display animation for explosion;
-    }
-
-    @Override
-    public int getDamage() {
-        return this.damage;
     }
 
     @Override
@@ -53,17 +49,7 @@ public class Lazer implements Bomb {
     }
 
     @Override
-    public Point getPosition() {
-        return this.position;
-    }
-
-    @Override
-    public void setPosition(Point position) {
-        this.position = position;
-    }
-
-    @Override
     public void destroy() {
-        //TODO
+        return;
     }
 }

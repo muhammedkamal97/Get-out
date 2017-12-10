@@ -7,20 +7,16 @@ import maze.Maze;
 
 import java.awt.*;
 
-public class Cage implements Trap {
+public class Cage extends StandardTrap implements Trap {
 
-    private Point position;
-    private int damage;
-
-    @Override
-    public void trap(Hero hero) {
-//        hero.removeAllWeapons();
+    public void Cage (){
         this.damage = 0;
     }
 
+
     @Override
-    public int getDamage() {
-        return this.damage;
+    public void trap(Hero hero) {
+//        hero.removeAllWeapons(); //TODO
     }
 
     @Override
@@ -28,18 +24,12 @@ public class Cage implements Trap {
         //TODO
     }
 
-    @Override
-    public Point getPosition() {
-        return position;
-    }
-
-    @Override
-    public void setPosition(Point position) {
-        this.position = position;
-    }
-
+    /**
+     * display weapons on destroy
+     */
     @Override
     public void destroy() {
-        //TODO
+
+        return;
     }
 }

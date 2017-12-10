@@ -5,10 +5,12 @@ import javafx.scene.canvas.Canvas;
 
 import java.awt.*;
 
-public class Steal implements Wall {
+public class Steal extends StandardWall implements Wall {
 
-    private Point position;
-
+    /**
+     * can't be destroyed
+     * @param bulletDamage
+     */
     @Override
     public void takeBullet(int bulletDamage) {
         return;
@@ -19,18 +21,12 @@ public class Steal implements Wall {
         //TODO
     }
 
-    @Override
-    public Point getPosition() {
-        return this.position;
-    }
-
-    @Override
-    public void setPosition(Point position) {
-        this.position = position;
-    }
-
+    /**
+     * can't be destroyed
+     */
     @Override
     public void destroy() {
+
         return;
     }
 }

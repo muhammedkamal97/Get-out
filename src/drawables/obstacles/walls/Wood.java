@@ -5,10 +5,9 @@ import javafx.scene.canvas.Canvas;
 
 import java.awt.*;
 
-public class Wood implements Wall {
+public class Wood extends StandardWall implements Wall {
 
     private int wallHealth;
-    private Point position;
 
     public void Wood() {
         this.wallHealth = 80;
@@ -28,17 +27,7 @@ public class Wood implements Wall {
     }
 
     @Override
-    public Point getPosition() {
-        return this.position;
-    }
-
-    @Override
-    public void setPosition(Point position) {
-        this.position = position;
-    }
-
-    @Override
     public void destroy() {
-        //TODO
+        return;
     }
 }

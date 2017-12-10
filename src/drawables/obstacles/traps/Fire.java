@@ -7,20 +7,18 @@ import maze.Maze;
 
 import java.awt.*;
 
-public class Fire implements Trap {
+public class Fire extends StandardTrap implements Trap {
 
-    private Point position;
-    private int damage;
-
-    @Override
-    public void trap(Hero hero) {
+    public void Fire (){
         this.damage = 75;
     }
 
+
     @Override
-    public int getDamage() {
-        return this.damage;
+    public void trap(Hero hero) {
+        return;
     }
+
 
     @Override
     public void drawOnCanvas(Canvas canvas) {
@@ -28,17 +26,7 @@ public class Fire implements Trap {
     }
 
     @Override
-    public Point getPosition() {
-        return position;
-    }
-
-    @Override
-    public void setPosition(Point position) {
-        this.position = position;
-    }
-
-    @Override
     public void destroy() {
-        //TODO
+        return;
     }
 }
