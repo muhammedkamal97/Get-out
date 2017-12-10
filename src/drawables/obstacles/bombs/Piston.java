@@ -4,32 +4,30 @@ import drawables.characters.Hero;
 import drawables.obstacles.Bomb;
 import drawables.roads.Road;
 import javafx.scene.canvas.Canvas;
+import maze.Maze;
 
 import java.awt.*;
 import java.util.Random;
 
-public class Piston extends StandardBomb implements Bomb {
+public class Piston extends StandardBomb {
 
-    private int health;
-    private int range;
+    private final int HEALTH = 250;
+    private final int RANGE = 10;
+    private final int DAMAGE = 100;
+    private Maze maze;
 
-    public void Piston() {
-        this.health = 250;
-        this.range = 10;
-        this.damage = 100;
+    public Piston() {
+        setBombRange();
+        setDamage();
+        setHealthPoints();
+        maze = getMaze();
     }
 
-    @Override
-    public void takeBullet(int bulletDamage) {
-        this.health -= bulletDamage;
-        if (this.health <= 0) {
-            this.destroy();
-        }
-    }
 
     @Override
     public void damageDrawableInExplosionRange() {
         Random ran = new Random();
+
         int x = ran.nextInt(30); //handle maze size
         int y = ran.nextInt(30);
         while (!(maze.getItemInPosition(new Point(x, y)) instanceof Hero)) {
@@ -41,10 +39,28 @@ public class Piston extends StandardBomb implements Bomb {
     }
 
     @Override
+    protected int getHealthPoints() {
+        return HEALTH;
+    }
+
+    @Override
+    protected int getBombOriginalDamage() {
+        return DAMAGE;
+    }
+
+    @Override
+    protected int getBombRange() {
+        return RANGE;
+    }
+
+    @Override
+    public void animateOnExplosion() {
+
+    }
+
+    @Override
     public void explode() {
         myThread();
-        // start thread then excute explode implementation in it
-        // display animation for explosion;
     }
 
     @Override
@@ -52,18 +68,15 @@ public class Piston extends StandardBomb implements Bomb {
         //TODO
     }
 
-    @Override
-    public void destroy() {
-        return;
-    }
-
-    public void myThread() {
+    private void myThread() {
         Thread t = new Thread() {
             public void run() {
                 try {
                     sleep(500);
                     //add explode code
+                    animateOnExplosion();
                     damageDrawableInExplosionRange();
+                    this.destroy();
                     //display explosion graphics
                 } catch (InterruptedException e) {
                     e.printStackTrace();

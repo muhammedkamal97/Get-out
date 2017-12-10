@@ -8,51 +8,41 @@ import java.awt.*;
 
 public class dynamite extends StandardBomb implements Bomb {
 
-    private int health;
-    private int range;
+    private final int HEALTH = 50;
+    private final int RANGE = 3;
+    private final int DAMAGE = 50;
 
-    public void dynamite () {
+    public dynamite () {
 
-        this.health = 50;
-        this.range = 2;
-        this.damage = 50;
-    }
-
-    @Override
-    public void takeBullet(int bulletDamage) {
-        this.health-= bulletDamage;
-        if (this.health <= 0) {
-            this.destroy();
-        }
-    }
-
-    @Override
-    public void damageDrawableInExplosionRange() {
-
-        for (int i = (-range); i <= range; i++) {
-            for (int j = (-range); j <= range; j++) {
-                if (!(maze.getItemInPosition(new Point(i,j)) instanceof Hero)) {
-//                    maze.set = road;
-                }
-                //display black marks for explosion;
-            }
-        }
+        setBombRange();
+        setDamage();
+        setHealthPoints();
 
     }
 
+
     @Override
-    public void explode() {
-        this.damageDrawableInExplosionRange();
-        //display animation for explosion;
+    protected int getBombOriginalDamage() {
+        return DAMAGE;
+    }
+
+    @Override
+    protected int getBombRange() {
+        return RANGE;
+    }
+
+    @Override
+    protected int getHealthPoints() {
+        return HEALTH;
+    }
+
+    @Override
+    public void animateOnExplosion() {
+
     }
 
     @Override
     public void drawOnCanvas(Canvas canvas) {
         //TODO
-    }
-
-    @Override
-    public void destroy() {
-        return;
     }
 }

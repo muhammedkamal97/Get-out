@@ -1,5 +1,6 @@
 package drawables.obstacles.bombs;
 
+import drawables.characters.Hero;
 import drawables.obstacles.Bomb;
 import maze.Maze;
 
@@ -8,8 +9,11 @@ import java.awt.*;
 public abstract class StandardBomb implements Bomb {
 
     private Point position;
-    protected int damage;
-    protected Maze maze;
+    private int healthPoints;
+    private int range;
+    private int temp;
+    private int damage;
+    private Maze maze;
 
     @Override
     public Point getPosition() {
@@ -30,4 +34,63 @@ public abstract class StandardBomb implements Bomb {
     public void setMaze(Maze maze) {
         this.maze = maze;
     }
+
+    @Override
+    public void takeBullet(int bulletDamage) {
+        this.healthPoints -= bulletDamage;
+        if (this.healthPoints <= 0) {
+            this.explode();
+        }
+    }
+
+
+    @Override
+    public void explode() {
+        animateOnExplosion();
+        damageDrawableInExplosionRange();
+        destroy();
+    }
+
+    @Override
+    public void damageDrawableInExplosionRange() {
+
+        for (int i = (-range); i <= range; i++) {
+            for (int j = (-range); j <= range; j++) {
+                if (!(maze.getItemInPosition(new Point(position.x +i,position.y + j)) instanceof Hero)) {
+//                    maze.set = road;
+                }
+                //display black marks for explosion;
+            }
+        }
+
+    }
+
+
+    @Override
+    public void destroy() {
+        return;
+    }
+
+
+    protected void setDamage() {
+        damage = getBombOriginalDamage();
+    }
+
+    protected void setBombRange() {
+        damage = getBombRange();
+    }
+
+    protected void setHealthPoints(){
+        healthPoints = getHealthPoints();
+    }
+
+    protected Maze getMaze(){
+        return maze;
+    }
+
+
+    protected abstract int getHealthPoints();
+    protected abstract int getBombOriginalDamage();
+    protected abstract int getBombRange();
+
 }

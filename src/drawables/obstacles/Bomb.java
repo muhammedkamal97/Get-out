@@ -8,5 +8,6 @@ public interface Bomb extends Obstacle {
     public void damageDrawableInExplosionRange();
     public void explode();
     public int getDamage();
+    public void animateOnExplosion();
 
  }
