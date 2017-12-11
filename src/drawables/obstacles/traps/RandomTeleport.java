@@ -11,7 +11,7 @@ import java.util.Random;
 public class RandomTeleport extends StandardTrap implements Trap {
 
 
-    public void RandomTeleport() {
+    public RandomTeleport() {
         this.damage = 0;
     }
 

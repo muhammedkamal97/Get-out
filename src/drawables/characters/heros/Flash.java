@@ -1,6 +1,7 @@
 package drawables.characters.heros;
 
 import drawables.characters.commands.Command;
+import drawables.characters.heros.states.DirectionState;
 import drawables.pickables.Weapon;
 import javafx.scene.canvas.Canvas;
 import maze.Maze;

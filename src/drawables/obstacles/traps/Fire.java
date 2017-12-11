@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class Fire extends StandardTrap implements Trap {
 
-    public void Fire (){
+    public Fire (){
         this.damage = 75;
     }
 

@@ -1,9 +1,9 @@
 package drawables.characters.heros;
 
 import drawables.characters.Hero;
+
 import drawables.characters.Monster;
 import drawables.characters.commands.Command;
-import drawables.characters.heros.states.DirectionDownState;
 import drawables.characters.heros.states.DirectionState;
 import drawables.obstacles.Trap;
 import drawables.pickables.Pickable;
@@ -12,6 +12,7 @@ import drawables.pickables.weapons.bullets.Bullet;
 
 import java.awt.*;
 import java.util.ArrayList;
+
 
 import maze.Maze;
 
@@ -22,6 +23,7 @@ public abstract class StandardHero implements Hero {
 	private int trials = 0;
 	private int armorPoints = 0;
 	private Point position;
+	private DirectionState directionState;
 	private Weapon currentWeapon;
 	private ArrayList<Weapon> allWeapons = new ArrayList<>();
 	private boolean holdMoneterShield = false;
@@ -29,7 +31,8 @@ public abstract class StandardHero implements Hero {
 	private boolean holdflameShield = false;
 	private boolean holdTrapShield = false;
 	private boolean holdbombShield = false;
-	DirectionState directionState = new DirectionDownState();
+
+
 	@Override
 	public int getHealthPoints() {
 		return healthPoints;
@@ -38,8 +41,8 @@ public abstract class StandardHero implements Hero {
 	@Override
 	public void trapHero(Trap trap) {
 		if (!this.holdTrapShield) {
-		int damage = trap.getDamage();
-		takeDamage(damage);
+			int damage = trap.getDamage();
+			takeDamage(damage);
 		} else {
 			this.holdTrapShield = false;
 		}
@@ -64,6 +67,8 @@ public abstract class StandardHero implements Hero {
 			if (damage >= healthPoints) {
 				healthPoints = 0;
 				// check or notify
+			} else{
+				healthPoints -= damage;
 			}
 		}
 	}
@@ -71,7 +76,8 @@ public abstract class StandardHero implements Hero {
 	@Override
 	public void shoot() {
 		if (currentWeapon != null) {
-			directionState.shoot(currentWeapon,position);
+			//currentWeapon.shoot(direction, position);
+			this.directionState.shoot(currentWeapon, position);
 		}
 	}
 
@@ -110,10 +116,7 @@ public abstract class StandardHero implements Hero {
 		moveCommand.execute(this, maze);
 	}
 
-	@Override
-	public void setDirectionState(DirectionState state) {
-		this.directionState = state;
-	}
+	
 
 	@Override
 	public void takeBullet(Bullet bullet) {
@@ -125,6 +128,7 @@ public abstract class StandardHero implements Hero {
 		}
 	}
 
+	
 
 	@Override
 	public void pick(Pickable item) {
@@ -134,6 +138,12 @@ public abstract class StandardHero implements Hero {
 	@Override
 	public Point getPosition() {
 		return position;
+	}
+	
+	@Override
+	public void setDirectionState(DirectionState state) {
+		// TODO Auto-generated method stub
+		this.directionState = state;
 	}
 
 	@Override
@@ -187,7 +197,10 @@ public abstract class StandardHero implements Hero {
 	public void protectedFromTrap() {
 		this.holdTrapShield = true;
 	}
-	public void protectedFromBullets() { this.holdBulletShield = true; }
+	public void protectedFromBullets() {
+		this.holdBulletShield = true;
+		
+	}
 	public void protectedFromMonester() {
 		this.holdMoneterShield =true;
 	}

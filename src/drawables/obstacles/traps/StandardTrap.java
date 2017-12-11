@@ -30,4 +30,5 @@ public abstract class StandardTrap implements Trap {
     public void setMaze(Maze maze) {
         this.maze = maze;
     }
+    
 }

@@ -62,15 +62,17 @@ public class LevelBuilder {
 	    }
 
 		    	private void buildWalls() {
+
 		
-		    }
+		    	}
 
 		    	private void buildBombs() {
+
 		        components.bombs = (ArrayList<Bomb>) random.generateRandomArray(
 		                properties.getAllowedBombs(),
 		                properties.getNumberOfBombs()
-		        );
-		    }
+		        		);
+		    	}
 
 		    	private void buildTraps() {
 	        components.traps = (ArrayList<Trap>) random.generateRandomArray(

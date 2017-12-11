@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class Hole extends StandardTrap implements Trap {
 
-    public void Hole (){
+    public Hole (){
         this.damage = 1000;
     }
 

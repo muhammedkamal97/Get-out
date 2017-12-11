@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class Cage extends StandardTrap implements Trap {
 
-    public void Cage (){
+    public Cage (){
         this.damage = 0;
     }
 
