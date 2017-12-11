@@ -1,9 +1,10 @@
 package drawables.characters;
 
 import drawables.obstacles.Trap;
-import drawables.pickables.Shield;
 import drawables.pickables.Weapon;
-public interface Hero extends Handler,MovingObject{
+import observer.ObservedSubject;
+
+public interface Hero extends Handler,MovingObject, ObservedSubject {
 
     public void trapHero(Trap trap);
     public void attackedByMonster(Monster monster);
@@ -21,9 +22,5 @@ public interface Hero extends Handler,MovingObject{
 	public void protectedFromTrap();
 	public void protectedFromBullets();
 	public void protectedFromMonester();
-
-	
-
-
 
 }

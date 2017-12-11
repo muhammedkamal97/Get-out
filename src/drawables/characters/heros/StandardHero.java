@@ -12,9 +12,11 @@ import drawables.pickables.weapons.bullets.Bullet;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Observer;
 
 
 import maze.Maze;
+import observer.SubjectObserver;
 
 public abstract class StandardHero implements Hero {
 
@@ -31,7 +33,7 @@ public abstract class StandardHero implements Hero {
 	private boolean holdflameShield = false;
 	private boolean holdTrapShield = false;
 	private boolean holdbombShield = false;
-
+	private ArrayList<SubjectObserver> observers = new ArrayList<>();
 
 	@Override
 	public int getHealthPoints() {
@@ -67,6 +69,8 @@ public abstract class StandardHero implements Hero {
 			if (damage >= healthPoints) {
 				healthPoints = 0;
 				// check or notify
+
+				notifyObservers();
 			} else{
 				healthPoints -= damage;
 			}
@@ -203,5 +207,17 @@ public abstract class StandardHero implements Hero {
 	}
 	public void protectedFromMonester() {
 		this.holdMoneterShield =true;
+	}
+
+	@Override
+	public void notifyObservers() {
+		for(int i = 0 ; i < observers.size() ; i++){
+			observers.get(i).update();
+		}
+	}
+
+	@Override
+	public void RegisterObserver(SubjectObserver observer) {
+		observers.add(observer);
 	}
 }
