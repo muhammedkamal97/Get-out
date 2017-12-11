@@ -38,73 +38,71 @@ public class LevelBuilder {
         return assembler.assembleMaze(components);
     }
 
-	    private void buildMazeStructure() {
-	
-	        components.mazeStructure = generator.generateRandomMaze(
-	                properties.getMazeWidth(),
-	                properties.getMazeLength()
-	        );
-	
-	    }
+    private void buildMazeStructure() {
 
-	    private void buildMonsters() {
-	        components.monsters = (ArrayList<Monster>) random.generateRandomArray(
-	                properties.getAllowedMonsters(),
-	                properties.getNumberOfMonsters()
-	        );
-	
-	    }
+        components.mazeStructure = generator.generateRandomMaze(
+                properties.getMazeWidth(),
+                properties.getMazeLength()
+        );
 
-	    private void buildObstacles() {
-	        buildWalls();
-	        buildBombs();
-	        buildTraps();
-	    }
+    }
 
-		    	private void buildWalls() {
+    private void buildMonsters() {
+        components.monsters = (ArrayList<Monster>) random.generateRandomArray(
+                properties.getAllowedMonsters(),
+                properties.getNumberOfMonsters()
+        );
 
-		
-		    	}
+    }
 
-		    	private void buildBombs() {
+    private void buildObstacles() {
+        buildWalls();
+        buildBombs();
+        buildTraps();
+    }
 
-		        components.bombs = (ArrayList<Bomb>) random.generateRandomArray(
-		                properties.getAllowedBombs(),
-		                properties.getNumberOfBombs()
-		        		);
-		    	}
+    private void buildWalls() {
 
-		    	private void buildTraps() {
-	        components.traps = (ArrayList<Trap>) random.generateRandomArray(
-	                properties.getAllowedTraps(),
-	                properties.getNumberOfTraps()
-	        );
-	    }
+    }
 
-	    private void buildPickables() {
-	        buildGifts();
-	        buildWeapons();
-	        buildShields();
-	    }
+    private void buildBombs() {
+        components.bombs = (ArrayList<Bomb>) random.generateRandomArray(
+                properties.getAllowedBombs(),
+                properties.getNumberOfBombs()
+        );
+    }
 
-		    	private void buildGifts() {
-		        components.gifts = (ArrayList<Gift>) random.generateRandomArray(
-		                properties.getAllowedGifts(),
-		                properties.getNumberOfGifts()
-		        );
-		    }
-		
-		    	private void buildShields() {
-		        components.shields = (ArrayList<Shield>) random.generateRandomArray(
-		                properties.getAllowedShields(),
-		                properties.getNumberOfShields()
-		        );
-		    }
-		
-		    	private void buildWeapons() {
-		        components.weapons = (ArrayList<Weapon>) random.generateRandomArray(
-		                properties.getAllowedWeapons(),
-		                properties.getNumberOfWeapons()
-		        );
-		    }
+    private void buildTraps() {
+        components.traps = (ArrayList<Trap>) random.generateRandomArray(
+                properties.getAllowedTraps(),
+                properties.getNumberOfTraps()
+        );
+    }
+
+    private void buildPickables() {
+        buildGifts();
+        buildWeapons();
+        buildShields();
+    }
+
+    private void buildGifts() {
+        components.gifts = (ArrayList<Gift>) random.generateRandomArray(
+                properties.getAllowedGifts(),
+                properties.getNumberOfGifts()
+        );
+    }
+
+    private void buildShields() {
+        components.shields = (ArrayList<Shield>) random.generateRandomArray(
+                properties.getAllowedShields(),
+                properties.getNumberOfShields()
+        );
+    }
+
+    private void buildWeapons() {
+        components.weapons = (ArrayList<Weapon>) random.generateRandomArray(
+                properties.getAllowedWeapons(),
+                properties.getNumberOfWeapons()
+        );
+    }
 }
