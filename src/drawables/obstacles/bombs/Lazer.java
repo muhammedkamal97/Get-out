@@ -15,7 +15,7 @@ public class Lazer extends StandardBomb implements Bomb {
     private final int RANGE = 3;
     private final int DAMAGE = 1000;
 
-    public Lazer () {
+    public Lazer() {
         setBombRange();
         setDamage();
         setHealthPoints();
@@ -38,7 +38,7 @@ public class Lazer extends StandardBomb implements Bomb {
 
     @Override
     public void animateOnExplosion() {
-
+        //TODO
     }
 
     @Override

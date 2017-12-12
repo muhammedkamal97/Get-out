@@ -55,12 +55,13 @@ public class Piston extends StandardBomb {
 
     @Override
     public void animateOnExplosion() {
-
+    //TODO
     }
 
     @Override
     public void explode() {
         myThread();
+        this.destroy();
     }
 
     @Override
@@ -76,7 +77,6 @@ public class Piston extends StandardBomb {
                     //add explode code
                     animateOnExplosion();
                     damageDrawableInExplosionRange();
-                    this.destroy();
                     //display explosion graphics
                 } catch (InterruptedException e) {
                     e.printStackTrace();

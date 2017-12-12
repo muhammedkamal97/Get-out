@@ -12,7 +12,7 @@ public class dynamite extends StandardBomb implements Bomb {
     private final int RANGE = 3;
     private final int DAMAGE = 50;
 
-    public dynamite () {
+    public dynamite() {
 
         setBombRange();
         setDamage();
@@ -38,7 +38,7 @@ public class dynamite extends StandardBomb implements Bomb {
 
     @Override
     public void animateOnExplosion() {
-
+        //TODO
     }
 
     @Override

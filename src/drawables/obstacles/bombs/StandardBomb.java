@@ -46,9 +46,9 @@ public abstract class StandardBomb implements Bomb {
 
     @Override
     public void explode() {
-        animateOnExplosion();
-        damageDrawableInExplosionRange();
-        destroy();
+        this.animateOnExplosion();
+        this.damageDrawableInExplosionRange();
+        this.destroy();
     }
 
     @Override
