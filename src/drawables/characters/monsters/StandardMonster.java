@@ -67,8 +67,8 @@ public abstract class StandardMonster implements Monster {
     }
 
     @Override
-    public void shoot() {
-        shootingBehavior.shoot(position,directionState);
+    public void shoot(Maze maze) {
+        shootingBehavior.shoot(position,directionState, maze);
     }
 
     @Override

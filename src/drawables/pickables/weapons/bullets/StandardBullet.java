@@ -1,6 +1,7 @@
 package drawables.pickables.weapons.bullets;
 
 import drawables.pickables.weapons.bullets.bulletDirectionStates.ShootingDirectionState;
+import maze.Maze;
 
 import java.awt.*;
 
@@ -13,8 +14,8 @@ public abstract class StandardBullet implements Bullet {
     }
 
     @Override
-    public void startMotionAfterShooting(Point initialPosition, ShootingDirectionState state) {
-        state.startMotion(initialPosition,this);
+    public void startMotionAfterShooting(Point initialPosition, ShootingDirectionState state, Maze maze) {
+        state.startMotion(initialPosition,this, maze);
     }
 
     protected void setDamage(){

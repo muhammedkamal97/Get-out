@@ -2,13 +2,14 @@ package drawables.characters;
 
 import drawables.obstacles.Trap;
 import drawables.pickables.Weapon;
+import maze.Maze;
 import observer.ObservedSubject;
 
 public interface Hero extends Handler,MovingObject, ObservedSubject {
 
     public void trapHero(Trap trap);
     public void attackedByMonster(Monster monster);
-    public void shoot();
+    public void shoot(Maze maze);
     public int getHealthPoints();
     public void holdNextWeapon();
     public void holdPreviousWeapon();

@@ -78,10 +78,10 @@ public abstract class StandardHero implements Hero {
 	}
 
 	@Override
-	public void shoot() {
+	public void shoot(Maze maze) {
 		if (currentWeapon != null) {
 			//currentWeapon.shoot(direction, position);
-			this.directionState.shoot(currentWeapon, position);
+			this.directionState.shoot(currentWeapon, position, maze);
 		}
 	}
 

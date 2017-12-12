@@ -25,7 +25,7 @@ public class RunnerLoop implements GameLoop{
 
     @Override
     public void shoot() {
-        hero.shoot();
+        hero.shoot(this.maze);
     }
 
     @Override
