@@ -20,13 +20,14 @@ public class Soldier extends StandardHero {
     }
 
     @Override
-    public void move(Command moveCommand, Maze maze) {
-        super.move(moveCommand, maze);
+    public boolean move(Command moveCommand, Maze maze) {
+    	boolean moveResult = super.move(moveCommand, maze);
         try {
             Thread.sleep(MOTION_DELAY);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        return moveResult;
     }
 
     @Override
