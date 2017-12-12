@@ -5,6 +5,7 @@ import java.awt.Point;
 import drawables.characters.Hero;
 import drawables.pickables.Shield;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 
 public abstract  class StandardShield implements Shield {
 	protected Point position; 
@@ -16,7 +17,7 @@ public abstract  class StandardShield implements Shield {
 	}
 
 	@Override
-	public void drawOnCanvas(Canvas canvas) {
+	public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
 		//Gui
 		
 	}

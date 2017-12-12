@@ -3,7 +3,10 @@ package drawables.characters.heros;
 import drawables.characters.commands.Command;
 import drawables.pickables.Weapon;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import maze.Maze;
+
+import java.awt.*;
 
 public class Hulk extends StandardHero {
     private static final int HEALTH_POINTS = 200;
@@ -39,7 +42,7 @@ public class Hulk extends StandardHero {
     }
 
     @Override
-    public void drawOnCanvas(Canvas canvas) {
+    public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
 
     }
 }

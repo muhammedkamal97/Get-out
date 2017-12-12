@@ -3,6 +3,9 @@ package drawables.characters.monsters;
 import drawables.characters.monsters.Behaviors.RPGShootingBehavior;
 import drawables.characters.monsters.Behaviors.ShootingBehavior;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+
+import java.awt.*;
 
 public class DestroyerMonster extends StandardMonster{
     private final int HEALTH_POINTS = 100;
@@ -33,7 +36,7 @@ public class DestroyerMonster extends StandardMonster{
     }
 
     @Override
-    public void drawOnCanvas(Canvas canvas) {
+    public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
 
     }
 }

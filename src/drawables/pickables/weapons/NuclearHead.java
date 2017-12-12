@@ -4,6 +4,9 @@ import drawables.pickables.weapons.bullets.Bullet;
 import drawables.pickables.weapons.bullets.NuclearHeadBullet;
 import drawables.pickables.weapons.bullets.RifleBullet;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+
+import java.awt.*;
 
 public class NuclearHead extends StandardWeapon {
 
@@ -15,7 +18,7 @@ public class NuclearHead extends StandardWeapon {
     }
 
     @Override
-    public void drawOnCanvas(Canvas canvas) {
+    public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
         //GUI
     }
 

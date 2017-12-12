@@ -23,9 +23,11 @@
     <Screen fx:factory="getPrimary" fx:id="screen"/>
     </fx:define>
     <!--<Canvas fx:id="mazeCanvas" height="700" width="900"/>-->
-    <!--<Canvas fx:id="heroCanvas" height="700" width="900"/>-->
+    <!--<Canvas fx:id="dynamicCanvas" height="700" width="900"/>-->
+    <!--<Canvas fx:id="steadyCanvas" height="700" width="900"/>-->
     <Canvas fx:id="mazeCanvas" height="${screen.visualBounds.height}" width="${screen.visualBounds.width}"/>
-    <Canvas fx:id="heroCanvas" height="${screen.visualBounds.height}" width="${screen.visualBounds.width}"/>
+    <Canvas fx:id="dynamicCanvas" height="${screen.visualBounds.height}" width="${screen.visualBounds.width}"/>
+    <Canvas fx:id="steadyCanvas" height="${screen.visualBounds.height}" width="${screen.visualBounds.width}"/>
     <!--<ToolBar prefHeight="40.0" prefWidth="900" GridPane.valignment="TOP">-->
     <ToolBar prefHeight="40.0" prefWidth="${screen.visualBounds.width}" GridPane.valignment="TOP">
     <HBox alignment="CENTER" spacing="10">

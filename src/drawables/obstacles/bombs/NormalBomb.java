@@ -3,6 +3,7 @@ package drawables.obstacles.bombs;
 import drawables.characters.Hero;
 import drawables.obstacles.Bomb;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import maze.Maze;
 
 import java.awt.*;
@@ -42,7 +43,7 @@ public class NormalBomb extends StandardBomb implements Bomb {
     }
 
     @Override
-    public void drawOnCanvas(Canvas canvas) {
+    public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
         //TODO
     }
 }

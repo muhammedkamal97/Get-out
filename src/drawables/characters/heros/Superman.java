@@ -4,7 +4,10 @@ import drawables.characters.commands.Command;
 import drawables.characters.heros.states.DirectionState;
 import drawables.pickables.Weapon;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import maze.Maze;
+
+import java.awt.*;
 
 public class Superman extends StandardHero {
     private static final int HEALTH_POINTS = 300;
@@ -39,7 +42,7 @@ public class Superman extends StandardHero {
     }
 
     @Override
-    public void drawOnCanvas(Canvas canvas) {
+    public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
 
     }
 }

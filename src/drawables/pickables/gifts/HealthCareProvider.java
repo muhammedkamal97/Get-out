@@ -2,6 +2,9 @@ package drawables.pickables.gifts;
 
 import drawables.characters.Hero;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+
+import java.awt.*;
 
 /**
  * @author AyaOsman
@@ -17,7 +20,7 @@ public class HealthCareProvider extends StandardGift{
 		return IMAGE_URL;
 	}
 	@Override
-	public void drawOnCanvas(Canvas canvas) {
+	public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
 		// TODO Auto-generated method stub
 		
 	}

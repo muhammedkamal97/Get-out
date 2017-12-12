@@ -4,6 +4,9 @@ import drawables.characters.monsters.Behaviors.NoShootingBehavior;
 import drawables.characters.monsters.Behaviors.RifleShootingBehavior;
 import drawables.characters.monsters.Behaviors.ShootingBehavior;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+
+import java.awt.*;
 
 public class ShootingMonster extends StandardMonster{
     private final int HEALTH_POINTS = 60;
@@ -32,7 +35,7 @@ public class ShootingMonster extends StandardMonster{
     }
 
     @Override
-    public void drawOnCanvas(Canvas canvas) {
+    public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
 
     }
 }

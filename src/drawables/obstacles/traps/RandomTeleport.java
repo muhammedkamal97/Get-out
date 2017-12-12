@@ -4,6 +4,7 @@ import drawables.characters.Hero;
 import drawables.obstacles.Trap;
 import drawables.roads.Road;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
 import java.util.Random;
@@ -29,7 +30,7 @@ public class RandomTeleport extends StandardTrap implements Trap {
     }
 
     @Override
-    public void drawOnCanvas(Canvas canvas) {
+    public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
         //TODO
     }
 

@@ -3,7 +3,10 @@ package drawables.characters.heros;
 import drawables.characters.commands.Command;
 import drawables.pickables.Weapon;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import maze.Maze;
+
+import java.awt.*;
 
 public class NormalHero extends StandardHero {
 
@@ -41,7 +44,7 @@ public class NormalHero extends StandardHero {
     }
 
     @Override
-    public void drawOnCanvas(Canvas canvas) {
+    public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
 
     }
 }

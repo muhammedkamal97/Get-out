@@ -4,6 +4,9 @@ import drawables.pickables.weapons.bullets.Bullet;
 import drawables.pickables.weapons.bullets.NormalBullet;
 import drawables.pickables.weapons.bullets.RifleBullet;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+
+import java.awt.*;
 
 public class MP5 extends StandardWeapon {
 
@@ -16,7 +19,7 @@ public class MP5 extends StandardWeapon {
         setMaxMagazineCapacity();
     }
     @Override
-    public void drawOnCanvas(Canvas canvas) {
+    public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
         //GUI
     }
 

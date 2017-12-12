@@ -2,6 +2,9 @@ package drawables.pickables.gifts;
 
 import drawables.characters.Hero;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+
+import java.awt.*;
 
 public class Coins extends StandardGift{
 	private final String IMAGE_URL = " ";
@@ -15,7 +18,7 @@ public class Coins extends StandardGift{
 		return IMAGE_URL;
 	}
 	@Override
-	public void drawOnCanvas(Canvas canvas) {
+	public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
 		//Gui
 		
 	}

@@ -14,23 +14,26 @@ import javafx.scene.paint.Color;
 public class Controller {
 
     @FXML
-    public Canvas heroCanvas;
+    private Canvas dynamicCanvas;
     @FXML
-    public Canvas mazeCanvas;
-    private GraphicsContext gcH;
+    private Canvas steadyCanvas;
+    @FXML
+    private Canvas mazeCanvas;
+    private GraphicsContext gcD;
     private GraphicsContext gcM;
+    private GraphicsContext gcS;   // two global parameters (dimensions cell)
     private MySprite sprite = new MySprite();
     private int i = 10; // remove it
 
     //important to instantiate graphics context
     @FXML
     protected void ButtonActionForNow(ActionEvent event) {
-        gcH = heroCanvas.getGraphicsContext2D();
+        gcD = dynamicCanvas.getGraphicsContext2D();
         gcM = mazeCanvas.getGraphicsContext2D();
         gcM.setFill(Color.GREEN);
         gcM.fillOval(50, 100, 200, 200);
-        gcH.setFill(Color.RED);
-        gcH.fillRect(300, 100, 200, 200);
+        gcD.setFill(Color.RED);
+        gcD.fillRect(300, 100, 200, 200);
         i = 0;
         Image img = new Image("run.png");
         sprite.SpriteSheetBuffer((int) img.getWidth(), (int) img.getHeight(),
@@ -41,41 +44,41 @@ public class Controller {
 
     @FXML
     public void keyPressedSwitch(KeyEvent event) {
-        gcH = heroCanvas.getGraphicsContext2D();
+        gcD = dynamicCanvas.getGraphicsContext2D();
         gcM = mazeCanvas.getGraphicsContext2D();
         switch (event.getCode()) {
             case J:
             case LEFT:
             case KP_LEFT:
                 i += 10;
-                gcH.clearRect(0, 0, heroCanvas.getHeight(), heroCanvas.getWidth());
-                gcH.fillOval(400 - i, 100, 100, 100);
+                gcD.clearRect(0, 0, dynamicCanvas.getHeight(), dynamicCanvas.getWidth());
+                gcD.fillOval(400 - i, 100, 100, 100);
                 System.out.println("to the left");
                 break;
             case L:
             case RIGHT:
             case KP_RIGHT:
                 i += 10;
-                gcH.clearRect(0, 0, heroCanvas.getHeight(), heroCanvas.getWidth());
-                gcH.fillOval(400 + i, 100, 100, 100);
+                gcD.clearRect(0, 0, dynamicCanvas.getHeight(), dynamicCanvas.getWidth());
+                gcD.fillOval(400 + i, 100, 100, 100);
                 break;
             case I:
             case UP:
             case KP_UP:
                 i += 10;
-                gcH.clearRect(0, 0, heroCanvas.getHeight(), heroCanvas.getWidth());
-                gcH.fillOval(400, 100 - i, 100, 100);
+                gcD.clearRect(0, 0, dynamicCanvas.getHeight(), dynamicCanvas.getWidth());
+                gcD.fillOval(400, 100 - i, 100, 100);
                 break;
             case K:
             case DOWN:
             case KP_DOWN:
                 i += 10;
-                gcH.clearRect(0, 0, heroCanvas.getHeight(), heroCanvas.getWidth());
-                gcH.fillOval(400, 100 + i, 100, 100);
+                gcD.clearRect(0, 0, dynamicCanvas.getHeight(), dynamicCanvas.getWidth());
+                gcD.fillOval(400, 100 + i, 100, 100);
                 break;
             case P: // to be removed
-                gcH.clearRect(0, 0, heroCanvas.getHeight(), heroCanvas.getWidth());
-                sprite.drawNextSprite(gcH, 125, 640,64);
+                gcD.clearRect(0, 0, dynamicCanvas.getHeight(), dynamicCanvas.getWidth());
+                sprite.drawNextSprite(gcD, 125, 640,64);
 
                 break;
             default:
@@ -97,13 +100,13 @@ public class Controller {
                 if (!flag && (current - start >= 5000)) {
                     start = System.currentTimeMillis();
                     System.out.println("in");
-                    gcM.clearRect(0, 0, heroCanvas.getHeight(), heroCanvas.getWidth());
+                    gcM.clearRect(0, 0, dynamicCanvas.getHeight(), dynamicCanvas.getWidth());
                     gcM.drawImage(leftG, 64, 64);
                     flag = true;
                 } else if (flag && (current - start >= 5000)) {
                     start = System.currentTimeMillis();
                     System.out.println("in1");
-                    gcM.clearRect(0, 0, heroCanvas.getHeight(), heroCanvas.getWidth());
+                    gcM.clearRect(0, 0, dynamicCanvas.getHeight(), dynamicCanvas.getWidth());
                     gcM.drawImage(left, 64, 64);
                     flag = false;
                 }

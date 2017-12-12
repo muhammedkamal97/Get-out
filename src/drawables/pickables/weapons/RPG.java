@@ -3,6 +3,9 @@ package drawables.pickables.weapons;
 import drawables.pickables.weapons.bullets.Bullet;
 import drawables.pickables.weapons.bullets.RPGBullet;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+
+import java.awt.*;
 
 public class RPG extends StandardWeapon {
 
@@ -15,7 +18,7 @@ public class RPG extends StandardWeapon {
     }
 
     @Override
-    public void drawOnCanvas(Canvas canvas) {
+    public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
         //GUI
     }
 

@@ -2,6 +2,7 @@ package drawables.obstacles.walls;
 
 import drawables.obstacles.Wall;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
 
@@ -21,7 +22,7 @@ public class Concrete extends StandardWall implements Wall {
     }
 
     @Override
-    public void drawOnCanvas(Canvas canvas) {
+    public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
         //TODO
     }
 
