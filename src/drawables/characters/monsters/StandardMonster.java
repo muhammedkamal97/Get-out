@@ -32,8 +32,8 @@ public abstract class StandardMonster implements Monster {
 
 
     @Override
-    public void move(Command moveCommand, Maze maze) {
-        moveCommand.execute(this,maze);
+    public boolean move(Command moveCommand, Maze maze) {
+        return moveCommand.execute(this,maze);
     }
 
     @Override

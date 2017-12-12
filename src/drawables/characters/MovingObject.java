@@ -9,7 +9,7 @@ import maze.Maze;
 
 public interface MovingObject extends Drawable{
 
-    public void move(Command moveCommand , Maze maze);
+    public boolean move(Command moveCommand , Maze maze);
     public int getHealthPoints();
     public void setDirectionState(DirectionState state);
     public void takeBullet(Bullet bullet);

@@ -5,5 +5,5 @@ import drawables.characters.MovingObject;
 import maze.Maze;
 
 public interface Command {
-    public void execute(MovingObject object , Maze maze);
+    public boolean execute(MovingObject object , Maze maze);
 }

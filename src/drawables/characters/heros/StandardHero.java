@@ -116,8 +116,8 @@ public abstract class StandardHero implements Hero {
 	}
 
 	@Override
-	public void move(Command moveCommand, Maze maze) {
-		moveCommand.execute(this, maze);
+	public boolean move(Command moveCommand, Maze maze) {
+		return moveCommand.execute(this, maze);
 	}
 
 	

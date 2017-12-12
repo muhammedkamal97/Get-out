@@ -12,7 +12,7 @@ import java.awt.*;
 public class MoveLeftCommand implements Command {
 
     @Override
-    public void execute(MovingObject object, Maze maze) {
+    public boolean execute(MovingObject object, Maze maze) {
 
         object.setDirectionState(new DirectionLeftState());
 
@@ -22,11 +22,12 @@ public class MoveLeftCommand implements Command {
         object.setPosition(position);
         Drawable itemInNextPosition = maze.getItemInPosition(position);
         boolean isValidMove = utilities.isAValidMove(itemInNextPosition);
-
         if(isValidMove){
             utilities.performMove(itemInNextPosition,object);
+            object.setPosition(position);
+            return true;
         }
-
+        return false;
     }
 
 }

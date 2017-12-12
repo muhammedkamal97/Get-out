@@ -29,7 +29,7 @@ public abstract class Maze {
     public void setObstacles(ArrayList<Obstacle> obstacles) {
         this.obstacles = obstacles;
     }
-    
+
     public void setMaze(int[][] maze){
     	this.maze = maze;
     }

@@ -13,20 +13,22 @@ public class MoveUpCommand implements Command {
 
 
     @Override
-    public void execute(MovingObject object, Maze maze) {
+    public boolean execute(MovingObject object, Maze maze) {
 
         object.setDirectionState(new DirectionUpState());
 
         MoveUtilities utilities = new MoveUtilities();
         Point position = object.getPosition();
         position.y = position.y + 1;
-        object.setPosition(position);
         Drawable itemInNextPosition = maze.getItemInPosition(position);
         boolean isValidMove = utilities.isAValidMove(itemInNextPosition);
 
         if(isValidMove){
             utilities.performMove(itemInNextPosition,object);
+            object.setPosition(position);
+            return true;
         }
+        return false;
 
     }
 }

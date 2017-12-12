@@ -12,7 +12,7 @@ public class MoveDownCommand implements Command {
 
 
     @Override
-    public void execute(MovingObject object, Maze maze) {
+    public boolean execute(MovingObject object, Maze maze) {
 
         object.setDirectionState(new DirectionDownState());
 
@@ -26,7 +26,10 @@ public class MoveDownCommand implements Command {
 
         if(isValidMove){
             utilities.performMove(itemInNextPosition,object);
+            object.setPosition(position);
+            return true;
         }
+        return false;
 
     }
 }

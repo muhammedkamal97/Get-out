@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Stack;
 
 import drawables.Drawable;
+import drawables.obstacles.walls.Steal;
 import drawables.pickables.*;
 import drawables.obstacles.*;
 import drawables.characters.Monster;
@@ -20,7 +21,12 @@ public class ImpMaze extends Maze{
 
 	@Override
 	public Drawable getItemInPosition(Point position) {
-		return drawables[position.x][position.y];
+		try {
+			return drawables[position.x][position.y];
+		} catch (Exception e) {
+			return new Steal();
+		}
+
 	}
 
 	@Override
