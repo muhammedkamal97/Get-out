@@ -36,5 +36,4 @@ public abstract class StandardGift implements Gift{
 	public void destroy() {
 
 	}
-	
 }
