@@ -28,5 +28,13 @@ public abstract class StandardGift implements Gift{
 		this.position = position;
 	}
 
+	@Override
+	public void takeDamage(int damage) {
+		destroy();
+	}
+	@Override
+	public void destroy() {
 
+	}
+	
 }

@@ -36,15 +36,6 @@ public abstract class StandardBomb implements Bomb {
     }
 
     @Override
-    public void takeBullet(int bulletDamage) {
-        this.healthPoints -= bulletDamage;
-        if (this.healthPoints <= 0) {
-            this.explode();
-        }
-    }
-
-
-    @Override
     public void explode() {
         this.animateOnExplosion();
         this.damageDrawableInExplosionRange();

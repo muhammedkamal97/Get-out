@@ -28,6 +28,16 @@ public abstract class StandardWeapon implements Weapon{
     }
 
     @Override
+    public void takeDamage(int damage) {
+        destroy();
+    }
+
+    @Override
+    public void destroy() {
+
+    }
+
+    @Override
     public void addToHandler(Hero hero) {
         hero.addWeapon(this);
     }

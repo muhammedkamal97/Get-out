@@ -23,6 +23,16 @@ public abstract  class StandardShield implements Shield {
 	}
 
 	@Override
+	public void takeDamage(int damage) {
+		destroy();
+	}
+
+	@Override
+	public void destroy() {
+
+	}
+
+	@Override
 	public Point getPosition() {
 		return this.position;
 	}
