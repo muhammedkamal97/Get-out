@@ -22,7 +22,7 @@ public class DirectionDownState implements DirectionState {
             while (i < hero.getPosition().getY()) {
                 gc.clearRect(hero.getPosition().getX(), i, widthCell, heightCell);
                 i++;
-                hero.getDownSprite().drawNextSprite(gc, widthCell, heightCell, hero.getPosition().getX(), i);
+                hero.getDownSprite().drawNextSprite(gc, widthCell, heightCell, (int)hero.getPosition().getX(), i);
             }
 
     }

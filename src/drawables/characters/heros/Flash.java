@@ -16,34 +16,25 @@ public class Flash extends StandardHero {
     private static final int MOTION_DELAY = 10;
     private static final int WEAPONS_LIMIT = 1;
 
-    private MySprite downSprite;
-    private MySprite upSprite;
-    private MySprite rightSprite;
-    private MySprite leftSprite;
-
-
     public Flash() {
         setHealthPoints();
         constructSprites();
     }
 
     private void constructSprites() {
-        downSprite = new MySprite();
-        upSprite = new MySprite();
-        rightSprite = new MySprite();
-        leftSprite = new MySprite();
 
-        //get them from Map
+
+        //get them from Map //actually nont correct we will use our special type
 //        BufferedImage imgLeft = getHeroesimage
 //        BufferedImage imgRight = getHeroesimage
 //        BufferedImage imgDown = getHeroesimage
 //        BufferedImage imgUp = getHeroesimage
 
-        //need cell width & height
-//        downSprite.SpriteSheetBuffer();
-//        upSprite.SpriteSheetBuffer();
-//        rightSprite.SpriteSheetBuffer();
-//        leftSprite.SpriteSheetBuffer();
+        //need paramater from special type
+//        setDownSprite(new MySprite().SpriteSheetBuffer());
+//        setUpSprite(new MySprite().SpriteSheetBuffer());
+//        setRightSprite(new MySprite().SpriteSheetBuffer());
+//        setDownSprite(new MySprite().SpriteSheetBuffer());
 
     }
 
@@ -71,25 +62,4 @@ public class Flash extends StandardHero {
         }
     }
 
-    @Override
-    public void drawOnCanvas(GraphicsContext gc, Point pt, int widthCell, int heightCell) {
-        getDirectionState().Draw(gc, pt, widthCell, heightCell, this);
-    }
-
-
-    public MySprite getDownSprite() {
-        return downSprite;
-    }
-
-    public MySprite getUpSprite() {
-        return upSprite;
-    }
-
-    public MySprite getRightSprite() {
-        return rightSprite;
-    }
-
-    public MySprite getLeftSprite() {
-        return leftSprite;
-    }
 }

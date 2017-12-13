@@ -1,5 +1,6 @@
 package drawables.characters.heros;
 
+import View.Graphics.Sprite.MySprite;
 import drawables.characters.Hero;
 
 import drawables.characters.Monster;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Observer;
 
 
+import javafx.scene.canvas.GraphicsContext;
 import maze.Maze;
 import observer.SubjectObserver;
 
@@ -34,6 +36,11 @@ public abstract class StandardHero implements Hero {
 	private boolean holdTrapShield = false;
 	private boolean holdbombShield = false;
 	private ArrayList<SubjectObserver> observers = new ArrayList<>();
+
+	private MySprite downSprite = new MySprite();
+	private MySprite upSprite = new MySprite();
+	private MySprite rightSprite = new MySprite();
+	private MySprite leftSprite = new MySprite();
 
 	@Override
 	public int getHealthPoints() {
@@ -208,6 +215,7 @@ public abstract class StandardHero implements Hero {
 		this.holdBulletShield = true;
 		
 	}
+
 	public void protectedFromMonester() {
 		this.holdMoneterShield =true;
 	}
@@ -223,4 +231,29 @@ public abstract class StandardHero implements Hero {
 	public void RegisterObserver(SubjectObserver observer) {
 		observers.add(observer);
 	}
+
+	@Override
+	public void drawOnCanvas(GraphicsContext gc, Point pt, int widthCell, int heightCell) {
+		getDirectionState().Draw(gc, pt, widthCell, heightCell, this);
+	}
+
+	@Override
+	public MySprite getDownSprite() {
+		return downSprite;
+	}
+	@Override
+	public MySprite getUpSprite() {
+		return upSprite;
+	}
+	@Override
+	public MySprite getRightSprite() {
+		return rightSprite;
+	}
+	@Override
+	public MySprite getLeftSprite() { return leftSprite; }
+
+	protected void setDownSprite(MySprite sprite) { this.downSprite = sprite; }
+	protected void setUpSprite(MySprite sprite) { this.upSprite = sprite; }
+	protected void setRightSprite(MySprite sprite) { this.rightSprite = sprite; }
+	protected void setLeftSprite(MySprite sprite) { this.leftSprite = sprite; }
 }

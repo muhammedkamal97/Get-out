@@ -17,8 +17,25 @@ public class NormalHero extends StandardHero {
 
     public NormalHero (){
         setHealthPoints();
+        constructSprites();
     }
 
+    private void constructSprites() {
+
+
+        //get them from Map //actually nont correct we will use our special type
+//        BufferedImage imgLeft = getHeroesimage
+//        BufferedImage imgRight = getHeroesimage
+//        BufferedImage imgDown = getHeroesimage
+//        BufferedImage imgUp = getHeroesimage
+
+        //need paramater from special type
+//        setDownSprite(new MySprite().SpriteSheetBuffer());
+//        setUpSprite(new MySprite().SpriteSheetBuffer());
+//        setRightSprite(new MySprite().SpriteSheetBuffer());
+//        setDownSprite(new MySprite().SpriteSheetBuffer());
+
+    }
 
     @Override
     public boolean move(Command moveCommand, Maze maze) {
@@ -42,10 +59,5 @@ public class NormalHero extends StandardHero {
         if(getNumberOfWeapons() > WEAPONS_LIMIT){
             removeFirstWeapon();
         }
-    }
-
-    @Override
-    public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
-
     }
 }
