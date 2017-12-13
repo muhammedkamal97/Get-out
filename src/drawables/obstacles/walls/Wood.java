@@ -15,7 +15,7 @@ public class Wood extends StandardWall implements Wall {
     }
 
     @Override
-    public void takeBullet(int bulletDamage) {
+    public void takeDamage(int bulletDamage) {
         this.wallHealth -= bulletDamage;
         if (this.wallHealth <= 0) {
             this.destroy();

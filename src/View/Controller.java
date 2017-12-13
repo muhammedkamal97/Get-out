@@ -5,13 +5,17 @@ import javafx.animation.AnimationTimer;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 
-public class Controller {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class Controller implements Initializable{
 
     @FXML
     private Canvas dynamicCanvas;
@@ -22,14 +26,18 @@ public class Controller {
     private GraphicsContext gcD;
     private GraphicsContext gcM;
     private GraphicsContext gcS;   // two global parameters (dimensions cell)
+    private int shift;
+
+
     private MySprite sprite = new MySprite();
     private int i = 10; // remove it
+
+
 
     //important to instantiate graphics context
     @FXML
     protected void ButtonActionForNow(ActionEvent event) {
-        gcD = dynamicCanvas.getGraphicsContext2D();
-        gcM = mazeCanvas.getGraphicsContext2D();
+
         gcM.setFill(Color.GREEN);
         gcM.fillOval(50, 100, 200, 200);
         gcD.setFill(Color.RED);
@@ -44,14 +52,12 @@ public class Controller {
 
     @FXML
     public void keyPressedSwitch(KeyEvent event) {
-        gcD = dynamicCanvas.getGraphicsContext2D();
-        gcM = mazeCanvas.getGraphicsContext2D();
         switch (event.getCode()) {
             case J:
             case LEFT:
             case KP_LEFT:
                 i += 10;
-                gcD.clearRect(0, 0, dynamicCanvas.getHeight(), dynamicCanvas.getWidth());
+                gcD.clearRect(0, 0, dynamicCanvas.getWidth(), dynamicCanvas.getHeight());
                 gcD.fillOval(400 - i, 100, 100, 100);
                 System.out.println("to the left");
                 break;
@@ -59,25 +65,25 @@ public class Controller {
             case RIGHT:
             case KP_RIGHT:
                 i += 10;
-                gcD.clearRect(0, 0, dynamicCanvas.getHeight(), dynamicCanvas.getWidth());
+                gcD.clearRect(0, 0, dynamicCanvas.getWidth(), dynamicCanvas.getHeight());
                 gcD.fillOval(400 + i, 100, 100, 100);
                 break;
             case I:
             case UP:
             case KP_UP:
                 i += 10;
-                gcD.clearRect(0, 0, dynamicCanvas.getHeight(), dynamicCanvas.getWidth());
+                gcD.clearRect(0, 0, dynamicCanvas.getWidth(), dynamicCanvas.getHeight());
                 gcD.fillOval(400, 100 - i, 100, 100);
                 break;
             case K:
             case DOWN:
             case KP_DOWN:
                 i += 10;
-                gcD.clearRect(0, 0, dynamicCanvas.getHeight(), dynamicCanvas.getWidth());
+                gcD.clearRect(0, 0, dynamicCanvas.getWidth(), dynamicCanvas.getHeight());
                 gcD.fillOval(400, 100 + i, 100, 100);
                 break;
             case P: // to be removed
-                gcD.clearRect(0, 0, dynamicCanvas.getHeight(), dynamicCanvas.getWidth());
+                gcD.clearRect(0, 0, dynamicCanvas.getWidth(), dynamicCanvas.getHeight());
                 sprite.drawNextSprite(gcD, 125, 640,64);
 
                 break;
@@ -100,17 +106,25 @@ public class Controller {
                 if (!flag && (current - start >= 5000)) {
                     start = System.currentTimeMillis();
                     System.out.println("in");
-                    gcM.clearRect(0, 0, dynamicCanvas.getHeight(), dynamicCanvas.getWidth());
+                    gcM.clearRect(0, 0, dynamicCanvas.getWidth(), dynamicCanvas.getHeight());
                     gcM.drawImage(leftG, 64, 64);
                     flag = true;
                 } else if (flag && (current - start >= 5000)) {
                     start = System.currentTimeMillis();
                     System.out.println("in1");
-                    gcM.clearRect(0, 0, dynamicCanvas.getHeight(), dynamicCanvas.getWidth());
+                    gcM.clearRect(0, 0, dynamicCanvas.getWidth(), dynamicCanvas.getHeight());
                     gcM.drawImage(left, 64, 64);
                     flag = false;
                 }
             }
         }.start();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        gcD = dynamicCanvas.getGraphicsContext2D();
+        gcM = mazeCanvas.getGraphicsContext2D();
+        gcS = steadyCanvas.getGraphicsContext2D();
+        shift = ((int)(dynamicCanvas.getWidth() - dynamicCanvas.getHeight()))/2;
     }
 }

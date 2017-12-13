@@ -7,7 +7,7 @@ import java.awt.*;
 
 public interface Drawable {
 
-    public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height);
+    public void drawOnCanvas(GraphicsContext gc, Point pt, int widthCell, int heightCell);
     public Point getPosition();
     public void setPosition(Point position);
     public void takeDamage(int damage);

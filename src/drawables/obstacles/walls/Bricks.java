@@ -6,15 +6,15 @@ import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
 
-public class Concrete extends StandardWall implements Wall {
+public class Bricks extends StandardWall implements Wall {
 
     private int wallHealth;
-    public void Concrete() {
+    public void Bricks() {
         this.wallHealth = 125;
     }
 
     @Override
-    public void takeBullet(int bulletDamage) {
+    public void takeDamage(int bulletDamage) {
         this.wallHealth -= bulletDamage;
         if (this.wallHealth <= 0) {
             this.destroy();

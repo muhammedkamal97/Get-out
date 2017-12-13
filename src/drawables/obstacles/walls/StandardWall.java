@@ -25,5 +25,4 @@ public abstract class StandardWall implements Wall {
         this.maze = maze;
     }
 
-
 }

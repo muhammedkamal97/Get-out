@@ -1,4 +1,4 @@
-package View.Animation;
+package View.Graphics.ImagesLoaders;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
@@ -7,17 +7,20 @@ import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MazeLayer implements LoadImages{
+public class Heroes implements LoadImages{
 
     Map<String,BufferedImage> images;
 
-    public MazeLayer () {
+    public Heroes () {
         images = new HashMap<>();
     }
 
     @Override
     public void constructLayer() {
-        images.put("temp",SwingFXUtils.fromFXImage(new Image("run.png"), null));
+
+        images.put("CuteGirl",SwingFXUtils.fromFXImage(
+                new Image("run.png"), null));
+
     }
 
     @Override

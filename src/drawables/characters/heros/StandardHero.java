@@ -121,8 +121,6 @@ public abstract class StandardHero implements Hero {
 		return moveCommand.execute(this, maze);
 	}
 
-	
-
 	@Override
 	public void takeBullet(Bullet bullet) {
 		if (! this.holdBulletShield){
@@ -132,8 +130,6 @@ public abstract class StandardHero implements Hero {
 			this.holdBulletShield = false;
 		}
 	}
-
-	
 
 	@Override
 	public void pick(Pickable item) {
@@ -149,6 +145,12 @@ public abstract class StandardHero implements Hero {
 	public void setDirectionState(DirectionState state) {
 		// TODO Auto-generated method stub
 		this.directionState = state;
+	}
+
+//	@Override
+	public DirectionState getDirectionState() {
+		// TODO Auto-generated method stub
+		return this.directionState;
 	}
 
 	@Override

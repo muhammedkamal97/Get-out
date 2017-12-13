@@ -3,10 +3,9 @@ package drawables.roads;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
-import View.Animation.MazeLayer;
+import View.ImagesLoaders.MazeLayer;
 import drawables.Drawable;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 

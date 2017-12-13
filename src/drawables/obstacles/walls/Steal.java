@@ -13,7 +13,7 @@ public class Steal extends StandardWall implements Wall {
      * @param bulletDamage
      */
     @Override
-    public void takeBullet(int bulletDamage) {
+    public void takeDamage(int bulletDamage) {
         return;
     }
 
