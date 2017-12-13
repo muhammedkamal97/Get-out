@@ -9,6 +9,8 @@ public abstract class StandardWall implements Wall {
 
     private Point position;
     protected Maze maze;
+    private int healthPoints;
+
 
     @Override
     public Point getPosition() {
@@ -25,4 +27,19 @@ public abstract class StandardWall implements Wall {
         this.maze = maze;
     }
 
+    public void takeDamage(int damage) {
+        healthPoints -= damage;
+        if(healthPoints <= 0) {
+            maze.removeWall(this);
+            destroy();
+        }
+    }
+
+
+
+
+    protected void setHealthPoints(){
+        healthPoints =getHealthPoints();
+    }
+    protected abstract int getHealthPoints();
 }

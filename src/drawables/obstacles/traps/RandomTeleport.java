@@ -13,7 +13,7 @@ public class RandomTeleport extends StandardTrap {
 
 
 
-    private final int HEALTH = 30;
+    private final int HEALTH = 50;
     private final int DAMAGE = 0;
 
     public RandomTeleport() {

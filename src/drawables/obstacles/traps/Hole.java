@@ -9,23 +9,31 @@ import java.awt.*;
 
 public class Hole extends StandardTrap implements Trap {
 
+    private final int HEALTH_POINTS = 1000;
+    private final int DAMAGE = 1000;
+
     public Hole (){
-        this.damage = 1000;
+        setHealthPoints();
+        setDamage();
     }
 
     @Override
-    public void trap(Hero hero) {
-        return;
-        //hero should fall and die
+    protected int getHealthPoints() {
+        return HEALTH_POINTS;
     }
 
     @Override
     public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
-    //TODO
+        //TODO
     }
 
     @Override
     public void destroy() {
         return;
+    }
+
+    @Override
+    protected int getOriginalDamage() {
+        return DAMAGE;
     }
 }

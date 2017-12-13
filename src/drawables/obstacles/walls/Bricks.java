@@ -8,17 +8,14 @@ import java.awt.*;
 
 public class Bricks extends StandardWall implements Wall {
 
-    private int wallHealth;
-    public void Bricks() {
-        this.wallHealth = 125;
+    private final int HEALTH_POINTS = 125;
+    public Bricks() {
+        setHealthPoints();
     }
 
     @Override
-    public void takeDamage(int bulletDamage) {
-        this.wallHealth -= bulletDamage;
-        if (this.wallHealth <= 0) {
-            this.destroy();
-        }
+    protected int getHealthPoints() {
+        return HEALTH_POINTS;
     }
 
     @Override

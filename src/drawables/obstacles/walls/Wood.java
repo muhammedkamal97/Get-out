@@ -8,18 +8,14 @@ import java.awt.*;
 
 public class Wood extends StandardWall implements Wall {
 
-    private int wallHealth;
-
-    public void Wood() {
-        this.wallHealth = 80;
+    private final int HEALTH_POINTS = 80;
+    public Wood() {
+        setHealthPoints();
     }
 
     @Override
-    public void takeDamage(int bulletDamage) {
-        this.wallHealth -= bulletDamage;
-        if (this.wallHealth <= 0) {
-            this.destroy();
-        }
+    protected int getHealthPoints() {
+        return HEALTH_POINTS;
     }
 
     @Override

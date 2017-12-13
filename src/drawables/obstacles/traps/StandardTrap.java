@@ -1,5 +1,6 @@
 package drawables.obstacles.traps;
 
+import drawables.characters.Hero;
 import drawables.obstacles.Trap;
 import maze.Maze;
 
@@ -35,6 +36,12 @@ public abstract class StandardTrap implements Trap {
     @Override
     public void destroy() {
         maze.removeTrap(this);
+    }
+
+    @Override
+    public void trap(Hero hero) {
+        hero.takeDamage(damage);
+        destroy();
     }
 
     @Override

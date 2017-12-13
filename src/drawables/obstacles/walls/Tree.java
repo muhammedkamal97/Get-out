@@ -7,19 +7,14 @@ import javafx.scene.canvas.GraphicsContext;
 import java.awt.*;
 
 public class Tree extends StandardWall implements Wall {
-
-    private int wallHealth;
-
-    public void Tree() {
-        this.wallHealth = 50;
+    private final int HEALTH_POINTS = 50;
+    public Tree() {
+        setHealthPoints();
     }
 
     @Override
-    public void takeDamage(int bulletDamage) {
-        this.wallHealth -= bulletDamage;
-        if (this.wallHealth <= 0) {
-            this.destroy();
-        }
+    protected int getHealthPoints() {
+        return HEALTH_POINTS;
     }
 
     @Override

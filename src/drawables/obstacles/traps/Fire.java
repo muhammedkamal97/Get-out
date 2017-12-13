@@ -10,16 +10,19 @@ import java.awt.*;
 
 public class Fire extends StandardTrap implements Trap {
 
-    public Fire (){
-        this.damage = 75;
-    }
 
+    private final int HEALTH_POINTS = 50;
+    private final int DAMAGE = 75;
+
+    public Fire (){
+        setHealthPoints();
+        setDamage();
+    }
 
     @Override
-    public void trap(Hero hero) {
-        return;
+    protected int getHealthPoints() {
+        return HEALTH_POINTS;
     }
-
 
     @Override
     public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
@@ -30,4 +33,10 @@ public class Fire extends StandardTrap implements Trap {
     public void destroy() {
         return;
     }
+
+    @Override
+    protected int getOriginalDamage() {
+        return DAMAGE;
+    }
+
 }
