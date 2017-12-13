@@ -60,7 +60,8 @@ public abstract class StandardHero implements Hero {
 		}
 	}
 
-	private void takeDamage(int damage) {
+	@Override
+	public void takeDamage(int damage) {
 		if (damage < armorPoints) {
 			armorPoints -= damage;
 		} else {

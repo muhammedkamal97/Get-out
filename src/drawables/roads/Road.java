@@ -39,4 +39,9 @@ public class Road implements Drawable {
         this.position = position;
     }
 
+    @Override
+    public void takeDamage(int damage) {
+        //do nothing its un destroyable or change into black
+    }
+
 }

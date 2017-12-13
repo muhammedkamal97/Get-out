@@ -19,17 +19,7 @@ public class ImpMaze extends Maze {
     private Stack<Point> allowedPosition;
     private Drawable[][] drawables;
 
-    @Override
-    public Drawable getItemInPosition(Point position) {
-        try {
-            return drawables[position.x][position.y];
-        } catch (Exception e) {
-            return new Steal();
-        }
 
-    }
-
-    @Override
     public void mapDrawableIntoMaze(MazeComponents components) {
         drawables = new Drawable[maze.length][maze[0].length];
         allowedPosition = new Stack<Point>();
@@ -50,7 +40,6 @@ public class ImpMaze extends Maze {
     }
 
     private void setWalls(MazeComponents components) {
-        // TODO Auto-generated method stub
         int indexOfWalls = 0;
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[0].length; j++) {
@@ -61,7 +50,6 @@ public class ImpMaze extends Maze {
     }
 
     private void setTraps(MazeComponents components) {
-        // TODO Auto-generated method stub
         for (Trap trap : components.traps) {
             if (!allowedPosition.isEmpty()) {
                 Point position = allowedPosition.pop();
@@ -71,7 +59,6 @@ public class ImpMaze extends Maze {
     }
 
     private void setBombs(MazeComponents components) {
-        // TODO Auto-generated method stub
         for (Bomb bomb : components.bombs) {
             if (!allowedPosition.isEmpty()) {
                 Point position = allowedPosition.pop();
@@ -81,7 +68,6 @@ public class ImpMaze extends Maze {
     }
 
     private void setShields(MazeComponents components) {
-        // TODO Auto-generated method stub
         for (Shield shield : components.shields) {
             if (!allowedPosition.isEmpty()) {
                 Point position = allowedPosition.pop();
@@ -91,7 +77,6 @@ public class ImpMaze extends Maze {
     }
 
     private void setWeapons(MazeComponents components) {
-        // TODO Auto-generated method stub
         for (Weapon weapon : components.weapons) {
             if (!allowedPosition.isEmpty()) {
                 Point position = allowedPosition.pop();

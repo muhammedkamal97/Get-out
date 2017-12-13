@@ -3,39 +3,92 @@ package maze;
 import drawables.Drawable;
 import drawables.characters.Hero;
 import drawables.characters.Monster;
+import drawables.obstacles.Bomb;
 import drawables.obstacles.Obstacle;
+import drawables.obstacles.Trap;
+import drawables.obstacles.Wall;
+import drawables.obstacles.walls.Steal;
+import drawables.pickables.Gift;
+import drawables.pickables.Shield;
+import drawables.pickables.Weapon;
+import observer.ObservedSubject;
+import observer.SubjectObserver;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Observer;
 
-public abstract class Maze {
+public class Maze implements ObservedSubject {
 
-    ArrayList<Monster> monsters;
-    ArrayList<Obstacle> obstacles;
+    MazeComponents components = new MazeComponents();
+
+
     Hero hero;
     protected int[][] maze;
+    private Drawable[][] drawables;
+    private ArrayList<SubjectObserver> observers;
 
-    public abstract Drawable getItemInPosition(Point position);
 
+    public Drawable getItemInPosition(Point position) {
+        try {
+            return drawables[position.x][position.y];
+        } catch (Exception e) {
+            return new Steal();
+        }
+    }
 
+    public void setDrawables(Drawable[][] drawables) {
+        this.drawables = drawables;
+    }
     public void setMazeHero(Hero hero) {
         this.hero = hero;
     }
-
-    public void setMonsters(ArrayList<Monster> monsters) {
-        this.monsters = monsters;
+    public void setComponents(MazeComponents components){
+        this.components = components;
     }
-
-    public void setObstacles(ArrayList<Obstacle> obstacles) {
-        this.obstacles = obstacles;
-    }
-
     public void setMaze(int[][] maze){
     	this.maze = maze;
     }
 
+    public void removeWall(Wall obstacle){
+        components.walls.remove(obstacle);
+    }
+    public void removeTrap(Trap trap){
+        components.traps.remove(trap);
+    }
+    public void removeBomb(Bomb bomb){
+        components.bombs.remove(bomb);
+    }
+    public void removeGift(Gift gift){
+        components.gifts.remove(gift);
+    }
+    public void removeWeapon(Weapon weapon){
+        components.weapons.remove(weapon);
+    }
+    public void removeShield(Shield shield){
+        components.shields.remove(shield);
+    }
+    public void removeMonster(Monster monster){
+        components.monsters.remove(monster);
+    }
 
-	public abstract void mapDrawableIntoMaze(MazeComponents components); 
-	
-    
+
+    public Point getDimensions(){
+        return new Point(
+                components.mazeStructure[0].length ,
+                components.mazeStructure.length
+        );
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (int i = 0 ; i < observers.size() ; i++){
+            observers.get(i).update();
+        }
+    }
+
+    @Override
+    public void RegisterObserver(SubjectObserver observer) {
+        observers.add(observer);
+    }
 }

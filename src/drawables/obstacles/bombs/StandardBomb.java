@@ -52,13 +52,20 @@ public abstract class StandardBomb implements Bomb {
     }
 
     @Override
+    public void takeDamage(int damage) {
+        this.healthPoints -= damage;
+        if (healthPoints <= 0){
+            explode();
+        }
+    }
+
+    @Override
     public void damageDrawableInExplosionRange() {
 
         for (int i = (-range); i <= range; i++) {
             for (int j = (-range); j <= range; j++) {
-                if (!(maze.getItemInPosition(new Point(position.x +i,position.y + j)) instanceof Hero)) {
-//                    maze.set = road;
-                }
+                maze.getItemInPosition(new Point(position.x +i,position.y + j))
+                        .takeDamage(damage);
                 //display black marks for explosion;
             }
         }
@@ -68,6 +75,9 @@ public abstract class StandardBomb implements Bomb {
 
     @Override
     public void destroy() {
+
+        //add a gift
+        maze.removeBomb(this);
         return;
     }
 

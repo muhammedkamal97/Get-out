@@ -9,21 +9,38 @@ import javafx.scene.canvas.GraphicsContext;
 import java.awt.*;
 import java.util.Random;
 
-public class RandomTeleport extends StandardTrap implements Trap {
+public class RandomTeleport extends StandardTrap {
 
+
+
+    private final int HEALTH = 30;
+    private final int DAMAGE = 0;
 
     public RandomTeleport() {
-        this.damage = 0;
+        setDamage();
+        setHealthPoints();
+    }
+
+
+    @Override
+    protected int getOriginalDamage() {
+        return DAMAGE;
+    }
+
+    @Override
+    protected int getHealthPoints() {
+        return HEALTH;
     }
 
     @Override
     public void trap(Hero hero) {
         Random ran = new Random();
-        int x = ran.nextInt(30); //handle maze size
-        int y = ran.nextInt(30);
+        Point dimensions = maze.getDimensions();
+        int x = ran.nextInt(dimensions.x); //handle maze size
+        int y = ran.nextInt(dimensions.y);
         while (!(maze.getItemInPosition(new Point(x, y)) instanceof Road)) {
-            x = ran.nextInt(30);
-            y = ran.nextInt(30);
+            x = ran.nextInt(dimensions.x);
+            y = ran.nextInt(dimensions.y);
         }
         hero.setPosition(new Point(x, y));
         //change maze since hero's position is changed
@@ -36,6 +53,7 @@ public class RandomTeleport extends StandardTrap implements Trap {
 
     @Override
     public void destroy() {
+
         return;
     }
 }

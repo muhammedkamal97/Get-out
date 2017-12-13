@@ -57,7 +57,8 @@ public abstract class StandardMonster implements Monster {
         takeDamage(damage);
     }
 
-    private void takeDamage(int damage) {
+    @Override
+    public void takeDamage(int damage) {
         if (damage >= healthPoints) {
             healthPoints = 0;
             //dead notify canvas
