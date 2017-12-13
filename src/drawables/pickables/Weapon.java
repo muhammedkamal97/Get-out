@@ -6,6 +6,6 @@ import maze.Maze;
 import java.awt.*;
 
 public interface Weapon extends Pickable {
-    public void shoot(ShootingDirectionState state, Point initialPosition, Maze maze);
+    public void shoot(ShootingDirectionState state, Point initialPosition);
     public void reload();
 }

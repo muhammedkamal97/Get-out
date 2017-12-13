@@ -16,9 +16,11 @@ public abstract class StandardWeapon implements Weapon{
     private int maxMagazineCapacity;
     private Bullet weaponBullet;
     private Bullet shotBullet;
+    protected Maze maze;
+
 
     @Override
-    public void shoot(ShootingDirectionState state, Point initialPosition, Maze maze) {
+    public void shoot(ShootingDirectionState state, Point initialPosition) {
 
         if(ammo != 0){
             shotBullet = (Bullet) weaponBullet.cloneBullet();
@@ -42,7 +44,8 @@ public abstract class StandardWeapon implements Weapon{
         hero.addWeapon(this);
     }
 
-
+    @Override
+    public void setMaze(Maze maze) {this.maze = maze;}
 
     @Override
     public Point getPosition() {

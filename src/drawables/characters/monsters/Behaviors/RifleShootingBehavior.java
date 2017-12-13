@@ -11,7 +11,7 @@ import java.awt.*;
 public class RifleShootingBehavior implements ShootingBehavior {
     Weapon rifle = new AK47();
     @Override
-    public void shoot(Point initialPosition, DirectionState state, Maze maze) {
-        state.shoot(rifle, initialPosition, maze);
+    public void shoot(Point initialPosition, DirectionState state) {
+        state.shoot(rifle, initialPosition);
     }
 }

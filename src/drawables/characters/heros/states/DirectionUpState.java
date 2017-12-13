@@ -12,8 +12,8 @@ import java.awt.*;
 public class DirectionUpState implements DirectionState{
 
     @Override
-    public void shoot(Weapon weapon, Point position, Maze maze) {
-        weapon.shoot(new ShootUp(),position, maze);
+    public void shoot(Weapon weapon, Point position) {
+        weapon.shoot(new ShootUp(),position);
     }
 
     @Override

@@ -10,8 +10,8 @@ import java.awt.*;
 
 public class DirectionDownState implements DirectionState {
     @Override
-    public void shoot(Weapon weapon, Point position, Maze maze) {
-        weapon.shoot(new ShootDown(),position,maze);
+    public void shoot(Weapon weapon, Point position) {
+        weapon.shoot(new ShootDown(),position);
     }
     //will initialize 4 sprites in each hero and they will have get methods
     //draw function will be called in DirectionState

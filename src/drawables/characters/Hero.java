@@ -9,7 +9,7 @@ public interface Hero extends Handler,MovingObject, ObservedSubject {
 
     public void trapHero(Trap trap);
     public void attackedByMonster(Monster monster);
-    public void shoot(Maze maze);
+    public void shoot();
     public int getHealthPoints();
     public void holdNextWeapon();
     public void holdPreviousWeapon();

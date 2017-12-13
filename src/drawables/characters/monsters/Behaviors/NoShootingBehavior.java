@@ -8,7 +8,7 @@ import maze.Maze;
 
 public class NoShootingBehavior implements ShootingBehavior {
     @Override
-    public void shoot(Point initialPosition, DirectionState state, Maze maze) {
+    public void shoot(Point initialPosition, DirectionState state) {
         //nothing happens
     }
 }

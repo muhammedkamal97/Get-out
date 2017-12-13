@@ -7,5 +7,5 @@ import drawables.pickables.weapons.bullets.bulletDirectionStates.ShootingDirecti
 import maze.Maze;
 
 public interface ShootingBehavior {
-    public void shoot(Point initialPosition , DirectionState state, Maze maze);
+    public void shoot(Point initialPosition , DirectionState state);
 }

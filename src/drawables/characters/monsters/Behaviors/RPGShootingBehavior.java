@@ -11,7 +11,7 @@ import java.awt.*;
 public class RPGShootingBehavior implements ShootingBehavior{
     Weapon rifle = new RPG();
     @Override
-    public void shoot(Point initialPosition, DirectionState state, Maze maze) {
-       state.shoot(rifle, initialPosition, maze);
+    public void shoot(Point initialPosition, DirectionState state) {
+       state.shoot(rifle, initialPosition);
     }
 }
