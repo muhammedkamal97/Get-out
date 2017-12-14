@@ -16,11 +16,13 @@ public class MoveUtilities {
         return !(objectAtNewPosition instanceof Obstacle && objectAtNewPosition instanceof Wall);
     }
 
+
     public void performMove(Drawable objectAtNewPosition, MovingObject object) {
         if (object instanceof Hero) {
             Hero hero = (Hero) object;
             if (objectAtNewPosition instanceof Obstacle) {
                 if (objectAtNewPosition instanceof Bomb) {
+                    hero.setPosition(objectAtNewPosition.getPosition());
                     ((Bomb) objectAtNewPosition).explode();
                 } else {
                     hero.setPosition(objectAtNewPosition.getPosition());
@@ -29,7 +31,12 @@ public class MoveUtilities {
             } else if (objectAtNewPosition instanceof Monster) {
                 ((Monster) objectAtNewPosition).attack(hero);
             } else if (objectAtNewPosition instanceof Pickable) {
+                hero.setPosition(objectAtNewPosition.getPosition());
                 hero.pick((Pickable) objectAtNewPosition);
+            }
+            else {
+                hero.setPosition(objectAtNewPosition.getPosition());
+
             }
         }
     }

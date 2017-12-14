@@ -23,7 +23,6 @@ public class MoveRightCommand implements Command {
         boolean isValidMove = utilities.isAValidMove(itemInNextPosition);
         if(isValidMove){
             utilities.performMove(itemInNextPosition,object);
-            object.setPosition(position);
             return true;
         }
         return false;

@@ -24,7 +24,6 @@ public class MoveDownCommand implements Command {
 
         if(isValidMove){
             utilities.performMove(itemInNextPosition,object);
-            object.setPosition(position);
             return true;
         }
         return false;

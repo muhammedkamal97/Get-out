@@ -73,6 +73,7 @@ public class Maze implements ObservedSubject, MotionObserver{
     public void removeWall(Wall obstacle){
         Point position = obstacle.getPosition();
         roadAndWallsLayer[position.y][position.x] = new Road();
+        roadAndWallsLayer[position.y][position.x].setPosition(new Point(position.x,position.y));
         components.walls.remove(obstacle);
     }
     public void removeTrap(Trap trap){
