@@ -18,8 +18,9 @@ public class MoveUpCommand implements Command {
         object.setDirectionState(new DirectionUpState());
 
         MoveUtilities utilities = new MoveUtilities();
-        Point position = object.getPosition();
-        position.y = position.y + 1;
+        Point position = new Point();
+        position.x = object.getPosition().x;
+        position.y = object.getPosition().y - 1;
         Drawable itemInNextPosition = maze.getItemInPosition(position);
         boolean isValidMove = utilities.isAValidMove(itemInNextPosition);
 

@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 import javafx.scene.canvas.GraphicsContext;
 import maze.Maze;
+import observer.MotionObserver;
 import observer.SubjectObserver;
 
 public abstract class StandardHero implements Hero {
@@ -38,6 +39,8 @@ public abstract class StandardHero implements Hero {
 	private boolean holdTrapShield = false;
 	private boolean holdbombShield = false;
 	private ArrayList<SubjectObserver> observers = new ArrayList<>();
+	private ArrayList<MotionObserver> motionObservers = new ArrayList<>();
+
 	private Maze maze;
 
 	private MySprite downSprite = new MySprite();
@@ -168,7 +171,9 @@ public abstract class StandardHero implements Hero {
 
 	@Override
 	public void setPosition(Point position) {
+
 		this.position = position;
+		notifyMotionObservers();
 	}
 
 	protected int getNumberOfWeapons() {
@@ -285,5 +290,16 @@ public abstract class StandardHero implements Hero {
 				imgSprite.getFramesInColumn(),
 				img);
 		return sprite;
+	}
+
+	@Override
+	public void registerMotionObservers(MotionObserver observer) {
+		motionObservers.add(observer);
+	}
+
+	@Override
+	public void notifyMotionObservers() {
+		for(int i = 0 ; i < motionObservers.size();i++)
+			motionObservers.get(i).updateMovingObjects();
 	}
 }

@@ -15,12 +15,10 @@ public class MoveDownCommand implements Command {
     public boolean execute(MovingObject object, Maze maze) {
 
         object.setDirectionState(new DirectionDownState());
-
         MoveUtilities utilities = new MoveUtilities();
-        Point position = object.getPosition();
-        position.y = position.y - 1;
-
-        object.setPosition(position);
+        Point position = new Point();
+        position.x = object.getPosition().x;
+        position.y = object.getPosition().y + 1;
         Drawable itemInNextPosition = maze.getItemInPosition(position);
         boolean isValidMove = utilities.isAValidMove(itemInNextPosition);
 

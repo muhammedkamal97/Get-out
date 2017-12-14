@@ -3,9 +3,11 @@ package drawables.characters;
 import drawables.obstacles.Trap;
 import drawables.pickables.Weapon;
 import maze.Maze;
+import observer.MotionObservable;
+import observer.MotionObserver;
 import observer.ObservedSubject;
 
-public interface Hero extends Handler,MovingObject, ObservedSubject {
+public interface Hero extends Handler,MovingObject, ObservedSubject, MotionObservable {
 
     public void trapHero(Trap trap);
     public void attackedByMonster(Monster monster);
