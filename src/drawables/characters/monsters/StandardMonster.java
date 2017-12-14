@@ -21,6 +21,7 @@ public abstract class StandardMonster implements Monster {
     private int healthPoints;
     private ShootingBehavior shootingBehavior;
     private Point position;
+    private Maze maze;
 
     private DirectionState directionState;
 
@@ -39,6 +40,10 @@ public abstract class StandardMonster implements Monster {
         return damage;
     }
 
+    @Override
+    public void setMaze(Maze maze) {
+        this.maze = maze;
+    }
 
     @Override
     public boolean move(Command moveCommand, Maze maze) {
@@ -74,6 +79,7 @@ public abstract class StandardMonster implements Monster {
     public void takeDamage(int damage) {
         if (damage >= healthPoints) {
             healthPoints = 0;
+            maze.removeMonster(this);
             //dead notify canvas
         } else {
             healthPoints -= damage;

@@ -38,6 +38,7 @@ public abstract class StandardHero implements Hero {
 	private boolean holdTrapShield = false;
 	private boolean holdbombShield = false;
 	private ArrayList<SubjectObserver> observers = new ArrayList<>();
+	private Maze maze;
 
 	private MySprite downSprite = new MySprite();
 	private MySprite upSprite = new MySprite();
@@ -67,6 +68,11 @@ public abstract class StandardHero implements Hero {
 		} else {
 			this.holdbombShield = false;
 		}
+	}
+
+	@Override
+	public void setMaze(Maze maze) {
+		this.maze = maze;
 	}
 
 	@Override

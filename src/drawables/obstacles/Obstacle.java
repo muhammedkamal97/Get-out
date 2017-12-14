@@ -10,7 +10,4 @@ public interface Obstacle extends Drawable {
      */
     public void destroy();
 
-
-    public void setMaze(Maze maze);
-
 }

@@ -8,5 +8,4 @@ import maze.Maze;
 public interface Pickable extends Drawable{
     public void addToHandler(Hero hero);
     public void destroy();
-    public void setMaze(Maze maze);
 }
