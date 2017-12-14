@@ -19,5 +19,4 @@ public class MazeComponents {
     public ArrayList<Gift> gifts;
     public ArrayList<Trap> traps;
     public int[][] mazeStructure;
-
 }

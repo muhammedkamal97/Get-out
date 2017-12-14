@@ -36,7 +36,7 @@ public abstract class StandardWeapon implements Weapon{
 
     @Override
     public void destroy() {
-
+        maze.removeWeapon(this);
     }
 
     @Override

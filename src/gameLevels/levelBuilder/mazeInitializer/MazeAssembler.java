@@ -7,6 +7,7 @@ import drawables.obstacles.Trap;
 import drawables.pickables.Gift;
 import drawables.pickables.Shield;
 import drawables.pickables.Weapon;
+import drawables.roads.Road;
 import maze.ImpMaze;
 import maze.Maze;
 import maze.MazeComponents;
@@ -19,24 +20,26 @@ public class MazeAssembler {
 
     MazeComponents components;
     private Stack<Point> allowedPosition;
-    private Drawable[][] drawables;
-
+    private Drawable[][] movingObjectsLayer;
+    private Drawable[][] roadAndWallsLayer;
+    private Drawable[][] pickablesLayer;
 
     public Maze assembleMaze(MazeComponents components) {
-
         this.components = components;
         mapDrawableIntoMaze();
         Maze maze = new Maze();
         maze.setComponents(components);
-        maze.setDrawables(drawables);
+        maze.setMovingObjectsLayer(movingObjectsLayer);
+        maze.setPickablesLayer(pickablesLayer);
+        maze.setRoadAndWallsLayer(roadAndWallsLayer);
         return maze;
     }
 
-
-
     private void mapDrawableIntoMaze() {
-        drawables = new Drawable[components.mazeStructure.length][components.mazeStructure[0].length];
-        allowedPosition = new Stack<Point>();
+        movingObjectsLayer = new Drawable[components.mazeStructure.length][components.mazeStructure[0].length];
+        roadAndWallsLayer = new Drawable[components.mazeStructure.length][components.mazeStructure[0].length];
+        pickablesLayer = new Drawable[components.mazeStructure.length][components.mazeStructure[0].length];
+        allowedPosition = new Stack<>();
         for (int i = 0; i < components.mazeStructure.length; i++) {
             for (int j = 0; j < components.mazeStructure[0].length; j++) {
                 if (components.mazeStructure[i][j] == 0 && i > components.mazeStructure.length / 4
@@ -52,6 +55,16 @@ public class MazeAssembler {
         setBombs();
         setTraps();
         setWalls();
+        setRoads();
+    }
+
+    private void setRoads(){
+        for (int i = 0; i < components.mazeStructure.length; i++) {
+            for (int j = 0; j < components.mazeStructure[0].length; j++) {
+                if (roadAndWallsLayer[i][j] == null)
+                    roadAndWallsLayer[i][j] = new Road();
+            }
+        }
     }
 
     private void setWalls() {
@@ -59,7 +72,7 @@ public class MazeAssembler {
         for (int i = 0; i < components.mazeStructure.length; i++) {
             for (int j = 0; j < components.mazeStructure[0].length; j++) {
                 if (components.mazeStructure[i][j] == 1)//not a wall position
-                    drawables[i][j] = components.walls.get(indexOfWalls++);
+                    roadAndWallsLayer[i][j] = components.walls.get(indexOfWalls++);
             }
         }
     }
@@ -68,7 +81,7 @@ public class MazeAssembler {
         for (Trap trap : components.traps) {
             if (!allowedPosition.isEmpty()) {
                 Point position = allowedPosition.pop();
-                drawables[position.x][position.y] = trap;
+                pickablesLayer[position.x][position.y] = trap;
             }
         }
     }
@@ -77,7 +90,7 @@ public class MazeAssembler {
         for (Bomb bomb : components.bombs) {
             if (!allowedPosition.isEmpty()) {
                 Point position = allowedPosition.pop();
-                drawables[position.x][position.y] = bomb;
+                pickablesLayer[position.x][position.y] = bomb;
             }
         }
     }
@@ -86,7 +99,7 @@ public class MazeAssembler {
         for (Shield shield : components.shields) {
             if (!allowedPosition.isEmpty()) {
                 Point position = allowedPosition.pop();
-                drawables[position.x][position.y] = shield;
+                pickablesLayer[position.x][position.y] = shield;
             }
         }
     }
@@ -95,7 +108,7 @@ public class MazeAssembler {
         for (Weapon weapon : components.weapons) {
             if (!allowedPosition.isEmpty()) {
                 Point position = allowedPosition.pop();
-                drawables[position.x][position.y] = weapon;
+                pickablesLayer[position.x][position.y] = weapon;
             }
         }
     }
@@ -104,7 +117,7 @@ public class MazeAssembler {
         for (Gift gift : components.gifts) {
             if (!allowedPosition.isEmpty()) {
                 Point position = allowedPosition.pop();
-                drawables[position.x][position.y] = gift;
+                pickablesLayer[position.x][position.y] = gift;
             }
         }
     }
@@ -114,7 +127,7 @@ public class MazeAssembler {
             //monster should have a position attribute.
             if (!allowedPosition.isEmpty()) {
                 Point position = allowedPosition.pop();
-                drawables[position.x][position.y] = monster;
+                movingObjectsLayer[position.x][position.y] = monster;
             }
         }
     }

@@ -40,7 +40,7 @@ public abstract class StandardGift implements Gift {
 
     @Override
     public void destroy() {
-
+        maze.removeGift(this);
     }
 
 

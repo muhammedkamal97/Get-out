@@ -38,7 +38,7 @@ public abstract  class StandardShield implements Shield {
 
 	@Override
 	public void destroy() {
-
+		maze.removeShield(this);
 	}
 
 	@Override
