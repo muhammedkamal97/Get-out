@@ -16,6 +16,7 @@ import maze.MazeComponents;
 
 import java.awt.*;
 import java.lang.reflect.Constructor;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
 
@@ -67,6 +68,7 @@ public class MazeAssembler {
             Constructor<?> ctor = this.walls[wallNumber].getConstructor();
             ctor.setAccessible(true);
             Wall wall = (Wall) ctor.newInstance();
+            roadAndWallsLayer[i][j] = wall;
             components.walls.add(wall);
         } catch (Exception e) {
             throw new RuntimeException("Failed to create instance");
@@ -124,6 +126,7 @@ public class MazeAssembler {
     private void setWalls() {
 
         int wallNumber = 0;
+        components.walls = new ArrayList<>();
         for (int i = 0; i < components.mazeStructure.length; i++) {
             for (int j = 0; j < components.mazeStructure[0].length; j++) {
 
@@ -133,10 +136,12 @@ public class MazeAssembler {
                 }
                 else {
                     if(this.map[i][j] == 't')
-                        if(wallNumber ==  components.walls.size())
+                    {
+                        if(wallNumber ==  this.walls.length)
                             wallNumber = 0;
-                    dfs(i,j,wallNumber);
-                    wallNumber++;
+                        dfs(i,j,wallNumber);
+                        wallNumber++;
+                    }
                 }
             }
         }
