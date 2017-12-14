@@ -25,6 +25,7 @@ public class Hole extends StandardTrap implements Trap {
 
     @Override
     public void destroy() {
+        super.destroy();
         return;
     }
 
