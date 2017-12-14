@@ -21,6 +21,7 @@ public class RunnerLoop implements GameLoop{
     @Override
     public void setHero(Hero hero) {
         this.hero = hero;
+        this.maze.setMazeHero(hero);
     }
 
     @Override
