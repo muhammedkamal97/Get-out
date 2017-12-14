@@ -129,12 +129,12 @@ public class EmptyMazeStructureGenerator {
 	public Point getStartPoint(){
 		return new Point(1,0);
 	}
-/*
+
 	public static void main(String[] args) {
 		EmptyMazeStructureGenerator e = new EmptyMazeStructureGenerator();
-		int[][] m = e.generateRandomMaze(30, 30);
-		for (int i = 0; i < 31; i++) {
-			for (int j = 0; j < 31; j++) {
+		int[][] m = e.generateRandomMaze(24, 20);
+		for (int i = 0; i < 25; i++) {
+			for (int j = 0; j < 21; j++) {
 				if (m[i][j] != 0)
 					System.out.print('#');
 				else
@@ -146,5 +146,5 @@ public class EmptyMazeStructureGenerator {
 		System.out.println("start at : 1,1");
 		System.out.println("finsih at : " + e.end);
 	}
-*/
+
 }
