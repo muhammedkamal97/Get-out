@@ -4,10 +4,9 @@ import drawables.Drawable;
 import drawables.characters.Hero;
 import drawables.characters.Monster;
 import drawables.obstacles.Bomb;
-import drawables.obstacles.Obstacle;
 import drawables.obstacles.Trap;
 import drawables.obstacles.Wall;
-import drawables.obstacles.walls.Steal;
+import drawables.obstacles.walls.Steel;
 import drawables.pickables.Gift;
 import drawables.pickables.Shield;
 import drawables.pickables.Weapon;
@@ -16,7 +15,6 @@ import observer.SubjectObserver;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Observer;
 
 public class Maze implements ObservedSubject {
 
@@ -33,7 +31,7 @@ public class Maze implements ObservedSubject {
         try {
             return drawables[position.x][position.y];
         } catch (Exception e) {
-            return new Steal();
+            return new Steel();
         }
     }
 

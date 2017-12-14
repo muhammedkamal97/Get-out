@@ -11,7 +11,7 @@ public class Flash extends StandardHero {
 
     public Flash() {
         setHealthPoints();
-        SpriteSetters();
+        spriteSetters();
     }
 
     @Override

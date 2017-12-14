@@ -1,11 +1,9 @@
 package drawables.characters.heros.states;
 
-import drawables.characters.Hero;
+import drawables.characters.MovingObject;
 import drawables.pickables.Weapon;
-import drawables.pickables.weapons.bullets.bulletDirectionStates.ShootDown;
 import drawables.pickables.weapons.bullets.bulletDirectionStates.ShootUp;
 import javafx.scene.canvas.GraphicsContext;
-import maze.Maze;
 
 import java.awt.*;
 
@@ -17,13 +15,13 @@ public class DirectionUpState implements DirectionState{
     }
 
     @Override
-    public void Draw(GraphicsContext gc, Point pt, int widthCell, int heightCell, Hero hero) {
-        hero.getUpSprite().reset();
-        int i = (int)hero.getPosition().getY()+heightCell;
-        while (i > hero.getPosition().getY()) {
-            gc.clearRect(hero.getPosition().getX(), i, widthCell, heightCell);
+    public void Draw(GraphicsContext gc, Point pt, int widthCell, int heightCell, MovingObject heroOrMonster) {
+        heroOrMonster.getUpSprite().reset();
+        int i = (int)heroOrMonster.getPosition().getY()+heightCell;
+        while (i > heroOrMonster.getPosition().getY()) {
+            gc.clearRect(heroOrMonster.getPosition().getX(), i, widthCell, heightCell);
             i--;
-            hero.getUpSprite().drawNextSprite(gc, widthCell, heightCell, (int)hero.getPosition().getX(), i);
+            heroOrMonster.getUpSprite().drawNextSprite(gc, widthCell, heightCell, (int)heroOrMonster.getPosition().getX(), i);
         }
 
     }

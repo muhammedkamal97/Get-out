@@ -17,6 +17,7 @@ public class ShootingMonster extends StandardMonster{
         setDamage();
         setShootingBehavior();
         setHealthPoints();
+        spriteSetters();
     }
 
     @Override
@@ -32,10 +33,5 @@ public class ShootingMonster extends StandardMonster{
     @Override
     protected int getMonsterHealthPoints() {
         return HEALTH_POINTS;
-    }
-
-    @Override
-    public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
-
     }
 }

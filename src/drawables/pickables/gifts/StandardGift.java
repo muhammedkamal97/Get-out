@@ -2,8 +2,10 @@ package drawables.pickables.gifts;
 
 import java.awt.Point;
 
+import View.Graphics.ImagesMaps.MazeMap;
 import drawables.characters.Hero;
 import drawables.pickables.Gift;
+import javafx.scene.canvas.GraphicsContext;
 import maze.Maze;
 
 /**
@@ -39,5 +41,15 @@ public abstract class StandardGift implements Gift {
     @Override
     public void destroy() {
 
+    }
+
+
+    @Override
+    public void drawOnCanvas(GraphicsContext gc, Point pt, int widthCell, int heightCell) {
+        MazeMap map = MazeMap.getInstance();
+        gc.drawImage(map.getBufferedImage("Gift"),
+                pt.getX() - (widthCell / 2),
+                pt.getY() - (heightCell / 2),
+                widthCell, heightCell);
     }
 }

@@ -1,6 +1,8 @@
 package drawables.obstacles.walls;
 
+import View.Graphics.ImagesMaps.MazeMap;
 import drawables.obstacles.Wall;
+import javafx.scene.canvas.GraphicsContext;
 import maze.Maze;
 
 import java.awt.*;
@@ -35,8 +37,14 @@ public abstract class StandardWall implements Wall {
         }
     }
 
-
-
+    @Override
+    public void drawOnCanvas(GraphicsContext gc, Point pt, int widthCell, int heightCell) {
+        MazeMap map = MazeMap.getInstance();
+        gc.drawImage(map.getBufferedImage(this.getClass().getName()),
+                pt.getX() - (widthCell / 2),
+                pt.getY() - (heightCell / 2),
+                widthCell, heightCell);
+    }
 
     protected void setHealthPoints(){
         healthPoints =getHealthPoints();

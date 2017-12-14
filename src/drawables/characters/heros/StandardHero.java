@@ -152,13 +152,11 @@ public abstract class StandardHero implements Hero {
 	
 	@Override
 	public void setDirectionState(DirectionState state) {
-		// TODO Auto-generated method stub
 		this.directionState = state;
 	}
 
-//	@Override
+	@Override
 	public DirectionState getDirectionState() {
-		// TODO Auto-generated method stub
 		return this.directionState;
 	}
 
@@ -259,7 +257,7 @@ public abstract class StandardHero implements Hero {
 	private void setRightSprite(MySprite sprite) { this.rightSprite = sprite; }
 	private void setLeftSprite(MySprite sprite) { this.leftSprite = sprite; }
 
-	protected void SpriteSetters () {
+	protected void spriteSetters() {
 		setHealthPoints();
 		CharactersMap map = CharactersMap.getInstance();
 		ImageSprite sprite = map.getImageSprite("Flash");

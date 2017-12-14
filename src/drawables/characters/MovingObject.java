@@ -16,6 +16,8 @@ public interface MovingObject extends Drawable {
 
     public void setDirectionState(DirectionState state);
 
+    public DirectionState getDirectionState();
+
     public void takeBullet(Bullet bullet);
 
     public void receiveExplosionDamage(int damage);

@@ -1,5 +1,6 @@
 package drawables.obstacles.traps;
 
+import View.Graphics.ImagesMaps.MazeMap;
 import drawables.characters.Hero;
 import drawables.obstacles.Trap;
 import javafx.scene.canvas.Canvas;
@@ -26,11 +27,6 @@ public class Cage extends StandardTrap implements Trap {
     @Override
     public void trap(Hero hero) {
 //        hero.removeAllWeapons(); //TODO
-    }
-
-    @Override
-    public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
-        //TODO
     }
 
     /**

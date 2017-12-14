@@ -19,11 +19,7 @@ public class HealthCareProvider extends StandardGift{
 	public String getIMAGE_URL() {
 		return IMAGE_URL;
 	}
-	@Override
-	public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
-		// TODO Auto-generated method stub
-		
-	}
+
 	@Override
 	public void addGift(Hero hero) {
 		hero.increaseHealthPoints(HEALTH_POINTS);

@@ -1,31 +1,21 @@
 package drawables.roads;
 
 import java.awt.Point;
-import java.awt.image.BufferedImage;
-
-import View.ImagesLoaders.MazeLayer;
+import View.Graphics.ImagesMaps.MazeMap;
 import drawables.Drawable;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 
 public class Road implements Drawable {
 
     private Point position;
-    private BufferedImage roadImg;
-
-    public Road () {
-        MazeLayer layer = new MazeLayer();
-        roadImg = layer.getBufferedImage("road");
-    }
 
     @Override
-    public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
-        Image img = SwingFXUtils.toFXImage(roadImg, null );
-
-        gc.drawImage(img, pt.getX(), pt.getY(), width, height );
-        //get the road image and put on canvas
-
+    public void drawOnCanvas(GraphicsContext gc, Point pt, int widthCell, int heightCell) {
+        MazeMap map = MazeMap.getInstance();
+        gc.drawImage(map.getBufferedImage("GrassRoad"),
+                pt.getX() - (widthCell / 2),
+                pt.getY() - (heightCell / 2),
+                widthCell, heightCell);
     }
 
     @Override
@@ -40,6 +30,7 @@ public class Road implements Drawable {
 
     @Override
     public void takeDamage(int damage) {
+        return;
         //do nothing its un destroyable or change into black
     }
 

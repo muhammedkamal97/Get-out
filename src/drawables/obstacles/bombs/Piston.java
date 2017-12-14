@@ -1,10 +1,6 @@
 package drawables.obstacles.bombs;
 
 import drawables.characters.Hero;
-import drawables.obstacles.Bomb;
-import drawables.roads.Road;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import maze.Maze;
 
 import java.awt.*;
@@ -63,11 +59,6 @@ public class Piston extends StandardBomb {
     public void explode() {
         myThread();
         this.destroy();
-    }
-
-    @Override
-    public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
-        //TODO
     }
 
     private void myThread() {

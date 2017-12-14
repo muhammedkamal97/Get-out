@@ -19,11 +19,6 @@ public class TrialGift extends StandardGift{
 	}
 
 	@Override
-	public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
-		//gui;
-	}
-
-	@Override
 	public void addGift(Hero hero) {
 		hero.increaseTrials();
 	}

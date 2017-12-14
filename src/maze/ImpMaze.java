@@ -1,12 +1,10 @@
 package maze;
 
 import java.awt.Point;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
 
 import drawables.Drawable;
-import drawables.obstacles.walls.Steal;
 import drawables.pickables.*;
 import drawables.obstacles.*;
 import drawables.characters.Monster;

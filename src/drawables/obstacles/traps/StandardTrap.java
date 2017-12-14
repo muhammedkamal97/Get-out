@@ -1,7 +1,9 @@
 package drawables.obstacles.traps;
 
+import View.Graphics.ImagesMaps.MazeMap;
 import drawables.characters.Hero;
 import drawables.obstacles.Trap;
+import javafx.scene.canvas.GraphicsContext;
 import maze.Maze;
 
 import java.awt.*;
@@ -50,6 +52,15 @@ public abstract class StandardTrap implements Trap {
         if (healthPoints <= 0){
             this.destroy();
         }
+    }
+
+    @Override
+    public void drawOnCanvas(GraphicsContext gc, Point pt, int widthCell, int heightCell) {
+        MazeMap map = MazeMap.getInstance();
+        gc.drawImage(map.getBufferedImage("Trap"),
+                pt.getX() - (widthCell / 2),
+                pt.getY() - (heightCell / 2),
+                widthCell, heightCell);
     }
 
     protected void setDamage(){

@@ -1,5 +1,6 @@
 package drawables.obstacles.traps;
 
+import View.Graphics.ImagesMaps.MazeMap;
 import drawables.characters.Hero;
 import drawables.obstacles.Trap;
 import javafx.scene.canvas.Canvas;
@@ -20,11 +21,6 @@ public class Hole extends StandardTrap implements Trap {
     @Override
     protected int getHealthPoints() {
         return HEALTH_POINTS;
-    }
-
-    @Override
-    public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
-        //TODO
     }
 
     @Override

@@ -1,5 +1,6 @@
 package drawables.obstacles.walls;
 
+import View.Graphics.ImagesMaps.MazeMap;
 import drawables.obstacles.Wall;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -15,11 +16,6 @@ public class Tree extends StandardWall implements Wall {
     @Override
     protected int getHealthPoints() {
         return HEALTH_POINTS;
-    }
-
-    @Override
-    public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
-        //TODO
     }
 
     @Override

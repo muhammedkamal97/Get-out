@@ -11,7 +11,7 @@ public class Superman extends StandardHero {
 
     public Superman(){
         setHealthPoints();
-        SpriteSetters();
+        spriteSetters();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package drawables.obstacles.traps;
 
+import View.Graphics.ImagesMaps.MazeMap;
 import drawables.characters.Hero;
 import drawables.obstacles.Trap;
 import drawables.roads.Road;
@@ -44,11 +45,6 @@ public class RandomTeleport extends StandardTrap {
         }
         hero.setPosition(new Point(x, y));
         //change maze since hero's position is changed
-    }
-
-    @Override
-    public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
-        //TODO
     }
 
     @Override

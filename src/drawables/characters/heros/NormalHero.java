@@ -13,7 +13,7 @@ public class NormalHero extends StandardHero {
 
     public NormalHero() {
         setHealthPoints();
-        SpriteSetters();
+        spriteSetters();
     }
 
     @Override

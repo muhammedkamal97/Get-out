@@ -1,12 +1,6 @@
 package drawables.obstacles.bombs;
 
-import drawables.characters.Hero;
 import drawables.obstacles.Bomb;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import maze.Maze;
-
-import java.awt.*;
 
 public class NormalBomb extends StandardBomb implements Bomb {
 
@@ -42,8 +36,4 @@ public class NormalBomb extends StandardBomb implements Bomb {
     //TODO
     }
 
-    @Override
-    public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
-        //TODO
-    }
 }

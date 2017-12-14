@@ -17,11 +17,6 @@ public class Coins extends StandardGift{
 	public String getIMAGE_URL() {
 		return IMAGE_URL;
 	}
-	@Override
-	public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
-		//Gui
-		
-	}
 
 	@Override
 	public void addGift(Hero hero) {

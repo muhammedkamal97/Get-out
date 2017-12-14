@@ -1,19 +1,14 @@
 package drawables.obstacles.bombs;
 
-import drawables.characters.Hero;
 import drawables.obstacles.Bomb;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 
-import java.awt.*;
-
-public class dynamite extends StandardBomb implements Bomb {
+public class Dynamite extends StandardBomb implements Bomb {
 
     private final int HEALTH = 50;
     private final int RANGE = 3;
     private final int DAMAGE = 50;
 
-    public dynamite() {
+    public Dynamite() {
 
         setBombRange();
         setDamage();
@@ -42,8 +37,4 @@ public class dynamite extends StandardBomb implements Bomb {
         //TODO
     }
 
-    @Override
-    public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
-        //TODO
-    }
 }

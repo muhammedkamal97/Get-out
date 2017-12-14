@@ -1,7 +1,9 @@
 package drawables.obstacles.bombs;
 
+import View.Graphics.ImagesMaps.MazeMap;
 import drawables.characters.Hero;
 import drawables.obstacles.Bomb;
+import javafx.scene.canvas.GraphicsContext;
 import maze.Maze;
 
 import java.awt.*;
@@ -72,6 +74,14 @@ public abstract class StandardBomb implements Bomb {
         return;
     }
 
+    @Override
+    public void drawOnCanvas(GraphicsContext gc, Point pt, int widthCell, int heightCell) {
+        MazeMap map = MazeMap.getInstance();
+        gc.drawImage(map.getBufferedImage(this.getClass().getName()),
+                pt.getX() - (widthCell / 2),
+                pt.getY() - (heightCell / 2),
+                widthCell, heightCell);
+    }
 
     protected void setDamage() {
         damage = getBombOriginalDamage();

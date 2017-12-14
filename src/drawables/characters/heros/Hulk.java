@@ -12,7 +12,7 @@ public class Hulk extends StandardHero {
 
     public Hulk(){
         setHealthPoints();
-        SpriteSetters();
+        spriteSetters();
     }
 
     @Override

@@ -2,6 +2,7 @@ package drawables.pickables.shields;
 
 import java.awt.Point;
 
+import View.Graphics.ImagesMaps.MazeMap;
 import drawables.characters.Hero;
 import drawables.pickables.Shield;
 import javafx.scene.canvas.Canvas;
@@ -22,9 +23,12 @@ public abstract  class StandardShield implements Shield {
 	public void setMaze(Maze maze) {this.maze = maze;}
 
 	@Override
-	public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
-		//Gui
-		
+	public void drawOnCanvas(GraphicsContext gc, Point pt, int widthCell, int heightCell) {
+		MazeMap map = MazeMap.getInstance();
+		gc.drawImage(map.getBufferedImage("Shield"),
+				pt.getX() - (widthCell / 2),
+				pt.getY() - (heightCell / 2),
+				widthCell, heightCell);
 	}
 
 	@Override

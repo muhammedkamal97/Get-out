@@ -13,7 +13,7 @@ public class Soldier extends StandardHero {
 
     public Soldier() {
         setHealthPoints();
-        SpriteSetters();
+        spriteSetters();
     }
 
     @Override
