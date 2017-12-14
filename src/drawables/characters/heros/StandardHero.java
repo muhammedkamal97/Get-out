@@ -208,15 +208,19 @@ public abstract class StandardHero implements Hero {
 	public void increaseTrials() {
 		this.trials++;
 	}
+	@Override
 	public void protectedFromFlame() {
 		this.holdflameShield = true;
 	}
+	@Override
 	public void protectedFromBomb() {
 		this.holdbombShield = true;
 	}
+	@Override
 	public void protectedFromTrap() {
 		this.holdTrapShield = true;
 	}
+	@Override
 	public void protectedFromBullets() {
 		this.holdBulletShield = true;
 		
