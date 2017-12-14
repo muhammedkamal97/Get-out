@@ -22,6 +22,7 @@ public class HealthCareProvider extends StandardGift{
 
 	@Override
 	public void addGift(Hero hero) {
+		destroy();
 		hero.increaseHealthPoints(HEALTH_POINTS);
 	}
 }
