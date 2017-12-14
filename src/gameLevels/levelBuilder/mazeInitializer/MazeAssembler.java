@@ -69,6 +69,7 @@ public class MazeAssembler {
             ctor.setAccessible(true);
             Wall wall = (Wall) ctor.newInstance();
             roadAndWallsLayer[i][j] = wall;
+            roadAndWallsLayer[i][j].setPosition(new Point(i,j));
             components.walls.add(wall);
         } catch (Exception e) {
             throw new RuntimeException("Failed to create instance");
@@ -117,8 +118,10 @@ public class MazeAssembler {
     private void setRoads(){
         for (int i = 0; i < components.mazeStructure.length; i++) {
             for (int j = 0; j < components.mazeStructure[0].length; j++) {
-                if (roadAndWallsLayer[i][j] == null)
+                if (roadAndWallsLayer[i][j] == null){
                     roadAndWallsLayer[i][j] = new Road();
+                    roadAndWallsLayer[i][j].setPosition(new Point(i,j));
+                }
             }
         }
     }
@@ -133,6 +136,7 @@ public class MazeAssembler {
                 if(i == 0 || i == components.mazeStructure.length - 1 || j == 0 || j == components.mazeStructure[0].length - 1)
                 {
                     roadAndWallsLayer[i][j] = new Steel();
+                    roadAndWallsLayer[i][j].setPosition(new Point(i,j));
                 }
                 else {
                     if(this.map[i][j] == 't')
@@ -152,6 +156,7 @@ public class MazeAssembler {
             if (!allowedPosition.isEmpty()) {
                 Point position = allowedPosition.pop();
                 pickablesLayer[position.x][position.y] = trap;
+                trap.setPosition(position);
             }
         }
     }
@@ -161,6 +166,7 @@ public class MazeAssembler {
             if (!allowedPosition.isEmpty()) {
                 Point position = allowedPosition.pop();
                 pickablesLayer[position.x][position.y] = bomb;
+                bomb.setPosition(position);
             }
         }
     }
@@ -170,6 +176,7 @@ public class MazeAssembler {
             if (!allowedPosition.isEmpty()) {
                 Point position = allowedPosition.pop();
                 pickablesLayer[position.x][position.y] = shield;
+                shield.setPosition(position);
             }
         }
     }
@@ -179,6 +186,7 @@ public class MazeAssembler {
             if (!allowedPosition.isEmpty()) {
                 Point position = allowedPosition.pop();
                 pickablesLayer[position.x][position.y] = weapon;
+                weapon.setPosition(position);
             }
         }
     }
@@ -188,6 +196,7 @@ public class MazeAssembler {
             if (!allowedPosition.isEmpty()) {
                 Point position = allowedPosition.pop();
                 pickablesLayer[position.x][position.y] = gift;
+                gift.setPosition(position);
             }
         }
     }
@@ -198,6 +207,7 @@ public class MazeAssembler {
             if (!allowedPosition.isEmpty()) {
                 Point position = allowedPosition.pop();
                 movingObjectsLayer[position.x][position.y] = monster;
+                monster.setPosition(position);
             }
         }
     }
