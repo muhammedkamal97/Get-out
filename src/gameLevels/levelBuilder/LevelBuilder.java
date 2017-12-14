@@ -1,6 +1,7 @@
 package gameLevels.levelBuilder;
 
 import drawables.characters.Monster;
+import drawables.characters.monsters.Behaviors.ShootingBehavior;
 import drawables.obstacles.Bomb;
 import drawables.obstacles.Trap;
 import drawables.pickables.Gift;

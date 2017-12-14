@@ -31,7 +31,7 @@ public interface LevelProperties {
     public Class[] getAllowedBombs();
     public Class[] getAllowedTraps();
     public Class[] getAllowedShields();
-	
+
 
 
 }
