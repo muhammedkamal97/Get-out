@@ -105,7 +105,7 @@ public class MazeAssembler {
             for (int j = 0; j < components.mazeStructure[0].length; j++) {
                 if (components.mazeStructure[i][j] == 0 && i > components.mazeStructure.length / 4
                         && j > components.mazeStructure[0].length / 4)//not a wall position
-                    allowedPosition.push(new Point(i, j));
+                    allowedPosition.push(new Point(j, i));
             }
         }
         Collections.shuffle(allowedPosition);
@@ -142,7 +142,7 @@ public class MazeAssembler {
                 {
                     roadAndWallsLayer[i][j] = new Steel();
                     roadAndWallsLayer[i][j].setMaze(maze);
-                    roadAndWallsLayer[i][j].setPosition(new Point(i,j));
+                    roadAndWallsLayer[i][j].setPosition(new Point(j,i));
                 }
                 else {
                     if(this.map[i][j] == 't')
