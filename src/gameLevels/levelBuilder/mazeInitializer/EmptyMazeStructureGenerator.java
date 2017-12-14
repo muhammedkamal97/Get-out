@@ -16,33 +16,35 @@ public class EmptyMazeStructureGenerator {
 	 * 
 	 * @param wide
 	 *            the width of the maze.
-	 * @param length
-	 *            length the width of the maze.
+	 * @param hight
+	 *            higth the width of the maze.
 	 * @return the maze.
 	 */
-	public int[][] generateRandomMaze(int wide, int length) {
-		maze = new int[wide][length];
-		visited = new boolean[wide][length];
-		for (int i = 0; i < wide; i++) {
-			for (int j = 0; j < length; j++) {
+	public int[][] generateRandomMaze(int hight, int wide) {
+		int higth = (hight%2 == 1) ? hight : hight+1;
+		int width = (wide%2 == 1) ? wide : wide+1;
+		maze = new int[higth][width];
+		visited = new boolean[higth][width];
+		for (int i = 0; i < higth; i++) {
+			for (int j = 0; j < width; j++) {
 				maze[i][j] = 1;
 				visited[i][j] = false;
 			}
 		}
-		openCell(new Point(1, 1));
 		Random rand = new Random();
-		int x = rand.nextInt(wide);
-		while (x % 2 != 0) {
-			x = rand.nextInt(wide);
+		int x = rand.nextInt(higth);
+		while (x % 2 != 1) {
+			x = rand.nextInt(higth);
 		}
-		int y = rand.nextInt(length);
+		int y = rand.nextInt(width);
 		while (y % 2 != 1) {
-			y = rand.nextInt(length);
+			y = rand.nextInt(width);
 		}
 		// x & y must one of them be even and one be odd
 		// to get a solution to the maze (searching for a reason).
 		dfs(x, y);
-
+		openCell(new Point(1, 0));
+		openCell(new Point(higth-2,width-1));
 		return maze;
 	}
 
@@ -98,7 +100,7 @@ public class EmptyMazeStructureGenerator {
 	private boolean isAllowed(Point p) {
 		boolean valid = true;
 		valid = valid && (p.x > 0 && p.y > 0);
-		valid = valid && (p.x < maze.length - 1) && (p.y < maze[0].length - 1);
+		valid = valid && (p.x < maze.length-1) && (p.y < maze[0].length-1);
 		valid = valid && !visited[p.x][p.y];
 		return valid;
 	}
@@ -120,11 +122,19 @@ public class EmptyMazeStructureGenerator {
 			end = p;
 		}
 	}
-
-	/*public static void main(String[] args) {
-		int[][] m = generateRandomMaze(21, 21);
-		for (int i = 0; i < 21; i++) {
-			for (int j = 0; j < 21; j++) {
+	
+	public Point getEndPoint(){
+		return end;
+	}
+	public Point getStartPoint(){
+		return new Point(1,0);
+	}
+/*
+	public static void main(String[] args) {
+		EmptyMazeStructureGenerator e = new EmptyMazeStructureGenerator();
+		int[][] m = e.generateRandomMaze(30, 30);
+		for (int i = 0; i < 31; i++) {
+			for (int j = 0; j < 31; j++) {
 				if (m[i][j] != 0)
 					System.out.print('#');
 				else
@@ -134,7 +144,7 @@ public class EmptyMazeStructureGenerator {
 			System.out.println();
 		}
 		System.out.println("start at : 1,1");
-		System.out.println("finsih at : " + end);
+		System.out.println("finsih at : " + e.end);
 	}
 */
 }
