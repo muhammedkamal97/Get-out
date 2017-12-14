@@ -1,5 +1,7 @@
 package drawables.characters.heros;
 
+import View.Graphics.ImagesMaps.CharactersMap;
+import View.Graphics.Sprite.ImageSprite;
 import View.Graphics.Sprite.MySprite;
 import drawables.characters.Hero;
 
@@ -12,8 +14,8 @@ import drawables.pickables.Weapon;
 import drawables.pickables.weapons.bullets.Bullet;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Observer;
 
 
 import javafx.scene.canvas.GraphicsContext;
@@ -252,8 +254,28 @@ public abstract class StandardHero implements Hero {
 	@Override
 	public MySprite getLeftSprite() { return leftSprite; }
 
-	protected void setDownSprite(MySprite sprite) { this.downSprite = sprite; }
-	protected void setUpSprite(MySprite sprite) { this.upSprite = sprite; }
-	protected void setRightSprite(MySprite sprite) { this.rightSprite = sprite; }
-	protected void setLeftSprite(MySprite sprite) { this.leftSprite = sprite; }
+	private void setDownSprite(MySprite sprite) { this.downSprite = sprite; }
+	private void setUpSprite(MySprite sprite) { this.upSprite = sprite; }
+	private void setRightSprite(MySprite sprite) { this.rightSprite = sprite; }
+	private void setLeftSprite(MySprite sprite) { this.leftSprite = sprite; }
+
+	protected void SpriteSetters () {
+		setHealthPoints();
+		CharactersMap map = CharactersMap.getInstance();
+		ImageSprite sprite = map.getImageSprite("Flash");
+		setDownSprite(constructSprite(sprite.getImageDown(), sprite));
+		setUpSprite(constructSprite(sprite.getImageUp(), sprite));
+		setRightSprite(constructSprite(sprite.getImageRight(), sprite));
+		setLeftSprite(constructSprite(sprite.getImageLeft(), sprite));
+	}
+
+	private MySprite constructSprite(BufferedImage img, ImageSprite imgSprite) {
+		MySprite sprite = new MySprite();
+		sprite.SpriteSheetBuffer(img.getWidth(),
+				img.getHeight(),
+				imgSprite.getFramesInRow(),
+				imgSprite.getFramesInColumn(),
+				img);
+		return sprite;
+	}
 }

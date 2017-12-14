@@ -1,14 +1,15 @@
-package View.Graphics.Sprite;
+package View.Graphics.Sprite.Types;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
+import View.Graphics.Sprite.ImageSprite;
 import loaders.ElementLoader;
 
 public class SpriteFactory {
 
-    private ArrayList<Class<? extends Sprite>> sprites;
+    private ArrayList<Class<? extends ImageSprite>> sprites;
 
     public SpriteFactory() {
 
@@ -17,19 +18,19 @@ public class SpriteFactory {
     }
 
 
-    public ArrayList<Class<? extends Sprite>> getClasses() {
+    public ArrayList<Class<? extends ImageSprite>> getClasses() {
         return this.sprites;
     }
 
-    public Sprite factoryMethod(String name) {
+    public ImageSprite factoryMethod(String name) {
         for (int i = 0; i < this.sprites.size(); i++) {
-            Class<? extends Sprite> tempClass = this.sprites.get(i);
+            Class<? extends ImageSprite> tempClass = this.sprites.get(i);
 
             if (tempClass.getName().contains(name)) {
                 try {
                     Constructor<?> ctor = tempClass.getConstructor();
                     ctor.setAccessible(true);
-                    return (Sprite) ctor.newInstance();
+                    return (ImageSprite) ctor.newInstance();
                 } catch (NoSuchMethodException | SecurityException | InstantiationException
                         | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
                     throw new RuntimeException("Sprite Factory Failure");
@@ -41,10 +42,10 @@ public class SpriteFactory {
     }
 
     private boolean loadClasses() {
-        ElementLoader<Sprite> loader = new ElementLoader<>();
+        ElementLoader<ImageSprite> loader = new ElementLoader<>();
         try {
-            loader.load("src/View/sprite");
-            this.sprites= (ArrayList<Class<? extends Sprite>>) loader.getList();
+            loader.load("src/View/Graphics/Sprites/Types");
+            this.sprites = (ArrayList<Class<? extends ImageSprite>>) loader.getList();
         } catch (RuntimeException e) {
             return false;
         }

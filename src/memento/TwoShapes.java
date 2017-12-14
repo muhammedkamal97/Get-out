@@ -1,4 +1,4 @@
-package momento;
+package memento;
 
 /**
  * Stores two shapes to be passed as a moment.

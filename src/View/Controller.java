@@ -1,6 +1,6 @@
 package View;
 
-import View.Sprite.MySprite;
+import View.Graphics.Sprite.MySprite;
 import javafx.animation.AnimationTimer;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -84,7 +84,7 @@ public class Controller implements Initializable{
                 break;
             case P: // to be removed
                 gcD.clearRect(0, 0, dynamicCanvas.getWidth(), dynamicCanvas.getHeight());
-                sprite.drawNextSprite(gcD, 125, 640,64);
+//                sprite.drawNextSprite(gcD, 125, 640,64);
 
                 break;
             default:

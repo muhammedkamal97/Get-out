@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public class MySprite implements Sprite {
+public class MySprite {
 
     private ArrayList<BufferedImage> imageSprite;
     private int count;
@@ -51,29 +51,6 @@ public class MySprite implements Sprite {
         count = 0;
     }
 
-    //this function in state
-    public void drawInNewPos(GraphicsContext gc, int widthCell, int heightCell, Point oldPos, Point newPos) {
-        count = 0;
-        int oldX = (int) oldPos.getX();
-        int oldY = (int) oldPos.getY();
-        int newX = (int) newPos.getX();
-        int newY = (int) newPos.getY();
-        if (oldX == newX) {
-            int i = oldY;
-            while (i < newY) {
-                gc.clearRect(oldX, i, widthCell, heightCell);
-                i++;
-                drawNextSprite(gc, widthCell, heightCell, newX, i);
-            }
-        } else {
-            int i = oldY;
-            while (i < newY) {
-                gc.clearRect(i, oldY, widthCell, heightCell);
-                i++;
-                drawNextSprite(gc, widthCell, heightCell, i, newY);
-            }
-        }
-    }
 
 }
 
