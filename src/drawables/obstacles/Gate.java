@@ -8,7 +8,7 @@ import java.awt.*;
 public class Gate implements Obstacle{
     private Point position;
     private Maze maze;
-    
+
 
     @Override
     public void destroy() {
