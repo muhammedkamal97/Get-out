@@ -7,6 +7,8 @@ import drawables.characters.MovingObject;
 import drawables.obstacles.*;
 import drawables.pickables.Pickable;
 
+import java.awt.*;
+
 public class MoveUtilities {
 
     public boolean isAValidMove(Drawable objectAtNewPosition) {
@@ -48,6 +50,8 @@ public class MoveUtilities {
             }
         } else if (object instanceof Monster){
             Monster monster = (Monster) object;
+            Point temp = new Point(monster.getPosition().x,monster.getPosition().y);
+            monster.setPastPosition(temp);
             if (objectAtNewPosition instanceof Obstacle) {
                 if (objectAtNewPosition instanceof Bomb) {
                     monster.setPosition(objectAtNewPosition.getPosition());

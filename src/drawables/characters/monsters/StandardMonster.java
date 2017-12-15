@@ -11,9 +11,11 @@ import drawables.characters.monsters.Behaviors.ShootingBehavior;
 import drawables.pickables.weapons.bullets.Bullet;
 import javafx.scene.canvas.GraphicsContext;
 import maze.Maze;
+import observer.MonsterObserver;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public abstract class StandardMonster implements Monster {
 
@@ -21,8 +23,9 @@ public abstract class StandardMonster implements Monster {
     private int healthPoints;
     private ShootingBehavior shootingBehavior;
     private Point position;
+    private Point pastPosition;
     private Maze maze;
-
+    private ArrayList<MonsterObserver> observers = new ArrayList<>();
     private DirectionState directionState;
 
     private MySprite downSprite = new MySprite();
@@ -99,6 +102,7 @@ public abstract class StandardMonster implements Monster {
     @Override
     public void setPosition(Point position) {
         this.position = position;
+        notifyMonsterObservers();
     }
 
     @Override
@@ -126,6 +130,22 @@ public abstract class StandardMonster implements Monster {
         return leftSprite;
     }
 
+    @Override
+    public void setPastPosition(Point position) {this.pastPosition = position;}
+
+    @Override
+    public void notifyMonsterObservers() {
+        for(int i = 0 ; i < this.observers.size() ; i++)
+        {
+            this.observers.get(i).updateMonsterObserver(this, this.pastPosition);
+        }
+    }
+
+    @Override
+    public void registerMonsterObserver(MonsterObserver observer) {
+        observers.add(observer);
+    }
+
     private void setDownSprite(MySprite sprite) {
         this.downSprite = sprite;
     }
@@ -143,13 +163,13 @@ public abstract class StandardMonster implements Monster {
     }
 
     protected void spriteSetters() {
-        setHealthPoints();
-        CharactersMap map = CharactersMap.getInstance();
-        ImageSprite sprite = map.getImageSprite("Flash");
-        setDownSprite(constructSprite(sprite.getImageDown(), sprite));
-        setUpSprite(constructSprite(sprite.getImageUp(), sprite));
-        setRightSprite(constructSprite(sprite.getImageRight(), sprite));
-        setLeftSprite(constructSprite(sprite.getImageLeft(), sprite));
+//        setHealthPoints();
+//        CharactersMap map = CharactersMap.getInstance();
+//        ImageSprite sprite = map.getImageSprite("Flash");
+//        setDownSprite(constructSprite(sprite.getImageDown(), sprite));
+//        setUpSprite(constructSprite(sprite.getImageUp(), sprite));
+//        setRightSprite(constructSprite(sprite.getImageRight(), sprite));
+//        setLeftSprite(constructSprite(sprite.getImageLeft(), sprite));
     }
 
     private MySprite constructSprite(BufferedImage img, ImageSprite imgSprite) {

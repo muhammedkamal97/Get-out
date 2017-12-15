@@ -12,6 +12,7 @@ import drawables.pickables.Key;
 import drawables.pickables.Shield;
 import drawables.pickables.Weapon;
 import drawables.roads.Road;
+import observer.MonsterObserver;
 import observer.MotionObserver;
 import observer.ObservedSubject;
 import observer.SubjectObserver;
@@ -19,7 +20,7 @@ import observer.SubjectObserver;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Maze implements ObservedSubject, MotionObserver{
+public class Maze implements ObservedSubject, MotionObserver, MonsterObserver{
 
     MazeComponents components = new MazeComponents();
 
@@ -136,5 +137,13 @@ public class Maze implements ObservedSubject, MotionObserver{
         movingObjectsLayer[heroPosition.y][heroPosition.x] = null;
         heroPosition = hero.getPosition();
         movingObjectsLayer[hero.getPosition().y][hero.getPosition().x] = hero;
+    }
+
+    public ArrayList<Monster> getMonsters() {return this.components.monsters;}
+
+    @Override
+    public void updateMonsterObserver(Monster monster, Point position) {
+        movingObjectsLayer[position.y][position.x] = null;
+        movingObjectsLayer[monster.getPosition().y][monster.getPosition().x] = monster;
     }
 }
