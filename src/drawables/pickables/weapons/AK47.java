@@ -16,6 +16,7 @@ public class AK47 extends StandardWeapon {
     public AK47(){
         setBulletType();
         setMaxMagazineCapacity();
+        reload();
     }
 
     @Override

@@ -17,6 +17,7 @@ public class MP5 extends StandardWeapon {
     public MP5(){
         setBulletType();
         setMaxMagazineCapacity();
+        reload();
     }
     @Override
     public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
