@@ -17,4 +17,9 @@ public interface GameLoop extends SubjectObserver, DeathObserver {
     public void shoot();
     public void holdNextWeapon();
     public void holdPreviousWeapon();
+    public void lookLeft();
+    public void lookRight();
+    public void lookUp();
+    public void lookDown();
+
 }

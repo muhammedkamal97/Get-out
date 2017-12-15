@@ -6,6 +6,10 @@ import drawables.characters.commands.motionCommands.MoveDownCommand;
 import drawables.characters.commands.motionCommands.MoveLeftCommand;
 import drawables.characters.commands.motionCommands.MoveRightCommand;
 import drawables.characters.commands.motionCommands.MoveUpCommand;
+import drawables.characters.heros.states.DirectionDownState;
+import drawables.characters.heros.states.DirectionLeftState;
+import drawables.characters.heros.states.DirectionRightState;
+import drawables.characters.heros.states.DirectionUpState;
 import maze.Maze;
 
 public class RunnerLoop implements GameLoop{
@@ -76,6 +80,26 @@ public class RunnerLoop implements GameLoop{
     @Override
     public void initiateLoop() {
         //starts monsters thread
+    }
+
+    @Override
+    public void lookLeft() {
+        hero.setDirectionState(new DirectionLeftState());
+    }
+
+    @Override
+    public void lookRight() {
+        hero.setDirectionState(new DirectionRightState());
+    }
+
+    @Override
+    public void lookUp() {
+        hero.setDirectionState(new DirectionUpState());
+    }
+
+    @Override
+    public void lookDown() {
+        hero.setDirectionState(new DirectionDownState());
     }
 
     @Override
