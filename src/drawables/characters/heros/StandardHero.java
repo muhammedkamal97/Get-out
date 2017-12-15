@@ -20,6 +20,8 @@ import java.util.ArrayList;
 
 import javafx.scene.canvas.GraphicsContext;
 import maze.Maze;
+import observer.DeathObservable;
+import observer.DeathObserver;
 import observer.MotionObserver;
 import observer.SubjectObserver;
 
@@ -40,6 +42,7 @@ public abstract class StandardHero implements Hero {
 	private boolean holdbombShield = false;
 	private ArrayList<SubjectObserver> observers = new ArrayList<>();
 	private ArrayList<MotionObserver> motionObservers = new ArrayList<>();
+	private ArrayList<DeathObserver> deathObservers = new ArrayList<>();
 
 	private Maze maze;
 
@@ -88,8 +91,7 @@ public abstract class StandardHero implements Hero {
 			if (damage >= healthPoints) {
 				healthPoints = 0;
 				// check or notify
-//
-//				notifyObservers();
+				notifyDeathObservers();
 			} else{
 				healthPoints -= damage;
 			}
@@ -196,6 +198,7 @@ public abstract class StandardHero implements Hero {
 			currentWeapon.reload();
 	}
 
+
 	@Override
 	public void increaseHealthPoints(int Health) {
 		healthPoints += Health;
@@ -301,5 +304,16 @@ public abstract class StandardHero implements Hero {
 	public void notifyMotionObservers() {
 		for(int i = 0 ; i < motionObservers.size();i++)
 			motionObservers.get(i).updateMovingObjects();
+	}
+
+	@Override
+	public void notifyDeathObservers() {
+		for(int i = 0 ; i < deathObservers.size();i++)
+			deathObservers.get(i).updateDeadObservable();
+	}
+
+	@Override
+	public void registerDeathObserver(DeathObserver observer) {
+		deathObservers.add(observer);
 	}
 }

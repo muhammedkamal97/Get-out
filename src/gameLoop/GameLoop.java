@@ -2,9 +2,10 @@ package gameLoop;
 
 import drawables.characters.Hero;
 import maze.Maze;
+import observer.DeathObserver;
 import observer.SubjectObserver;
 
-public interface GameLoop extends SubjectObserver {
+public interface GameLoop extends SubjectObserver, DeathObserver {
 
     public void setLoopMaze(Maze maze);
     public void initiateLoop();

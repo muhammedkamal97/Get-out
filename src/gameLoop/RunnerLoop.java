@@ -13,6 +13,8 @@ public class RunnerLoop implements GameLoop{
     private Maze maze;
     private Hero hero;
     private Command moveCommand;
+    private int livesLeft = 3;
+
     @Override
     public void setLoopMaze(Maze maze) {
         this.maze = maze;
@@ -23,6 +25,7 @@ public class RunnerLoop implements GameLoop{
         this.hero = hero;
         this.maze.setMazeHero(hero);
         hero.setMaze(maze);
+        hero.registerDeathObserver(this);
     }
 
     @Override
@@ -75,4 +78,15 @@ public class RunnerLoop implements GameLoop{
         //starts monsters thread
     }
 
+    @Override
+    public void updateDeadObservable() {
+        livesLeft--;
+        if(livesLeft < 0){
+            throw new RuntimeException("the game has ended");
+            //call controller to go to main menu
+        } else {
+            throw new RuntimeException("you died ya krodia");
+            //call controller to make a new level
+        }
+    }
 }
