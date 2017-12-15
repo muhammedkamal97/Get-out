@@ -108,6 +108,7 @@ public class MazeAssembler {
                     allowedPosition.push(new Point(j, i));
             }
         }
+        allowedPosition.pop();//pop the end point of the maze
         Collections.shuffle(allowedPosition);
         setMonster();
         setGift();
