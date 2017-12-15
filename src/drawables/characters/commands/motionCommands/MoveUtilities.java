@@ -51,7 +51,6 @@ public class MoveUtilities {
             if (objectAtNewPosition instanceof Obstacle) {
                 if (objectAtNewPosition instanceof Bomb) {
                     monster.setPosition(objectAtNewPosition.getPosition());
-                    ((Bomb) objectAtNewPosition).explode();
                     return true;
                 } else {
                     monster.setPosition(objectAtNewPosition.getPosition());
@@ -64,6 +63,9 @@ public class MoveUtilities {
                 return true;
             } else if (objectAtNewPosition instanceof Gate){
                 return false;
+            }  else {
+                monster.setPosition(objectAtNewPosition.getPosition());
+                return true;
             }
         }
         return false;
