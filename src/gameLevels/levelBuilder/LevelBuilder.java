@@ -15,6 +15,7 @@ import maze.Maze;
 import maze.MazeComponents;
 import randomizer.RandomComponentsFiller;
 
+import java.awt.*;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,7 +27,7 @@ public class LevelBuilder {
     private LevelProperties properties;
     private MazeAssembler assembler = new MazeAssembler();
     private MazeComponents components = new MazeComponents();
-
+    private Point endPoint;
     private EmptyMazeStructureGenerator generator
             = new EmptyMazeStructureGenerator();
     private RandomComponentsFiller random = new RandomComponentsFiller();
@@ -40,7 +41,9 @@ public class LevelBuilder {
         buildPickables();
         buildMonsters();
         buildObstacles();
+        assembler.setEndPoint(endPoint);
         return assembler.assembleMaze(components);
+
     }
 
     private void buildMazeStructure() {
@@ -49,6 +52,7 @@ public class LevelBuilder {
                 properties.getMazeWidth(),
                 properties.getMazeLength()
         );
+        endPoint = generator.getEndPoint();
 
     }
 

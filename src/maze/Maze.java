@@ -8,6 +8,7 @@ import drawables.obstacles.Trap;
 import drawables.obstacles.Wall;
 import drawables.obstacles.walls.Steel;
 import drawables.pickables.Gift;
+import drawables.pickables.Key;
 import drawables.pickables.Shield;
 import drawables.pickables.Weapon;
 import drawables.roads.Road;
@@ -105,6 +106,10 @@ public class Maze implements ObservedSubject, MotionObserver{
         Point position = monster.getPosition();
         movingObjectsLayer[position.y][position.x] = null;
         components.monsters.remove(monster);
+    }
+    public void removeKey(Key key){
+        Point position = key.getPosition();
+        pickablesLayer[position.y][position.x] = null;
     }
 
     public Point getDimensions(){

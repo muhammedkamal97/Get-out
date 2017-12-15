@@ -43,7 +43,7 @@ public abstract class StandardHero implements Hero {
 	private ArrayList<SubjectObserver> observers = new ArrayList<>();
 	private ArrayList<MotionObserver> motionObservers = new ArrayList<>();
 	private ArrayList<DeathObserver> deathObservers = new ArrayList<>();
-
+	private boolean hasKey = false;
 	private Maze maze;
 
 	private MySprite downSprite = new MySprite();
@@ -315,5 +315,20 @@ public abstract class StandardHero implements Hero {
 	@Override
 	public void registerDeathObserver(DeathObserver observer) {
 		deathObservers.add(observer);
+	}
+
+	@Override
+	public void pickedKey(){
+		hasKey = true;
+	}
+
+	@Override
+	public boolean hasKey() {
+		return hasKey;
+	}
+
+	@Override
+	public void dropKey() {
+		hasKey = false;
 	}
 }

@@ -4,10 +4,7 @@ import drawables.Drawable;
 import drawables.characters.Hero;
 import drawables.characters.Monster;
 import drawables.characters.MovingObject;
-import drawables.obstacles.Bomb;
-import drawables.obstacles.Obstacle;
-import drawables.obstacles.Trap;
-import drawables.obstacles.Wall;
+import drawables.obstacles.*;
 import drawables.pickables.Pickable;
 
 public class MoveUtilities {
@@ -25,7 +22,14 @@ public class MoveUtilities {
                     hero.setPosition(objectAtNewPosition.getPosition());
                     ((Bomb) objectAtNewPosition).explode();
                     return true;
-                } else {
+                }  else if (objectAtNewPosition instanceof Gate) {
+                    if (hero.hasKey()) {
+                        throw new RuntimeException("you win");
+                    } else {
+                        System.out.println("u need a key");
+                    }
+                    return true;
+                }else {
                     hero.setPosition(objectAtNewPosition.getPosition());
                     ((Trap) objectAtNewPosition).trap(hero);
                     return true;
@@ -58,6 +62,8 @@ public class MoveUtilities {
             } else if (objectAtNewPosition instanceof Pickable) {
                 monster.setPosition(objectAtNewPosition.getPosition());
                 return true;
+            } else if (objectAtNewPosition instanceof Gate){
+                return false;
             }
         }
         return false;

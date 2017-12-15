@@ -3,10 +3,12 @@ package gameLevels.levelBuilder.mazeInitializer;
 import drawables.Drawable;
 import drawables.characters.Monster;
 import drawables.obstacles.Bomb;
+import drawables.obstacles.Gate;
 import drawables.obstacles.Trap;
 import drawables.obstacles.Wall;
 import drawables.obstacles.walls.Steel;
 import drawables.pickables.Gift;
+import drawables.pickables.Key;
 import drawables.pickables.Shield;
 import drawables.pickables.Weapon;
 import drawables.roads.Road;
@@ -30,8 +32,12 @@ public class MazeAssembler {
 
     private Class[] walls;
     private char[][] map;
-
+    private Point endPoint;
     private Maze maze;
+
+    public void setEndPoint(Point endPoint){
+        this.endPoint = endPoint;
+    }
 
     public Maze assembleMaze(MazeComponents components) {
         this.components = components;
@@ -39,10 +45,16 @@ public class MazeAssembler {
 
         maze = new Maze();
         mapDrawableIntoMaze();
+        Gate gate = new Gate();
         maze.setComponents(components);
         maze.setMovingObjectsLayer(movingObjectsLayer);
         maze.setPickablesLayer(pickablesLayer);
         maze.setRoadAndWallsLayer(roadAndWallsLayer);
+        gate.setMaze(maze);
+        maze.removeWall((Wall) roadAndWallsLayer[endPoint.x][endPoint.y]);
+        roadAndWallsLayer[endPoint.x][endPoint.y] = gate;
+
+
         return maze;
     }
 
@@ -105,7 +117,8 @@ public class MazeAssembler {
             for (int j = 0; j < components.mazeStructure[0].length; j++) {
                 if (components.mazeStructure[i][j] == 0 && i > components.mazeStructure.length / 4
                         && j > components.mazeStructure[0].length / 4)//not a wall position
-                    allowedPosition.push(new Point(j, i));
+                    if (!(i == endPoint.x && j == endPoint.y))
+                        allowedPosition.push(new Point(j, i));
             }
         }
         Collections.shuffle(allowedPosition);
@@ -115,8 +128,18 @@ public class MazeAssembler {
         setShields();
         setBombs();
         setTraps();
+        setKey();
         setWalls();
         setRoads();
+    }
+    private void setKey(){
+        Key key = new Key();
+        key.setMaze(maze);
+        if (!allowedPosition.isEmpty()) {
+            Point position = allowedPosition.pop();
+            pickablesLayer[position.y][position.x] = key;
+            key.setPosition(position);
+        }
     }
 
     private void setRoads(){

@@ -26,5 +26,8 @@ public interface Hero extends Handler,MovingObject, ObservedSubject, MotionObser
 	public void protectedFromTrap();
 	public void protectedFromBullets();
 	public void protectedFromMonester();
+	public void dropKey();
+	public boolean hasKey();
+	public void pickedKey();
 
 }

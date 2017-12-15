@@ -6,6 +6,7 @@ import drawables.obstacles.Bomb;
 import drawables.obstacles.Trap;
 import drawables.obstacles.Wall;
 import drawables.pickables.Gift;
+import drawables.pickables.Key;
 import drawables.pickables.Shield;
 import drawables.pickables.Weapon;
 
