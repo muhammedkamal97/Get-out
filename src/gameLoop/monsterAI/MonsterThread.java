@@ -28,7 +28,7 @@ public class MonsterThread extends Thread{
     @Override
     public void run()
     {
-        while(this.monster != null)
+        while(this.monster.getHealthPoints() > 0)
         {
             Command movement = this.motion.movementMind();
             if(this.monster.move(new MoveUpCommand(),this.maze))
