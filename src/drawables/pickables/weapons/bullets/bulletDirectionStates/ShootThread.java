@@ -55,12 +55,11 @@ public class ShootThread extends Thread{
 
             if(!(entityInWay instanceof Road))
             {
-                if(entityInWay instanceof MovingObject)
-                {
-                    ((MovingObject)entityInWay).takeBullet(this.bullet);
-                    break;
-                }
+                entityInWay.takeDamage(this.bullet.getDamage());
+                break;
             }
         }
     }
 }
+
+
