@@ -1,4 +1,7 @@
 package observer;
 
-public class DeathObserver {
+public interface DeathObserver {
+
+    public void updateDeadObservable();
+
 }
