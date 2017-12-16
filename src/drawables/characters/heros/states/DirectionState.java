@@ -12,4 +12,7 @@ public interface DirectionState {
 
     public void Draw(GraphicsContext gc, Point pt, int width, int height, MovingObject heroOrMonster);
 
+    public void DrawReleased(GraphicsContext gc, Point pt, int width, int height, MovingObject heroOrMonster);
+
+
 }

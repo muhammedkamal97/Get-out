@@ -4,12 +4,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Controller">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MenuController">
    <children>
       <VBox alignment="CENTER" layoutX="250.0" layoutY="100.0" prefHeight="200.0" prefWidth="100.0">
          <children>
             <Button mnemonicParsing="false" text="Select Difficulty" />
-            <Button mnemonicParsing="false" text="Start" />
+            <Button onAction="#startCanvas" mnemonicParsing="false" text="Start" />
             <Button mnemonicParsing="false" text="Exit" />
          </children>
       </VBox>

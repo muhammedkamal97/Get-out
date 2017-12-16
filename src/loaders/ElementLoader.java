@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class ElementLoader<T> {
 
 	private ArrayList<Class<? extends T>> elements;
-	
 	public ElementLoader() {
 		this.elements = new ArrayList<>();
 	}
@@ -30,6 +29,7 @@ public class ElementLoader<T> {
 				continue;
 			
 			String className = packageFiles[i].getPath();
+			className = className.replaceAll("/","\\\\");
 			className = className.replaceAll("\\\\", ".").substring(4, className.length() - 5);
 			
 			try {

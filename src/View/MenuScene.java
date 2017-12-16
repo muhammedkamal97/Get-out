@@ -12,14 +12,11 @@ public class MenuScene extends Application {
         launch(args);
     }
 
-    @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("MenuScene.fxml"));
         Scene scene = new Scene(root);
-
         stage.setTitle("FXML Welcome");
         stage.setScene(scene);
         stage.show();
-
     }
 }

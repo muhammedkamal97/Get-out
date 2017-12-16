@@ -1,7 +1,7 @@
 package View.Graphics.ImagesMaps;
 
 import View.Graphics.Sprite.ImageSprite;
-import View.Graphics.Sprite.Types.SpriteFactory;
+import View.Graphics.Sprite.SpriteFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,6 +38,8 @@ public class CharactersMap {
             img = factory.factoryMethod(key);
             images.put(key, img);
             return img;
+//            images.put("Flash", new Flash());
+//            return images.get("Flash");
         }
     }
 }

@@ -10,20 +10,37 @@ import java.awt.*;
 public class DirectionDownState implements DirectionState {
     @Override
     public void shoot(Weapon weapon, Point position) {
-        weapon.shoot(new ShootDown(),position);
+        weapon.shoot(new ShootDown(), position);
     }
-    //will initialize 4 sprites in each hero and they will have get methods
-    //draw function will be called in DirectionState
+
     @Override
     public void Draw(GraphicsContext gc, Point pt, int widthCell, int heightCell, MovingObject heroOrMonster) {
-            heroOrMonster.getDownSprite().reset();
-            int i = (int)heroOrMonster.getPosition().getY()-heightCell;
-            while (i < heroOrMonster.getPosition().getY()) {
-                gc.clearRect(heroOrMonster.getPosition().getX(), i, widthCell, heightCell);
-                i++;
-                heroOrMonster.getDownSprite().drawNextSprite(gc, widthCell, heightCell, (int)heroOrMonster.getPosition().getX(), i);
-            }
+//            heroOrMonster.getDownSprite().reset();
+//            int i = (int)heroOrMonster.getPosition().getY()-heightCell;
+//            while (i < heroOrMonster.getPosition().getY()) {
+//                gc.clearRect(heroOrMonster.getPosition().getX(), i, widthCell, heightCell);
+//                i++;
+//                heroOrMonster.getDownSprite().drawNextSprite(gc, widthCell, heightCell, (int)heroOrMonster.getPosition().getX(), i);
+//            }
+        gc.clearRect(pt.getX() - (widthCell / 2),
+                pt.getY() - 1 - (heightCell / 2),
+                widthCell, heightCell);
+        heroOrMonster.getDownSprite().drawNextSprite(
+                gc, widthCell, heightCell,
+                (int) pt.getX(),
+                (int) pt.getY());
 
+    }
+
+    @Override
+    public void DrawReleased(GraphicsContext gc, Point pt, int widthCell, int heightCell, MovingObject heroOrMonster) {
+        gc.clearRect(pt.getX() - (widthCell / 2),
+                pt.getY() - 10 - (heightCell / 2),
+                widthCell, heightCell);
+        heroOrMonster.getDownSprite().drawReleased(
+                gc, widthCell, heightCell,
+                (int) pt.getX(),
+                (int) pt.getY());
     }
 }
 

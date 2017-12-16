@@ -47,10 +47,14 @@ public class MySprite {
             }
         }
     }
-    public void reset () {
+//    public void reset () {
+//        count = 0;
+//    }
+
+    public void drawReleased(GraphicsContext gc, int widthCell, int heightCell, int posX, int posY) {
         count = 0;
+        Image img = SwingFXUtils.toFXImage(imageSprite.get(count), null);
+        gc.drawImage(img, posX - (widthCell / 2), posY - (heightCell / 2), widthCell, heightCell);
     }
-
-
 }
 

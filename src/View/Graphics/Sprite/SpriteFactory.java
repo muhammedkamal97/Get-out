@@ -1,4 +1,4 @@
-package View.Graphics.Sprite.Types;
+package View.Graphics.Sprite;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -44,7 +44,7 @@ public class SpriteFactory {
     private boolean loadClasses() {
         ElementLoader<ImageSprite> loader = new ElementLoader<>();
         try {
-            loader.load("src/View/Graphics/Sprites/Types");
+            loader.load("src/View/Graphics/Sprite/Types");
             this.sprites = (ArrayList<Class<? extends ImageSprite>>) loader.getList();
         } catch (RuntimeException e) {
             return false;
