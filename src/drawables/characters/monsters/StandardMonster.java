@@ -163,13 +163,13 @@ public abstract class StandardMonster implements Monster {
     }
 
     protected void spriteSetters() {
-//        setHealthPoints();
-//        CharactersMap map = CharactersMap.getInstance();
-//        ImageSprite sprite = map.getImageSprite("Flash");
-//        setDownSprite(constructSprite(sprite.getImageDown(), sprite));
-//        setUpSprite(constructSprite(sprite.getImageUp(), sprite));
-//        setRightSprite(constructSprite(sprite.getImageRight(), sprite));
-//        setLeftSprite(constructSprite(sprite.getImageLeft(), sprite));
+        setHealthPoints();
+        CharactersMap map = CharactersMap.getInstance();
+        ImageSprite sprite = map.getImageSprite("Flash");
+        setDownSprite(constructSprite(sprite.getImageDown(), sprite));
+        setUpSprite(constructSprite(sprite.getImageUp(), sprite));
+        setRightSprite(constructSprite(sprite.getImageRight(), sprite));
+        setLeftSprite(constructSprite(sprite.getImageLeft(), sprite));
     }
 
     private MySprite constructSprite(BufferedImage img, ImageSprite imgSprite) {
