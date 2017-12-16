@@ -256,6 +256,11 @@ public abstract class StandardHero implements Hero {
 	}
 
 	@Override
+	public void drawOnReleased(GraphicsContext gc, Point pt,  int widthCell, int heightCell) {
+		getDirectionState().DrawReleased(gc, pt, widthCell, heightCell, this);
+	}
+
+	@Override
 	public MySprite getDownSprite() {
 		return downSprite;
 	}
@@ -278,7 +283,7 @@ public abstract class StandardHero implements Hero {
 	protected void spriteSetters() {
 		setHealthPoints();
 		CharactersMap map = CharactersMap.getInstance();
-		ImageSprite sprite = map.getImageSprite("Flash");
+		ImageSprite sprite = map.getImageSprite(this.getClass().getSimpleName());
 		setDownSprite(constructSprite(sprite.getImageDown(), sprite));
 		setUpSprite(constructSprite(sprite.getImageUp(), sprite));
 		setRightSprite(constructSprite(sprite.getImageRight(), sprite));
