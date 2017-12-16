@@ -19,7 +19,7 @@ public class RPG extends StandardWeapon {
     }
 
     @Override
-    public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
+    public void drawOnCanvas(GraphicsContext gc,Point pt, int width, int height) {
         //GUI
     }
 

@@ -15,7 +15,6 @@ public class Soldier extends StandardHero {
     public Soldier() {
         setHealthPoints();
         spriteSetters();
-
         setDirectionState(new DirectionDownState());
     }
 

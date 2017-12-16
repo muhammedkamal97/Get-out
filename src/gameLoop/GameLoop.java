@@ -1,9 +1,12 @@
 package gameLoop;
 
+import drawables.Drawable;
 import drawables.characters.Hero;
 import maze.Maze;
 import observer.DeathObserver;
 import observer.SubjectObserver;
+
+import java.awt.*;
 
 public interface GameLoop extends SubjectObserver, DeathObserver {
 
@@ -21,5 +24,10 @@ public interface GameLoop extends SubjectObserver, DeathObserver {
     public void lookRight();
     public void lookUp();
     public void lookDown();
+    //Sarah's
+    public Point getMazeDimensions();
+    public Drawable[][] getMovingObjectsLayer();
+    public Drawable[][] getRoadAndWallsLayer();
+    public Drawable[][] getPickablesLayer();
 
 }

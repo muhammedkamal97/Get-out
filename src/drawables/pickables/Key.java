@@ -1,5 +1,6 @@
 package drawables.pickables;
 
+import View.Graphics.ImagesMaps.MazeMap;
 import drawables.characters.Hero;
 import javafx.scene.canvas.GraphicsContext;
 import maze.Maze;
@@ -24,7 +25,10 @@ public class Key implements Pickable {
 
     @Override
     public void drawOnCanvas(GraphicsContext gc, Point pt, int widthCell, int heightCell) {
-
+        MazeMap map = MazeMap.getInstance();
+        gc.drawImage(map.getBufferedImage("Key"),
+                pt.getX(), pt.getY(),
+                widthCell, heightCell);
     }
 
     @Override

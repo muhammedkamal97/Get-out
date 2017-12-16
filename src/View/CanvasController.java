@@ -2,12 +2,15 @@ package View;
 
 import View.Graphics.ImagesMaps.CharactersMap;
 import View.Graphics.Sprite.MySprite;
+import drawables.Drawable;
 import drawables.characters.Hero;
 import drawables.characters.heros.Flash;
+import drawables.characters.heros.Hulk;
 import drawables.characters.heros.states.DirectionDownState;
 import drawables.characters.heros.states.DirectionLeftState;
 import drawables.characters.heros.states.DirectionRightState;
 import drawables.characters.heros.states.DirectionUpState;
+import drawables.roads.Road;
 import gameCore.RunnerGameAdapter;
 import gameLoop.GameLoop;
 import javafx.animation.AnimationTimer;
@@ -37,14 +40,16 @@ public class CanvasController implements Initializable {
     private GraphicsContext gcD;
     private GraphicsContext gcM;
     private GraphicsContext gcS;   // two global parameters (dimensions cell)
-    private int shift;
-    private int i = 0;
-    private Flash flash;
+    private int shiftRight; //shift canvas dimension to be centered not needed
+    //    private int shiftDown = 40; //remove bar dimension
+    private int shiftDown = 0;
+    private int cellWidth; // get it from system.sceendimensions
+    private int cellHeight;
+    private GameLoop gameLoop;
+    private Hero hero;
 
-
-    private MySprite sprite = new MySprite();
-    private int x = 100; // remove it
-    private int y = 100; // remove it
+    private int x;
+    private int y;
 
     //important to instantiate graphics context
     @FXML
@@ -56,33 +61,59 @@ public class CanvasController implements Initializable {
     @FXML
     public void keyPressedSwitch(KeyEvent event) {
         switch (event.getCode()) {
-            case J:
             case LEFT:
             case KP_LEFT:
-                x -= 1;
-                flash.setDirectionState(new DirectionLeftState()); //testing
-                flash.drawOnCanvas(gcD,new Point(x,y), 100, 100);
+                x -= 10;
+                if (x < cellWidth-1) {
+                    gameLoop.moveHeroLeft();
+                    x += cellWidth;
+                }
+                // my dimensions will be added to hero's point
+                // divide my point by cell width & cell height
+
+                gameLoop.lookLeft();
+                hero.setDirectionState(new DirectionLeftState()); //testing
+                hero.drawOnCanvas(gcD, new Point((int) (hero.getPosition().getX() * cellWidth + x),
+                                (int) (hero.getPosition().getY() * cellHeight + y)),
+                        cellWidth, cellHeight);
                 break;
-            case L:
             case RIGHT:
             case KP_RIGHT:
-                x += 1;
-                flash.setDirectionState(new DirectionRightState()); //testing
-                flash.drawOnCanvas(gcD, new Point(x,y),100, 100);
+                x += 10;
+                if (x > 0) {
+                    gameLoop.moveHeroRight();
+                    x -= cellWidth;
+                }
+                gameLoop.lookRight();
+                hero.setDirectionState(new DirectionRightState()); //testing
+                hero.drawOnCanvas(gcD, new Point((int) (hero.getPosition().getX() * cellWidth + x),
+                                (int) (hero.getPosition().getY() * cellHeight + y)),
+                        cellWidth, cellHeight);
                 break;
-            case I:
             case UP:
             case KP_UP:
-                y -= 1;
-                flash.setDirectionState(new DirectionUpState()); //testing
-                flash.drawOnCanvas(gcD, new Point(x,y),100, 100);
+                y -= 10;
+                if (y < cellHeight-1) {
+                    gameLoop.moveHeroUp();
+                    y += cellHeight;
+                }
+                gameLoop.lookUp();
+                hero.setDirectionState(new DirectionUpState()); //testing
+                hero.drawOnCanvas(gcD, new Point((int) (hero.getPosition().getX() * cellWidth + x),
+                                (int) (hero.getPosition().getY() * cellHeight + y))
+                        , cellWidth, cellHeight);
                 break;
-            case K:
             case DOWN:
             case KP_DOWN:
-                y += 1;
-                flash.setDirectionState(new DirectionDownState()); //testing
-                flash.drawOnCanvas(gcD,new Point(x,y), 100, 100);
+                y += 10;
+                if (y > 0) {
+                    gameLoop.moveHeroDown();
+                    y -= cellHeight;
+                }
+                gameLoop.lookDown();
+                hero.setDirectionState(new DirectionDownState()); //testing
+                hero.drawOnCanvas(gcD, new Point((int) (hero.getPosition().getX() * cellWidth + x),
+                        (int) (hero.getPosition().getY() * cellHeight + y)), cellWidth, cellHeight);
                 break;
             default:
                 break;
@@ -93,29 +124,34 @@ public class CanvasController implements Initializable {
     @FXML
     public void keyReleasedSwitch(KeyEvent event) {
         switch (event.getCode()) {
-            case J:
             case LEFT:
             case KP_LEFT:
-                flash.setDirectionState(new DirectionLeftState()); //testing
-                flash.drawOnReleased(gcD,new Point(x,y), 100, 100);
+                hero.drawOnReleased(gcD, new Point((int) (hero.getPosition().getX() * cellWidth + x),
+                        (int) (hero.getPosition().getY() * cellHeight + y)), cellWidth, cellHeight);
                 break;
-            case L:
             case RIGHT:
             case KP_RIGHT:
-                flash.setDirectionState(new DirectionRightState()); //testing
-                flash.drawOnReleased(gcD,new Point(x,y), 100, 100);
+                hero.drawOnReleased(gcD, new Point((int) (hero.getPosition().getX() * cellWidth + x),
+                        (int) (hero.getPosition().getY() * cellHeight + y)), cellWidth, cellHeight);
                 break;
-            case I:
             case UP:
             case KP_UP:
-                flash.setDirectionState(new DirectionUpState()); //testing
-                flash.drawOnReleased(gcD,new Point(x,y), 100, 100);
+                hero.drawOnReleased(gcD, new Point((int) (hero.getPosition().getX() * cellWidth + x),
+                        (int) (hero.getPosition().getY() * cellHeight + y)), cellWidth, cellHeight);
                 break;
-            case K:
             case DOWN:
             case KP_DOWN:
-                flash.setDirectionState(new DirectionDownState()); //testing
-                flash.drawOnReleased(gcD,new Point(x,y), 100, 100);
+                hero.drawOnReleased(gcD, new Point((int) (hero.getPosition().getX() * cellWidth + x),
+                        (int) (hero.getPosition().getY() * cellHeight + y)), cellWidth, cellHeight);
+                break;
+            case CONTROL:
+                gameLoop.shoot();
+                break;
+            case N:
+                gameLoop.holdNextWeapon();
+                break;
+            case P:
+                gameLoop.holdPreviousWeapon();
                 break;
             default:
                 break;
@@ -153,19 +189,79 @@ public class CanvasController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ///Abdelrahman
 
-//        Hero flash = new Flash();
-//        RunnerGameAdapter game = new RunnerGameAdapter();
-//        game.InitializeMaze(1);
-//        GameLoop gl = game.getGameLoop();
-//        gl.setHero(flash);
-//        gl.initiateLoop();
-        flash = new Flash();
+//        hero = new Flash(); // sent from previous scene
+        hero = new Hulk();
+        RunnerGameAdapter game = new RunnerGameAdapter();
+        game.InitializeMaze(1);
+        gameLoop = game.getGameLoop();
+        gameLoop.setHero(hero);
+        gameLoop.initiateLoop();
 
+        setGlobalVariables();
+        setMazeLayers();
+        x = (int) hero.getPosition().getX()-1;
+        y = (int) hero.getPosition().getY() + shiftDown -1;
+//        x = 0;
+//        y = shiftDown;
+    }
 
-
+    private void setGlobalVariables() {
         gcD = dynamicCanvas.getGraphicsContext2D();
         gcM = mazeCanvas.getGraphicsContext2D();
         gcS = steadyCanvas.getGraphicsContext2D();
-        shift = ((int) (dynamicCanvas.getWidth() - dynamicCanvas.getHeight())) / 2;
+//        shiftRight = ((int) (dynamicCanvas.getWidth() - dynamicCanvas.getHeight())) / 2;
+        Point pt = gameLoop.getMazeDimensions();
+        shiftDown += ((dynamicCanvas.getHeight() - shiftDown) % (pt.getX())) / 2;
+        cellHeight = (int) ((dynamicCanvas.getHeight() - shiftDown) / (pt.getX()));
+        cellWidth = (int) ((dynamicCanvas.getWidth()) / (pt.getY()));
+    }
+
+
+    private void setMazeLayers() {
+        setMovingObjectsLayer();
+        setPickablesLayer();
+        setRoadAndWallsLayer();
+    }
+
+    private void setMovingObjectsLayer() {
+        Drawable[][] maze = gameLoop.getMovingObjectsLayer();
+        for (int i = 0; i < maze.length; i++) {
+            for (int j = 0; j < maze[i].length; j++) {
+                if (maze[j][i] != null) {
+                    maze[j][i].drawOnCanvas(gcD, new Point(
+                                    (int) (maze[j][i].getPosition().getX() * cellWidth),
+                                    (int) (maze[j][i].getPosition().getY() * cellHeight + shiftDown)),
+                            cellWidth, cellHeight);
+                }
+            }
+        }
+    }
+
+    private void setPickablesLayer() {
+        Drawable[][] maze = gameLoop.getPickablesLayer();
+        for (int i = 0; i < maze.length; i++) {
+            for (int j = 0; j < maze[i].length; j++) {
+                if (maze[j][i] != null) {
+                    maze[j][i].drawOnCanvas(gcM, new Point(
+                                    (int) (maze[j][i].getPosition().getX() * cellWidth),
+                                    (int) (maze[j][i].getPosition().getY() * cellHeight + shiftDown)),
+                            cellWidth, cellHeight);
+                }
+            }
+        }
+    }
+
+    private void setRoadAndWallsLayer() {
+        Drawable[][] maze = gameLoop.getRoadAndWallsLayer();
+        for (int i = 0; i < maze.length; i++) {
+            for (int j = 0; j < maze[i].length; j++) {
+                if (maze[j][i] != null && !(maze[j][i] instanceof Road)) {
+                    maze[j][i].drawOnCanvas(gcS, new Point(
+                                    (int) (maze[j][i].getPosition().getX() * cellWidth),
+                                    (int) (maze[j][i].getPosition().getY() * cellHeight + shiftDown)),
+                            cellWidth, cellHeight);
+                }
+            }
+        }
     }
 }

@@ -13,7 +13,6 @@ public abstract class StandardBomb implements Bomb {
     private Point position;
     private int healthPoints;
     private int range;
-    private int temp;
     private int damage;
     private Maze maze;
 
@@ -77,9 +76,8 @@ public abstract class StandardBomb implements Bomb {
     @Override
     public void drawOnCanvas(GraphicsContext gc, Point pt, int widthCell, int heightCell) {
         MazeMap map = MazeMap.getInstance();
-        gc.drawImage(map.getBufferedImage(this.getClass().getName()),
-                pt.getX() - (widthCell / 2),
-                pt.getY() - (heightCell / 2),
+        gc.drawImage(map.getBufferedImage(this.getClass().getSimpleName()),
+                pt.getX(), pt.getY(),
                 widthCell, heightCell);
     }
 

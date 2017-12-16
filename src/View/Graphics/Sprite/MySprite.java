@@ -28,7 +28,7 @@ public class MySprite {
         System.out.println(imageSprite.size()); // for testing
         count %= imageSprite.size();
         Image img = SwingFXUtils.toFXImage(imageSprite.get(count), null);
-        gc.drawImage(img, posX - (widthCell / 2), posY - (heightCell / 2), widthCell, heightCell);
+        gc.drawImage(img, posX, posY, widthCell, heightCell);
     }
 
     /**
@@ -40,10 +40,14 @@ public class MySprite {
      */
     public void SpriteSheetBuffer(int width, int height, int rows, int columns, BufferedImage ss) {
         int TileW = width / columns;
+        System.out.println(TileW);
         int TileH = height / rows;
+        System.out.println(TileH);
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                imageSprite.add(ss.getSubimage(i * TileW, j * TileH, TileW, TileH));
+                imageSprite.add(ss.getSubimage(j * TileW, i * TileH, TileW, TileH));
+                imageSprite.add(ss.getSubimage(j * TileW, i * TileH, TileW, TileH));
+                imageSprite.add(ss.getSubimage(j * TileW, i * TileH, TileW, TileH));
             }
         }
     }
@@ -52,9 +56,9 @@ public class MySprite {
 //    }
 
     public void drawReleased(GraphicsContext gc, int widthCell, int heightCell, int posX, int posY) {
-        count = 0;
+        count = 1;
         Image img = SwingFXUtils.toFXImage(imageSprite.get(count), null);
-        gc.drawImage(img, posX - (widthCell / 2), posY - (heightCell / 2), widthCell, heightCell);
+        gc.drawImage(img, posX, posY, widthCell, heightCell);
     }
 }
 

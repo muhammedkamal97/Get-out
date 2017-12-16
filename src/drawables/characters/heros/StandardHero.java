@@ -32,6 +32,7 @@ public abstract class StandardHero implements Hero {
 	private int trials = 0;
 	private int armorPoints = 0;
 	private Point position;
+	private Point oldPosition;
 	private DirectionState directionState;
 	private Weapon currentWeapon;
 	private ArrayList<Weapon> allWeapons = new ArrayList<>();
@@ -173,9 +174,14 @@ public abstract class StandardHero implements Hero {
 
 	@Override
 	public void setPosition(Point position) {
-
+		this.oldPosition = this.position;
 		this.position = position;
 		notifyMotionObservers();
+	}
+
+	@Override
+	public Point getOldPosition () {
+		return this.oldPosition;
 	}
 
 	protected int getNumberOfWeapons() {

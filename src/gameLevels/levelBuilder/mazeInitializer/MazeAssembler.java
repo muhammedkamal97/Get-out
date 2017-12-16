@@ -53,6 +53,7 @@ public class MazeAssembler {
         gate.setMaze(maze);
         maze.removeWall((Wall) roadAndWallsLayer[endPoint.x][endPoint.y]);
         roadAndWallsLayer[endPoint.x][endPoint.y] = gate;
+        gate.setPosition(new Point(endPoint.y, endPoint.x));
 
 
         return maze;

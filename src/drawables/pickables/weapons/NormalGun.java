@@ -12,11 +12,12 @@ public class NormalGun extends StandardWeapon {
     private final int MAGAZINE_SIZE = 6;
     private final Bullet WEAPON_BULLET = new NormalBullet();
 
-    public NormalGun(){
+    public NormalGun() {
         setBulletType();
         setMaxMagazineCapacity();
         reload();
     }
+
     @Override
     public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
         //GUI

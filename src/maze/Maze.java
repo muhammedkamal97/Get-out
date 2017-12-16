@@ -59,6 +59,18 @@ public class Maze implements ObservedSubject, MotionObserver, MonsterObserver{
         this.roadAndWallsLayer = roadAndWallsLayer;
     }
 
+    public Drawable[][] getMovingObjectsLayer(){
+        return this.movingObjectsLayer;
+    }
+
+    public Drawable[][] getPickablesLayer() {
+        return this.pickablesLayer;
+    }
+
+    public Drawable[][] getRoadAndWallsLayer( ) {
+        return this.roadAndWallsLayer;
+    }
+
     public void setMazeHero(Hero hero) {
         movingObjectsLayer[1][1] = hero;
         hero.setPosition(new Point(1,1));

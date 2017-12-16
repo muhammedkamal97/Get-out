@@ -12,7 +12,8 @@ public class NuclearHead extends StandardWeapon {
 
     private final int MAGAZINE_SIZE = 3;
     private final Bullet WEAPON_BULLET = new NuclearHeadBullet();
-    public NuclearHead(){
+
+    public NuclearHead() {
         setBulletType();
         setMaxMagazineCapacity();
         reload();

@@ -1,5 +1,6 @@
 package gameLoop;
 
+import drawables.Drawable;
 import drawables.characters.Hero;
 import drawables.characters.commands.Command;
 import drawables.characters.commands.motionCommands.MoveDownCommand;
@@ -11,6 +12,8 @@ import drawables.characters.heros.states.DirectionLeftState;
 import drawables.characters.heros.states.DirectionRightState;
 import drawables.characters.heros.states.DirectionUpState;
 import maze.Maze;
+
+import java.awt.*;
 
 public class RunnerLoop implements GameLoop{
 
@@ -112,5 +115,24 @@ public class RunnerLoop implements GameLoop{
             throw new RuntimeException("you died ya krodia");
             //call controller to make a new level
         }
+    }
+
+    ///Sarah's
+    @Override
+    public Point getMazeDimensions() {
+        return maze.getDimensions();
+    }
+
+    @Override
+    public Drawable[][] getMovingObjectsLayer() {
+        return maze.getMovingObjectsLayer();
+    }
+    @Override
+    public Drawable[][] getRoadAndWallsLayer() {
+        return maze.getRoadAndWallsLayer();
+    }
+    @Override
+    public Drawable[][] getPickablesLayer() {
+        return maze.getPickablesLayer();
     }
 }

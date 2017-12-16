@@ -2,11 +2,14 @@ package drawables.characters;
 
 import drawables.obstacles.Trap;
 import drawables.pickables.Weapon;
+import javafx.scene.canvas.GraphicsContext;
 import maze.Maze;
 import observer.DeathObservable;
 import observer.MotionObservable;
 import observer.MotionObserver;
 import observer.ObservedSubject;
+
+import java.awt.*;
 
 public interface Hero extends Handler,MovingObject, ObservedSubject, MotionObservable, DeathObservable {
 
@@ -29,5 +32,5 @@ public interface Hero extends Handler,MovingObject, ObservedSubject, MotionObser
 	public void dropKey();
 	public boolean hasKey();
 	public void pickedKey();
-
+    public void drawOnReleased(GraphicsContext gc, Point pt, int widthCell, int heightCell);
 }

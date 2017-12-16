@@ -1,17 +1,19 @@
 package drawables.characters.heros;
 
 import drawables.characters.commands.Command;
+import drawables.characters.heros.states.DirectionDownState;
 import drawables.pickables.Weapon;
 import maze.Maze;
 
 public class Flash extends StandardHero {
     private static final int HEALTH_POINTS = 100;
-    private static final int MOTION_DELAY = 10;
+    private static final int MOTION_DELAY = 0;
     private static final int WEAPONS_LIMIT = 1;
 
     public Flash() {
         setHealthPoints();
         spriteSetters();
+        setDirectionState(new DirectionDownState());
     }
 
     @Override

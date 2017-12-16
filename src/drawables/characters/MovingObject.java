@@ -6,7 +6,10 @@ import drawables.Drawable;
 import drawables.characters.commands.Command;
 import drawables.characters.heros.states.DirectionState;
 import drawables.pickables.weapons.bullets.Bullet;
+import javafx.scene.canvas.GraphicsContext;
 import maze.Maze;
+
+import java.awt.*;
 
 public interface MovingObject extends Drawable {
 
@@ -29,4 +32,6 @@ public interface MovingObject extends Drawable {
     public MySprite getRightSprite();
 
     public MySprite getLeftSprite();
+
+    public Point getOldPosition();
 }

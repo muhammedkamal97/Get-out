@@ -6,6 +6,7 @@ import View.Graphics.Sprite.MySprite;
 import drawables.characters.Hero;
 import drawables.characters.Monster;
 import drawables.characters.commands.Command;
+import drawables.characters.heros.states.DirectionDownState;
 import drawables.characters.heros.states.DirectionState;
 import drawables.characters.monsters.Behaviors.ShootingBehavior;
 import drawables.pickables.weapons.bullets.Bullet;
@@ -26,7 +27,7 @@ public abstract class StandardMonster implements Monster {
     private Point pastPosition;
     private Maze maze;
     private ArrayList<MonsterObserver> observers = new ArrayList<>();
-    private DirectionState directionState;
+    private DirectionState directionState = new DirectionDownState();
 
     private MySprite downSprite = new MySprite();
     private MySprite upSprite = new MySprite();
@@ -99,6 +100,12 @@ public abstract class StandardMonster implements Monster {
         return this.position;
     }
 
+
+    @Override
+    public Point getOldPosition() {
+        return this.pastPosition;
+    }
+
     @Override
     public void setPosition(Point position) {
         this.position = position;
@@ -106,7 +113,7 @@ public abstract class StandardMonster implements Monster {
     }
 
     @Override
-    public void drawOnCanvas(GraphicsContext gc, Point pt, int widthCell, int heightCell) {
+    public void drawOnCanvas(GraphicsContext gc,Point pt, int widthCell, int heightCell) {
         getDirectionState().Draw(gc, pt, widthCell, heightCell, this);
     }
 
@@ -163,9 +170,8 @@ public abstract class StandardMonster implements Monster {
     }
 
     protected void spriteSetters() {
-        setHealthPoints();
         CharactersMap map = CharactersMap.getInstance();
-        ImageSprite sprite = map.getImageSprite("Flash");
+        ImageSprite sprite = map.getImageSprite(this.getClass().getSimpleName());
         setDownSprite(constructSprite(sprite.getImageDown(), sprite));
         setUpSprite(constructSprite(sprite.getImageUp(), sprite));
         setRightSprite(constructSprite(sprite.getImageRight(), sprite));
