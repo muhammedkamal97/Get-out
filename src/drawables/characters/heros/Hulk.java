@@ -7,7 +7,7 @@ import maze.Maze;
 
 public class Hulk extends StandardHero {
     private static final int HEALTH_POINTS = 200;
-    private static final int MOTION_DELAY = 150;
+    private static final int MOTION_DELAY = 0;
     private static final int WEAPONS_LIMIT = 3;
 
 

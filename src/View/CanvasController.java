@@ -41,12 +41,13 @@ public class CanvasController implements Initializable {
     private GraphicsContext gcM;
     private GraphicsContext gcS;   // two global parameters (dimensions cell)
     private int shiftRight; //shift canvas dimension to be centered not needed
-    //    private int shiftDown = 40; //remove bar dimension
-    private int shiftDown = 0;
+        private int shiftDown = 40; //remove bar dimension
+//    private int shiftDown = 0;
     private int cellWidth; // get it from system.sceendimensions
     private int cellHeight;
     private GameLoop gameLoop;
     private Hero hero;
+    private Point currentPosition;
 
     private int x;
     private int y;
@@ -64,17 +65,22 @@ public class CanvasController implements Initializable {
             case LEFT:
             case KP_LEFT:
                 x -= 10;
-                if (x < cellWidth-1) {
+                if (x < -(cellWidth)) {
                     gameLoop.moveHeroLeft();
-                    x += cellWidth;
+                    if (!hero.getPosition().equals(currentPosition)) {
+                        x += cellWidth;
+                    } else {
+                        x+=10;
+                    }
                 }
                 // my dimensions will be added to hero's point
                 // divide my point by cell width & cell height
 
                 gameLoop.lookLeft();
                 hero.setDirectionState(new DirectionLeftState()); //testing
-                hero.drawOnCanvas(gcD, new Point((int) (hero.getPosition().getX() * cellWidth + x),
-                                (int) (hero.getPosition().getY() * cellHeight + y)),
+                currentPosition = hero.getPosition();
+                hero.drawOnCanvas(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
+                                (int) (currentPosition.getY() * cellHeight + y + shiftDown)),
                         cellWidth, cellHeight);
                 break;
             case RIGHT:
@@ -82,25 +88,35 @@ public class CanvasController implements Initializable {
                 x += 10;
                 if (x > 0) {
                     gameLoop.moveHeroRight();
-                    x -= cellWidth;
+                    if (!hero.getPosition().equals(currentPosition)) {
+                        x -= cellWidth;
+                    } else {
+                        x-=10;
+                    }
                 }
                 gameLoop.lookRight();
                 hero.setDirectionState(new DirectionRightState()); //testing
-                hero.drawOnCanvas(gcD, new Point((int) (hero.getPosition().getX() * cellWidth + x),
-                                (int) (hero.getPosition().getY() * cellHeight + y)),
+                currentPosition = hero.getPosition();
+                hero.drawOnCanvas(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
+                                (int) (currentPosition.getY() * cellHeight + y + shiftDown)),
                         cellWidth, cellHeight);
                 break;
             case UP:
             case KP_UP:
                 y -= 10;
-                if (y < cellHeight-1) {
+                if (y < -(cellHeight)) {
                     gameLoop.moveHeroUp();
-                    y += cellHeight;
+                    if (!hero.getPosition().equals(currentPosition)) {
+                        y += cellHeight;
+                    } else {
+                        y+=10;
+                    }
                 }
                 gameLoop.lookUp();
                 hero.setDirectionState(new DirectionUpState()); //testing
-                hero.drawOnCanvas(gcD, new Point((int) (hero.getPosition().getX() * cellWidth + x),
-                                (int) (hero.getPosition().getY() * cellHeight + y))
+                currentPosition = hero.getPosition();
+                hero.drawOnCanvas(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
+                                (int) (currentPosition.getY() * cellHeight + y + shiftDown))
                         , cellWidth, cellHeight);
                 break;
             case DOWN:
@@ -108,12 +124,17 @@ public class CanvasController implements Initializable {
                 y += 10;
                 if (y > 0) {
                     gameLoop.moveHeroDown();
-                    y -= cellHeight;
+                    if (!hero.getPosition().equals(currentPosition)) {
+                        y -= cellHeight;
+                    } else {
+                        y-=10;
+                    }
                 }
                 gameLoop.lookDown();
                 hero.setDirectionState(new DirectionDownState()); //testing
-                hero.drawOnCanvas(gcD, new Point((int) (hero.getPosition().getX() * cellWidth + x),
-                        (int) (hero.getPosition().getY() * cellHeight + y)), cellWidth, cellHeight);
+                currentPosition = hero.getPosition();
+                hero.drawOnCanvas(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
+                        (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
                 break;
             default:
                 break;
@@ -126,23 +147,23 @@ public class CanvasController implements Initializable {
         switch (event.getCode()) {
             case LEFT:
             case KP_LEFT:
-                hero.drawOnReleased(gcD, new Point((int) (hero.getPosition().getX() * cellWidth + x),
-                        (int) (hero.getPosition().getY() * cellHeight + y)), cellWidth, cellHeight);
+                hero.drawOnReleased(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
+                        (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
                 break;
             case RIGHT:
             case KP_RIGHT:
-                hero.drawOnReleased(gcD, new Point((int) (hero.getPosition().getX() * cellWidth + x),
-                        (int) (hero.getPosition().getY() * cellHeight + y)), cellWidth, cellHeight);
+                hero.drawOnReleased(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
+                        (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
                 break;
             case UP:
             case KP_UP:
-                hero.drawOnReleased(gcD, new Point((int) (hero.getPosition().getX() * cellWidth + x),
-                        (int) (hero.getPosition().getY() * cellHeight + y)), cellWidth, cellHeight);
+                hero.drawOnReleased(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
+                        (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
                 break;
             case DOWN:
             case KP_DOWN:
-                hero.drawOnReleased(gcD, new Point((int) (hero.getPosition().getX() * cellWidth + x),
-                        (int) (hero.getPosition().getY() * cellHeight + y)), cellWidth, cellHeight);
+                hero.drawOnReleased(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
+                        (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
                 break;
             case CONTROL:
                 gameLoop.shoot();
@@ -199,8 +220,8 @@ public class CanvasController implements Initializable {
 
         setGlobalVariables();
         setMazeLayers();
-        x = (int) hero.getPosition().getX()-1;
-        y = (int) hero.getPosition().getY() + shiftDown -1;
+        x =0;
+        y =0;
 //        x = 0;
 //        y = shiftDown;
     }
