@@ -1,8 +1,10 @@
 package gameLevels.levelBuilder;
 
 import drawables.characters.Monster;
+import drawables.characters.monsters.Behaviors.ShootingBehavior;
 import drawables.obstacles.Bomb;
 import drawables.obstacles.Trap;
+import drawables.obstacles.Wall;
 import drawables.pickables.Gift;
 import drawables.pickables.Shield;
 import drawables.pickables.Weapon;
@@ -13,7 +15,11 @@ import maze.Maze;
 import maze.MazeComponents;
 import randomizer.RandomComponentsFiller;
 
+import java.awt.*;
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class LevelBuilder {
@@ -21,11 +27,10 @@ public class LevelBuilder {
     private LevelProperties properties;
     private MazeAssembler assembler = new MazeAssembler();
     private MazeComponents components = new MazeComponents();
-
+    private Point endPoint;
     private EmptyMazeStructureGenerator generator
             = new EmptyMazeStructureGenerator();
     private RandomComponentsFiller random = new RandomComponentsFiller();
-
 
     public void setLevelProperties(LevelProperties properties) {
         this.properties = properties;
@@ -34,8 +39,11 @@ public class LevelBuilder {
     public Maze buildLevelMaze() {
         buildMazeStructure();
         buildPickables();
+        buildMonsters();
         buildObstacles();
+        assembler.setEndPoint(endPoint);
         return assembler.assembleMaze(components);
+
     }
 
     private void buildMazeStructure() {
@@ -44,6 +52,7 @@ public class LevelBuilder {
                 properties.getMazeWidth(),
                 properties.getMazeLength()
         );
+        endPoint = generator.getEndPoint();
 
     }
 
@@ -62,7 +71,7 @@ public class LevelBuilder {
     }
 
     private void buildWalls() {
-
+       this.assembler.setWalls(properties.getAllowedWalls());
     }
 
     private void buildBombs() {

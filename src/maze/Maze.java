@@ -8,37 +8,61 @@ import drawables.obstacles.Trap;
 import drawables.obstacles.Wall;
 import drawables.obstacles.walls.Steel;
 import drawables.pickables.Gift;
+import drawables.pickables.Key;
 import drawables.pickables.Shield;
 import drawables.pickables.Weapon;
+import drawables.roads.Road;
+import observer.MonsterObserver;
+import observer.MotionObserver;
 import observer.ObservedSubject;
 import observer.SubjectObserver;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Maze implements ObservedSubject {
+public class Maze implements ObservedSubject, MotionObserver, MonsterObserver{
 
     MazeComponents components = new MazeComponents();
 
-
-    Hero hero;
+    private Point heroPosition;
+    private Hero hero;
     protected int[][] maze;
-    private Drawable[][] drawables;
     private ArrayList<SubjectObserver> observers;
+    private Drawable[][] movingObjectsLayer;
+    private Drawable[][] roadAndWallsLayer;
+    private Drawable[][] pickablesLayer;
 
 
     public Drawable getItemInPosition(Point position) {
         try {
-            return drawables[position.x][position.y];
+            if(movingObjectsLayer[position.y][position.x] != null) {
+                return movingObjectsLayer[position.y][position.x];
+            } else if (pickablesLayer[position.y][position.x]!= null){
+                return pickablesLayer[position.y][position.x];
+            } else {
+                return roadAndWallsLayer[position.y][position.x];
+            }
         } catch (Exception e) {
             return new Steel();
         }
     }
 
-    public void setDrawables(Drawable[][] drawables) {
-        this.drawables = drawables;
+    public void setMovingObjectsLayer(Drawable[][] layer){
+        movingObjectsLayer = layer;
     }
+
+    public void setPickablesLayer(Drawable[][] pickablesLayer) {
+        this.pickablesLayer = pickablesLayer;
+    }
+
+    public void setRoadAndWallsLayer(Drawable[][] roadAndWallsLayer) {
+        this.roadAndWallsLayer = roadAndWallsLayer;
+    }
+
     public void setMazeHero(Hero hero) {
+        movingObjectsLayer[1][1] = hero;
+        hero.setPosition(new Point(1,1));
+        heroPosition = hero.getPosition();
         this.hero = hero;
     }
     public void setComponents(MazeComponents components){
@@ -49,27 +73,45 @@ public class Maze implements ObservedSubject {
     }
 
     public void removeWall(Wall obstacle){
+        Point position = obstacle.getPosition();
+        roadAndWallsLayer[position.y][position.x] = new Road();
+        roadAndWallsLayer[position.y][position.x].setPosition(new Point(position.x,position.y));
         components.walls.remove(obstacle);
     }
     public void removeTrap(Trap trap){
+        Point position = trap.getPosition();
+        pickablesLayer[position.y][position.x] = null;
         components.traps.remove(trap);
     }
     public void removeBomb(Bomb bomb){
+        Point position = bomb.getPosition();
+        pickablesLayer[position.y][position.x] = null;
         components.bombs.remove(bomb);
     }
     public void removeGift(Gift gift){
+        Point position = gift.getPosition();
+        pickablesLayer[position.y][position.x] = null;
         components.gifts.remove(gift);
     }
     public void removeWeapon(Weapon weapon){
+        Point position = weapon.getPosition();
+        pickablesLayer[position.y][position.x] = null;
         components.weapons.remove(weapon);
     }
     public void removeShield(Shield shield){
+        Point position = shield.getPosition();
+        pickablesLayer[position.y][position.x] = null;
         components.shields.remove(shield);
     }
     public void removeMonster(Monster monster){
+        Point position = monster.getPosition();
+        movingObjectsLayer[position.y][position.x] = null;
         components.monsters.remove(monster);
     }
-
+    public void removeKey(Key key){
+        Point position = key.getPosition();
+        pickablesLayer[position.y][position.x] = null;
+    }
 
     public Point getDimensions(){
         return new Point(
@@ -88,5 +130,20 @@ public class Maze implements ObservedSubject {
     @Override
     public void RegisterObserver(SubjectObserver observer) {
         observers.add(observer);
+    }
+
+    @Override
+    public void updateMovingObjects() {
+        movingObjectsLayer[heroPosition.y][heroPosition.x] = null;
+        heroPosition = hero.getPosition();
+        movingObjectsLayer[hero.getPosition().y][hero.getPosition().x] = hero;
+    }
+
+    public ArrayList<Monster> getMonsters() {return this.components.monsters;}
+
+    @Override
+    public void updateMonsterObserver(Monster monster, Point position) {
+        movingObjectsLayer[position.y][position.x] = null;
+        movingObjectsLayer[monster.getPosition().y][monster.getPosition().x] = monster;
     }
 }

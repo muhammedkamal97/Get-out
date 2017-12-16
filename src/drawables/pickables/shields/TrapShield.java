@@ -9,6 +9,7 @@ public class TrapShield extends StandardShield {
 	@Override
 	public void protectedFrom(Hero hero) {
 		hero.protectedFromTrap();
+		destroy();
 	}
 
 

@@ -15,6 +15,7 @@ public class NuclearHead extends StandardWeapon {
     public NuclearHead(){
         setBulletType();
         setMaxMagazineCapacity();
+        reload();
     }
 
     @Override

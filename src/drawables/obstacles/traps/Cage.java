@@ -35,6 +35,7 @@ public class Cage extends StandardTrap implements Trap {
     @Override
     public void destroy() {
 
+        super.destroy();
         return;
     }
     @Override

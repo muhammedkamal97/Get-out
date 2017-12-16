@@ -10,6 +10,7 @@ public class BombShield extends StandardShield {
 	@Override
 	public void protectedFrom(Hero hero) {
 		hero.protectedFromBomb();
+		destroy();
 	}
 	
 

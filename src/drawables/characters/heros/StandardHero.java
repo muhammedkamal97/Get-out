@@ -20,6 +20,9 @@ import java.util.ArrayList;
 
 import javafx.scene.canvas.GraphicsContext;
 import maze.Maze;
+import observer.DeathObservable;
+import observer.DeathObserver;
+import observer.MotionObserver;
 import observer.SubjectObserver;
 
 public abstract class StandardHero implements Hero {
@@ -38,6 +41,10 @@ public abstract class StandardHero implements Hero {
 	private boolean holdTrapShield = false;
 	private boolean holdbombShield = false;
 	private ArrayList<SubjectObserver> observers = new ArrayList<>();
+	private ArrayList<MotionObserver> motionObservers = new ArrayList<>();
+	private ArrayList<DeathObserver> deathObservers = new ArrayList<>();
+	private boolean hasKey = false;
+	private Maze maze;
 
 	private MySprite downSprite = new MySprite();
 	private MySprite upSprite = new MySprite();
@@ -70,6 +77,11 @@ public abstract class StandardHero implements Hero {
 	}
 
 	@Override
+	public void setMaze(Maze maze) {
+		this.maze = maze;
+	}
+
+	@Override
 	public void takeDamage(int damage) {
 		if (damage < armorPoints) {
 			armorPoints -= damage;
@@ -79,8 +91,7 @@ public abstract class StandardHero implements Hero {
 			if (damage >= healthPoints) {
 				healthPoints = 0;
 				// check or notify
-
-				notifyObservers();
+				notifyDeathObservers();
 			} else{
 				healthPoints -= damage;
 			}
@@ -162,7 +173,9 @@ public abstract class StandardHero implements Hero {
 
 	@Override
 	public void setPosition(Point position) {
+
 		this.position = position;
+		notifyMotionObservers();
 	}
 
 	protected int getNumberOfWeapons() {
@@ -185,6 +198,7 @@ public abstract class StandardHero implements Hero {
 			currentWeapon.reload();
 	}
 
+
 	@Override
 	public void increaseHealthPoints(int Health) {
 		healthPoints += Health;
@@ -202,15 +216,19 @@ public abstract class StandardHero implements Hero {
 	public void increaseTrials() {
 		this.trials++;
 	}
+	@Override
 	public void protectedFromFlame() {
 		this.holdflameShield = true;
 	}
+	@Override
 	public void protectedFromBomb() {
 		this.holdbombShield = true;
 	}
+	@Override
 	public void protectedFromTrap() {
 		this.holdTrapShield = true;
 	}
+	@Override
 	public void protectedFromBullets() {
 		this.holdBulletShield = true;
 		
@@ -275,5 +293,42 @@ public abstract class StandardHero implements Hero {
 				imgSprite.getFramesInColumn(),
 				img);
 		return sprite;
+	}
+
+	@Override
+	public void registerMotionObservers(MotionObserver observer) {
+		motionObservers.add(observer);
+	}
+
+	@Override
+	public void notifyMotionObservers() {
+		for(int i = 0 ; i < motionObservers.size();i++)
+			motionObservers.get(i).updateMovingObjects();
+	}
+
+	@Override
+	public void notifyDeathObservers() {
+		for(int i = 0 ; i < deathObservers.size();i++)
+			deathObservers.get(i).updateDeadObservable();
+	}
+
+	@Override
+	public void registerDeathObserver(DeathObserver observer) {
+		deathObservers.add(observer);
+	}
+
+	@Override
+	public void pickedKey(){
+		hasKey = true;
+	}
+
+	@Override
+	public boolean hasKey() {
+		return hasKey;
+	}
+
+	@Override
+	public void dropKey() {
+		hasKey = false;
 	}
 }

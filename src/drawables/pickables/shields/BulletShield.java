@@ -10,6 +10,7 @@ public class BulletShield extends StandardShield{
 	@Override
 	public void protectedFrom(Hero hero) {
 		hero.protectedFromBullets();
+		destroy();
 	}
 
 

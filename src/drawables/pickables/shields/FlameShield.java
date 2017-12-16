@@ -10,6 +10,7 @@ public class FlameShield extends StandardShield{
 	@Override
 	public void protectedFrom(Hero hero) {
 		hero.protectedFromFlame();
+		destroy();
 	}
 
 	

@@ -6,6 +6,10 @@ import drawables.characters.commands.motionCommands.MoveDownCommand;
 import drawables.characters.commands.motionCommands.MoveLeftCommand;
 import drawables.characters.commands.motionCommands.MoveRightCommand;
 import drawables.characters.commands.motionCommands.MoveUpCommand;
+import drawables.characters.heros.states.DirectionDownState;
+import drawables.characters.heros.states.DirectionLeftState;
+import drawables.characters.heros.states.DirectionRightState;
+import drawables.characters.heros.states.DirectionUpState;
 import maze.Maze;
 
 public class RunnerLoop implements GameLoop{
@@ -13,6 +17,8 @@ public class RunnerLoop implements GameLoop{
     private Maze maze;
     private Hero hero;
     private Command moveCommand;
+    private int livesLeft = 3;
+
     @Override
     public void setLoopMaze(Maze maze) {
         this.maze = maze;
@@ -21,6 +27,9 @@ public class RunnerLoop implements GameLoop{
     @Override
     public void setHero(Hero hero) {
         this.hero = hero;
+        this.maze.setMazeHero(hero);
+        hero.setMaze(maze);
+        hero.registerDeathObserver(this);
     }
 
     @Override
@@ -73,4 +82,35 @@ public class RunnerLoop implements GameLoop{
         //starts monsters thread
     }
 
+    @Override
+    public void lookLeft() {
+        hero.setDirectionState(new DirectionLeftState());
+    }
+
+    @Override
+    public void lookRight() {
+        hero.setDirectionState(new DirectionRightState());
+    }
+
+    @Override
+    public void lookUp() {
+        hero.setDirectionState(new DirectionUpState());
+    }
+
+    @Override
+    public void lookDown() {
+        hero.setDirectionState(new DirectionDownState());
+    }
+
+    @Override
+    public void updateDeadObservable() {
+        livesLeft--;
+        if(livesLeft < 0){
+            throw new RuntimeException("the game has ended");
+            //call controller to go to main menu
+        } else {
+            throw new RuntimeException("you died ya krodia");
+            //call controller to make a new level
+        }
+    }
 }

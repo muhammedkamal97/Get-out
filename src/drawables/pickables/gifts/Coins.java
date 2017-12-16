@@ -21,5 +21,6 @@ public class Coins extends StandardGift{
 	@Override
 	public void addGift(Hero hero) {
 		hero.increaseCoins(COIN_VALUE);
+		destroy();
 	}
 }

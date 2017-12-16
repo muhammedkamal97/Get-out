@@ -17,14 +17,14 @@ public class MoveLeftCommand implements Command {
         object.setDirectionState(new DirectionLeftState());
 
         MoveUtilities utilities = new MoveUtilities();
-        Point position = object.getPosition();
-        position.x = position.x - 1;
-        object.setPosition(position);
+
+        Point position = new Point();
+        position.x = object.getPosition().x - 1;
+        position.y = object.getPosition().y;
         Drawable itemInNextPosition = maze.getItemInPosition(position);
         boolean isValidMove = utilities.isAValidMove(itemInNextPosition);
         if(isValidMove){
             utilities.performMove(itemInNextPosition,object);
-            object.setPosition(position);
             return true;
         }
         return false;

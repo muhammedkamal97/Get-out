@@ -1,6 +1,7 @@
 package drawables.characters.heros;
 
 import drawables.characters.commands.Command;
+import drawables.characters.heros.states.DirectionDownState;
 import drawables.pickables.Weapon;
 import maze.Maze;
 
@@ -14,6 +15,8 @@ public class NormalHero extends StandardHero {
     public NormalHero() {
         setHealthPoints();
         spriteSetters();
+
+        setDirectionState(new DirectionDownState());
     }
 
     @Override

@@ -15,6 +15,7 @@ public class NormalGun extends StandardWeapon {
     public NormalGun(){
         setBulletType();
         setMaxMagazineCapacity();
+        reload();
     }
     @Override
     public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {

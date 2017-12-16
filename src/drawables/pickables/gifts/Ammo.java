@@ -10,6 +10,8 @@ public class Ammo extends StandardGift{
 
     @Override
     public void addGift(Hero hero) {
+
         hero.acceptAmmo();
+        destroy();
     }
 }

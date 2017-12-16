@@ -50,6 +50,7 @@ public class RandomTeleport extends StandardTrap {
     @Override
     public void destroy() {
 
+        super.destroy();
         return;
     }
 }

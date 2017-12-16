@@ -15,6 +15,7 @@ public class RPG extends StandardWeapon {
     public RPG(){
         setBulletType();
         setMaxMagazineCapacity();
+        reload();
     }
 
     @Override

@@ -4,6 +4,7 @@ import java.awt.Point;
 import View.Graphics.ImagesMaps.MazeMap;
 import drawables.Drawable;
 import javafx.scene.canvas.GraphicsContext;
+import maze.Maze;
 
 public class Road implements Drawable {
 
@@ -32,6 +33,11 @@ public class Road implements Drawable {
     public void takeDamage(int damage) {
         return;
         //do nothing its un destroyable or change into black
+    }
+
+    @Override
+    public void setMaze(Maze maze) {
+        ///do nothing it wont matter
     }
 
 }

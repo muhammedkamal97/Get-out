@@ -10,17 +10,13 @@ public class RandomComponentsFiller {
 
     //add cloneable.
 
-    public Object generateRandomArray(
-            Class[] referenceArray,
-            int maxNumberAllowed
-                                 ){
+    public Object generateRandomArray(Class[] referenceArray, int maxNumberAllowed) {
+
         int enteredArraySize = referenceArray.length;
         ArrayList<Object> randomArray = new ArrayList<>();
-        for(int i = 0 ;i < maxNumberAllowed ; i++){
+        for (int i = 0; i < maxNumberAllowed; i++) {
             try {
-                randomArray.
-                        add(referenceArray[generateRandomNumber(enteredArraySize)]
-                                .getConstructor().newInstance());
+                randomArray.add(referenceArray[generateRandomNumber(enteredArraySize)].getConstructor().newInstance());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -29,7 +25,7 @@ public class RandomComponentsFiller {
     }
 
 
-    private int generateRandomNumber(int limit){
+    private int generateRandomNumber(int limit) {
         return random.nextInt(limit);
     }
 

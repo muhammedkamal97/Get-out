@@ -20,6 +20,7 @@ public class TrialGift extends StandardGift{
 
 	@Override
 	public void addGift(Hero hero) {
+		destroy();
 		hero.increaseTrials();
 	}
 }

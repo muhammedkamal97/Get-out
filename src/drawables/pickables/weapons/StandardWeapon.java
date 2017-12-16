@@ -36,11 +36,12 @@ public abstract class StandardWeapon implements Weapon{
 
     @Override
     public void destroy() {
-
+        maze.removeWeapon(this);
     }
 
     @Override
     public void addToHandler(Hero hero) {
+        destroy();
         hero.addWeapon(this);
     }
 

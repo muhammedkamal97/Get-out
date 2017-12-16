@@ -11,9 +11,11 @@ import drawables.characters.monsters.Behaviors.ShootingBehavior;
 import drawables.pickables.weapons.bullets.Bullet;
 import javafx.scene.canvas.GraphicsContext;
 import maze.Maze;
+import observer.MonsterObserver;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public abstract class StandardMonster implements Monster {
 
@@ -21,7 +23,9 @@ public abstract class StandardMonster implements Monster {
     private int healthPoints;
     private ShootingBehavior shootingBehavior;
     private Point position;
-
+    private Point pastPosition;
+    private Maze maze;
+    private ArrayList<MonsterObserver> observers = new ArrayList<>();
     private DirectionState directionState;
 
     private MySprite downSprite = new MySprite();
@@ -39,6 +43,10 @@ public abstract class StandardMonster implements Monster {
         return damage;
     }
 
+    @Override
+    public void setMaze(Maze maze) {
+        this.maze = maze;
+    }
 
     @Override
     public boolean move(Command moveCommand, Maze maze) {
@@ -74,6 +82,7 @@ public abstract class StandardMonster implements Monster {
     public void takeDamage(int damage) {
         if (damage >= healthPoints) {
             healthPoints = 0;
+            maze.removeMonster(this);
             //dead notify canvas
         } else {
             healthPoints -= damage;
@@ -93,6 +102,7 @@ public abstract class StandardMonster implements Monster {
     @Override
     public void setPosition(Point position) {
         this.position = position;
+        notifyMonsterObservers();
     }
 
     @Override
@@ -118,6 +128,22 @@ public abstract class StandardMonster implements Monster {
     @Override
     public MySprite getLeftSprite() {
         return leftSprite;
+    }
+
+    @Override
+    public void setPastPosition(Point position) {this.pastPosition = position;}
+
+    @Override
+    public void notifyMonsterObservers() {
+        for(int i = 0 ; i < this.observers.size() ; i++)
+        {
+            this.observers.get(i).updateMonsterObserver(this, this.pastPosition);
+        }
+    }
+
+    @Override
+    public void registerMonsterObserver(MonsterObserver observer) {
+        observers.add(observer);
     }
 
     private void setDownSprite(MySprite sprite) {

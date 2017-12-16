@@ -40,8 +40,8 @@ public abstract class StandardBomb implements Bomb {
     @Override
     public void explode() {
         this.animateOnExplosion();
-        this.damageDrawableInExplosionRange();
         this.destroy();
+        this.damageDrawableInExplosionRange();
     }
 
     @Override
@@ -55,7 +55,7 @@ public abstract class StandardBomb implements Bomb {
     @Override
     public void damageDrawableInExplosionRange() {
 
-        for (int i = (-range); i <= range; i++) {
+    for (int i = (-range); i <= range; i++) {
             for (int j = (-range); j <= range; j++) {
                 maze.getItemInPosition(new Point(position.x +i,position.y + j))
                         .takeDamage(damage);
@@ -88,7 +88,7 @@ public abstract class StandardBomb implements Bomb {
     }
 
     protected void setBombRange() {
-        damage = getBombRange();
+        range = getBombRange();
     }
 
     protected void setHealthPoints(){
