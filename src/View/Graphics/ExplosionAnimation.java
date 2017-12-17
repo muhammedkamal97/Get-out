@@ -1,4 +1,4 @@
-package drawables.obstacles.bombs;
+package View.Graphics;
 
 
 import com.sun.xml.internal.bind.v2.runtime.output.SAXOutput;
@@ -37,7 +37,7 @@ public class ExplosionAnimation {
         }
     }
 
-    public void startAnimation(GraphicsContext gc, int cellWidth, int cellHeight) {
+    public void startAnimation(GraphicsContext gc, int cellWidth, int cellHeight, int range) {
         new AnimationTimer() {
             long start = System.currentTimeMillis();
             int count = 0;
@@ -46,19 +46,20 @@ public class ExplosionAnimation {
                 long current = System.currentTimeMillis();
                 if (current - start >= 200) {
                     start = System.currentTimeMillis();
-                    System.out.println("in");
-                    System.out.println(position);
-                    gc.clearRect(position.getX()*cellWidth - (2 * cellWidth),
-                            position.getY()*cellHeight - (2 * cellHeight),
-                            4 * cellWidth, 4 * cellHeight);
+                    gc.clearRect(position.getX()*cellWidth - (range * cellWidth-cellWidth/2),
+                            position.getY()*cellHeight - (range * cellHeight-cellHeight/2),
+                            range*2 * cellWidth, range*2 * cellHeight);
                     Image imgTo = SwingFXUtils.toFXImage(list.get(count), null);
                     gc.drawImage(imgTo,
-                            position.getX()*cellWidth - (2 * cellWidth),
-                            position.getY()*cellHeight - (2 * cellHeight),
-                            4 * cellWidth, 4 * cellHeight);
+                            position.getX()*cellWidth - (range * cellWidth-cellWidth/2),
+                            position.getY()*cellHeight - (range * cellHeight-cellHeight/2),
+                            range*2 * cellWidth, range*2 * cellHeight);
                     count++;
                 }
                 if (count == list.size()) {
+                    gc.clearRect(position.getX()*cellWidth - (range * cellWidth-cellWidth/2),
+                            position.getY()*cellHeight - (range * cellHeight-cellHeight/2),
+                            range*2 * cellWidth, range*2 * cellHeight);
                     this.stop();
                 }
             }

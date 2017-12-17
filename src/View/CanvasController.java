@@ -8,7 +8,7 @@ import drawables.characters.heros.states.DirectionDownState;
 import drawables.characters.heros.states.DirectionLeftState;
 import drawables.characters.heros.states.DirectionRightState;
 import drawables.characters.heros.states.DirectionUpState;
-import drawables.obstacles.Bomb;
+import View.Graphics.ExplosionAnimation;
 import drawables.roads.Road;
 import gameCore.RunnerGameAdapter;
 import gameLoop.GameLoop;
@@ -297,9 +297,6 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[i].length; j++) {
                 if (maze[j][i] != null) {
-                    if (maze[j][i] instanceof Bomb) {
-                        maze[j][i].setGraphics(gcAnimation, cellWidth, cellHeight);
-                    }
                     maze[j][i].drawOnCanvas(gcM, new Point(
                                     (int) (maze[j][i].getPosition().getX() * cellWidth),
                                     (int) (maze[j][i].getPosition().getY() * cellHeight + shiftDown)),
@@ -371,6 +368,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
 
     @Override
     public void drawExplosionAnimation(Point position, int range) {
-        
+        ExplosionAnimation expl = new ExplosionAnimation(position);
+        expl.startAnimation(gcAnimation, cellWidth, cellHeight, range);
     }
 }
