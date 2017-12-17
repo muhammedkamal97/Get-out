@@ -114,6 +114,7 @@ public abstract class StandardHero implements Hero {
 		if (currentWeapon != null) {
 			//currentWeapon.shoot(direction, position);
 			this.directionState.shoot(currentWeapon, position);
+			notifyChangeInNumberOfBullets();
 		}
 	}
 
@@ -121,9 +122,13 @@ public abstract class StandardHero implements Hero {
 	public void holdNextWeapon() {
 		if (currentWeapon != null) {
 			int index = allWeapons.indexOf(currentWeapon);
-			if (index != allWeapons.size() - 1)
+			if (index != allWeapons.size() - 1) {
+
 				currentWeapon = allWeapons.get(index + 1);
+				notifyChangeInCurrentWeapon();
+			}
 		}
+
 	}
 
 	@Override
@@ -131,8 +136,10 @@ public abstract class StandardHero implements Hero {
 
 		if (currentWeapon != null) {
 			int index = allWeapons.indexOf(currentWeapon);
-			if (index != 0)
+			if (index != 0) {
 				currentWeapon = allWeapons.get(index - 1);
+				notifyChangeInCurrentWeapon();
+			}
 		}
 	}
 
@@ -140,6 +147,7 @@ public abstract class StandardHero implements Hero {
 	public void addWeapon(Weapon weapon) {
 		allWeapons.add(weapon);
 		currentWeapon = weapon;
+		notifyChangeInCurrentWeapon();
 	}
 
 	@Override
