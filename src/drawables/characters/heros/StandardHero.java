@@ -375,4 +375,22 @@ public abstract class StandardHero implements Hero {
 		for(int i = 0 ; i < stateObservers.size();i++)
 			stateObservers.get(i).updateCoins(coins);
 	}
+
+	@Override
+	public void notifyChangeInNumberOfBullets() {
+		int bulletsLeft;
+		if (currentWeapon == null){
+			bulletsLeft = 0;
+		} else {
+			bulletsLeft = currentWeapon.getNumberOfBullets();
+		}
+		for(int i = 0 ; i < stateObservers.size();i++)
+			stateObservers.get(i).updateNumberOfBullets(bulletsLeft);
+	}
+
+	@Override
+	public void notifyChangeInCurrentWeapon() {
+		for(int i = 0 ; i < stateObservers.size();i++)
+			stateObservers.get(i).updateCurrentWeapon(currentWeapon);
+	}
 }
