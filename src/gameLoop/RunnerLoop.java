@@ -2,6 +2,7 @@ package gameLoop;
 
 import drawables.Drawable;
 import drawables.characters.Hero;
+import drawables.characters.Monster;
 import drawables.characters.commands.Command;
 import drawables.characters.commands.motionCommands.MoveDownCommand;
 import drawables.characters.commands.motionCommands.MoveLeftCommand;
@@ -11,9 +12,12 @@ import drawables.characters.heros.states.DirectionDownState;
 import drawables.characters.heros.states.DirectionLeftState;
 import drawables.characters.heros.states.DirectionRightState;
 import drawables.characters.heros.states.DirectionUpState;
+import gameLoop.monsterAI.MonsterThread;
+import gameLoop.monsterAI.RandomMotion;
 import maze.Maze;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class RunnerLoop implements GameLoop{
 
@@ -82,7 +86,22 @@ public class RunnerLoop implements GameLoop{
 
     @Override
     public void initiateLoop() {
-        //starts monsters thread
+
+        ArrayList<Monster> monsters = this.maze.getMonsters();
+
+        for(Monster monster : monsters)
+        {
+            MonsterThread thread = new MonsterThread();
+            RandomMotion motion = new RandomMotion();
+
+            motion.setMonster(monster);
+            thread.setMonster(monster);
+            thread.setMaze(this.maze);
+            thread.setMotion(motion);
+
+            thread.start();
+        }
+
     }
 
     @Override

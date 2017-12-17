@@ -48,7 +48,7 @@ public class LevelsFactory {
     {
         ElementLoader<LevelProperties> loader = new ElementLoader<>();
         try{
-            loader.load(""); // need to have a separate  path
+            loader.load("src/gameLevels/Levels"); // need to have a separate  path
             this.levels = (ArrayList<Class<? extends LevelProperties>>) loader.getList();
         } catch (RuntimeException e) {
             return false;

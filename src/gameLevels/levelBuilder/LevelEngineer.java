@@ -12,14 +12,14 @@ public class LevelEngineer {
     private LevelBuilder levelBuilder;
 
     public LevelEngineer() {
-//        this.levelFactory = new LevelsFactory();
+        this.levelFactory = new LevelsFactory();
         this.levelBuilder = new LevelBuilder();
     }
 
     public void setLevelBuilder(String level) {
-//        LevelProperties currentLevel = this.levelFactory.factoryMethod("level" + level);
+        LevelProperties currentLevel = this.levelFactory.factoryMethod("level" + level);
 
-        LevelProperties currentLevel = new level_test();
+        //LevelProperties currentLevel = new level_test();
         this.levelBuilder.setLevelProperties(currentLevel);
     }
 
