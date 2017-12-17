@@ -4,14 +4,12 @@ import drawables.obstacles.Trap;
 import drawables.pickables.Weapon;
 import javafx.scene.canvas.GraphicsContext;
 import maze.Maze;
-import observer.DeathObservable;
-import observer.MotionObservable;
-import observer.MotionObserver;
-import observer.ObservedSubject;
+import observer.*;
 
 import java.awt.*;
 
-public interface Hero extends Handler,MovingObject, ObservedSubject, MotionObservable, DeathObservable {
+public interface Hero extends Handler,MovingObject, ObservedSubject, MotionObservable,
+        DeathObservable, ObservableHeroState {
 
     public void trapHero(Trap trap);
     public void attackedByMonster(Monster monster);

@@ -32,6 +32,11 @@ public abstract class StandardWeapon implements Weapon{
     }
 
     @Override
+    public int getNumberOfBullets() {
+        return ammo;
+    }
+
+    @Override
     public void drawOnCanvas(GraphicsContext gc, Point pt, int widthCell, int heightCell) {
         MazeMap map = MazeMap.getInstance();
         gc.drawImage(map.getBufferedImage(this.getClass().getSimpleName()),

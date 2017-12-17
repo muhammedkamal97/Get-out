@@ -20,10 +20,7 @@ import java.util.ArrayList;
 
 import javafx.scene.canvas.GraphicsContext;
 import maze.Maze;
-import observer.DeathObservable;
-import observer.DeathObserver;
-import observer.MotionObserver;
-import observer.SubjectObserver;
+import observer.*;
 
 public abstract class StandardHero implements Hero {
 
@@ -44,6 +41,7 @@ public abstract class StandardHero implements Hero {
 	private ArrayList<SubjectObserver> observers = new ArrayList<>();
 	private ArrayList<MotionObserver> motionObservers = new ArrayList<>();
 	private ArrayList<DeathObserver> deathObservers = new ArrayList<>();
+	private ArrayList<HeroStateObserver> stateObservers = new ArrayList<>();
 	private boolean hasKey = false;
 	private Maze maze;
 
@@ -116,6 +114,7 @@ public abstract class StandardHero implements Hero {
 		if (currentWeapon != null) {
 			//currentWeapon.shoot(direction, position);
 			this.directionState.shoot(currentWeapon, position);
+			notifyChangeInNumberOfBullets();
 		}
 	}
 
@@ -123,9 +122,13 @@ public abstract class StandardHero implements Hero {
 	public void holdNextWeapon() {
 		if (currentWeapon != null) {
 			int index = allWeapons.indexOf(currentWeapon);
-			if (index != allWeapons.size() - 1)
+			if (index != allWeapons.size() - 1) {
+
 				currentWeapon = allWeapons.get(index + 1);
+				notifyChangeInCurrentWeapon();
+			}
 		}
+
 	}
 
 	@Override
@@ -133,8 +136,10 @@ public abstract class StandardHero implements Hero {
 
 		if (currentWeapon != null) {
 			int index = allWeapons.indexOf(currentWeapon);
-			if (index != 0)
+			if (index != 0) {
 				currentWeapon = allWeapons.get(index - 1);
+				notifyChangeInCurrentWeapon();
+			}
 		}
 	}
 
@@ -142,6 +147,7 @@ public abstract class StandardHero implements Hero {
 	public void addWeapon(Weapon weapon) {
 		allWeapons.add(weapon);
 		currentWeapon = weapon;
+		notifyChangeInCurrentWeapon();
 	}
 
 	@Override
@@ -353,5 +359,46 @@ public abstract class StandardHero implements Hero {
 	@Override
 	public void dropKey() {
 		hasKey = false;
+	}
+
+	@Override
+	public void registerStateObserver(HeroStateObserver observer) {
+		stateObservers.add(observer);
+	}
+
+	@Override
+	public void notifyChangeInHealth() {
+		for(int i = 0 ; i < stateObservers.size();i++)
+			stateObservers.get(i).updateChangeInHealth(((double) healthPoints)/getHeroStartingHealth());
+	}
+
+	@Override
+	public void notifyChangeInArmorPoints() {
+		for(int i = 0 ; i < stateObservers.size();i++)
+			stateObservers.get(i).updateChangeInArmorPoints(((double)armorPoints)/100);
+	}
+
+	@Override
+	public void notifyChangeInCoins() {
+		for(int i = 0 ; i < stateObservers.size();i++)
+			stateObservers.get(i).updateCoins(coins);
+	}
+
+	@Override
+	public void notifyChangeInNumberOfBullets() {
+		int bulletsLeft;
+		if (currentWeapon == null){
+			bulletsLeft = 0;
+		} else {
+			bulletsLeft = currentWeapon.getNumberOfBullets();
+		}
+		for(int i = 0 ; i < stateObservers.size();i++)
+			stateObservers.get(i).updateNumberOfBullets(bulletsLeft);
+	}
+
+	@Override
+	public void notifyChangeInCurrentWeapon() {
+		for(int i = 0 ; i < stateObservers.size();i++)
+			stateObservers.get(i).updateCurrentWeapon(currentWeapon);
 	}
 }
