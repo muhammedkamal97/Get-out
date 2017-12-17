@@ -26,13 +26,6 @@ public class Fire extends StandardTrap implements Trap {
     }
 
     @Override
-    public void destroy() {
-
-        super.destroy();
-        return;
-    }
-
-    @Override
     protected int getOriginalDamage() {
         return DAMAGE;
     }

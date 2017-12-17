@@ -26,8 +26,8 @@ public class MoveUpCommand implements Command {
         boolean isValidMove = utilities.isAValidMove(itemInNextPosition);
 
         if(isValidMove){
-            utilities.performMove(itemInNextPosition,object);
-            return true;
+            return utilities.performMove(itemInNextPosition,object);
+
         }
         return false;
 

@@ -2,23 +2,70 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8d5eb39-7be2-483f-8186-df5014a703e3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/View/Canvas.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/View/MenuController.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/View/canvas.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/View/Controller.java" afterPath="$PROJECT_DIR$/src/View/CanvasController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/View/Canvas.fxml" afterPath="$PROJECT_DIR$/src/View/Canvas.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/View/Graphics/ImagesMaps/CharactersMap.java" afterPath="$PROJECT_DIR$/src/View/Graphics/ImagesMaps/CharactersMap.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/View/Graphics/Sprite/MySprite.java" afterPath="$PROJECT_DIR$/src/View/Graphics/Sprite/MySprite.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/View/Graphics/Sprite/Types/SpriteFactory.java" afterPath="$PROJECT_DIR$/src/View/Graphics/Sprite/Types/SpriteFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/View/MenuScene.fxml" afterPath="$PROJECT_DIR$/src/View/MenuScene.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/View/MenuScene.java" afterPath="$PROJECT_DIR$/src/View/MenuScene.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/drawables/characters/heros/Flash.java" afterPath="$PROJECT_DIR$/src/drawables/characters/heros/Flash.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/drawables/characters/heros/states/DirectionDownState.java" afterPath="$PROJECT_DIR$/src/drawables/characters/heros/states/DirectionDownState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/drawables/characters/heros/states/DirectionLeftState.java" afterPath="$PROJECT_DIR$/src/drawables/characters/heros/states/DirectionLeftState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/drawables/characters/heros/states/DirectionRightState.java" afterPath="$PROJECT_DIR$/src/drawables/characters/heros/states/DirectionRightState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/drawables/characters/heros/states/DirectionState.java" afterPath="$PROJECT_DIR$/src/drawables/characters/heros/states/DirectionState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/drawables/characters/heros/states/DirectionUpState.java" afterPath="$PROJECT_DIR$/src/drawables/characters/heros/states/DirectionUpState.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/constants/GameContract$Directions.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/constants/GameContract.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/gameLevels/levelBuilder/mazeInitializer/MazeComponentsGenerator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/randomizer/RandomNumbersGenerator.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/Drawable.class" afterPath="$PROJECT_DIR$/bin/drawables/Drawable.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/characters/Hero.class" afterPath="$PROJECT_DIR$/bin/drawables/characters/Hero.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/characters/Monster.class" afterPath="$PROJECT_DIR$/bin/drawables/characters/Monster.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/characters/MovingObject.class" afterPath="$PROJECT_DIR$/bin/drawables/characters/MovingObject.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/characters/commands/Command.class" afterPath="$PROJECT_DIR$/bin/drawables/characters/commands/Command.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/characters/commands/motionCommands/MoveDownCommand.class" afterPath="$PROJECT_DIR$/bin/drawables/characters/commands/motionCommands/MoveDownCommand.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/characters/commands/motionCommands/MoveLeftCommand.class" afterPath="$PROJECT_DIR$/bin/drawables/characters/commands/motionCommands/MoveLeftCommand.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/characters/commands/motionCommands/MoveRightCommand.class" afterPath="$PROJECT_DIR$/bin/drawables/characters/commands/motionCommands/MoveRightCommand.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/characters/commands/motionCommands/MoveUpCommand.class" afterPath="$PROJECT_DIR$/bin/drawables/characters/commands/motionCommands/MoveUpCommand.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/characters/commands/motionCommands/MoveUtilities.class" afterPath="$PROJECT_DIR$/bin/drawables/characters/commands/motionCommands/MoveUtilities.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/characters/heros/Flash.class" afterPath="$PROJECT_DIR$/bin/drawables/characters/heros/Flash.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/characters/heros/Hulk.class" afterPath="$PROJECT_DIR$/bin/drawables/characters/heros/Hulk.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/characters/heros/NormalHero.class" afterPath="$PROJECT_DIR$/bin/drawables/characters/heros/NormalHero.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/characters/heros/Soldier.class" afterPath="$PROJECT_DIR$/bin/drawables/characters/heros/Soldier.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/characters/heros/StandardHero.class" afterPath="$PROJECT_DIR$/bin/drawables/characters/heros/StandardHero.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/characters/heros/Superman.class" afterPath="$PROJECT_DIR$/bin/drawables/characters/heros/Superman.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/characters/monsters/Behaviors/NoShootingBehavior.class" afterPath="$PROJECT_DIR$/bin/drawables/characters/monsters/Behaviors/NoShootingBehavior.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/characters/monsters/Behaviors/RPGShootingBehavior.class" afterPath="$PROJECT_DIR$/bin/drawables/characters/monsters/Behaviors/RPGShootingBehavior.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/characters/monsters/Behaviors/RifleShootingBehavior.class" afterPath="$PROJECT_DIR$/bin/drawables/characters/monsters/Behaviors/RifleShootingBehavior.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/characters/monsters/DestroyerMonster.class" afterPath="$PROJECT_DIR$/bin/drawables/characters/monsters/DestroyerMonster.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/characters/monsters/GiantMonster.class" afterPath="$PROJECT_DIR$/bin/drawables/characters/monsters/GiantMonster.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/characters/monsters/NormalMonster.class" afterPath="$PROJECT_DIR$/bin/drawables/characters/monsters/NormalMonster.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/characters/monsters/ShootingMonster.class" afterPath="$PROJECT_DIR$/bin/drawables/characters/monsters/ShootingMonster.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/characters/monsters/StandardMonster.class" afterPath="$PROJECT_DIR$/bin/drawables/characters/monsters/StandardMonster.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/obstacles/Bomb.class" afterPath="$PROJECT_DIR$/bin/drawables/obstacles/Bomb.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/obstacles/Obstacle.class" afterPath="$PROJECT_DIR$/bin/drawables/obstacles/Obstacle.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/obstacles/Wall.class" afterPath="$PROJECT_DIR$/bin/drawables/obstacles/Wall.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/obstacles/walls/WallsFactory.class" afterPath="$PROJECT_DIR$/bin/drawables/obstacles/walls/WallsFactory.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/pickables/Pickable.class" afterPath="$PROJECT_DIR$/bin/drawables/pickables/Pickable.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/pickables/gifts/Coins.class" afterPath="$PROJECT_DIR$/bin/drawables/pickables/gifts/Coins.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/pickables/gifts/HealthCareProvider.class" afterPath="$PROJECT_DIR$/bin/drawables/pickables/gifts/HealthCareProvider.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/pickables/gifts/StandardGift.class" afterPath="$PROJECT_DIR$/bin/drawables/pickables/gifts/StandardGift.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/pickables/gifts/TrialGift.class" afterPath="$PROJECT_DIR$/bin/drawables/pickables/gifts/TrialGift.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/pickables/weapons/AK47.class" afterPath="$PROJECT_DIR$/bin/drawables/pickables/weapons/AK47.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/pickables/weapons/MP5.class" afterPath="$PROJECT_DIR$/bin/drawables/pickables/weapons/MP5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/pickables/weapons/NormalGun.class" afterPath="$PROJECT_DIR$/bin/drawables/pickables/weapons/NormalGun.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/pickables/weapons/NuclearHead.class" afterPath="$PROJECT_DIR$/bin/drawables/pickables/weapons/NuclearHead.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/pickables/weapons/RPG.class" afterPath="$PROJECT_DIR$/bin/drawables/pickables/weapons/RPG.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/pickables/weapons/StandardWeapon.class" afterPath="$PROJECT_DIR$/bin/drawables/pickables/weapons/StandardWeapon.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/pickables/weapons/bullets/Bullet.class" afterPath="$PROJECT_DIR$/bin/drawables/pickables/weapons/bullets/Bullet.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/pickables/weapons/bullets/StandardBullet.class" afterPath="$PROJECT_DIR$/bin/drawables/pickables/weapons/bullets/StandardBullet.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/drawables/roads/Road.class" afterPath="$PROJECT_DIR$/bin/drawables/roads/Road.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gameCore/IGameCore.class" afterPath="$PROJECT_DIR$/bin/gameCore/IGameCore.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gameLevels/LevelsFactory.class" afterPath="$PROJECT_DIR$/bin/gameLevels/LevelsFactory.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gameLevels/levelBuilder/LevelBuilder.class" afterPath="$PROJECT_DIR$/bin/gameLevels/levelBuilder/LevelBuilder.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gameLevels/levelBuilder/LevelEngineer.class" afterPath="$PROJECT_DIR$/bin/gameLevels/levelBuilder/LevelEngineer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gameLevels/levelBuilder/mazeInitializer/EmptyMazeStructureGenerator.class" afterPath="$PROJECT_DIR$/bin/gameLevels/levelBuilder/mazeInitializer/EmptyMazeStructureGenerator.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gameLevels/levelBuilder/mazeInitializer/MazeAssembler.class" afterPath="$PROJECT_DIR$/bin/gameLevels/levelBuilder/mazeInitializer/MazeAssembler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gameLoop/GameLoop.class" afterPath="$PROJECT_DIR$/bin/gameLoop/GameLoop.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/loaders/ElementLoader.class" afterPath="$PROJECT_DIR$/bin/loaders/ElementLoader.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/maze/Maze.class" afterPath="$PROJECT_DIR$/bin/maze/Maze.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/View/CanvasController.java" afterPath="$PROJECT_DIR$/src/View/CanvasController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/drawables/characters/commands/motionCommands/MoveDownCommand.java" afterPath="$PROJECT_DIR$/src/drawables/characters/commands/motionCommands/MoveDownCommand.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/drawables/characters/commands/motionCommands/MoveLeftCommand.java" afterPath="$PROJECT_DIR$/src/drawables/characters/commands/motionCommands/MoveLeftCommand.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/drawables/characters/commands/motionCommands/MoveRightCommand.java" afterPath="$PROJECT_DIR$/src/drawables/characters/commands/motionCommands/MoveRightCommand.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/drawables/characters/commands/motionCommands/MoveUpCommand.java" afterPath="$PROJECT_DIR$/src/drawables/characters/commands/motionCommands/MoveUpCommand.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/drawables/characters/commands/motionCommands/MoveUtilities.java" afterPath="$PROJECT_DIR$/src/drawables/characters/commands/motionCommands/MoveUtilities.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/drawables/obstacles/traps/RandomTeleport.java" afterPath="$PROJECT_DIR$/src/drawables/obstacles/traps/RandomTeleport.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gameLevels/Levels/level_test.java" afterPath="$PROJECT_DIR$/src/gameLevels/Levels/level_test.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gameLoop/RunnerLoop.java" afterPath="$PROJECT_DIR$/src/gameLoop/RunnerLoop.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,115 +77,104 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="StandardHero.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/drawables/characters/heros/StandardHero.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="236" column="29" lean-forward="false" selection-start-line="236" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Flash.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/drawables/characters/heros/Flash.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="636">
-              <caret line="51" column="58" lean-forward="false" selection-start-line="51" selection-start-column="58" selection-end-line="51" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DirectionState.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/drawables/characters/heros/states/DirectionState.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="14" column="28" lean-forward="false" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="CanvasController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/View/CanvasController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="502">
-              <caret line="94" column="0" lean-forward="false" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
-              <folding>
-                <element signature="method#animation#0;class#CanvasController#0" expanded="false" />
-                <element signature="method#initialize#0;class#CanvasController#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Canvas.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/View/Canvas.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="18" column="86" lean-forward="false" selection-start-line="18" selection-start-column="86" selection-end-line="18" selection-end-column="86" />
+            <state relative-caret-position="234">
+              <caret line="146" column="39" lean-forward="false" selection-start-line="146" selection-start-column="39" selection-end-line="146" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DirectionLeftState.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/drawables/characters/heros/states/DirectionLeftState.java">
+      <file leaf-file-name="level_test.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gameLevels/Levels/level_test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="44" column="17" lean-forward="false" selection-start-line="44" selection-start-column="17" selection-end-line="44" selection-end-column="17" />
+              <folding>
+                <element signature="e#1909#1910#0" expanded="true" />
+                <element signature="e#1955#1956#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MoveDownCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/drawables/characters/commands/motionCommands/MoveDownCommand.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="288">
-              <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+              <caret line="25" column="67" lean-forward="false" selection-start-line="25" selection-start-column="67" selection-end-line="25" selection-end-column="67" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DirectionRightState.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/drawables/characters/heros/states/DirectionRightState.java">
+      <file leaf-file-name="MoveLeftCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/drawables/characters/commands/motionCommands/MoveLeftCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="137">
+              <caret line="26" column="17" lean-forward="true" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DirectionDownState.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/drawables/characters/heros/states/DirectionDownState.java">
+      <file leaf-file-name="MoveRightCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/drawables/characters/commands/motionCommands/MoveRightCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="324">
+              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DirectionUpState.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/drawables/characters/heros/states/DirectionUpState.java">
+      <file leaf-file-name="MoveUpCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/drawables/characters/commands/motionCommands/MoveUpCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="137">
+              <caret line="28" column="19" lean-forward="true" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MySprite.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/View/Graphics/Sprite/MySprite.java">
+      <file leaf-file-name="MoveUtilities.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/drawables/characters/commands/motionCommands/MoveUtilities.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1176">
-              <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+            <state relative-caret-position="245">
+              <caret line="70" column="58" lean-forward="false" selection-start-line="70" selection-start-column="58" selection-end-line="70" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RandomTeleport.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/drawables/obstacles/traps/RandomTeleport.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="361">
+              <caret line="47" column="8" lean-forward="false" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Hole.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/drawables/obstacles/traps/Hole.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Fire.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/drawables/obstacles/traps/Fire.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -193,11 +229,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/drawables/characters/heros/Hulk.java" />
-        <option value="$PROJECT_DIR$/src/drawables/characters/heros/NormalHero.java" />
-        <option value="$PROJECT_DIR$/src/drawables/characters/heros/Soldier.java" />
-        <option value="$PROJECT_DIR$/src/drawables/characters/heros/Superman.java" />
-        <option value="$PROJECT_DIR$/src/drawables/obstacles/walls/Steal.java" />
         <option value="$PROJECT_DIR$/src/drawables/roads/Road.java" />
         <option value="$PROJECT_DIR$/src/drawables/obstacles/traps/StandardTrap.java" />
         <option value="$PROJECT_DIR$/src/drawables/obstacles/traps/Cage.java" />
@@ -244,8 +275,19 @@
         <option value="$PROJECT_DIR$/src/drawables/characters/heros/states/DirectionDownState.java" />
         <option value="$PROJECT_DIR$/src/drawables/characters/heros/states/DirectionRightState.java" />
         <option value="$PROJECT_DIR$/src/drawables/characters/heros/states/DirectionUpState.java" />
+        <option value="$PROJECT_DIR$/src/drawables/characters/commands/motionCommands/MoveDownCommand.java" />
+        <option value="$PROJECT_DIR$/src/drawables/characters/commands/motionCommands/MoveLeftCommand.java" />
+        <option value="$PROJECT_DIR$/src/drawables/characters/commands/motionCommands/MoveRightCommand.java" />
+        <option value="$PROJECT_DIR$/src/drawables/characters/commands/motionCommands/MoveUpCommand.java" />
+        <option value="$PROJECT_DIR$/src/drawables/characters/commands/motionCommands/MoveUtilities.java" />
       </list>
     </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -262,7 +304,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -273,11 +316,6 @@
             <path>
               <item name="Get-out" type="b2602c69:ProjectViewProjectNode" />
               <item name="Get-out" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Get-out" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Get-out" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -299,7 +337,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="drawables" type="462c0819:PsiDirectoryNode" />
               <item name="characters" type="462c0819:PsiDirectoryNode" />
-              <item name="heros" type="462c0819:PsiDirectoryNode" />
+              <item name="commands" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Get-out" type="b2602c69:ProjectViewProjectNode" />
@@ -307,54 +345,21 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="drawables" type="462c0819:PsiDirectoryNode" />
               <item name="characters" type="462c0819:PsiDirectoryNode" />
-              <item name="heros" type="462c0819:PsiDirectoryNode" />
-              <item name="states" type="462c0819:PsiDirectoryNode" />
+              <item name="commands" type="462c0819:PsiDirectoryNode" />
+              <item name="motionCommands" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Get-out" type="b2602c69:ProjectViewProjectNode" />
               <item name="Get-out" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="View" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Get-out" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Get-out" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="View" type="462c0819:PsiDirectoryNode" />
-              <item name="Graphics" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Get-out" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Get-out" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="View" type="462c0819:PsiDirectoryNode" />
-              <item name="Graphics" type="462c0819:PsiDirectoryNode" />
-              <item name="ImagesMaps" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Get-out" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Get-out" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="View" type="462c0819:PsiDirectoryNode" />
-              <item name="Graphics" type="462c0819:PsiDirectoryNode" />
-              <item name="Sprite" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Get-out" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Get-out" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="View" type="462c0819:PsiDirectoryNode" />
-              <item name="Graphics" type="462c0819:PsiDirectoryNode" />
-              <item name="Sprite" type="462c0819:PsiDirectoryNode" />
-              <item name="Types" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -364,7 +369,7 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Discrete Assignment 3" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -554,23 +559,28 @@
     <option name="localTasksCounter" value="5" />
     <servers />
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="159000" />
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-21" y="276" width="1855" height="1092" extended-state="6" />
+    <frame x="65" y="24" width="1854" height="1056" extended-state="4" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948583" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41884816" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5372973" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22800222" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22787611" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -578,13 +588,33 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Code Iris" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41884816" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22800222" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -660,70 +690,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/drawables/obstacles/bombs/NormalBomb.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-302">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/drawables/obstacles/bombs/Lazer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/drawables/obstacles/bombs/Piston.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="2" column="33" lean-forward="false" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/drawables/obstacles/bombs/BombsFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-710">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/drawables/obstacles/Obstacle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/drawables/obstacles/bombs/StandardBomb.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="79" column="67" lean-forward="false" selection-start-line="79" selection-start-column="67" selection-end-line="79" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/drawables/obstacles/bombs/Dynamite.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/drawables/obstacles/walls/Bricks.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="19" column="5" lean-forward="false" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/drawables/pickables/gifts/Ammo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="8" column="39" lean-forward="false" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/drawables/pickables/gifts/Coins.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
@@ -875,9 +841,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="12" column="5" lean-forward="false" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -896,9 +859,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -906,41 +866,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/jfxrt.jar!/javafx/scene/Scene.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="3484" column="0" lean-forward="false" selection-start-line="3484" selection-start-column="0" selection-end-line="3484" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/jfxrt.jar!/javafx/scene/Scene.class" />
     <entry file="file://$PROJECT_DIR$/src/View/Graphics/ImagesMaps/MazeMap.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="33" column="53" lean-forward="true" selection-start-line="32" selection-start-column="8" selection-end-line="33" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/Graphics/Sprite/Types/SpriteFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="47" column="55" lean-forward="true" selection-start-line="47" selection-start-column="55" selection-end-line="47" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/Graphics/Sprite/Types/SpriteFactory.java" />
     <entry file="file://$PROJECT_DIR$/src/View/Graphics/ImagesMaps/CharactersMap.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="572">
           <caret line="43" column="39" lean-forward="false" selection-start-line="43" selection-start-column="39" selection-end-line="43" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -948,23 +889,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="14" column="29" lean-forward="true" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/jfxrt.jar!/com/sun/glass/ui/gtk/GtkApplication.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/jfxrt.jar!/com/sun/glass/ui/gtk/GtkApplication.class" />
     <entry file="file://$PROJECT_DIR$/src/drawables/characters/heros/StandardHero.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="313">
           <caret line="236" column="29" lean-forward="false" selection-start-line="236" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -972,9 +904,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
           <caret line="14" column="28" lean-forward="false" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -982,7 +911,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="636">
           <caret line="51" column="58" lean-forward="false" selection-start-line="51" selection-start-column="58" selection-end-line="51" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -999,12 +927,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/View/CanvasController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="94" column="0" lean-forward="false" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
-          <folding>
-            <element signature="method#animation#0;class#CanvasController#0" expanded="false" />
-            <element signature="method#initialize#0;class#CanvasController#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="234">
+          <caret line="146" column="39" lean-forward="false" selection-start-line="146" selection-start-column="39" selection-end-line="146" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1017,7 +942,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1025,7 +949,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1176">
           <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1033,9 +956,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
           <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1043,9 +963,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
           <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1053,9 +970,84 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
           <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gameLevels/Levels/level_test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="44" column="17" lean-forward="false" selection-start-line="44" selection-start-column="17" selection-end-line="44" selection-end-column="17" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1909#1910#0" expanded="true" />
+            <element signature="e#1955#1956#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/drawables/characters/commands/motionCommands/MoveDownCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="25" column="67" lean-forward="false" selection-start-line="25" selection-start-column="67" selection-end-line="25" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/drawables/obstacles/traps/StandardTrap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="28" column="1" lean-forward="false" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
+          <folding>
+            <element signature="e#430#431#0" expanded="true" />
+            <element signature="e#464#465#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/drawables/characters/commands/motionCommands/MoveLeftCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="26" column="17" lean-forward="true" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gameLoop/RunnerLoop.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/drawables/characters/commands/motionCommands/MoveRightCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/drawables/characters/commands/motionCommands/MoveUpCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="28" column="19" lean-forward="true" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/drawables/obstacles/traps/Cage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="29" column="25" lean-forward="false" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/drawables/characters/commands/motionCommands/MoveUtilities.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="70" column="58" lean-forward="false" selection-start-line="70" selection-start-column="58" selection-end-line="70" selection-end-column="58" />
+          <folding />
         </state>
       </provider>
     </entry>

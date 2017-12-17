@@ -56,6 +56,8 @@ public class MoveUtilities {
                 if (objectAtNewPosition instanceof Bomb) {
                     monster.setPosition(objectAtNewPosition.getPosition());
                     return true;
+                } else if (objectAtNewPosition instanceof Gate){
+                    return false;
                 } else {
                     monster.setPosition(objectAtNewPosition.getPosition());
                     return true;
@@ -65,8 +67,9 @@ public class MoveUtilities {
             } else if (objectAtNewPosition instanceof Pickable) {
                 monster.setPosition(objectAtNewPosition.getPosition());
                 return true;
-            } else if (objectAtNewPosition instanceof Gate){
-                return false;
+            } else if (objectAtNewPosition instanceof Hero) {
+                monster.attack((Hero)objectAtNewPosition);
+                return true;
             }  else {
                 monster.setPosition(objectAtNewPosition.getPosition());
                 return true;

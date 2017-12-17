@@ -22,8 +22,8 @@ public class MoveRightCommand implements Command {
         Drawable itemInNextPosition = maze.getItemInPosition(position);
         boolean isValidMove = utilities.isAValidMove(itemInNextPosition);
         if(isValidMove){
-            utilities.performMove(itemInNextPosition,object);
-            return true;
+           return utilities.performMove(itemInNextPosition,object);
+
         }
         return false;
     }

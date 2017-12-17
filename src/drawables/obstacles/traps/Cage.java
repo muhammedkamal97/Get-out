@@ -27,12 +27,12 @@ public class Cage extends StandardTrap implements Trap {
     @Override
     public void trap(Hero hero) {
 //        hero.removeAllWeapons(); //TODO
+        super.trap(hero);
     }
 
     /**
      * display weapons on destroy
      */
-
     @Override
     protected int getOriginalDamage() {
         return DAMAGE;
