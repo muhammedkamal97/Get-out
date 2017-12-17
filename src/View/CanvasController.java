@@ -214,9 +214,9 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
 
     private void updateMonster(Point oldPos, Monster monster) {
         //need to perform atransition
-        gcD.clearRect(oldPos.getX()*cellWidth,oldPos.getY()*cellHeight,cellWidth,cellHeight);
-        monster.drawOnCanvas(gcD, new Point((int) (monster.getPosition().getX() * cellWidth + x),
-                        (int) (monster.getPosition().getY() * cellHeight + y + shiftDown)),
+        gcD.clearRect(oldPos.getX()*cellWidth,oldPos.getY()*cellHeight + shiftDown,cellWidth,cellHeight);
+        monster.drawOnCanvas(gcD, new Point((int) (monster.getPosition().getX() * cellWidth),
+                        (int) (monster.getPosition().getY() * cellHeight + shiftDown)),
                 cellWidth, cellHeight);
         //            heroOrMonster.getDownSprite().reset();
 //            int i = (int)heroOrMonster.getPosition().getY()-heightCell;
@@ -318,34 +318,6 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         }
     }
 
-    //put animation in a class and calls it's methods
-    private void animation() {
-        new AnimationTimer() {
-            long start = System.currentTimeMillis();
-            boolean flag = false;
-
-            public void handle(long currentNanoTime) {
-                Image left = new Image("Trap.png");
-                Image leftG = new Image("Gift.gif");
-                long current = System.currentTimeMillis();
-                if (!flag && (current - start >= 5000)) {
-                    start = System.currentTimeMillis();
-                    System.out.println("in");
-                    gcM.clearRect(0, 0, dynamicCanvas.getWidth(), dynamicCanvas.getHeight());
-                    gcM.drawImage(leftG, 64, 64, 50, 50);
-                    flag = true;
-                } else if (flag && (current - start >= 5000)) {
-                    start = System.currentTimeMillis();
-                    System.out.println("in1");
-                    gcM.clearRect(0, 0, dynamicCanvas.getWidth(), dynamicCanvas.getHeight());
-                    gcM.drawImage(left, 64, 64, 50, 50);
-                    flag = false;
-                }
-            }
-        }.start();
-    }
-
-
     @Override
     public void updateMonsterPosition(Point oldPosition, Monster monster) {
         updateMonster(oldPosition,monster);
@@ -353,14 +325,12 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
 
     @Override
     public void updateRoadsAndWalls(Point position) {
-        // function that clears a certain cell on roadsAndWalls layer
-        gcS.clearRect(position.getX()*cellWidth,position.getY()*cellHeight,cellWidth,cellHeight);
+        gcS.clearRect(position.getX()*cellWidth,position.getY()*cellHeight+ shiftDown,cellWidth,cellHeight);
     }
 
     @Override
     public void updatePickables(Point position) {
-        // function that clears a certain cell on pickables layer
-        gcM.clearRect(position.getX()*cellWidth,position.getY()*cellHeight,cellWidth,cellHeight);
+        gcM.clearRect(position.getX()*cellWidth,position.getY()*cellHeight+ shiftDown,cellWidth,cellHeight);
     }
 
     @Override
