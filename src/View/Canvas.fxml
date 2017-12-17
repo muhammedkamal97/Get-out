@@ -17,9 +17,8 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.stage.Screen?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.text.Text?>
-<GridPane id="life" onKeyPressed="#keyPressedSwitch" onKeyReleased="#keyReleasedSwitch" prefHeight="700.0" prefWidth="900.0" stylesheets="@../Style.css"
+<GridPane id="life" onKeyPressed="#keyPressedSwitch" onKeyReleased="#keyReleasedSwitch"
+          prefHeight="700.0" prefWidth="900.0"
           xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
           fx:controller="View.CanvasController" style="Style.css">
     <fx:define>

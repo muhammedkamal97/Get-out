@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MenuController">
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<GridPane id="pane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121"
+          xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="View.MenuController" stylesheets="/Style.css" alignment="CENTER">
+   <!--<fx:define>-->
+      <!--<Screen fx:factory="getPrimary" fx:id="screen"/>-->
+   <!--</fx:define>-->
    <children>
-      <VBox alignment="CENTER" layoutX="250.0" layoutY="100.0" prefHeight="200.0" prefWidth="100.0">
+      <!--<Canvas fx:id="dummyBackground" height="${screen.visualBounds.height}" width="${screen.visualBounds.width}"/>-->
+      <HBox alignment="CENTER"  spacing="310" translateY="150">
          <children>
-            <Button mnemonicParsing="false" text="Select Difficulty" />
-            <Button onAction="#startCanvas" mnemonicParsing="false" text="Start" />
-            <Button mnemonicParsing="false" text="Exit" />
+            <Button onAction="#startCanvas" mnemonicParsing="false" text="Start" styleClass="MenuButton" />
          </children>
-      </VBox>
+      </HBox>
    </children>
-</AnchorPane>
+</GridPane>

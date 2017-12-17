@@ -11,6 +11,11 @@
     -fx-border-radius:5px;
     -fx-border-width: 1;
 }
+.MenuButton {
+    -fx-background-color: Green;
+            -fx-pref-height: 28px;
+            -fx-pref-width: 100px;
+}
 
 .label {
 	-fx-text-alignment: center;
@@ -59,5 +64,17 @@
 .text-area .scroll-pane > .corner{
     -fx-background-color:#1B9FC1;
 }
+
+
+
+    #pane{
+        -fx-background-image: url("MazeRunner.jpeg");
+        -fx-background-repeat: stretch;
+        -fx-background-size: cover, auto;
+        -fx-background-position: center center;
+        -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+    }
+
+
 
 
