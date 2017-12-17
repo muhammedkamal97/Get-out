@@ -156,7 +156,6 @@ public class Maze implements ObservedSubject, MotionObserver, MonsterObserver , 
         movingObjectsLayer[heroPosition.y][heroPosition.x] = null;
         heroPosition = hero.getPosition();
         movingObjectsLayer[hero.getPosition().y][hero.getPosition().x] = hero;
-        notifyHeroChange(tmp,hero);
     }
 
     public ArrayList<Monster> getMonsters() {return this.components.monsters;}
@@ -173,11 +172,6 @@ public class Maze implements ObservedSubject, MotionObserver, MonsterObserver , 
         mazeLayersObservers.add(observer);
     }
 
-    @Override
-    public void notifyHeroChange(Point oldPosition, Hero hero) {
-        for (int i = 0 ; i < mazeLayersObservers.size() ;i++)
-            mazeLayersObservers.get(i).updateHeroPosition(oldPosition,hero);
-    }
 
     @Override
     public void notifyMonsterChange(Point oldPosition, Monster monster) {

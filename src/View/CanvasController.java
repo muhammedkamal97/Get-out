@@ -23,10 +23,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import observer.MazeLayersObserver;
 
 import java.awt.*;
 
-public class CanvasController {
+public class CanvasController implements MazeLayersObserver {
 
     @FXML
     private Button Menu;
@@ -337,4 +338,21 @@ public class CanvasController {
         }.start();
     }
 
+
+    @Override
+    public void updateMonsterPosition(Point oldPosition, Monster monster) {
+        updateMonster(oldPosition,monster);
+    }
+
+    @Override
+    public void updateRoadsAndWalls(Point position) {
+        // function that clears a certain cell on roadsAndWalls layer
+        gcS.clearRect(position.getX(),position.getY(),cellWidth,cellHeight);
+    }
+
+    @Override
+    public void updatePickables(Point position) {
+        // function that clears a certain cell on pickables layer
+        gcM.clearRect(position.getX(),position.getY(),cellWidth,cellHeight);
+    }
 }
