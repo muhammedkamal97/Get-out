@@ -65,7 +65,9 @@ public class CanvasController implements Initializable {
             case LEFT:
             case KP_LEFT:
                 x -= 10;
-                if (x < -(cellWidth)) {
+                System.out.println(-cellWidth);
+                System.out.println(x);
+                if (x < (-cellWidth/6)) {
                     gameLoop.moveHeroLeft();
                     if (!hero.getPosition().equals(currentPosition)) {
                         x += cellWidth;
@@ -75,10 +77,10 @@ public class CanvasController implements Initializable {
                 }
                 // my dimensions will be added to hero's point
                 // divide my point by cell width & cell height
-
                 gameLoop.lookLeft();
                 hero.setDirectionState(new DirectionLeftState()); //testing
                 currentPosition = hero.getPosition();
+                System.out.println(currentPosition);
                 hero.drawOnCanvas(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
                                 (int) (currentPosition.getY() * cellHeight + y + shiftDown)),
                         cellWidth, cellHeight);
@@ -86,7 +88,8 @@ public class CanvasController implements Initializable {
             case RIGHT:
             case KP_RIGHT:
                 x += 10;
-                if (x > 0) {
+                System.out.println(x);
+                if (x > cellWidth/6) {
                     gameLoop.moveHeroRight();
                     if (!hero.getPosition().equals(currentPosition)) {
                         x -= cellWidth;
@@ -97,6 +100,7 @@ public class CanvasController implements Initializable {
                 gameLoop.lookRight();
                 hero.setDirectionState(new DirectionRightState()); //testing
                 currentPosition = hero.getPosition();
+                System.out.println(currentPosition);
                 hero.drawOnCanvas(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
                                 (int) (currentPosition.getY() * cellHeight + y + shiftDown)),
                         cellWidth, cellHeight);
@@ -104,7 +108,7 @@ public class CanvasController implements Initializable {
             case UP:
             case KP_UP:
                 y -= 10;
-                if (y < -(cellHeight)) {
+                if (y < -(cellHeight/6)) {
                     gameLoop.moveHeroUp();
                     if (!hero.getPosition().equals(currentPosition)) {
                         y += cellHeight;
@@ -122,7 +126,7 @@ public class CanvasController implements Initializable {
             case DOWN:
             case KP_DOWN:
                 y += 10;
-                if (y > 0) {
+                if (y > cellHeight/6) {
                     gameLoop.moveHeroDown();
                     if (!hero.getPosition().equals(currentPosition)) {
                         y -= cellHeight;
@@ -144,39 +148,39 @@ public class CanvasController implements Initializable {
 
     @FXML
     public void keyReleasedSwitch(KeyEvent event) {
-        switch (event.getCode()) {
-            case LEFT:
-            case KP_LEFT:
-                hero.drawOnReleased(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
-                        (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
-                break;
-            case RIGHT:
-            case KP_RIGHT:
-                hero.drawOnReleased(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
-                        (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
-                break;
-            case UP:
-            case KP_UP:
-                hero.drawOnReleased(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
-                        (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
-                break;
-            case DOWN:
-            case KP_DOWN:
-                hero.drawOnReleased(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
-                        (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
-                break;
-            case CONTROL:
-                gameLoop.shoot();
-                break;
-            case N:
-                gameLoop.holdNextWeapon();
-                break;
-            case P:
-                gameLoop.holdPreviousWeapon();
-                break;
-            default:
-                break;
-        }
+//        switch (event.getCode()) {
+//            case LEFT:
+//            case KP_LEFT:
+//                hero.drawOnReleased(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
+//                        (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
+//                break;
+//            case RIGHT:
+//            case KP_RIGHT:
+//                hero.drawOnReleased(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
+//                        (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
+//                break;
+//            case UP:
+//            case KP_UP:
+//                hero.drawOnReleased(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
+//                        (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
+//                break;
+//            case DOWN:
+//            case KP_DOWN:
+//                hero.drawOnReleased(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
+//                        (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
+//                break;
+//            case CONTROL:
+//                gameLoop.shoot();
+//                break;
+//            case N:
+//                gameLoop.holdNextWeapon();
+//                break;
+//            case P:
+//                gameLoop.holdPreviousWeapon();
+//                break;
+//            default:
+//                break;
+//        }
     }
 
     //put animation in a class and calls it's methods

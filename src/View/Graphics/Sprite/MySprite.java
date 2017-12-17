@@ -25,7 +25,6 @@ public class MySprite {
      */
     public void drawNextSprite(GraphicsContext gc, int widthCell, int heightCell, int posX, int posY) {
         count++;
-        System.out.println(imageSprite.size()); // for testing
         count %= imageSprite.size();
         Image img = SwingFXUtils.toFXImage(imageSprite.get(count), null);
         gc.drawImage(img, posX, posY, widthCell, heightCell);
@@ -40,9 +39,7 @@ public class MySprite {
      */
     public void SpriteSheetBuffer(int width, int height, int rows, int columns, BufferedImage ss) {
         int TileW = width / columns;
-        System.out.println(TileW);
         int TileH = height / rows;
-        System.out.println(TileH);
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 imageSprite.add(ss.getSubimage(j * TileW, i * TileH, TileW, TileH));

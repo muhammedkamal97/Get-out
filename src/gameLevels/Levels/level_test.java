@@ -22,7 +22,7 @@ public class level_test implements LevelProperties{
 
     @Override
     public int getNumberOfMonsters() {
-        return 2;
+        return 0;
     }
 
     @Override
@@ -37,7 +37,7 @@ public class level_test implements LevelProperties{
 
     @Override
     public int getNumberOfBombs() {
-        return 2;
+        return 0;
     }
 
     @Override
