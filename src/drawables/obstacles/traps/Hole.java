@@ -23,11 +23,6 @@ public class Hole extends StandardTrap implements Trap {
         return HEALTH_POINTS;
     }
 
-    @Override
-    public void destroy() {
-        super.destroy();
-        return;
-    }
 
     @Override
     protected int getOriginalDamage() {

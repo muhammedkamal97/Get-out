@@ -37,6 +37,7 @@ public abstract class StandardTrap implements Trap {
 
     @Override
     public void destroy() {
+
         maze.removeTrap(this);
     }
 

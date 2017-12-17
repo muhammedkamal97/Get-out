@@ -79,7 +79,9 @@ public abstract class StandardHero implements Hero {
 
 	@Override
 	public void setMaze(Maze maze) {
+
 		this.maze = maze;
+		registerMotionObservers(maze);
 	}
 
 	@Override
