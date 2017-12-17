@@ -30,6 +30,6 @@ public class RandomMotion implements IMonsterBehavior{
 	@Override
 	public void reThink() {
 		// TODO Auto-generated method stub
-		
+		currentCommand = null;
 	}
 }
