@@ -8,6 +8,7 @@ import drawables.characters.heros.states.DirectionDownState;
 import drawables.characters.heros.states.DirectionLeftState;
 import drawables.characters.heros.states.DirectionRightState;
 import drawables.characters.heros.states.DirectionUpState;
+import drawables.obstacles.Bomb;
 import drawables.roads.Road;
 import gameCore.RunnerGameAdapter;
 import gameLoop.GameLoop;
@@ -38,6 +39,8 @@ public class CanvasController implements MazeLayersObserver {
     @FXML
     private Canvas mazeCanvas;
     @FXML
+    private Canvas animCanvas;
+    @FXML
     private ImageView weaponImage;
     @FXML
     private Label trials;
@@ -45,6 +48,7 @@ public class CanvasController implements MazeLayersObserver {
     private ProgressBar healthBar;
     private double initialHealth;
     private GraphicsContext gcD;
+    private GraphicsContext gcAnimation;
     private GraphicsContext gcM;
     private GraphicsContext gcS;   // two global parameters (dimensions cell)
     private int shiftDown = 30; //remove bar dimension
@@ -248,6 +252,7 @@ public class CanvasController implements MazeLayersObserver {
     private void setGlobalVariables() {
 
         gcD = dynamicCanvas.getGraphicsContext2D();
+        gcAnimation = animCanvas.getGraphicsContext2D();
         gcM = mazeCanvas.getGraphicsContext2D();
         gcS = steadyCanvas.getGraphicsContext2D();
 
@@ -288,6 +293,9 @@ public class CanvasController implements MazeLayersObserver {
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[i].length; j++) {
                 if (maze[j][i] != null) {
+                    if (maze[j][i] instanceof Bomb) {
+                        maze[j][i].setGraphics(gcAnimation, cellWidth, cellHeight);
+                    }
                     maze[j][i].drawOnCanvas(gcM, new Point(
                                     (int) (maze[j][i].getPosition().getX() * cellWidth),
                                     (int) (maze[j][i].getPosition().getY() * cellHeight + shiftDown)),
@@ -353,6 +361,7 @@ public class CanvasController implements MazeLayersObserver {
     @Override
     public void updatePickables(Point position) {
         // function that clears a certain cell on pickables layer
+        System.out.println("observer pickables");
         gcM.clearRect(position.getX(),position.getY(),cellWidth,cellHeight);
     }
 }
