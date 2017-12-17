@@ -24,11 +24,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import observer.BombExplosionObserver;
 import observer.MazeLayersObserver;
 
 import java.awt.*;
 
-public class CanvasController implements MazeLayersObserver {
+public class CanvasController implements MazeLayersObserver, BombExplosionObserver {
 
     @FXML
     private Button Menu;
@@ -239,7 +240,10 @@ public class CanvasController implements MazeLayersObserver {
         game.InitializeMaze(10);
         gameLoop = game.getGameLoop();
         gameLoop.setHero(hero);
+        gameLoop.registerAsMazeLayerObserver(this);
+        gameLoop.registerAsBombObserver(this);
         gameLoop.initiateLoop();
+
 
         setGlobalVariables();
         setMazeLayers();
@@ -363,5 +367,10 @@ public class CanvasController implements MazeLayersObserver {
         // function that clears a certain cell on pickables layer
         System.out.println("observer pickables");
         gcM.clearRect(position.getX(),position.getY(),cellWidth,cellHeight);
+    }
+
+    @Override
+    public void drawExplosionAnimation(Point position, int range) {
+        
     }
 }
