@@ -72,6 +72,7 @@ public abstract class StandardBomb implements Bomb {
     public void destroy() {
 
         //add a gift
+        notifyExplosionObservers();
         maze.removeBomb(this);
         return;
     }
