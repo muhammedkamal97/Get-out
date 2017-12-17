@@ -3,6 +3,7 @@ package View;
 import View.Graphics.ImagesMaps.MazeMap;
 import drawables.Drawable;
 import drawables.characters.Hero;
+import drawables.characters.Monster;
 import drawables.characters.heros.states.DirectionDownState;
 import drawables.characters.heros.states.DirectionLeftState;
 import drawables.characters.heros.states.DirectionRightState;
@@ -52,8 +53,8 @@ public class CanvasController {
     private Hero hero;
     private Point currentPosition;
 
-    private int x;
-    private int y;
+    //dummy values to update hero's postion don't modify them!!!!
+    private int x, y;
 
     //TODO
     //Weapons Icons //set in map
@@ -62,10 +63,9 @@ public class CanvasController {
 
     ////////////
     //TODO HERE
-    //shield bar
+    //shield bar //removed or added
     //score bar elly heya coins
     //armorpoints
-    //Menu button return to main menu //done
 
     @FXML
     protected void MenuButtonAction(ActionEvent event) {
@@ -206,6 +206,23 @@ public class CanvasController {
         healthBar.setProgress(currentHealth / initialHealth);
     }
 
+    private void updateMonster(Point oldPos, Monster monster) {
+        //need to perform atransition
+        gcD.clearRect(oldPos.getX(),
+                oldPos.getY(),
+                cellWidth, cellHeight);
+        monster.drawOnCanvas(gcD, new Point((int) (monster.getPosition().getX() * cellWidth + x),
+                        (int) (monster.getPosition().getY() * cellHeight + y + shiftDown)),
+                cellWidth, cellHeight);
+        //            heroOrMonster.getDownSprite().reset();
+//            int i = (int)heroOrMonster.getPosition().getY()-heightCell;
+//            while (i < heroOrMonster.getPosition().getY()) {
+//                gc.clearRect(heroOrMonster.getPosition().getX(), i, widthCell, heightCell);
+//                i++;
+//                heroOrMonster.getDownSprite().drawNextSprite(gc, widthCell, heightCell, (int)heroOrMonster.getPosition().getX(), i);
+//            }
+    }
+
     private void setTrials() {
         trials.setText(String.valueOf(hero.getTrials()));
 //        trials.setBackground(new Image("Bricks.jpg"));
@@ -214,7 +231,7 @@ public class CanvasController {
     public void initLogin(Hero hero) {
         this.hero = hero;
         RunnerGameAdapter game = new RunnerGameAdapter();
-        game.InitializeMaze(1);
+        game.InitializeMaze(10);
         gameLoop = game.getGameLoop();
         gameLoop.setHero(hero);
         gameLoop.initiateLoop();
@@ -225,6 +242,7 @@ public class CanvasController {
         x = 0;
         y = 0;
     }
+
 
     private void setGlobalVariables() {
 
