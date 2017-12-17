@@ -12,9 +12,12 @@ import drawables.characters.heros.states.DirectionDownState;
 import drawables.characters.heros.states.DirectionLeftState;
 import drawables.characters.heros.states.DirectionRightState;
 import drawables.characters.heros.states.DirectionUpState;
+import drawables.obstacles.Bomb;
 import gameLoop.monsterAI.MonsterThread;
 import gameLoop.monsterAI.RandomMotion;
 import maze.Maze;
+import observer.BombExplosionObserver;
+import observer.MazeLayersObserver;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -25,6 +28,7 @@ public class RunnerLoop implements GameLoop{
     private Hero hero;
     private Command moveCommand;
     private int livesLeft = 3;
+
 
     @Override
     public void setLoopMaze(Maze maze) {
@@ -154,4 +158,19 @@ public class RunnerLoop implements GameLoop{
     public Drawable[][] getPickablesLayer() {
         return maze.getPickablesLayer();
     }
+
+    @Override
+    public void registerAsMazeLayerObserver(MazeLayersObserver observer) {
+        maze.registerMazeLayersObserver(observer);
+    }
+
+    @Override
+    public void registerAsBombObserver(BombExplosionObserver observer){
+        ArrayList<Bomb> tmp = maze.getBombs();
+        for (int i = 0 ; i < tmp.size() ;i++)
+            tmp.get(i).registerExplosionObserver(observer);
+    }
+
+
+
 }

@@ -5,8 +5,10 @@ import drawables.characters.Hero;
 import drawables.obstacles.Bomb;
 import javafx.scene.canvas.GraphicsContext;
 import maze.Maze;
+import observer.BombExplosionObserver;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public abstract class StandardBomb implements Bomb {
 
@@ -15,6 +17,7 @@ public abstract class StandardBomb implements Bomb {
     private int range;
     private int damage;
     private Maze maze;
+    private ArrayList<BombExplosionObserver> explosionObservers = new ArrayList<>();
 
     @Override
     public Point getPosition() {
@@ -80,6 +83,19 @@ public abstract class StandardBomb implements Bomb {
                 pt.getX(), pt.getY(),
                 widthCell, heightCell);
     }
+
+    @Override
+    public void registerExplosionObserver(BombExplosionObserver observer) {
+        explosionObservers.add(observer);
+    }
+
+    @Override
+    public void notifyExplosionObservers() {
+        for (int i = 0 ; i < explosionObservers.size() ; i++)
+            explosionObservers.get(i).drawExplosionAnimation(position,range);
+    }
+
+
 
     protected void setDamage() {
         damage = getBombOriginalDamage();
