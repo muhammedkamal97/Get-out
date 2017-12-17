@@ -25,7 +25,7 @@ public class DirectionUpState implements DirectionState {
 //        }
 
         gc.clearRect(pt.getX(),
-                pt.getY() + 10,
+                pt.getY() + 20,
                 widthCell, heightCell);
         heroOrMonster.getUpSprite().drawNextSprite(
                 gc, widthCell, heightCell,
@@ -37,7 +37,7 @@ public class DirectionUpState implements DirectionState {
     @Override
     public void DrawReleased(GraphicsContext gc, Point pt, int widthCell, int heightCell, MovingObject heroOrMonster) {
         gc.clearRect(pt.getX(),
-                pt.getY() + 10,
+                pt.getY() + 20,
                 widthCell, heightCell);
         heroOrMonster.getUpSprite().drawNextSprite(gc, widthCell, heightCell,
                 (int) pt.getX(),

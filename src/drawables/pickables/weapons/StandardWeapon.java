@@ -1,9 +1,11 @@
 package drawables.pickables.weapons;
 
+import View.Graphics.ImagesMaps.MazeMap;
 import drawables.characters.Hero;
 import drawables.pickables.Weapon;
 import drawables.pickables.weapons.bullets.Bullet;
 import drawables.pickables.weapons.bullets.bulletDirectionStates.ShootingDirectionState;
+import javafx.scene.canvas.GraphicsContext;
 import maze.Maze;
 
 import java.awt.*;
@@ -27,6 +29,14 @@ public abstract class StandardWeapon implements Weapon{
             shotBullet.startMotionAfterShooting(initialPosition,state,maze);
             ammo--;
         }
+    }
+
+    @Override
+    public void drawOnCanvas(GraphicsContext gc, Point pt, int widthCell, int heightCell) {
+        MazeMap map = MazeMap.getInstance();
+        gc.drawImage(map.getBufferedImage(this.getClass().getSimpleName()),
+                pt.getX(), pt.getY(),
+                widthCell, heightCell);
     }
 
     @Override

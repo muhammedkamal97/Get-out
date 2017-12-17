@@ -20,11 +20,6 @@ public class AK47 extends StandardWeapon {
     }
 
     @Override
-    public void drawOnCanvas(GraphicsContext gc,Point pt, int width, int height) {
-        //GUI
-    }
-
-    @Override
     protected int getMaxMagazineCapacity() {
         return MAGAZINE_SIZE;
     }

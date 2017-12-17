@@ -32,12 +32,7 @@ public class Cage extends StandardTrap implements Trap {
     /**
      * display weapons on destroy
      */
-    @Override
-    public void destroy() {
 
-        super.destroy();
-        return;
-    }
     @Override
     protected int getOriginalDamage() {
         return DAMAGE;

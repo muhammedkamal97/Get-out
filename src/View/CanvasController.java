@@ -1,6 +1,7 @@
 package View;
 
 import View.Graphics.ImagesMaps.CharactersMap;
+import View.Graphics.ImagesMaps.MazeMap;
 import View.Graphics.Sprite.MySprite;
 import drawables.Drawable;
 import drawables.characters.Hero;
@@ -20,11 +21,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import javax.swing.text.LabelView;
 import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -37,12 +41,17 @@ public class CanvasController implements Initializable {
     private Canvas steadyCanvas;
     @FXML
     private Canvas mazeCanvas;
+    @FXML
+    private ImageView weaponImage;
+    @FXML
+    private Label trias;
+    @FXML
+    private ProgressBar healthBar;
+    private double initialHealth;
     private GraphicsContext gcD;
     private GraphicsContext gcM;
     private GraphicsContext gcS;   // two global parameters (dimensions cell)
-    private int shiftRight; //shift canvas dimension to be centered not needed
-        private int shiftDown = 40; //remove bar dimension
-//    private int shiftDown = 0;
+    private int shiftDown = 30; //remove bar dimension
     private int cellWidth; // get it from system.sceendimensions
     private int cellHeight;
     private GameLoop gameLoop;
@@ -52,10 +61,24 @@ public class CanvasController implements Initializable {
     private int x;
     private int y;
 
+    //TODO
+    //Weapons Icons //set in map
+    //no draw function // need to remove draw function
+    //bullet will be an ellipse moving
+    //send hero as a parameter
+    //modify stylesheet
+
+    ////////////
+    //TODO HERE
+    //health bar //done
+    //shield bar
+    //score bar
+    //Weapon Icon //done
+    //Menu button return to main menu //done (only action missing)
+
     //important to instantiate graphics context
     @FXML
-    protected void ButtonActionForNow(ActionEvent event) {
-
+    protected void MenuButtonAction(ActionEvent event) {
 //        animation();
     }
 
@@ -67,16 +90,14 @@ public class CanvasController implements Initializable {
                 x -= 10;
                 System.out.println(-cellWidth);
                 System.out.println(x);
-                if (x < (-cellWidth/6)) {
+                if (x < (-cellWidth / 6)) {
                     gameLoop.moveHeroLeft();
                     if (!hero.getPosition().equals(currentPosition)) {
                         x += cellWidth;
                     } else {
-                        x+=10;
+                        x += 10;
                     }
                 }
-                // my dimensions will be added to hero's point
-                // divide my point by cell width & cell height
                 gameLoop.lookLeft();
                 hero.setDirectionState(new DirectionLeftState()); //testing
                 currentPosition = hero.getPosition();
@@ -89,12 +110,12 @@ public class CanvasController implements Initializable {
             case KP_RIGHT:
                 x += 10;
                 System.out.println(x);
-                if (x > cellWidth/6) {
+                if (x > cellWidth / 6) {
                     gameLoop.moveHeroRight();
                     if (!hero.getPosition().equals(currentPosition)) {
                         x -= cellWidth;
                     } else {
-                        x-=10;
+                        x -= 10;
                     }
                 }
                 gameLoop.lookRight();
@@ -108,12 +129,12 @@ public class CanvasController implements Initializable {
             case UP:
             case KP_UP:
                 y -= 10;
-                if (y < -(cellHeight/6)) {
+                if (y < -(cellHeight / 6)) {
                     gameLoop.moveHeroUp();
                     if (!hero.getPosition().equals(currentPosition)) {
                         y += cellHeight;
                     } else {
-                        y+=10;
+                        y += 10;
                     }
                 }
                 gameLoop.lookUp();
@@ -126,12 +147,12 @@ public class CanvasController implements Initializable {
             case DOWN:
             case KP_DOWN:
                 y += 10;
-                if (y > cellHeight/6) {
+                if (y > cellHeight / 6) {
                     gameLoop.moveHeroDown();
                     if (!hero.getPosition().equals(currentPosition)) {
                         y -= cellHeight;
                     } else {
-                        y-=10;
+                        y -= 10;
                     }
                 }
                 gameLoop.lookDown();
@@ -183,6 +204,16 @@ public class CanvasController implements Initializable {
 //        }
     }
 
+    private void setWeaponIcon() {
+        String wep = hero.getCurrentWeapon().getClass().getSimpleName();
+        weaponImage.setImage(MazeMap.getInstance().getBufferedImage(wep));
+    }
+
+    private void setHealthBar() {
+        double currentHealth = hero.getHealthPoints();
+        healthBar.setProgress(currentHealth / initialHealth);
+    }
+
     //put animation in a class and calls it's methods
     private void animation() {
         new AnimationTimer() {
@@ -214,8 +245,8 @@ public class CanvasController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ///Abdelrahman
 
-//        hero = new Flash(); // sent from previous scene
-        hero = new Hulk();
+        hero = new Flash(); // sent from previous scene
+//        hero = new Hulk();
         RunnerGameAdapter game = new RunnerGameAdapter();
         game.InitializeMaze(1);
         gameLoop = game.getGameLoop();
@@ -224,17 +255,22 @@ public class CanvasController implements Initializable {
 
         setGlobalVariables();
         setMazeLayers();
-        x =0;
-        y =0;
-//        x = 0;
-//        y = shiftDown;
+        initialHealth = hero.getHealthPoints();
+        x = 0;
+        y = 0;
     }
 
     private void setGlobalVariables() {
+
         gcD = dynamicCanvas.getGraphicsContext2D();
         gcM = mazeCanvas.getGraphicsContext2D();
         gcS = steadyCanvas.getGraphicsContext2D();
-//        shiftRight = ((int) (dynamicCanvas.getWidth() - dynamicCanvas.getHeight())) / 2;
+
+        weaponImage.setImage(MazeMap.getInstance().getBufferedImage("Trap"));
+        healthBar.setProgress(1.0);
+        healthBar.setStyle("-fx-accent: red;");
+//        Trials.setText(String.valueOf(hero.getTrials));
+
         Point pt = gameLoop.getMazeDimensions();
         shiftDown += ((dynamicCanvas.getHeight() - shiftDown) % (pt.getX())) / 2;
         cellHeight = (int) ((dynamicCanvas.getHeight() - shiftDown) / (pt.getX()));

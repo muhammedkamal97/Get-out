@@ -14,14 +14,10 @@ public class MP5 extends StandardWeapon {
     private final Bullet WEAPON_BULLET = new NormalBullet();
 
 
-    public MP5(){
+    public MP5() {
         setBulletType();
         setMaxMagazineCapacity();
         reload();
-    }
-    @Override
-    public void drawOnCanvas(GraphicsContext gc, Point pt, int width, int height) {
-        //GUI
     }
 
     @Override

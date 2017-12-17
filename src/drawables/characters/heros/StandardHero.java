@@ -58,6 +58,11 @@ public abstract class StandardHero implements Hero {
 	}
 
 	@Override
+	public Weapon getCurrentWeapon() {
+		return currentWeapon;
+	}
+
+	@Override
 	public void trapHero(Trap trap) {
 		if (!this.holdTrapShield) {
 			int damage = trap.getDamage();
@@ -80,6 +85,7 @@ public abstract class StandardHero implements Hero {
 	@Override
 	public void setMaze(Maze maze) {
 		this.maze = maze;
+		registerMotionObservers(maze);
 	}
 
 	@Override

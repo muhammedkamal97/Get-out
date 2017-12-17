@@ -1,0 +1,63 @@
+
+.root {
+	-fx-background-color: white;
+	-fx-font-size:13pt;
+}
+
+.button {
+	-fx-background-radius:5,5,5,5;
+    -fx-background-color:white;
+    -fx-border-color:#1B9FC1;
+    -fx-border-radius:5px;
+    -fx-border-width: 1;
+}
+
+.label {
+	-fx-text-alignment: center;
+}
+
+.combo-box {
+	-fx-background-radius:5,5,5,5;
+    -fx-background-color:white;
+    -fx-border-color:#1B9FC1;
+    -fx-border-radius:5px;
+    -fx-border-width: 1;
+}
+
+.combo-box .scroll-bar {
+	-fx-background-radius:5,5,5,5;
+    -fx-background-color:white;
+    -fx-border-color:#1B9FC1;
+    -fx-border-radius:5px;
+    -fx-border-width: 1;
+}
+
+.combo-box .scroll-bar .thumb{
+    -fx-background-color:#1B9FC1;
+}
+.combo-box .scroll-bar .thumb:hover{
+    -fx-background-color:#5DB8DE;
+}
+
+.text-area{
+    -fx-max-width: 450;
+    -fx-max-height: 150;
+}
+
+.text-area .scroll-bar {
+	-fx-background-radius:5,5,5,5;
+    -fx-background-color:white;
+    -fx-border-color:#1B9FC1;
+    -fx-border-radius:5px;
+    -fx-border-width: 1;
+}
+
+.text-area .scroll-bar .thumb{
+    -fx-background-color:#1B9FC1;
+}
+
+.text-area .scroll-pane > .corner{
+    -fx-background-color:#1B9FC1;
+}
+
+

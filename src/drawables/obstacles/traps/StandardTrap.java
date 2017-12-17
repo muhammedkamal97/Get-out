@@ -1,3 +1,4 @@
+
 package drawables.obstacles.traps;
 
 import View.Graphics.ImagesMaps.MazeMap;
@@ -37,6 +38,7 @@ public abstract class StandardTrap implements Trap {
 
     @Override
     public void destroy() {
+
         maze.removeTrap(this);
     }
 
@@ -49,7 +51,7 @@ public abstract class StandardTrap implements Trap {
     @Override
     public void takeDamage(int damage) {
         healthPoints -= damage;
-        if (healthPoints <= 0){
+        if (healthPoints <= 0) {
             this.destroy();
         }
     }
@@ -62,18 +64,17 @@ public abstract class StandardTrap implements Trap {
                 widthCell, heightCell);
     }
 
-    protected void setDamage(){
+    protected void setDamage() {
         damage = getOriginalDamage();
     }
 
-    protected void setHealthPoints(){
-        healthPoints =getHealthPoints();
+    protected void setHealthPoints() {
+        healthPoints = getHealthPoints();
     }
 
     protected abstract int getOriginalDamage();
+
     protected abstract int getHealthPoints();
-
-
 
 
 }
