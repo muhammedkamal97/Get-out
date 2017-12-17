@@ -214,9 +214,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
 
     private void updateMonster(Point oldPos, Monster monster) {
         //need to perform atransition
-        gcD.clearRect(oldPos.getX(),
-                oldPos.getY(),
-                cellWidth, cellHeight);
+        gcD.clearRect(oldPos.getX()*cellWidth,oldPos.getY()*cellHeight,cellWidth,cellHeight);
         monster.drawOnCanvas(gcD, new Point((int) (monster.getPosition().getX() * cellWidth + x),
                         (int) (monster.getPosition().getY() * cellHeight + y + shiftDown)),
                 cellWidth, cellHeight);
@@ -356,14 +354,13 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
     @Override
     public void updateRoadsAndWalls(Point position) {
         // function that clears a certain cell on roadsAndWalls layer
-        gcS.clearRect(position.getX(),position.getY(),cellWidth,cellHeight);
+        gcS.clearRect(position.getX()*cellWidth,position.getY()*cellHeight,cellWidth,cellHeight);
     }
 
     @Override
     public void updatePickables(Point position) {
         // function that clears a certain cell on pickables layer
-        System.out.println("observer pickables");
-        gcM.clearRect(position.getX(),position.getY(),cellWidth,cellHeight);
+        gcM.clearRect(position.getX()*cellWidth,position.getY()*cellHeight,cellWidth,cellHeight);
     }
 
     @Override
