@@ -102,7 +102,7 @@ public class RunnerLoop implements GameLoop{
             thread.setMonster(monster);
             thread.setMaze(this.maze);
             thread.setMotion(motion);
-
+            thread.setDaemon(true);
             thread.start();
         }
 
