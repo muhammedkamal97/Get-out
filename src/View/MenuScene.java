@@ -13,7 +13,7 @@ public class MenuScene extends Application {
     }
 
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("MenuScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("HeroMenu.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("FXML Welcome");
         stage.setScene(scene);
