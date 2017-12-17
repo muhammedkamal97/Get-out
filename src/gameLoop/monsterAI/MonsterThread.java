@@ -30,32 +30,14 @@ public class MonsterThread extends Thread{
     {
         while(this.monster.getHealthPoints() > 0)
         {
-            Command movement = this.motion.movementMind();
-            if(this.monster.move(new MoveUpCommand(),this.maze))
-            {
-                System.out.println("up");
-            }
-            else if(this.monster.move(new MoveLeftCommand(),this.maze))
-            {
-                System.out.println("Left");
-            }
-
-            else if(this.monster.move(new MoveDownCommand(),this.maze))
-            {
-                System.out.println("down");
-            }
-            else if(this.monster.move(new MoveRightCommand(),this.maze)){
-                System.out.println("right");
-            }
-
-            System.out.println(this.monster.getPosition());
+            while(!this.monster.move(this.motion.movementMind(),this.maze))
+                this.motion.reThink();
 
             try {
                 sleep(4000);
             } catch (InterruptedException e) {
 
             }
-
         }
     }
 

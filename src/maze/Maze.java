@@ -12,15 +12,12 @@ import drawables.pickables.Key;
 import drawables.pickables.Shield;
 import drawables.pickables.Weapon;
 import drawables.roads.Road;
-import observer.MonsterObserver;
-import observer.MotionObserver;
-import observer.ObservedSubject;
-import observer.SubjectObserver;
+import observer.*;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Maze implements ObservedSubject, MotionObserver, MonsterObserver{
+public class Maze implements ObservedSubject, MotionObserver, MonsterObserver , ObservableMazeLayers{
 
     MazeComponents components = new MazeComponents();
 
@@ -28,6 +25,7 @@ public class Maze implements ObservedSubject, MotionObserver, MonsterObserver{
     private Hero hero;
     protected int[][] maze;
     private ArrayList<SubjectObserver> observers;
+    private ArrayList<MazeLayersObserver> mazeLayersObservers = new ArrayList<>();
     private Drawable[][] movingObjectsLayer;
     private Drawable[][] roadAndWallsLayer;
     private Drawable[][] pickablesLayer;
@@ -89,40 +87,48 @@ public class Maze implements ObservedSubject, MotionObserver, MonsterObserver{
         roadAndWallsLayer[position.y][position.x] = new Road();
         roadAndWallsLayer[position.y][position.x].setPosition(new Point(position.x,position.y));
         components.walls.remove(obstacle);
+        notifyWallsChange(position);
     }
     public void removeTrap(Trap trap){
         Point position = trap.getPosition();
         pickablesLayer[position.y][position.x] = null;
         components.traps.remove(trap);
+        notifyPickablesChange(position);
     }
     public void removeBomb(Bomb bomb){
         Point position = bomb.getPosition();
         pickablesLayer[position.y][position.x] = null;
         components.bombs.remove(bomb);
+        notifyPickablesChange(position);
     }
     public void removeGift(Gift gift){
         Point position = gift.getPosition();
         pickablesLayer[position.y][position.x] = null;
         components.gifts.remove(gift);
+        notifyPickablesChange(position);
     }
     public void removeWeapon(Weapon weapon){
         Point position = weapon.getPosition();
         pickablesLayer[position.y][position.x] = null;
         components.weapons.remove(weapon);
+        notifyPickablesChange(position);
     }
     public void removeShield(Shield shield){
         Point position = shield.getPosition();
         pickablesLayer[position.y][position.x] = null;
         components.shields.remove(shield);
+        notifyPickablesChange(position);
     }
     public void removeMonster(Monster monster){
         Point position = monster.getPosition();
         movingObjectsLayer[position.y][position.x] = null;
         components.monsters.remove(monster);
+        notifyMonsterChange(position,null);
     }
     public void removeKey(Key key){
         Point position = key.getPosition();
         pickablesLayer[position.y][position.x] = null;
+        notifyPickablesChange(position);
     }
 
     public Point getDimensions(){
@@ -146,9 +152,11 @@ public class Maze implements ObservedSubject, MotionObserver, MonsterObserver{
 
     @Override
     public void updateMovingObjects() {
+        Point tmp = new Point(heroPosition.x , heroPosition.y);
         movingObjectsLayer[heroPosition.y][heroPosition.x] = null;
         heroPosition = hero.getPosition();
         movingObjectsLayer[hero.getPosition().y][hero.getPosition().x] = hero;
+        notifyHeroChange(tmp,hero);
     }
 
     public ArrayList<Monster> getMonsters() {return this.components.monsters;}
@@ -157,5 +165,35 @@ public class Maze implements ObservedSubject, MotionObserver, MonsterObserver{
     public void updateMonsterObserver(Monster monster, Point position) {
         movingObjectsLayer[position.y][position.x] = null;
         movingObjectsLayer[monster.getPosition().y][monster.getPosition().x] = monster;
+        notifyMonsterChange(position,monster);
+    }
+
+    @Override
+    public void registerMazeLayersObserver(MazeLayersObserver observer) {
+        mazeLayersObservers.add(observer);
+    }
+
+    @Override
+    public void notifyHeroChange(Point oldPosition, Hero hero) {
+        for (int i = 0 ; i < mazeLayersObservers.size() ;i++)
+            mazeLayersObservers.get(i).updateHeroPosition(oldPosition,hero);
+    }
+
+    @Override
+    public void notifyMonsterChange(Point oldPosition, Monster monster) {
+        for (int i = 0 ; i < mazeLayersObservers.size() ;i++)
+            mazeLayersObservers.get(i).updateMonsterPosition(oldPosition,monster);
+    }
+
+    @Override
+    public void notifyPickablesChange(Point position) {
+        for (int i = 0 ; i < mazeLayersObservers.size() ;i++)
+            mazeLayersObservers.get(i).updatePickables(position);
+    }
+
+    @Override
+    public void notifyWallsChange(Point position) {
+        for (int i = 0 ; i < mazeLayersObservers.size() ;i++)
+            mazeLayersObservers.get(i).updateRoadsAndWalls(position);
     }
 }
