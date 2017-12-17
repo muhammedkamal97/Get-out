@@ -33,5 +33,6 @@ public interface Hero extends Handler,MovingObject, ObservedSubject, MotionObser
 	public boolean hasKey();
 	public void pickedKey();
     public Weapon getCurrentWeapon();
+    public int getTrials();
     public void drawOnReleased(GraphicsContext gc, Point pt, int widthCell, int heightCell);
 }

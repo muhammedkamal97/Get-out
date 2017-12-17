@@ -63,6 +63,11 @@ public abstract class StandardHero implements Hero {
 	}
 
 	@Override
+	public int getTrials() {
+		return trials;
+	}
+
+	@Override
 	public void trapHero(Trap trap) {
 		if (!this.holdTrapShield) {
 			int damage = trap.getDamage();

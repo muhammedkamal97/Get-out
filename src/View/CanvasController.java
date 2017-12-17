@@ -1,12 +1,8 @@
 package View;
 
-import View.Graphics.ImagesMaps.CharactersMap;
 import View.Graphics.ImagesMaps.MazeMap;
-import View.Graphics.Sprite.MySprite;
 import drawables.Drawable;
 import drawables.characters.Hero;
-import drawables.characters.heros.Flash;
-import drawables.characters.heros.Hulk;
 import drawables.characters.heros.states.DirectionDownState;
 import drawables.characters.heros.states.DirectionLeftState;
 import drawables.characters.heros.states.DirectionRightState;
@@ -15,26 +11,24 @@ import drawables.roads.Road;
 import gameCore.RunnerGameAdapter;
 import gameLoop.GameLoop;
 import javafx.animation.AnimationTimer;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import javax.swing.text.LabelView;
 import java.awt.*;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-public class CanvasController implements Initializable {
+public class CanvasController {
 
+    @FXML
+    private Button Menu;
     @FXML
     private Canvas dynamicCanvas;
     @FXML
@@ -44,7 +38,7 @@ public class CanvasController implements Initializable {
     @FXML
     private ImageView weaponImage;
     @FXML
-    private Label trias;
+    private Label trials;
     @FXML
     private ProgressBar healthBar;
     private double initialHealth;
@@ -63,22 +57,20 @@ public class CanvasController implements Initializable {
 
     //TODO
     //Weapons Icons //set in map
-    //no draw function // need to remove draw function
-    //bullet will be an ellipse moving
-    //send hero as a parameter
+    //bullet will be an ellipse moving must have draw function
     //modify stylesheet
 
     ////////////
     //TODO HERE
-    //health bar //done
     //shield bar
-    //score bar
-    //Weapon Icon //done
-    //Menu button return to main menu //done (only action missing)
+    //score bar elly heya coins
+    //armorpoints
+    //Menu button return to main menu //done
 
-    //important to instantiate graphics context
     @FXML
     protected void MenuButtonAction(ActionEvent event) {
+        Stage stage = (Stage) Menu.getScene().getWindow();
+        stage.close();
 //        animation();
     }
 
@@ -214,12 +206,13 @@ public class CanvasController implements Initializable {
         healthBar.setProgress(currentHealth / initialHealth);
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        ///Abdelrahman
+    private void setTrials() {
+        trials.setText(String.valueOf(hero.getTrials()));
+//        trials.setBackground(new Image("Bricks.jpg"));
+    }
 
-        hero = new Flash(); // sent from previous scene
-//        hero = new Hulk();
+    public void initLogin(Hero hero) {
+        this.hero = hero;
         RunnerGameAdapter game = new RunnerGameAdapter();
         game.InitializeMaze(1);
         gameLoop = game.getGameLoop();
@@ -239,17 +232,17 @@ public class CanvasController implements Initializable {
         gcM = mazeCanvas.getGraphicsContext2D();
         gcS = steadyCanvas.getGraphicsContext2D();
 
+        //to be mofified to no weapon
         weaponImage.setImage(MazeMap.getInstance().getBufferedImage("Trap"));
+
         healthBar.setProgress(1.0);
         healthBar.setStyle("-fx-accent: red;");
-//        Trials.setText(String.valueOf(hero.getTrials));
-
+        setTrials();
         Point pt = gameLoop.getMazeDimensions();
         shiftDown += ((dynamicCanvas.getHeight() - shiftDown) % (pt.getX())) / 2;
         cellHeight = (int) ((dynamicCanvas.getHeight() - shiftDown) / (pt.getX()));
         cellWidth = (int) ((dynamicCanvas.getWidth()) / (pt.getY()));
     }
-
 
     private void setMazeLayers() {
         setMovingObjectsLayer();
