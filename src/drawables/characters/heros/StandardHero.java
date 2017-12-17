@@ -20,10 +20,7 @@ import java.util.ArrayList;
 
 import javafx.scene.canvas.GraphicsContext;
 import maze.Maze;
-import observer.DeathObservable;
-import observer.DeathObserver;
-import observer.MotionObserver;
-import observer.SubjectObserver;
+import observer.*;
 
 public abstract class StandardHero implements Hero {
 
@@ -44,6 +41,7 @@ public abstract class StandardHero implements Hero {
 	private ArrayList<SubjectObserver> observers = new ArrayList<>();
 	private ArrayList<MotionObserver> motionObservers = new ArrayList<>();
 	private ArrayList<DeathObserver> deathObservers = new ArrayList<>();
+	private ArrayList<HeroStateObserver> stateObservers = new ArrayList<>();
 	private boolean hasKey = false;
 	private Maze maze;
 
@@ -348,5 +346,28 @@ public abstract class StandardHero implements Hero {
 	@Override
 	public void dropKey() {
 		hasKey = false;
+	}
+
+	@Override
+	public void registerStateObserver(HeroStateObserver observer) {
+		stateObservers.add(observer);
+	}
+
+	@Override
+	public void notifyChangeInHealth() {
+		for(int i = 0 ; i < stateObservers.size();i++)
+			stateObservers.get(i).updateChangeInHealth(((double) healthPoints)/getHeroStartingHealth());
+	}
+
+	@Override
+	public void notifyChangeInArmorPoints() {
+		for(int i = 0 ; i < stateObservers.size();i++)
+			stateObservers.get(i).updateChangeInArmorPoints(((double)armorPoints)/100);
+	}
+
+	@Override
+	public void notifyChangeInCoins() {
+		for(int i = 0 ; i < stateObservers.size();i++)
+			stateObservers.get(i).updateCoins(coins);
 	}
 }
