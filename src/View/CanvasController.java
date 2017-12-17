@@ -169,39 +169,39 @@ public class CanvasController implements Initializable {
 
     @FXML
     public void keyReleasedSwitch(KeyEvent event) {
-//        switch (event.getCode()) {
-//            case LEFT:
-//            case KP_LEFT:
-//                hero.drawOnReleased(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
-//                        (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
-//                break;
-//            case RIGHT:
-//            case KP_RIGHT:
-//                hero.drawOnReleased(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
-//                        (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
-//                break;
-//            case UP:
-//            case KP_UP:
-//                hero.drawOnReleased(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
-//                        (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
-//                break;
-//            case DOWN:
-//            case KP_DOWN:
-//                hero.drawOnReleased(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
-//                        (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
-//                break;
-//            case CONTROL:
-//                gameLoop.shoot();
-//                break;
-//            case N:
-//                gameLoop.holdNextWeapon();
-//                break;
-//            case P:
-//                gameLoop.holdPreviousWeapon();
-//                break;
-//            default:
-//                break;
-//        }
+        switch (event.getCode()) {
+            case LEFT:
+            case KP_LEFT:
+                hero.drawOnReleased(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
+                        (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
+                break;
+            case RIGHT:
+            case KP_RIGHT:
+                hero.drawOnReleased(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
+                        (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
+                break;
+            case UP:
+            case KP_UP:
+                hero.drawOnReleased(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
+                        (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
+                break;
+            case DOWN:
+            case KP_DOWN:
+                hero.drawOnReleased(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
+                        (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
+                break;
+            case CONTROL:
+                gameLoop.shoot();
+                break;
+            case N:
+                gameLoop.holdNextWeapon();
+                break;
+            case P:
+                gameLoop.holdPreviousWeapon();
+                break;
+            default:
+                break;
+        }
     }
 
     private void setWeaponIcon() {
@@ -212,33 +212,6 @@ public class CanvasController implements Initializable {
     private void setHealthBar() {
         double currentHealth = hero.getHealthPoints();
         healthBar.setProgress(currentHealth / initialHealth);
-    }
-
-    //put animation in a class and calls it's methods
-    private void animation() {
-        new AnimationTimer() {
-            long start = System.currentTimeMillis();
-            boolean flag = false;
-
-            public void handle(long currentNanoTime) {
-                Image left = new Image("Trap.png");
-                Image leftG = new Image("Gift.gif");
-                long current = System.currentTimeMillis();
-                if (!flag && (current - start >= 5000)) {
-                    start = System.currentTimeMillis();
-                    System.out.println("in");
-                    gcM.clearRect(0, 0, dynamicCanvas.getWidth(), dynamicCanvas.getHeight());
-                    gcM.drawImage(leftG, 64, 64, 50, 50);
-                    flag = true;
-                } else if (flag && (current - start >= 5000)) {
-                    start = System.currentTimeMillis();
-                    System.out.println("in1");
-                    gcM.clearRect(0, 0, dynamicCanvas.getWidth(), dynamicCanvas.getHeight());
-                    gcM.drawImage(left, 64, 64, 50, 50);
-                    flag = false;
-                }
-            }
-        }.start();
     }
 
     @Override
@@ -325,4 +298,32 @@ public class CanvasController implements Initializable {
             }
         }
     }
+
+    //put animation in a class and calls it's methods
+    private void animation() {
+        new AnimationTimer() {
+            long start = System.currentTimeMillis();
+            boolean flag = false;
+
+            public void handle(long currentNanoTime) {
+                Image left = new Image("Trap.png");
+                Image leftG = new Image("Gift.gif");
+                long current = System.currentTimeMillis();
+                if (!flag && (current - start >= 5000)) {
+                    start = System.currentTimeMillis();
+                    System.out.println("in");
+                    gcM.clearRect(0, 0, dynamicCanvas.getWidth(), dynamicCanvas.getHeight());
+                    gcM.drawImage(leftG, 64, 64, 50, 50);
+                    flag = true;
+                } else if (flag && (current - start >= 5000)) {
+                    start = System.currentTimeMillis();
+                    System.out.println("in1");
+                    gcM.clearRect(0, 0, dynamicCanvas.getWidth(), dynamicCanvas.getHeight());
+                    gcM.drawImage(left, 64, 64, 50, 50);
+                    flag = false;
+                }
+            }
+        }.start();
+    }
+
 }
