@@ -36,6 +36,8 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
     @FXML
     private Canvas dynamicCanvas;
     @FXML
+    private Canvas heroCanvas;
+    @FXML
     private Canvas steadyCanvas;
     @FXML
     private Canvas mazeCanvas;
@@ -49,6 +51,8 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
     private ProgressBar healthBar;
     private double initialHealth;
     private GraphicsContext gcD;
+    private GraphicsContext gcH;
+
     private GraphicsContext gcAnimation;
     private GraphicsContext gcM;
     private GraphicsContext gcS;   // two global parameters (dimensions cell)
@@ -100,7 +104,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
                 hero.setDirectionState(new DirectionLeftState()); //testing
                 currentPosition = hero.getPosition();
                 System.out.println(currentPosition);
-                hero.drawOnCanvas(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
+                hero.drawOnCanvas(gcH, new Point((int) (currentPosition.getX() * cellWidth + x),
                                 (int) (currentPosition.getY() * cellHeight + y + shiftDown)),
                         cellWidth, cellHeight);
                 break;
@@ -120,7 +124,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
                 hero.setDirectionState(new DirectionRightState()); //testing
                 currentPosition = hero.getPosition();
                 System.out.println(currentPosition);
-                hero.drawOnCanvas(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
+                hero.drawOnCanvas(gcH, new Point((int) (currentPosition.getX() * cellWidth + x),
                                 (int) (currentPosition.getY() * cellHeight + y + shiftDown)),
                         cellWidth, cellHeight);
                 break;
@@ -138,7 +142,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
                 gameLoop.lookUp();
                 hero.setDirectionState(new DirectionUpState()); //testing
                 currentPosition = hero.getPosition();
-                hero.drawOnCanvas(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
+                hero.drawOnCanvas(gcH, new Point((int) (currentPosition.getX() * cellWidth + x),
                                 (int) (currentPosition.getY() * cellHeight + y + shiftDown))
                         , cellWidth, cellHeight);
                 break;
@@ -156,7 +160,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
                 gameLoop.lookDown();
                 hero.setDirectionState(new DirectionDownState()); //testing
                 currentPosition = hero.getPosition();
-                hero.drawOnCanvas(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
+                hero.drawOnCanvas(gcH, new Point((int) (currentPosition.getX() * cellWidth + x),
                         (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
                 break;
             default:
@@ -170,22 +174,22 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         switch (event.getCode()) {
             case LEFT:
             case KP_LEFT:
-                hero.drawOnReleased(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
+                hero.drawOnReleased(gcH, new Point((int) (currentPosition.getX() * cellWidth + x),
                         (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
                 break;
             case RIGHT:
             case KP_RIGHT:
-                hero.drawOnReleased(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
+                hero.drawOnReleased(gcH, new Point((int) (currentPosition.getX() * cellWidth + x),
                         (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
                 break;
             case UP:
             case KP_UP:
-                hero.drawOnReleased(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
+                hero.drawOnReleased(gcH, new Point((int) (currentPosition.getX() * cellWidth + x),
                         (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
                 break;
             case DOWN:
             case KP_DOWN:
-                hero.drawOnReleased(gcD, new Point((int) (currentPosition.getX() * cellWidth + x),
+                hero.drawOnReleased(gcH, new Point((int) (currentPosition.getX() * cellWidth + x),
                         (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
                 break;
             case CONTROL:
@@ -215,9 +219,10 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
     private void updateMonster(Point oldPos, Monster monster) {
         //need to perform atransition
         gcD.clearRect(oldPos.getX()*cellWidth,oldPos.getY()*cellHeight + shiftDown,cellWidth,cellHeight);
-        monster.drawOnCanvas(gcD, new Point((int) (monster.getPosition().getX() * cellWidth),
-                        (int) (monster.getPosition().getY() * cellHeight + shiftDown)),
-                cellWidth, cellHeight);
+        if(monster != null)
+            monster.drawOnCanvas(gcD, new Point((int) (monster.getPosition().getX() * cellWidth),
+                            (int) (monster.getPosition().getY() * cellHeight + shiftDown)),
+                 cellWidth, cellHeight);
         //            heroOrMonster.getDownSprite().reset();
 //            int i = (int)heroOrMonster.getPosition().getY()-heightCell;
 //            while (i < heroOrMonster.getPosition().getY()) {
@@ -240,14 +245,13 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         gameLoop.setHero(hero);
         gameLoop.registerAsMazeLayerObserver(this);
         gameLoop.registerAsBombObserver(this);
-        gameLoop.initiateLoop();
-
-
         setGlobalVariables();
         setMazeLayers();
         initialHealth = hero.getHealthPoints();
         x = 0;
         y = 0;
+        gameLoop.initiateLoop();
+
     }
 
 
@@ -257,6 +261,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         gcAnimation = animCanvas.getGraphicsContext2D();
         gcM = mazeCanvas.getGraphicsContext2D();
         gcS = steadyCanvas.getGraphicsContext2D();
+        gcH = heroCanvas.getGraphicsContext2D();
 
         //to be mofified to no weapon
         weaponImage.setImage(MazeMap.getInstance().getBufferedImage("Trap"));
@@ -281,10 +286,18 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[i].length; j++) {
                 if (maze[j][i] != null) {
-                    maze[j][i].drawOnCanvas(gcD, new Point(
-                                    (int) (maze[j][i].getPosition().getX() * cellWidth),
-                                    (int) (maze[j][i].getPosition().getY() * cellHeight + shiftDown)),
-                            cellWidth, cellHeight);
+                    if (maze[j][i] instanceof Hero ){
+                        maze[j][i].drawOnCanvas(gcH, new Point(
+                                        (int) (maze[j][i].getPosition().getX() * cellWidth),
+                                        (int) (maze[j][i].getPosition().getY() * cellHeight + shiftDown)),
+                                cellWidth, cellHeight);
+                    } else {
+                        maze[j][i].drawOnCanvas(gcD, new Point(
+                                        (int) (maze[j][i].getPosition().getX() * cellWidth),
+                                        (int) (maze[j][i].getPosition().getY() * cellHeight + shiftDown)),
+                                cellWidth, cellHeight);
+                    }
+
                 }
             }
         }

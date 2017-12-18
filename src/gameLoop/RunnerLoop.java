@@ -13,6 +13,8 @@ import drawables.characters.heros.states.DirectionLeftState;
 import drawables.characters.heros.states.DirectionRightState;
 import drawables.characters.heros.states.DirectionUpState;
 import drawables.obstacles.Bomb;
+import drawables.pickables.Weapon;
+import drawables.pickables.weapons.NormalGun;
 import gameLoop.monsterAI.MonsterThread;
 import gameLoop.monsterAI.RandomMotion;
 import maze.Maze;
@@ -40,11 +42,15 @@ public class RunnerLoop implements GameLoop{
         this.hero = hero;
         this.maze.setMazeHero(hero);
         hero.setMaze(maze);
+        Weapon w = new NormalGun();
+        w.setMaze(maze);
+        hero.addWeapon(w);
         hero.registerDeathObserver(this);
     }
 
     @Override
     public void shoot() {
+
         hero.shoot();
     }
 
@@ -95,16 +101,17 @@ public class RunnerLoop implements GameLoop{
 
         for(Monster monster : monsters)
         {
-            MonsterThread thread = new MonsterThread();
-            RandomMotion motion = new RandomMotion();
+            monster.registerMonsterObserver(maze);
 
-            motion.setMonster(monster);
-            thread.setMonster(monster);
-            thread.setMaze(this.maze);
-            thread.setMotion(motion);
-            thread.setDaemon(true);
-            thread.start();
         }
+        MonsterThread thread = new MonsterThread();
+        RandomMotion motion = new RandomMotion();
+
+        thread.setMonster(this.maze.getMonsters());
+        thread.setMaze(this.maze);
+        thread.setMotion(motion);
+        thread.setDaemon(true);
+        thread.start();
 
     }
 
