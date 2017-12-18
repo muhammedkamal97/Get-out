@@ -20,11 +20,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import observer.BombExplosionObserver;
+import observer.EndOfGameObserver;
 import observer.HeroStateObserver;
 import observer.MazeLayersObserver;
 import java.awt.*;
 
-public class CanvasController implements MazeLayersObserver, BombExplosionObserver, HeroStateObserver {
+public class CanvasController implements MazeLayersObserver, BombExplosionObserver, HeroStateObserver, EndOfGameObserver {
 
     @FXML
     private Button Menu;
@@ -224,6 +225,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         game.InitializeMaze(lvl);
         gameLoop = game.getGameLoop();
         gameLoop.setHero(this.hero);
+        gameLoop.registerEndGameObserver(this);
         gameLoop.registerAsMazeLayerObserver(this);
         gameLoop.registerAsBombObserver(this);
         setGlobalVariables();
@@ -232,14 +234,14 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         gameLoop.initiateLoop();
     }
 
-    private void GameOver() {
+    private void gameOver() {
         //TODO play gameOver animation
         System.out.println("Game Over!!!!!!!");
         startGame(this.classHero, this.level);
 //       TODO in start scene story mode w select level (get level number)
      }
 
-     private void Winner () {
+     private void winner () {
          //TODO play winner animation
          System.out.println("You Win!!!!!!!");
          this.level++;
@@ -389,5 +391,15 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
     private void setTrials() {
         trialsLabl.setText(String.valueOf(hero.getTrials())); //TODO here initial trials in controller
 //        trials.setBackground(new Image("Bricks.jpg"));
+    }
+
+    @Override
+    public void updateOnWin() {
+        winner();
+    }
+
+    @Override
+    public void updateOnLose() {
+        gameOver();
     }
 }
