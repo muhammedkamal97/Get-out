@@ -109,7 +109,8 @@ public abstract class StandardMonster implements Monster {
     @Override
     public void setPosition(Point position) {
         this.position = position;
-        notifyMonsterObservers();
+        if(pastPosition != null)
+            notifyMonsterObservers();
     }
 
     @Override

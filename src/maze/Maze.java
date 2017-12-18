@@ -164,6 +164,7 @@ public class Maze implements ObservedSubject, MotionObserver, MonsterObserver , 
     public void updateMonsterObserver(Monster monster, Point position) {
         movingObjectsLayer[position.y][position.x] = null;
         movingObjectsLayer[monster.getPosition().y][monster.getPosition().x] = monster;
+        if(position != null)
         notifyMonsterChange(position,monster);
     }
 
@@ -191,6 +192,6 @@ public class Maze implements ObservedSubject, MotionObserver, MonsterObserver , 
             mazeLayersObservers.get(i).updateRoadsAndWalls(position);
     }
     public ArrayList<Bomb> getBombs(){
-        return this.components.bombs;
+        return components.bombs;
     }
 }
