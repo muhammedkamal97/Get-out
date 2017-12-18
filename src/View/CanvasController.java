@@ -9,6 +9,7 @@ import drawables.characters.heros.states.DirectionLeftState;
 import drawables.characters.heros.states.DirectionRightState;
 import drawables.characters.heros.states.DirectionUpState;
 import View.Graphics.ExplosionAnimation;
+import drawables.pickables.Weapon;
 import drawables.roads.Road;
 import gameCore.RunnerGameAdapter;
 import gameLoop.GameLoop;
@@ -25,11 +26,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import observer.BombExplosionObserver;
+import observer.HeroStateObserver;
 import observer.MazeLayersObserver;
 
 import java.awt.*;
 
-public class CanvasController implements MazeLayersObserver, BombExplosionObserver {
+public class CanvasController implements MazeLayersObserver, BombExplosionObserver, HeroStateObserver {
 
     @FXML
     private Button Menu;
@@ -46,14 +48,19 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
     @FXML
     private Label trials;
     @FXML
+    private Label coins;
+    @FXML
+    private Label bullets;
+    @FXML
     private ProgressBar healthBar;
-    private double initialHealth;
+    @FXML
+    private ProgressBar armorBar;
     private GraphicsContext gcD;
     private GraphicsContext gcAnimation;
     private GraphicsContext gcM;
-    private GraphicsContext gcS;   // two global parameters (dimensions cell)
-    private int shiftDown = 30; //remove bar dimension
-    private int cellWidth; // get it from system.sceendimensions
+    private GraphicsContext gcS;
+    private int shiftDown = 30;
+    private int cellWidth;
     private int cellHeight;
     private GameLoop gameLoop;
     private Hero hero;
@@ -62,16 +69,18 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
     //dummy values to update hero's postion don't modify them!!!!
     private int x, y;
 
-    //TODO
-    //Weapons Icons //set in map
-    //bullet will be an ellipse moving must have draw function
-    //modify stylesheet
+    //TODO  Weapons Icons //set in map
 
-    ////////////
+    //TODO bullet will be an ellipse moving must have draw function
+    //TODO modify stylesheet
+    //TODO camera
+    //TODO collision
+    //TODO bullets observer
+
     //TODO HERE
-    //shield bar //removed or added
-    //score bar elly heya coins
-    //armorpoints
+    //TODO HERE shield bar //removed or added
+    //TODO HERE score bar elly heya coins
+    //TODO HERE armorpoints
 
     @FXML
     protected void MenuButtonAction(ActionEvent event) {
@@ -202,36 +211,6 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         }
     }
 
-    private void setWeaponIcon() {
-        String wep = hero.getCurrentWeapon().getClass().getSimpleName();
-        weaponImage.setImage(MazeMap.getInstance().getBufferedImage(wep));
-    }
-
-    private void setHealthBar() {
-        double currentHealth = hero.getHealthPoints();
-        healthBar.setProgress(currentHealth / initialHealth);
-    }
-
-    private void updateMonster(Point oldPos, Monster monster) {
-        //need to perform atransition
-        gcD.clearRect(oldPos.getX()*cellWidth,oldPos.getY()*cellHeight + shiftDown,cellWidth,cellHeight);
-        monster.drawOnCanvas(gcD, new Point((int) (monster.getPosition().getX() * cellWidth),
-                        (int) (monster.getPosition().getY() * cellHeight + shiftDown)),
-                cellWidth, cellHeight);
-        //            heroOrMonster.getDownSprite().reset();
-//            int i = (int)heroOrMonster.getPosition().getY()-heightCell;
-//            while (i < heroOrMonster.getPosition().getY()) {
-//                gc.clearRect(heroOrMonster.getPosition().getX(), i, widthCell, heightCell);
-//                i++;
-//                heroOrMonster.getDownSprite().drawNextSprite(gc, widthCell, heightCell, (int)heroOrMonster.getPosition().getX(), i);
-//            }
-    }
-
-    private void setTrials() {
-        trials.setText(String.valueOf(hero.getTrials()));
-//        trials.setBackground(new Image("Bricks.jpg"));
-    }
-
     public void initLogin(Hero hero) {
         this.hero = hero;
         RunnerGameAdapter game = new RunnerGameAdapter();
@@ -242,12 +221,9 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         gameLoop.registerAsBombObserver(this);
         gameLoop.initiateLoop();
 
-
         setGlobalVariables();
         setMazeLayers();
-        initialHealth = hero.getHealthPoints();
-        x = 0;
-        y = 0;
+        x = y = 0;
     }
 
 
@@ -258,12 +234,16 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         gcM = mazeCanvas.getGraphicsContext2D();
         gcS = steadyCanvas.getGraphicsContext2D();
 
-        //to be mofified to no weapon
+        //to be mofified to no weapon (probably remove it)
         weaponImage.setImage(MazeMap.getInstance().getBufferedImage("Trap"));
 
         healthBar.setProgress(1.0);
         healthBar.setStyle("-fx-accent: red;");
+        armorBar.setProgress(0.0);
+        armorBar.setStyle("-fx-accent: green;");
         setTrials();
+        coins.setText("0");
+        bullets.setText("0");
         Point pt = gameLoop.getMazeDimensions();
         shiftDown += ((dynamicCanvas.getHeight() - shiftDown) % (pt.getX())) / 2;
         cellHeight = (int) ((dynamicCanvas.getHeight() - shiftDown) / (pt.getX()));
@@ -319,23 +299,67 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
     }
 
     @Override
-    public void updateMonsterPosition(Point oldPosition, Monster monster) {
-        updateMonster(oldPosition,monster);
+    public void updateMonsterPosition(Point oldPos, Monster monster) {
+        //need to perform atransition
+        gcD.clearRect(oldPos.getX() * cellWidth, oldPos.getY() * cellHeight + shiftDown, cellWidth, cellHeight);
+        monster.drawOnCanvas(gcD, new Point((int) (monster.getPosition().getX() * cellWidth),
+                        (int) (monster.getPosition().getY() * cellHeight + shiftDown)),
+                cellWidth, cellHeight);
+        //            heroOrMonster.getDownSprite().reset();
+//            int i = (int)heroOrMonster.getPosition().getY()-heightCell;
+//            while (i < heroOrMonster.getPosition().getY()) {
+//                gc.clearRect(heroOrMonster.getPosition().getX(), i, widthCell, heightCell);
+//                i++;
+//                heroOrMonster.getDownSprite().drawNextSprite(gc, widthCell, heightCell, (int)heroOrMonster.getPosition().getX(), i);
+//            }
     }
 
     @Override
     public void updateRoadsAndWalls(Point position) {
-        gcS.clearRect(position.getX()*cellWidth,position.getY()*cellHeight+ shiftDown,cellWidth,cellHeight);
+        gcS.clearRect(position.getX() * cellWidth, position.getY() * cellHeight + shiftDown, cellWidth, cellHeight);
     }
 
     @Override
     public void updatePickables(Point position) {
-        gcM.clearRect(position.getX()*cellWidth,position.getY()*cellHeight+ shiftDown,cellWidth,cellHeight);
+        gcM.clearRect(position.getX() * cellWidth, position.getY() * cellHeight + shiftDown, cellWidth, cellHeight);
     }
 
     @Override
     public void drawExplosionAnimation(Point position, int range) {
         ExplosionAnimation expl = new ExplosionAnimation(position);
         expl.startAnimation(gcAnimation, cellWidth, cellHeight, range);
+    }
+
+    @Override
+    public void updateChangeInHealth(double healthPercentageLeft) {
+        healthBar.setProgress(healthPercentageLeft);
+    }
+
+    @Override
+    public void updateChangeInArmorPoints(double ArmorPercentageLeft) { //TODO
+        this.armorBar.setProgress(ArmorPercentageLeft);
+    }
+
+    @Override
+    public void updateCoins(int Coins) { //TODO
+        //set default background image
+        this.coins.setText(""+Coins);
+    }
+
+    @Override
+    public void updateNumberOfBullets(int Bullets) { //TODO
+        System.out.println("got bullets");
+        this.bullets.setText(""+Bullets);
+    }
+
+    @Override
+    public void updateCurrentWeapon(Weapon weapon) {
+        String wep = weapon.getClass().getSimpleName();
+        weaponImage.setImage(MazeMap.getInstance().getBufferedImage(wep));
+    }
+    //TODO setTrials
+    private void setTrials() {
+        trials.setText(String.valueOf(hero.getTrials()));
+//        trials.setBackground(new Image("Bricks.jpg"));
     }
 }
