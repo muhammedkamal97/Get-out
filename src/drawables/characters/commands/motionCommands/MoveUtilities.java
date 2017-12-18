@@ -26,7 +26,7 @@ public class MoveUtilities {
                     return true;
                 }  else if (objectAtNewPosition instanceof Gate) {
                     if (hero.hasKey()) {
-                        throw new RuntimeException("you win");
+                        hero.notifyWinObservers();
                     } else {
                         System.out.println("u need a key");
                     }

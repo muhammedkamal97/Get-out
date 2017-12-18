@@ -7,7 +7,7 @@ import observer.*;
 
 import java.awt.*;
 
-public interface GameLoop extends SubjectObserver, DeathObserver , ObservableGame{
+public interface GameLoop extends SubjectObserver, DeathObserver,HeroWinObserver , ObservableGame{
 
     public void setLoopMaze(Maze maze);
     public void initiateLoop();

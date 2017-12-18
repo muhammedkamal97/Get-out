@@ -10,7 +10,6 @@ import drawables.characters.Monster;
 import drawables.characters.commands.Command;
 import drawables.characters.heros.states.DirectionState;
 import drawables.obstacles.Trap;
-import drawables.obstacles.Wall;
 import drawables.pickables.Pickable;
 import drawables.pickables.Weapon;
 import drawables.pickables.weapons.bullets.Bullet;
@@ -46,6 +45,7 @@ public abstract class StandardHero implements Hero {
 	private ArrayList<SubjectObserver> observers = new ArrayList<>();
 	private ArrayList<MotionObserver> motionObservers = new ArrayList<>();
 	private ArrayList<DeathObserver> deathObservers = new ArrayList<>();
+	private ArrayList<HeroWinObserver> winObservers = new ArrayList<>();
 	private ArrayList<HeroStateObserver> stateObservers = new ArrayList<>();
 	private boolean hasKey = false;
 	private Maze maze;
@@ -147,6 +147,7 @@ public abstract class StandardHero implements Hero {
 			}
 		}
 	}
+
 
 	@Override
 	public void addWeapon(Weapon weapon) {
@@ -408,13 +409,21 @@ public abstract class StandardHero implements Hero {
 	}
 
 	@Override
-	public boolean intersects (Drawable obj,Point point, int cellWidth, int cellHeight) {
-		if (!(obj instanceof Wall)) {
-			return false;
-		}
+	public void notifyWinObservers() {
+		for (int i = 0 ; i < winObservers.size() ; i++)
+			winObservers.get(i).updateHeroAsWinner();
+	}
+
+	@Override
+	public void registerWinObserver(HeroWinObserver observer) {
+		winObservers.add(observer);
+	}
+
+	@Override
+	public boolean intersects (Drawable obj, int cellWidth, int cellHeight) {
 		Point pt = obj.getPosition();
-		Shape rect1 = new Rectangle(pt.getX(), pt.getY(), cellWidth, cellHeight);
-		Shape rect2 = new Rectangle(point.getX(), point.getY(), cellWidth,cellHeight);
+		Shape rect1 = new Rectangle(pt.getX(), pt.getY(), cellWidth,cellHeight);
+		Shape rect2 = new Rectangle(this.getPosition().getX(), this.getPosition().getY(), cellWidth,cellHeight);
 		return rect1.intersects(rect2.getBoundsInLocal());
 	}
 
