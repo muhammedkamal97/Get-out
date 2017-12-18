@@ -23,6 +23,7 @@ import observer.BombExplosionObserver;
 import observer.EndOfGameObserver;
 import observer.HeroStateObserver;
 import observer.MazeLayersObserver;
+
 import java.awt.*;
 
 public class CanvasController implements MazeLayersObserver, BombExplosionObserver, HeroStateObserver, EndOfGameObserver {
@@ -96,17 +97,17 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         switch (event.getCode()) {
             case LEFT:
             case KP_LEFT:
-                   x -= 10;
+                x -= 10;
 //                   if (hero.intersects(wallMaze[hero.getPosition().getY()][hero.getPosition().getX() - 1], new Point((int) (currentPosition.getX() * cellWidth + x),
 //                           (int) (currentPosition.getY() * cellHeight + y + shiftDown)))
-                    if (x < (-cellWidth / 6)) {
-                        gameLoop.moveHeroLeft();
-                        if (!hero.getPosition().equals(currentPosition)) {
-                            x += cellWidth;
-                        } else {
-                            x += 10;
-                        }
+                if (x < (-cellWidth / 6)) {
+                    gameLoop.moveHeroLeft();
+                    if (!hero.getPosition().equals(currentPosition)) {
+                        x += cellWidth;
+                    } else {
+                        x += 10;
                     }
+                }
 
                 gameLoop.lookLeft();
                 currentPosition = hero.getPosition();
@@ -234,21 +235,6 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         gameLoop.initiateLoop();
     }
 
-    private void gameOver() {
-        //TODO play gameOver animation
-        System.out.println("Game Over!!!!!!!");
-        startGame(this.classHero, this.level);
-//       TODO in start scene story mode w select level (get level number)
-     }
-
-     private void winner () {
-         //TODO play winner animation
-         System.out.println("You Win!!!!!!!");
-         this.level++;
-         startGame(this.classHero, this.level);
-     }
-
-
     private void setGlobalVariables() {
 
         gcD = dynamicCanvas.getGraphicsContext2D();
@@ -373,13 +359,13 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
     @Override
     public void updateCoins(int Coins) { //TODO
         //set default background image
-        this.coins.setText(""+Coins);   //TODO Observer not working guess(heroState)
+        this.coins.setText("" + Coins);   //TODO Observer not working guess(heroState)
     }
 
     @Override
     public void updateNumberOfBullets(int Bullets) { //TODO
         System.out.println("got bullets"); //TODO Observer not working guess(heroState)
-        this.bullets.setText(""+Bullets);
+        this.bullets.setText("" + Bullets);
     }
 
     @Override
@@ -387,6 +373,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         String wep = weapon.getClass().getSimpleName();
         weaponImage.setImage(MazeMap.getInstance().getBufferedImage(wep));
     }
+
     //TODO setTrials useless
     private void setTrials() {
         trialsLabl.setText(String.valueOf(hero.getTrials())); //TODO here initial trials in controller
@@ -395,11 +382,17 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
 
     @Override
     public void updateOnWin() {
-        winner();
+        //TODO play winner animation
+        System.out.println("You Win!!!!!!!");
+        this.level++;
+        startGame(this.classHero, this.level);
     }
 
     @Override
     public void updateOnLose() {
-        gameOver();
+        //TODO play gameOver animation
+        System.out.println("Game Over!!!!!!!");
+        startGame(this.classHero, this.level);
+//       TODO in start scene story mode w select level (get level number)
     }
 }
