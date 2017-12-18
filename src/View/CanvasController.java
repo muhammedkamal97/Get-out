@@ -98,17 +98,18 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
             case LEFT:
             case KP_LEFT:
                 x -= 10;
-//                   if (hero.intersects(wallMaze[hero.getPosition().getY()][hero.getPosition().getX() - 1], new Point((int) (currentPosition.getX() * cellWidth + x),
-//                           (int) (currentPosition.getY() * cellHeight + y + shiftDown)))
-                if (x < (-cellWidth / 6)) {
-                    gameLoop.moveHeroLeft();
-                    if (!hero.getPosition().equals(currentPosition)) {
-                        x += cellWidth;
-                    } else {
-                        x += 10;
+                if (!checkForWallsLeft()) {
+                    if (x < (-cellWidth / 6)) {
+                        gameLoop.moveHeroLeft();
+                        if (!hero.getPosition().equals(currentPosition)) {
+                            x += cellWidth;
+                        } else {
+                            x += 10;
+                        }
                     }
+                } else {
+                    x += 10;
                 }
-
                 gameLoop.lookLeft();
                 currentPosition = hero.getPosition();
                 System.out.println(currentPosition);
@@ -171,6 +172,24 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
                 break;
         }
 
+    }
+
+    private boolean checkForWallsLeft() {
+        if (!hero.intersects(wallMaze[hero.getPosition().y][hero.getPosition().x - 1],
+                new Point((int) (currentPosition.getX() * cellWidth + x),
+                        (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight)) {
+            if (!hero.intersects(wallMaze[hero.getPosition().y - 1][hero.getPosition().x - 1],
+                    new Point((int) (currentPosition.getX() * cellWidth + x),
+                            (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight)) {
+                if (!hero.intersects(wallMaze[hero.getPosition().y + 1][hero.getPosition().x - 1],
+                        new Point((int) (currentPosition.getX() * cellWidth + x),
+                                (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight)) {
+                    return true;
+                }
+            }
+
+        }
+        return false;
     }
 
     @FXML
@@ -250,7 +269,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         healthBar.setStyle("-fx-accent: red;");
         armorBar.setProgress(0.0);
         armorBar.setStyle("-fx-accent: green;");
-        setTrials();
+        setTrials(); //TODO get trials
         coins.setText("0");
         bullets.setText("0");
         Point pt = gameLoop.getMazeDimensions();
@@ -374,7 +393,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         weaponImage.setImage(MazeMap.getInstance().getBufferedImage(wep));
     }
 
-    //TODO setTrials useless
+    //TODO setTrials
     private void setTrials() {
         trialsLabl.setText(String.valueOf(hero.getTrials())); //TODO here initial trials in controller
 //        trials.setBackground(new Image("Bricks.jpg"));
