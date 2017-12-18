@@ -13,7 +13,8 @@ public class MenuController {
     public void startCanvas (ActionEvent event) throws Exception {
 //        Hero hero = new Flash(); // sent from previous scene
         Hero hero = new Hulk();
-        new Canvas().startView(hero);
+        Class hulk= Hulk.class;
+        new Canvas().startView(Hulk.class);
     }
 
 }

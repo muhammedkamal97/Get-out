@@ -48,9 +48,6 @@ public class MySprite {
             }
         }
     }
-//    public void reset () {
-//        count = 0;
-//    }
 
     public void drawReleased(GraphicsContext gc, int widthCell, int heightCell, int posX, int posY) {
         count = 1;

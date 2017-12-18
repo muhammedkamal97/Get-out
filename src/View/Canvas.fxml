@@ -34,6 +34,8 @@
             GridPane.halignment="CENTER"/>
     <Canvas fx:id="dynamicCanvas" height="${screen.visualBounds.height}" width="${screen.visualBounds.height}"
             GridPane.halignment="CENTER"/>
+    <Canvas fx:id="heroCanvas" height="${screen.visualBounds.height}" width="${screen.visualBounds.height}"
+            GridPane.halignment="CENTER"/>
     <Canvas fx:id="animCanvas" height="${screen.visualBounds.height}" width="${screen.visualBounds.height}"
             GridPane.halignment="CENTER"/>
     <!--<ToolBar prefHeight="30.0" prefWidth="900" GridPane.valignment="TOP">-->
@@ -49,7 +51,7 @@
         <HBox fx:id="HboxRight" alignment="CENTER" spacing="10">
             <ProgressBar fx:id="armorBar" prefWidth="150.0" progress="0.0"/>
             <ProgressBar fx:id="healthBar" prefWidth="150.0" progress="0.0"/>
-            <Label fx:id="trials"/>
+            <Label fx:id="trialsLabl"/>
             <Label fx:id="coins"/>
             <Label fx:id="bullets"/>
             <ImageView fx:id="weaponImage" fitHeight="30" fitWidth="30"></ImageView>

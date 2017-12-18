@@ -1,5 +1,6 @@
 package drawables.characters;
 
+import drawables.Drawable;
 import drawables.obstacles.Trap;
 import drawables.pickables.Weapon;
 import javafx.scene.canvas.GraphicsContext;
@@ -33,4 +34,5 @@ public interface Hero extends Handler,MovingObject, ObservedSubject, MotionObser
     public Weapon getCurrentWeapon();
     public int getTrials();
     public void drawOnReleased(GraphicsContext gc, Point pt, int widthCell, int heightCell);
+    public boolean intersects (Drawable obj, int cellWidth, int cellHeight);
 }

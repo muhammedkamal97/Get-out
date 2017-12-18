@@ -9,31 +9,34 @@ import java.awt.image.BufferedImage;
 
 public class NormalHero implements ImageSprite {
 
-    private final Image imgLeft = new Image("run.png");
-    private final Image imgRight = new Image("run.png");
-    private final Image imgDown = new Image("run.png");
-    private final Image imgUp = new Image("run.png");
-    private final int framesInRow = 4;
-    private final int framesInColumn = 4;
+    private final Image imgLeft = new Image("hero3.png");
+    private final int framesInRow = 1;
+    private final int framesInColumn = 3;
 
     @Override
     public final BufferedImage getImageLeft() {
-        return SwingFXUtils.fromFXImage(imgLeft, null);
+        BufferedImage buff = SwingFXUtils.fromFXImage(imgLeft, null);
+        return buff.getSubimage(0,(int)(1*(imgLeft.getHeight()/4)),(int)imgLeft.getWidth(), (int)(imgLeft.getHeight()/4));
     }
 
     @Override
     public final BufferedImage getImageRight() {
-        return SwingFXUtils.fromFXImage(imgRight, null);
+        BufferedImage buff = SwingFXUtils.fromFXImage(imgLeft, null);
+        return buff.getSubimage(0,(int)(2*(imgLeft.getHeight()/4)),(int)imgLeft.getWidth(), (int)(imgLeft.getHeight()/4));
     }
 
     @Override
     public final BufferedImage getImageDown() {
-        return SwingFXUtils.fromFXImage(imgDown, null);
+        System.out.println(imgLeft.getWidth());
+
+        BufferedImage buff = SwingFXUtils.fromFXImage(imgLeft, null);
+        return buff.getSubimage(0,(int)(0*(imgLeft.getHeight()/4)),(int)imgLeft.getWidth(), (int)(imgLeft.getHeight()/4));
     }
 
     @Override
     public final BufferedImage getImageUp() {
-        return SwingFXUtils.fromFXImage(imgUp, null);
+        BufferedImage buff = SwingFXUtils.fromFXImage(imgLeft, null);
+        return buff.getSubimage(0,(int)(3*(imgLeft.getHeight()/4)),(int)imgLeft.getWidth(), (int)(imgLeft.getHeight()/4));
     }
 
     @Override

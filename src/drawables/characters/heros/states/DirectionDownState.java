@@ -15,13 +15,6 @@ public class DirectionDownState implements DirectionState {
 
     @Override
     public void Draw(GraphicsContext gc, Point pt, int widthCell, int heightCell, MovingObject heroOrMonster) {
-//            heroOrMonster.getDownSprite().reset();
-//            int i = (int)heroOrMonster.getPosition().getY()-heightCell;
-//            while (i < heroOrMonster.getPosition().getY()) {
-//                gc.clearRect(heroOrMonster.getPosition().getX(), i, widthCell, heightCell);
-//                i++;
-//                heroOrMonster.getDownSprite().drawNextSprite(gc, widthCell, heightCell, (int)heroOrMonster.getPosition().getX(), i);
-//            }
         gc.clearRect(pt.getX(),
                 pt.getY() - 20,
                 widthCell, heightCell);

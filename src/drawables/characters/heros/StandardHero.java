@@ -3,6 +3,7 @@ package drawables.characters.heros;
 import View.Graphics.ImagesMaps.CharactersMap;
 import View.Graphics.Sprite.ImageSprite;
 import View.Graphics.Sprite.MySprite;
+import drawables.Drawable;
 import drawables.characters.Hero;
 
 import drawables.characters.Monster;
@@ -14,11 +15,14 @@ import drawables.pickables.Weapon;
 import drawables.pickables.weapons.bullets.Bullet;
 
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import maze.Maze;
 import observer.*;
 
@@ -401,4 +405,13 @@ public abstract class StandardHero implements Hero {
 		for(int i = 0 ; i < stateObservers.size();i++)
 			stateObservers.get(i).updateCurrentWeapon(currentWeapon);
 	}
+
+	@Override
+	public boolean intersects (Drawable obj, int cellWidth, int cellHeight) {
+		Point pt = obj.getPosition();
+		Shape rect1 = new Rectangle(pt.getX(), pt.getY(), cellWidth,cellHeight);
+		Shape rect2 = new Rectangle(this.getPosition().getX(), this.getPosition().getY(), cellWidth,cellHeight);
+		return rect1.intersects(rect2.getBoundsInLocal());
+	}
+
 }

@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 public class Canvas {
 
-    public void startView(Hero hero) throws Exception {
+    public void startView(Class<? extends Hero> hero) throws Exception {
         Stage stage = new Stage();
         //        Parent root = FXMLLoader.load(getClass().getResource("Canvas.fxml"));
 

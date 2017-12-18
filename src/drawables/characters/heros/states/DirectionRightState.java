@@ -16,13 +16,6 @@ public class DirectionRightState implements DirectionState {
 
     @Override
     public void Draw(GraphicsContext gc, Point pt, int widthCell, int heightCell, MovingObject heroOrMonster) {
-//        heroOrMonster.getRightSprite().reset();
-//        int i = (int)heroOrMonster.getPosition().getY() - widthCell;
-//        while (i < heroOrMonster.getPosition().getY()) {
-//            gc.clearRect(i, heroOrMonster.getPosition().getY(), widthCell, heightCell);
-//            i++;
-//            heroOrMonster.getRightSprite().drawNextSprite(gc, widthCell, heightCell, i, (int)heroOrMonster.getPosition().getY());
-//        }
         gc.clearRect(pt.getX() - 20,
                 pt.getY(),
                 widthCell, heightCell);
