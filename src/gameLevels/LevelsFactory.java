@@ -36,12 +36,12 @@ public class LevelsFactory {
                     return (LevelProperties) ctor.newInstance();
                 } catch (NoSuchMethodException | SecurityException | InstantiationException
                         | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-                    throw new RuntimeException("Level1 Factory Failure");
+                    throw new RuntimeException("Level Factory Failure");
                 }
             }
         }
 
-        throw new RuntimeException("Level1 does not exist");
+        throw new RuntimeException("Level does not exist");
     }
 
     private boolean loadClasses()

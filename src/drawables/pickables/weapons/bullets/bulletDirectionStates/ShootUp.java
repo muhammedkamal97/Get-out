@@ -1,6 +1,8 @@
 package drawables.pickables.weapons.bullets.bulletDirectionStates;
 
+import drawables.pickables.Weapon;
 import drawables.pickables.weapons.bullets.Bullet;
+import drawables.pickables.weapons.bullets.BulletShootingProperties;
 import maze.Maze;
 
 import java.awt.*;
@@ -8,13 +10,8 @@ import java.awt.*;
 public class ShootUp implements ShootingDirectionState {
 
     @Override
-    public void startMotion(Point position, Bullet bullet, Maze maze) {
-        ShootThread thread = new ShootThread();
-        thread.setPosition(position);
-        thread.setBullet(bullet);
-        thread.setMaze(maze);
-        thread.setDisplacement(0,-1);
-
-        thread.start();
+    public void startMotion(Point position, Bullet bullet, Weapon weapon) {
+        BulletShootingProperties properties = new BulletShootingProperties(position,bullet,weapon,this);
+        weapon.initiateBulletThread(properties);
     }
 }
