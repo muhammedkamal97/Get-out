@@ -45,6 +45,7 @@ public class RunnerLoop implements GameLoop{
         Weapon w = new NormalGun();
         w.setMaze(maze);
         hero.addWeapon(w);
+        hero.registerWinObserver(this);
         hero.registerDeathObserver(this);
     }
 
@@ -187,5 +188,10 @@ public class RunnerLoop implements GameLoop{
     public void notifyEndGameObserversOnLose() {
         for (int i = 0 ; i < observers.size() ;i++)
             observers.get(i).updateOnLose();
+    }
+
+    @Override
+    public void updateHeroAsWinner() {
+        notifyEndGameObserversOnWin();
     }
 }

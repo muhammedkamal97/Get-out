@@ -45,6 +45,7 @@ public abstract class StandardHero implements Hero {
 	private ArrayList<SubjectObserver> observers = new ArrayList<>();
 	private ArrayList<MotionObserver> motionObservers = new ArrayList<>();
 	private ArrayList<DeathObserver> deathObservers = new ArrayList<>();
+	private ArrayList<HeroWinObserver> winObservers = new ArrayList<>();
 	private ArrayList<HeroStateObserver> stateObservers = new ArrayList<>();
 	private boolean hasKey = false;
 	private Maze maze;
@@ -146,6 +147,7 @@ public abstract class StandardHero implements Hero {
 			}
 		}
 	}
+
 
 	@Override
 	public void addWeapon(Weapon weapon) {
@@ -404,6 +406,17 @@ public abstract class StandardHero implements Hero {
 	public void notifyChangeInCurrentWeapon() {
 		for(int i = 0 ; i < stateObservers.size();i++)
 			stateObservers.get(i).updateCurrentWeapon(currentWeapon);
+	}
+
+	@Override
+	public void notifyWinObservers() {
+		for (int i = 0 ; i < winObservers.size() ; i++)
+			winObservers.get(i).updateHeroAsWinner();
+	}
+
+	@Override
+	public void registerWinObserver(HeroWinObserver observer) {
+		winObservers.add(observer);
 	}
 
 	@Override
