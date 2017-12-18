@@ -9,12 +9,20 @@ import javafx.fxml.FXML;
 
 public class MenuController {
 
+    private Class<? extends Hero> hero;
+    private int lvl;
+
     @FXML
     public void startCanvas (ActionEvent event) throws Exception {
-//        Hero hero = new Flash(); // sent from previous scene
-        Hero hero = new Hulk();
-        Class hulk= Hulk.class;
-        new Canvas().startView(Hulk.class);
+        new Canvas().startView(hero, lvl);
+    }
+
+    @FXML
+    public void startHeroMenu (ActionEvent event) throws Exception {
+
+        this.hero = new HeroMenu().startView();
+//        this.lvl = new lvlMenu().startView(); //TODO
+        this.lvl = 1;
     }
 
 }

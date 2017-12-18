@@ -8,20 +8,19 @@ import javafx.stage.Stage;
 
 public class Canvas {
 
-    public void startView(Class<? extends Hero> hero) throws Exception {
+    public void startView(Class<? extends Hero> hero, int lvl) throws Exception {
         Stage stage = new Stage();
-        //        Parent root = FXMLLoader.load(getClass().getResource("Canvas.fxml"));
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Canvas.fxml"));
-//        fxmlLoader.setController(new CanvasController());
         Parent root = (Parent)fxmlLoader.load();
 
         Scene scene = new Scene(root);
         stage.setTitle("FXML Welcome");
         stage.setScene(scene);
         CanvasController controller = fxmlLoader.<CanvasController>getController();
-        controller.initLogin(hero);
+        controller.initLogin(hero, lvl);
         stage.show();
+
     }
 
 }

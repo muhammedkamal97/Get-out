@@ -13,6 +13,7 @@
       <!--<Canvas fx:id="dummyBackground" height="${screen.visualBounds.height}" width="${screen.visualBounds.width}"/>-->
       <HBox alignment="CENTER"  spacing="310" translateY="150">
          <children>
+            <Button onAction="#startHeroMenu" mnemonicParsing="false" text="Start" styleClass="ChooseButton" />
             <Button onAction="#startCanvas" mnemonicParsing="false" text="Start" styleClass="MenuButton" />
          </children>
       </HBox>

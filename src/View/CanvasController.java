@@ -63,7 +63,9 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
     private Hero hero;
     private Point currentPosition;
     private Drawable[][] wallMaze;
-    //save 7aga tanya
+    private RunnerGameAdapter game;
+    private Class<? extends Hero> classHero;
+    private int level;
 
     //dummy values to update hero's postion don't modify them!!!!
     private int x, y;
@@ -78,7 +80,6 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
     //TODO memento
     //TODO Win/gameOver animation
 
-    //TODO HERE
     //TODO HERE shield bar //removed or added
     //TODO HERE score bar elly heya coins
     //TODO HERE armorpoints
@@ -95,6 +96,8 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
             case LEFT:
             case KP_LEFT:
                    x -= 10;
+//                   if (hero.intersects(wallMaze[hero.getPosition().getY()][hero.getPosition().getX() - 1], new Point((int) (currentPosition.getX() * cellWidth + x),
+//                           (int) (currentPosition.getY() * cellHeight + y + shiftDown)))
                     if (x < (-cellWidth / 6)) {
                         gameLoop.moveHeroLeft();
                         if (!hero.getPosition().equals(currentPosition)) {
@@ -205,32 +208,42 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         }
     }
 
-    public void initLogin(Class<? extends Hero> hero) {
-        RunnerGameAdapter game = new RunnerGameAdapter(); // TODO global --trials
+    public void initLogin(Class<? extends Hero> hero, int lvl) {
+        this.classHero = hero;
+        this.game = new RunnerGameAdapter();
+        startGame(hero, lvl);
 
+    }
 
+    private void startGame(Class<? extends Hero> hero, int lvl) {
         try {
             this.hero = hero.getConstructor().newInstance();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        game.InitializeMaze(10);
+        game.InitializeMaze(lvl);
         gameLoop = game.getGameLoop();
         gameLoop.setHero(this.hero);
         gameLoop.registerAsMazeLayerObserver(this);
         gameLoop.registerAsBombObserver(this);
-////////////////
         setGlobalVariables();
         setMazeLayers();
         x = y = 0;
         gameLoop.initiateLoop();
-
     }
 
-    private void newGame() {
-        //new game loop , new hero
-//        story mode w select level (get level number)
-//        new gameloop
+    private void GameOver() {
+        //TODO play gameOver animation
+        System.out.println("Game Over!!!!!!!");
+        startGame(this.classHero, this.level);
+//       TODO in start scene story mode w select level (get level number)
+     }
+
+     private void Winner () {
+         //TODO play winner animation
+         System.out.println("You Win!!!!!!!");
+         this.level++;
+         startGame(this.classHero, this.level);
      }
 
 
@@ -372,7 +385,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         String wep = weapon.getClass().getSimpleName();
         weaponImage.setImage(MazeMap.getInstance().getBufferedImage(wep));
     }
-    //TODO setTrials
+    //TODO setTrials useless
     private void setTrials() {
         trialsLabl.setText(String.valueOf(hero.getTrials())); //TODO here initial trials in controller
 //        trials.setBackground(new Image("Bricks.jpg"));
