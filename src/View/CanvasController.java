@@ -405,6 +405,11 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         System.out.println("You Win!!!!!!!");
         this.level++;
         startGame(this.classHero, this.level);
+        gcD.clearRect(0,0,dynamicCanvas.getWidth(),dynamicCanvas.getHeight());
+        gcH.clearRect(0,0,heroCanvas.getWidth(),heroCanvas.getHeight());
+        gcAnimation.clearRect(0,0,animCanvas.getWidth(), animCanvas.getHeight());
+        gcM.clearRect(0,0,mazeCanvas.getWidth(),mazeCanvas.getHeight());
+        gcS.clearRect(0,0,steadyCanvas.getWidth(),steadyCanvas.getHeight());
     }
 
     @Override
@@ -413,5 +418,10 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         System.out.println("Game Over!!!!!!!");
         startGame(this.classHero, this.level);
 //       TODO in start scene story mode w select level (get level number)
+        gcD.clearRect(0,0,dynamicCanvas.getWidth(),dynamicCanvas.getHeight());
+        gcH.clearRect(0,0,heroCanvas.getWidth(),heroCanvas.getHeight());
+        gcAnimation.clearRect(0,0,animCanvas.getWidth(), animCanvas.getHeight());
+        gcM.clearRect(0,0,mazeCanvas.getWidth(),mazeCanvas.getHeight());
+        gcS.clearRect(0,0,steadyCanvas.getWidth(),steadyCanvas.getHeight());
     }
 }
