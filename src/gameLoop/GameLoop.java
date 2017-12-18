@@ -3,14 +3,11 @@ package gameLoop;
 import drawables.Drawable;
 import drawables.characters.Hero;
 import maze.Maze;
-import observer.BombExplosionObserver;
-import observer.DeathObserver;
-import observer.MazeLayersObserver;
-import observer.SubjectObserver;
+import observer.*;
 
 import java.awt.*;
 
-public interface GameLoop extends SubjectObserver, DeathObserver {
+public interface GameLoop extends SubjectObserver, DeathObserver , ObservableGame{
 
     public void setLoopMaze(Maze maze);
     public void initiateLoop();

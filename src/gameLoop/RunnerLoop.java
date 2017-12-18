@@ -19,6 +19,7 @@ import gameLoop.monsterAI.MonsterThread;
 import gameLoop.monsterAI.RandomMotion;
 import maze.Maze;
 import observer.BombExplosionObserver;
+import observer.EndOfGameObserver;
 import observer.MazeLayersObserver;
 
 import java.awt.*;
@@ -30,7 +31,7 @@ public class RunnerLoop implements GameLoop{
     private Hero hero;
     private Command moveCommand;
     private int livesLeft = 3;
-
+    private ArrayList<EndOfGameObserver> observers = new ArrayList<>();
 
     @Override
     public void setLoopMaze(Maze maze) {
@@ -179,5 +180,20 @@ public class RunnerLoop implements GameLoop{
     }
 
 
+    @Override
+    public void registerEndGameObserver(EndOfGameObserver observer) {
+        observers.add(observer);
+    }
 
+    @Override
+    public void notifyEndGameObserversOnWin() {
+        for (int i = 0 ; i < observers.size() ;i++)
+            observers.get(i).updateOnWin();
+    }
+
+    @Override
+    public void notifyEndGameObserversOnLose() {
+        for (int i = 0 ; i < observers.size() ;i++)
+            observers.get(i).updateOnLose();
+    }
 }
