@@ -38,8 +38,6 @@ public class CharactersMap {
             img = factory.factoryMethod(key);
             images.put(key, img);
             return img;
-//            images.put("Flash", new Flash());
-//            return images.get("Flash");
         }
     }
 }

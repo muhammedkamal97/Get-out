@@ -1,5 +1,6 @@
 package View;
 
+import View.Graphics.ImagesMaps.CharactersMap;
 import View.Graphics.ImagesMaps.MazeMap;
 import drawables.Drawable;
 import drawables.characters.Hero;
@@ -85,6 +86,7 @@ public class CanvasController implements MazeLayersObserver,
     private Class<? extends Hero> classHero;
     private int level;
     private ShapeIntersectionDetector intersectionDetector;
+
     /**
      * dummy values to update hero's postion don't modify them!!!!
      */
@@ -98,6 +100,8 @@ public class CanvasController implements MazeLayersObserver,
     //TODO teleport transition animation
     //TODO change sprites for bomb explosions
     //TODO Traps animation
+    //TODO get maximum lvl to prevent it & display credits
+    //TODO shield update armor points
 
     @FXML
     protected void MenuButtonAction(ActionEvent event) {
@@ -539,7 +543,6 @@ public class CanvasController implements MazeLayersObserver,
 //        animForWinOrLose();
         startGame(classHero, level);
 //       TODO in start scene story mode w select level (get level number)
-
     }
 
     private void animForWinOrLose() {

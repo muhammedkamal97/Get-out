@@ -31,7 +31,7 @@ public class MazeMap {
     public void constructLayer() {
 
         images.put("Bricks", new Image("Bricks.jpg"));
-        images.put("Tree",new Image("TreeWall.jpg"));
+        images.put("Tree",new Image("TreeWall.png"));
         images.put("Wood",new Image("WoodWall1.jpg"));
         images.put("Steel", new Image("SteelWall.jpg"));
         images.put("GrassRoad", new Image("GrassRoad.jpg"));
@@ -48,6 +48,7 @@ public class MazeMap {
         images.put("NormalGun", new Image ("normal gun.png"));
         images.put("NuclearHead", new Image ("nuclear bomb.Png"));
         images.put("RPG", new Image ("RPG.png"));
+        images.put("Gate", new Image ("RPG.png"));
 
 //        images.put("GreyRoad", new Image("GreyRoad.png"));
 //        images.put("WoodWall2", new Image("WoodWall2.png"));

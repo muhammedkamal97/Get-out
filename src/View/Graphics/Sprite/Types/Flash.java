@@ -39,6 +39,13 @@ public class Flash implements ImageSprite {
     }
 
     @Override
+    public Image getImageIdentity() {
+        BufferedImage buff = SwingFXUtils.fromFXImage(imgLeft, null);
+        BufferedImage buffCroped = buff.getSubimage(0,0,(int)imgLeft.getWidth()/framesInColumn, (int)(imgLeft.getHeight()/4));
+        return SwingFXUtils.toFXImage(buffCroped, null);
+    }
+
+    @Override
     public int getFramesInRow() {
         return framesInRow;
     }

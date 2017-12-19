@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 
 public class NormalHero implements ImageSprite {
 
-    private final Image imgLeft = new Image("hero3.png");
+    private final Image imgLeft = new Image("hero1.png");
     private final int framesInRow = 1;
     private final int framesInColumn = 3;
 
@@ -36,6 +36,12 @@ public class NormalHero implements ImageSprite {
     public final BufferedImage getImageUp() {
         BufferedImage buff = SwingFXUtils.fromFXImage(imgLeft, null);
         return buff.getSubimage(0,(int)(3*(imgLeft.getHeight()/4)),(int)imgLeft.getWidth(), (int)(imgLeft.getHeight()/4));
+    }
+    @Override
+    public Image getImageIdentity() {
+        BufferedImage buff = SwingFXUtils.fromFXImage(imgLeft, null);
+        BufferedImage buffCroped = buff.getSubimage(0,0,(int)imgLeft.getWidth()/framesInColumn, (int)(imgLeft.getHeight()/4));
+        return SwingFXUtils.toFXImage(buffCroped, null);
     }
 
     @Override

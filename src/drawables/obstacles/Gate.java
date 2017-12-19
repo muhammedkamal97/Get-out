@@ -1,5 +1,6 @@
 package drawables.obstacles;
 
+import View.Graphics.ImagesMaps.MazeMap;
 import javafx.scene.canvas.GraphicsContext;
 import maze.Maze;
 
@@ -17,7 +18,10 @@ public class Gate implements Obstacle{
 
     @Override
     public void drawOnCanvas(GraphicsContext gc, Point pt, int widthCell, int heightCell) {
-
+        MazeMap map = MazeMap.getInstance();
+        gc.drawImage(map.getBufferedImage("Gate"),
+                pt.getX(), pt.getY(),
+                widthCell, heightCell);
     }
 
     @Override
