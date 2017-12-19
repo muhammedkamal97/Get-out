@@ -428,16 +428,15 @@ public abstract class StandardHero implements Hero {
 	}
 
 	@Override
-	public boolean intersects (Drawable obj, Point point,  int cellWidth, int cellHeight) {
-        if (!(obj instanceof Wall)) {
-            return false;
-        }
+	public boolean intersects (Drawable obj, Point point,  int cellWidth, int cellHeight ,int xDiff,int yDiff) {
+		if (!(obj instanceof Wall)) {
+			return false;
+		}
 		Point pt = obj.getPosition();
-		Shape rect1 = new Rectangle(pt.getX(), pt.getY(), cellWidth,cellHeight);
-		Shape rect2 = new Rectangle(point.getX(), point.getY(), cellWidth,cellHeight);
+		Shape rect1 = new Rectangle(pt.getX()*cellWidth+xDiff, pt.getY()*cellHeight+ yDiff, cellWidth,cellHeight);
+		Shape rect2 = new Rectangle(point.getX(), point.getY() , cellWidth,cellHeight);
 		return rect1.intersects(rect2.getBoundsInLocal());
 	}
-
 	@Override
 	public void removeAllWeapons() {
 		allWeapons = new ArrayList<>();
