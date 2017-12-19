@@ -41,13 +41,13 @@ public class MazeMap {
         images.put("Piston", new Image("piston.png"));
         images.put("Trap", new Image("Trap.png"));
         images.put("Gift", new Image("Gift.gif"));
-        images.put("Shield", new Image("Gift.gif"));
-        images.put("Key", new Image("Key.jpg"));
+        images.put("Shield", new Image("shield.png"));
+        images.put("Key", new Image("key.png"));
         images.put("AK47", new Image ("AK47.png"));
-        images.put("MP5", new Image ("AK47.png"));
-        images.put("NormalGun", new Image ("AK47.png"));
-        images.put("NuclearHead", new Image ("AK47.png"));
-        images.put("RPG", new Image ("AK47.png"));
+        images.put("MP5", new Image ("MP5.png"));
+        images.put("NormalGun", new Image ("normal gun.png"));
+        images.put("NuclearHead", new Image ("nuclear bomb.Png"));
+        images.put("RPG", new Image ("RPG.png"));
 
 //        images.put("GreyRoad", new Image("GreyRoad.png"));
 //        images.put("WoodWall2", new Image("WoodWall2.png"));
