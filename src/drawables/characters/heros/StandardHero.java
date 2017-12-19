@@ -437,4 +437,12 @@ public abstract class StandardHero implements Hero {
 		return rect1.intersects(rect2.getBoundsInLocal());
 	}
 
+	@Override
+	public void removeAllWeapons() {
+		allWeapons = new ArrayList<>();
+		currentWeapon = null;
+		notifyChangeInCurrentWeapon();
+	}
+
+
 }

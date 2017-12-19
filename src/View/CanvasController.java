@@ -414,8 +414,12 @@ public class CanvasController implements MazeLayersObserver,
 
     @Override
     public void updateCurrentWeapon(Weapon weapon) {
-        String wep = weapon.getClass().getSimpleName();
-        weaponImage.setImage(MazeMap.getInstance().getBufferedImage(wep));
+        if (weapon != null) {
+            String wep = weapon.getClass().getSimpleName();
+            weaponImage.setImage(MazeMap.getInstance().getBufferedImage(wep));
+        } else {
+            weaponImage.setImage(new Image("null.png"));
+        }
     }
 
     public void setImgLabls() {

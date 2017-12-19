@@ -30,9 +30,4 @@ public class Lazer extends StandardBomb implements Bomb {
         return HEALTH;
     }
 
-    @Override
-    public void animateOnExplosion() {
-        //TODO
-    }
-
 }

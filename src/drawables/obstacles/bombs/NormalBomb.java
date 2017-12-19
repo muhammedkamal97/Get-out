@@ -31,9 +31,4 @@ public class NormalBomb extends StandardBomb implements Bomb {
         return HEALTH;
     }
 
-    @Override
-    public void animateOnExplosion() {
-    //TODO
-    }
-
 }

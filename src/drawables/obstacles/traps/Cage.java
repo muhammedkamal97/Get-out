@@ -26,7 +26,7 @@ public class Cage extends StandardTrap implements Trap {
 
     @Override
     public void trap(Hero hero) {
-//        hero.removeAllWeapons(); //TODO
+        hero.removeAllWeapons();
         super.trap(hero);
     }
 

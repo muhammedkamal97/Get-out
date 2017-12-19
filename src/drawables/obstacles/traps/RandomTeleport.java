@@ -22,7 +22,7 @@ public class RandomTeleport extends StandardTrap {
         setHealthPoints();
     }
 
-
+    //TODO animation
     @Override
     protected int getOriginalDamage() {
         return DAMAGE;
@@ -44,7 +44,6 @@ public class RandomTeleport extends StandardTrap {
             y = ran.nextInt(dimensions.y);
         }
         hero.setPosition(new Point(x, y));
-        //change maze since hero's position is changed
     }
 
     @Override

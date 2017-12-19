@@ -41,7 +41,6 @@ public abstract class StandardBomb implements Bomb {
 
     @Override
     public void explode() {
-        this.animateOnExplosion();
         this.destroy();
         this.damageDrawableInExplosionRange();
     }
@@ -61,17 +60,15 @@ public abstract class StandardBomb implements Bomb {
             for (int j = (-range); j <= range; j++) {
                 maze.getItemInPosition(new Point(position.x +i,position.y + j))
                         .takeDamage(damage);
-                //display black marks for explosion;
+                //TODO display black marks for explosion;
             }
         }
 
     }
 
-
     @Override
     public void destroy() {
-
-        //add a gift
+        //TODO add a gift
         notifyExplosionObservers();
         maze.removeBomb(this);
         return;
@@ -96,8 +93,6 @@ public abstract class StandardBomb implements Bomb {
             explosionObservers.get(i).drawExplosionAnimation(position,range);
     }
 
-
-
     protected void setDamage() {
         damage = getBombOriginalDamage();
     }
@@ -113,7 +108,6 @@ public abstract class StandardBomb implements Bomb {
     protected Maze getMaze(){
         return maze;
     }
-
 
     protected abstract int getHealthPoints();
     protected abstract int getBombOriginalDamage();

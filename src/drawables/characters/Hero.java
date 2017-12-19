@@ -34,4 +34,5 @@ public interface Hero extends Handler,MovingObject, ObservedSubject, MotionObser
     public int getTrials();
     public void drawOnReleased(GraphicsContext gc, Point pt, int widthCell, int heightCell);
     public boolean intersects (Drawable obj,Point point, int cellWidth, int cellHeight);
+    public void removeAllWeapons();
 }

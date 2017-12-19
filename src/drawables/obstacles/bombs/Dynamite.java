@@ -16,7 +16,6 @@ public class Dynamite extends StandardBomb implements Bomb {
 
     }
 
-
     @Override
     protected int getBombOriginalDamage() {
         return DAMAGE;
@@ -30,11 +29,6 @@ public class Dynamite extends StandardBomb implements Bomb {
     @Override
     protected int getHealthPoints() {
         return HEALTH;
-    }
-
-    @Override
-    public void animateOnExplosion() {
-        //TODO
     }
 
 }
