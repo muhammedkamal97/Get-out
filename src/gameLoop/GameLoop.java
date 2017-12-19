@@ -27,6 +27,7 @@ public interface GameLoop extends SubjectObserver, DeathObserver,HeroWinObserver
     public void registerAsMazeLayerObserver(MazeLayersObserver observer);
     public void registerAsHeroStateObserver(HeroStateObserver observer);
     public void registerAsBulletMotionObserver(BulletMotionObserver observer);
+    public void closeGame();
         //Sarah's
     public Point getMazeDimensions();
     public Drawable[][] getMovingObjectsLayer();

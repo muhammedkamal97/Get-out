@@ -197,12 +197,7 @@ public class RunnerLoop implements GameLoop{
 
     @Override
     public void notifyEndGameObserversOnWin() {
-        thread.terminate();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        closeGame();
         for (int i = 0 ; i < observers.size() ;i++)
             observers.get(i).updateOnWin();
 
@@ -210,15 +205,20 @@ public class RunnerLoop implements GameLoop{
 
     @Override
     public void notifyEndGameObserversOnLose() {
+        closeGame();
+        for (int i = 0 ; i < observers.size() ;i++)
+            observers.get(i).updateOnLose();
+
+    }
+
+    @Override
+    public void closeGame() {
         thread.terminate();
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        for (int i = 0 ; i < observers.size() ;i++)
-            observers.get(i).updateOnLose();
-
     }
 
     @Override

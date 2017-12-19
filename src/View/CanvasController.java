@@ -31,6 +31,7 @@ import observer.HeroStateObserver;
 import observer.MazeLayersObserver;
 
 import java.awt.*;
+import java.util.Set;
 
 public class CanvasController implements MazeLayersObserver, BombExplosionObserver, HeroStateObserver, EndOfGameObserver,BulletMotionObserver {
 
@@ -99,8 +100,10 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
 
     @FXML
     protected void MenuButtonAction(ActionEvent event) {
+
         Stage stage = (Stage) Menu.getScene().getWindow();
         stage.close();
+        gameLoop.closeGame();
     }
 
     @FXML
