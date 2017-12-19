@@ -22,7 +22,7 @@ public abstract class StandardWeapon implements Weapon {
     private int maxMagazineCapacity;
     private Bullet weaponBullet;
     private Bullet shotBullet;
-    private ShootThread bullletThread;
+    private ShootThread bulletThread;
     protected Maze maze;
     private ArrayList<BulletMotionObserver> observers = new ArrayList<>();
 
@@ -73,18 +73,18 @@ public abstract class StandardWeapon implements Weapon {
     @Override
     public void initiateBulletThread(BulletShootingProperties shootingProperties) {
 
-        if (this.bullletThread != null) {
-            if (this.bullletThread.isAlive()) {
-                this.bullletThread.addBullet(shootingProperties);
+        if (this.bulletThread != null) {
+            if (this.bulletThread.isAlive()) {
+                this.bulletThread.addBullet(shootingProperties);
                 return;
             }
         }
 
-        this.bullletThread = new ShootThread();
-        this.bullletThread.setMaze(this.maze);
-        this.bullletThread.setDaemon(true);
-        this.bullletThread.addBullet(shootingProperties);
-        this.bullletThread.start();
+        this.bulletThread = new ShootThread();
+        this.bulletThread.setMaze(this.maze);
+        this.bulletThread.setDaemon(true);
+        this.bulletThread.addBullet(shootingProperties);
+        this.bulletThread.start();
 
 
     }

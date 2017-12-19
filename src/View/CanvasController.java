@@ -5,6 +5,8 @@ import drawables.Drawable;
 import drawables.characters.Hero;
 import drawables.characters.Monster;
 import View.Graphics.ExplosionAnimation;
+import drawables.characters.heros.Flash;
+import drawables.characters.heros.NormalHero;
 import drawables.pickables.Weapon;
 import drawables.roads.Road;
 import gameCore.RunnerGameAdapter;
@@ -104,7 +106,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
             case LEFT:
             case KP_LEFT:
                 x -= 10;
-                if (!checkForWallsLeft()) {
+               // if (!checkForWallsLeft()) {
                     if (x < (-cellWidth / 6)) {
                         gameLoop.moveHeroLeft();
                         if (!hero.getPosition().equals(currentPosition)) {
@@ -113,9 +115,9 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
                             x += 10;
                         }
                     }
-                } else {
-                    x += 10;
-                }
+                //} else {
+                //    x += 10;
+                //}
                 gameLoop.lookLeft();
                 currentPosition = hero.getPosition();
                 System.out.println(currentPosition);
@@ -243,12 +245,13 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
     }
 
     private void startGame(Class<? extends Hero> hero, int lvl) {
-        try {
+        /*try {
             this.hero = hero.getConstructor().newInstance();
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        game.InitializeMaze(lvl);
+        }*/
+        this.hero = new NormalHero();
+        game.InitializeMaze(1);
         gameLoop = game.getGameLoop();
         gameLoop.setHero(this.hero);
         gameLoop.registerEndGameObserver(this);
@@ -437,9 +440,9 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
     @Override
     public void updateBulletMotionObserver(Point pastPosition, Point currentPosition, boolean destroyed) {
         this.gcBullets.setFill(Color.BLACK);
-        this.gcBullets.clearRect(pastPosition.x*cellWidth,pastPosition.y*cellHeight,cellWidth,cellHeight);
-        this.gcBullets.fillOval(currentPosition.x*cellWidth,currentPosition.y*cellHeight,cellWidth,cellHeight);
+        this.gcBullets.clearRect(pastPosition.x*cellWidth,(pastPosition.y + 1.5)*cellHeight,cellWidth,cellHeight);
+        this.gcBullets.fillOval(currentPosition.x*cellWidth,(currentPosition.y + 1.5)*cellHeight,cellWidth,cellHeight);
         if(destroyed)
-            this.gcBullets.clearRect(currentPosition.x*cellWidth,currentPosition.y*cellHeight,cellWidth,cellHeight);
+            this.gcBullets.clearRect(currentPosition.x*cellWidth,(currentPosition.y + 1.5)*cellHeight,cellWidth,cellHeight);
     }
 }
