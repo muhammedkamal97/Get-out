@@ -34,11 +34,7 @@ public class MonsterThread extends Thread{
     		motion.add(new RandomMotion());
 
         while(this.monster.size() != 0) {
-            try {
-                sleep(10000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            
             int i = 0;
             for (Monster monster : this.monster){
             	if(monster.getHealthPoints() == 0){
