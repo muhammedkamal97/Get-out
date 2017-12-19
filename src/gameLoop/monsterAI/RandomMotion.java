@@ -12,6 +12,7 @@ public class RandomMotion implements IMonsterBehavior{
 			new MoveLeftCommand(),
 			new MoveRightCommand()};
 	private Command currentCommand;
+	private Command prevCommand;
 	private Monster monster;
 	@Override
 	public Command movementMind() {
@@ -19,8 +20,12 @@ public class RandomMotion implements IMonsterBehavior{
 			return currentCommand;
 		Random rand = new Random();
 		int selectCommand = rand.nextInt(4);
-		
-		return currentCommand = commands[selectCommand];
+		currentCommand = commands[selectCommand];
+		while(prevCommand == currentCommand){
+			selectCommand = rand.nextInt(4);
+			currentCommand = commands[selectCommand];
+		}
+		return currentCommand;
 	}
 	@Override
 	public void setMonster(Monster monster) {
@@ -30,6 +35,7 @@ public class RandomMotion implements IMonsterBehavior{
 	@Override
 	public void reThink() {
 		// TODO Auto-generated method stub
+		prevCommand = currentCommand;
 		currentCommand = null;
 	}
 }

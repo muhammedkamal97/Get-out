@@ -40,9 +40,9 @@ public class EmptyMazeStructureGenerator {
 		while (y % 2 != 1) {
 			y = rand.nextInt(width);
 		}
-		// x & y must one of them be even and one be odd
-		// to get a solution to the maze (searching for a reason).
+		
 		dfs(x, y);
+		openCell(new Point(1,1));
 		openCell(new Point(1, 0));
 		openCell(new Point(higth-2,width-1));
 		return maze;

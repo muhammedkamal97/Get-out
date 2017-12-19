@@ -33,6 +33,7 @@ public class RunnerLoop implements GameLoop{
     private Hero hero;
     private Command moveCommand;
     private ArrayList<EndOfGameObserver> observers = new ArrayList<>();
+    private MonsterThread thread;
 
     @Override
     public void setLoopMaze(Maze maze) {
@@ -107,12 +108,10 @@ public class RunnerLoop implements GameLoop{
             monster.registerMonsterObserver(maze);
 
         }
-        MonsterThread thread = new MonsterThread();
-        RandomMotion motion = new RandomMotion();
+        thread = new MonsterThread();
 
         thread.setMonster(this.maze.getMonsters());
         thread.setMaze(this.maze);
-        thread.setMotion(motion);
         thread.setDaemon(true);
         thread.start();
 
@@ -200,12 +199,14 @@ public class RunnerLoop implements GameLoop{
     public void notifyEndGameObserversOnWin() {
         for (int i = 0 ; i < observers.size() ;i++)
             observers.get(i).updateOnWin();
+        thread.terminate();
     }
 
     @Override
     public void notifyEndGameObserversOnLose() {
         for (int i = 0 ; i < observers.size() ;i++)
             observers.get(i).updateOnLose();
+        thread.terminate();
     }
 
     @Override
