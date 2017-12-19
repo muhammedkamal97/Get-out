@@ -15,7 +15,7 @@ public class MenuScene extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("MenuScene.fxml"));
         Scene scene = new Scene(root);
-        stage.setTitle("FXML Welcome");
+        stage.setTitle("The Maze Runner");
         stage.setScene(scene);
         stage.show();
     }

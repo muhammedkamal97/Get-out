@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<GridPane id="pane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121"
-          xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="View.MenuController" stylesheets="/Style.css" alignment="CENTER">
-   <!--<fx:define>-->
-      <!--<Screen fx:factory="getPrimary" fx:id="screen"/>-->
-   <!--</fx:define>-->
+
+<VBox id="pane" alignment="BASELINE_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" stylesheets="@../Style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MenuController">
    <children>
-      <!--<Canvas fx:id="dummyBackground" height="${screen.visualBounds.height}" width="${screen.visualBounds.width}"/>-->
-      <HBox alignment="CENTER"  spacing="310" translateY="150">
-         <children>
-            <Button onAction="#startHeroMenu" mnemonicParsing="false" text="Start" styleClass="ChooseButton" />
-            <Button onAction="#startCanvas" mnemonicParsing="false" text="Start" styleClass="MenuButton" />
-         </children>
-      </HBox>
+      <Region prefHeight="232.0" prefWidth="600.0" />
+      <Button mnemonicParsing="false" onAction="#startHeroMenu" text="Start" />
+      <Button mnemonicParsing="false" text="About" />
    </children>
-</GridPane>
+</VBox>
