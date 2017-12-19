@@ -353,11 +353,11 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
     @Override
     public void updateMonsterPosition(Point oldPos, Monster monster) {
         //need to perform atransition
-//        gcD.clearRect(oldPos.getX() * cellWidth, oldPos.getY() * cellHeight + shiftDown, cellWidth, cellHeight);
-//        monster.drawOnCanvas(gcD, new Point((int) (monster.getPosition().getX() * cellWidth),
-//                        (int) (monster.getPosition().getY() * cellHeight + shiftDown)),
-//                cellWidth, cellHeight);
-        //            heroOrMonster.getDownSprite().reset();
+        gcD.clearRect(oldPos.getX() * cellWidth, oldPos.getY() * cellHeight + shiftDown, cellWidth, cellHeight);
+        monster.drawOnCanvas(gcD, new Point((int) (monster.getPosition().getX() * cellWidth),
+                        (int) (monster.getPosition().getY() * cellHeight + shiftDown)),
+                cellWidth, cellHeight);
+//                    heroOrMonster.getDownSprite().reset();
 //            int i = (int)heroOrMonster.getPosition().getY()-heightCell;
 //            while (i < heroOrMonster.getPosition().getY()) {
 //                gc.clearRect(heroOrMonster.getPosition().getX(), i, widthCell, heightCell);
