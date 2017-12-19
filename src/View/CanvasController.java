@@ -11,6 +11,8 @@ import drawables.pickables.Weapon;
 import drawables.roads.Road;
 import gameCore.RunnerGameAdapter;
 import gameLoop.GameLoop;
+import javafx.animation.AnimationTimer;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -31,6 +33,8 @@ import observer.HeroStateObserver;
 import observer.MazeLayersObserver;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class CanvasController implements MazeLayersObserver, BombExplosionObserver, HeroStateObserver, EndOfGameObserver,BulletMotionObserver {
 
@@ -441,19 +445,58 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         //TODO play winner animation
         System.out.println("You Win!!!!!!!");
         this.level++;
-        startGame(this.classHero, this.level);
         gcAnimation.clearRect(0,0,animCanvas.getWidth(), animCanvas.getHeight());
-    }
+        gcBullets.clearRect(0,0,bulletCanvas.getWidth(),bulletCanvas.getHeight());
+        anim();
+        }
 
     @Override
     public void updateOnLose() {
         //TODO play gameOver animation
         System.out.println("Game Over!!!!!!!");
         setTrials(--trials);
-        startGame(this.classHero, this.level);
-//       TODO in start scene story mode w select level (get level number)
         gcAnimation.clearRect(0,0,animCanvas.getWidth(), animCanvas.getHeight());
+        gcBullets.clearRect(0,0,bulletCanvas.getWidth(),bulletCanvas.getHeight());
+        anim();
+//       TODO in start scene story mode w select level (get level number)
 
+    }
+
+    private void anim () {
+        ArrayList<BufferedImage> list = new ArrayList<>();
+        Image img = new Image("win.jpg");
+        BufferedImage buffImg = SwingFXUtils.fromFXImage(img, null);
+        int TileW = (int) img.getWidth() / 3;
+        int TileH = (int) img.getHeight() / 2;
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 3; j++) {
+                list.add(buffImg.getSubimage(j * TileW, i * TileH, TileW, TileH));
+            }
+        }
+
+        new AnimationTimer() {
+            long start = System.currentTimeMillis();
+            int count = 0;
+
+            public void handle(long currentNanoTime) {
+                long current = System.currentTimeMillis();
+                if (current - start >= 200) {
+                    start = System.currentTimeMillis();
+                    gcAnimation.clearRect(0, 0,
+                            animCanvas.getWidth(), animCanvas.getHeight());
+                    Image imgTo = SwingFXUtils.toFXImage(list.get(count), null);
+                    gcAnimation.drawImage(imgTo,0, 0,
+                            animCanvas.getWidth(), animCanvas.getHeight());
+                    count++;
+                }
+                if (count == list.size()) {
+                    gcAnimation.clearRect(0, 0,
+                            animCanvas.getWidth(), animCanvas.getHeight());
+                    this.stop();
+                    startGame(classHero, level);
+                }
+            }
+        }.start();
     }
 
     @Override
@@ -463,6 +506,10 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         this.gcBullets.fillOval(currentPosition.x*cellWidth,(currentPosition.y + 1.5)*cellHeight + shiftDown,cellWidth,cellHeight);
         if(destroyed)
             this.gcBullets.clearRect(currentPosition.x*cellWidth,(currentPosition.y + 1.5)*cellHeight + shiftDown,cellWidth,cellHeight);
-        //TODO clear bullet when monster dies
+        //TODO clear bullet when monster dies obser for monster dies
+    }
+
+    public void updateMonsterdied() { //clear bullets when monster dies
+        gcBullets.clearRect(0,0,bulletCanvas.getWidth(),bulletCanvas.getHeight());
     }
 }
