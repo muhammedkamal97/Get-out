@@ -158,6 +158,7 @@ public abstract class StandardHero implements Hero {
 		allWeapons.add(weapon);
 		currentWeapon = weapon;
 		notifyChangeInCurrentWeapon();
+		notifyChangeInNumberOfBullets();
 	}
 
 	@Override

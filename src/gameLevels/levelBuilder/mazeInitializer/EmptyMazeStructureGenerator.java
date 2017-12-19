@@ -45,6 +45,10 @@ public class EmptyMazeStructureGenerator {
 		openCell(new Point(1,1));
 		openCell(new Point(1, 0));
 		openCell(new Point(higth-2,width-1));
+		if(maze[2][1] == 1 &&maze[1][2] == 1 &&maze[2][2] == 1) {
+			return generateRandomMaze(hight,wide);
+		}
+
 		return maze;
 	}
 

@@ -6,6 +6,7 @@ import drawables.characters.Hero;
 import drawables.characters.Monster;
 import View.Graphics.ExplosionAnimation;
 import drawables.pickables.Weapon;
+import drawables.pickables.weapons.NormalGun;
 import drawables.roads.Road;
 import gameCore.RunnerGameAdapter;
 import gameLoop.GameLoop;
@@ -100,6 +101,8 @@ public class CanvasController implements MazeLayersObserver,
 
     @FXML
     protected void MenuButtonAction(ActionEvent event) {
+        gameLoop.closeGame();
+
         Stage stage = (Stage) Menu.getScene().getWindow();
         stage.close();
     }
@@ -275,11 +278,19 @@ public class CanvasController implements MazeLayersObserver,
         gameLoop.registerAsMazeLayerObserver(this);
         gameLoop.registerAsBombObserver(this);
         gameLoop.registerAsBulletMotionObserver(this);
-
+        gameLoop.registerAsHeroStateObserver(this);
+        updateBar();
         setGlobalVariables();
         setMazeLayers();
         x = y = 0;
         gameLoop.initiateLoop();
+    }
+
+    private void updateBar(){
+        this.updateChangeInHealth(100);
+        this.updateChangeInArmorPoints(0);
+        this.updateCurrentWeapon(new NormalGun());
+        this.updateNumberOfBullets(6);
     }
 
     private void setGlobalVariables() {
@@ -290,7 +301,6 @@ public class CanvasController implements MazeLayersObserver,
         armorBar.setStyle("-fx-accent: green;");
         setTrials(trials);
         coins.setText("0");
-        bullets.setText("0");
         Point pt = gameLoop.getMazeDimensions();
         shiftDown += ((dynamicCanvas.getHeight() - shiftDown) % (pt.getX())) / 2;
         cellHeight = (int) ((dynamicCanvas.getHeight() - shiftDown) / (pt.getX()));
@@ -397,18 +407,16 @@ public class CanvasController implements MazeLayersObserver,
 
     @Override
     public void updateChangeInArmorPoints(double ArmorPercentageLeft) { //TODO
-        this.armorBar.setProgress(ArmorPercentageLeft); //TODO Observer not working guess(heroState)
+        this.armorBar.setProgress(ArmorPercentageLeft);
     }
 
     @Override
     public void updateCoins(int Coins) {
-        System.out.println("got Coins"); //TODO Observer not working guess(heroState)
         this.coins.setText("" + Coins);
     }
 
     @Override
     public void updateNumberOfBullets(int Bullets) { //TODO
-        System.out.println("got bullets"); //TODO Observer not working guess(heroState)
         this.bullets.setText("" + Bullets);
     }
 
