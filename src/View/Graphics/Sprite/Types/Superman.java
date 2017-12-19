@@ -27,7 +27,6 @@ public class Superman implements ImageSprite {
 
     @Override
     public final BufferedImage getImageDown() {
-        System.out.println(imgLeft.getWidth());
 
         BufferedImage buff = SwingFXUtils.fromFXImage(imgLeft, null);
         return buff.getSubimage(0,(int)(0*(imgLeft.getHeight()/4)),(int)imgLeft.getWidth(), (int)(imgLeft.getHeight()/4));

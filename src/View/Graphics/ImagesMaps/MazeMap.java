@@ -35,10 +35,10 @@ public class MazeMap {
         images.put("Wood",new Image("WoodWall1.jpg"));
         images.put("Steel", new Image("SteelWall.jpg"));
         images.put("GrassRoad", new Image("GrassRoad.jpg"));
-        images.put("Dynamite", new Image("LazerSource.jpg"));
-        images.put("Lazer", new Image("LazerSource.jpg"));
-        images.put("NormalBomb", new Image("LazerSource.jpg"));
-        images.put("Piston", new Image("LazerSource.jpg"));
+        images.put("Dynamite", new Image("dynamite.png"));
+        images.put("Lazer", new Image("LazerSource.png"));
+        images.put("NormalBomb", new Image("Bomb.png"));
+        images.put("Piston", new Image("piston.png"));
         images.put("Trap", new Image("Trap.png"));
         images.put("Gift", new Image("Gift.gif"));
         images.put("Shield", new Image("Gift.gif"));

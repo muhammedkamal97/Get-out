@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 
 public class ShootingMonster implements ImageSprite {
 
-    private final Image imgLeft = new Image("hero1.png");
+    private final Image imgLeft = new Image("monster5.png");
     private final int framesInRow = 1;
     private final int framesInColumn = 3;
 
@@ -27,8 +27,6 @@ public class ShootingMonster implements ImageSprite {
 
     @Override
     public final BufferedImage getImageDown() {
-        System.out.println(imgLeft.getWidth());
-
         BufferedImage buff = SwingFXUtils.fromFXImage(imgLeft, null);
         return buff.getSubimage(0,(int)(0*(imgLeft.getHeight()/4)),(int)imgLeft.getWidth(), (int)(imgLeft.getHeight()/4));
     }

@@ -47,7 +47,7 @@ public class HeroMenuController {
         loadHeroes(heroesNames);
 
 
-        ImageView imageView = new ImageView(new Image("run.png"));
+        ImageView imageView = new ImageView(new Image("Trap.png"));
 
         imageView.setFitHeight(100.0);
         imageView.setFitWidth(100.0);

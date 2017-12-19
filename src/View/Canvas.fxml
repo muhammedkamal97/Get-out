@@ -27,7 +27,9 @@
     <!--<Canvas fx:id="mazeCanvas" height="700" width="900"/>-->
     <!--<Canvas fx:id="dynamicCanvas" height="700" width="900"/>-->
     <!--<Canvas fx:id="steadyCanvas" height="700" width="900"/>-->
-    <Canvas fx:id="dummyBackground" height="${screen.visualBounds.height}" width="${screen.visualBounds.width}"/>
+    <Canvas fx:id="dummyCanvas" height="${screen.visualBounds.height}" width="${screen.visualBounds.width}"/>
+    <Canvas fx:id="roadCanvas" height="${screen.visualBounds.height}" width="${screen.visualBounds.height}"
+            GridPane.halignment="CENTER"/>
     <Canvas fx:id="mazeCanvas" height="${screen.visualBounds.height}" width="${screen.visualBounds.height}"
             GridPane.halignment="CENTER"/>
     <Canvas fx:id="steadyCanvas" height="${screen.visualBounds.height}" width="${screen.visualBounds.height}"

@@ -37,6 +37,8 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
     @FXML
     private Canvas dynamicCanvas;
     @FXML
+    private Canvas roadCanvas;
+    @FXML
     private Canvas heroCanvas;
     @FXML
     private Canvas steadyCanvas;
@@ -60,6 +62,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
     private ProgressBar armorBar;
     private GraphicsContext gcD;
     private GraphicsContext gcH;
+    private GraphicsContext gcRoad;
     private GraphicsContext gcAnimation;
     private GraphicsContext gcM;
     private GraphicsContext gcS;
@@ -80,7 +83,6 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
     private int x, y;
 
     //TODO  Weapons Icons //set in map
-
     //TODO bullet will be an ellipse moving must have draw function
     //TODO modify stylesheet
     //TODO camera
@@ -119,7 +121,6 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
 //                }
                 gameLoop.lookLeft();
                 currentPosition = hero.getPosition();
-                System.out.println(currentPosition);
                 hero.drawOnCanvas(gcH, new Point((int) (currentPosition.getX() * cellWidth + x),
                                 (int) (currentPosition.getY() * cellHeight + y + shiftDown)),
                         cellWidth, cellHeight);
@@ -137,7 +138,6 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
                 }
                 gameLoop.lookRight();
                 currentPosition = hero.getPosition();
-                System.out.println(currentPosition);
                 hero.drawOnCanvas(gcH, new Point((int) (currentPosition.getX() * cellWidth + x),
                                 (int) (currentPosition.getY() * cellHeight + y + shiftDown)),
                         cellWidth, cellHeight);
@@ -241,7 +241,8 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         trials = 100; //TODO to be  set to hero's
         setImgLabls();
         this.game = new RunnerGameAdapter();
-
+        gcRoad= roadCanvas.getGraphicsContext2D();
+//        gcRoad.drawImage(new Image("GrassRoad.jpg"), 0, 0, roadCanvas.getWidth(), roadCanvas.getHeight());
         gcD = dynamicCanvas.getGraphicsContext2D();
         gcH = heroCanvas.getGraphicsContext2D();
         gcAnimation = animCanvas.getGraphicsContext2D();
@@ -266,7 +267,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         gameLoop.registerAsMazeLayerObserver(this);
         gameLoop.registerAsBombObserver(this);
         gameLoop.registerAsBulletMotionObserver(this);
-////////////////
+
         setGlobalVariables();
         setMazeLayers();
         x = y = 0;
@@ -274,8 +275,6 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
     }
 
     private void setGlobalVariables() {
-
-
 
         healthBar.setProgress(1.0);
         healthBar.setStyle("-fx-accent: red;");
@@ -298,7 +297,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
 
     private void setMovingObjectsLayer() {
         Drawable[][] maze = gameLoop.getMovingObjectsLayer();
-                gcD.clearRect(0,0,dynamicCanvas.getWidth(),dynamicCanvas.getHeight());
+        gcD.clearRect(0,0,dynamicCanvas.getWidth(),dynamicCanvas.getHeight());
         gcH.clearRect(0,0,heroCanvas.getWidth(),heroCanvas.getHeight());
 
         for (int i = 0; i < maze.length; i++) {
@@ -393,9 +392,9 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
     }
 
     @Override
-    public void updateCoins(int Coins) { //TODO
-        //set default background image
-        this.coins.setText("" + Coins);   //TODO Observer not working guess(heroState)
+    public void updateCoins(int Coins) {
+        System.out.println("got Coins"); //TODO Observer not working guess(heroState)
+        this.coins.setText("" + Coins);
     }
 
     @Override
@@ -426,9 +425,8 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         weaponImage.setImage(new Image("null.png"));
 
     }
-    //TODO setTrials
     private void setTrials(int trl) {
-        trialsLabl.setText(String.valueOf(trl)); //TODO here initial trials in controller
+        trialsLabl.setText(String.valueOf(trl));
     }
 
     @Override
