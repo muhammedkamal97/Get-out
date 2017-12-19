@@ -52,4 +52,10 @@ public class MonsterThread extends Thread{
         }
     }
 
+    public void terminate(){
+        motion.clear();
+        monster.clear();
+
+    }
+
 }
