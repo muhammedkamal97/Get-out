@@ -29,6 +29,7 @@ import observer.BulletMotionObserver;
 import observer.EndOfGameObserver;
 import observer.HeroStateObserver;
 import observer.MazeLayersObserver;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -354,7 +355,7 @@ public class CanvasController implements MazeLayersObserver,
         gameLoop.initiateLoop();
     }
 
-    private void updateBar(){
+    private void updateBar() {
         this.updateChangeInHealth(100);
         this.updateChangeInArmorPoints(0);
         this.updateCurrentWeapon(new NormalGun());
@@ -524,7 +525,7 @@ public class CanvasController implements MazeLayersObserver,
         this.level++;
         gcAnimation.clearRect(0, 0, animCanvas.getWidth(), animCanvas.getHeight());
         gcBullets.clearRect(0, 0, bulletCanvas.getWidth(), bulletCanvas.getHeight());
-        //animForWinOrLose();
+//        animForWinOrLose();
         startGame(classHero, level);
     }
 
@@ -541,17 +542,36 @@ public class CanvasController implements MazeLayersObserver,
     }
 
     private void animForWinOrLose() {
-        ArrayList<BufferedImage> list = new ArrayList<>();
-        Image img = new Image("win.jpg");
+        ArrayList<BufferedImage> listblue = new ArrayList<>();
+        ArrayList<BufferedImage> listgreen = new ArrayList<>();
+        ArrayList<BufferedImage> listred = new ArrayList<>();
+        Image img = new Image("Fireworks.png");
         BufferedImage buffImg = SwingFXUtils.fromFXImage(img, null);
         int TileW = (int) img.getWidth() / 3;
-        int TileH = (int) img.getHeight() / 2;
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 3; j++) {
-                list.add(buffImg.getSubimage(j * TileW, i * TileH, TileW, TileH));
-            }
+        int TileH = (int) img.getHeight() / 6;
+        for (int j = 0; j < 6; j++) {
+            listblue.add(buffImg.getSubimage(0 * TileW, j * TileH, TileW, TileH));
         }
+        for (int j = 0; j < 6; j++) {
+            listred.add(buffImg.getSubimage(1 * TileW, j * TileH, TileW, TileH));
+        }
+        for (int j = 0; j < 6; j++) {
+            listgreen.add(buffImg.getSubimage(2 * TileW, j * TileH, TileW, TileH));
+        }
+        boolean red = true;
+        boolean blue = true;
+        boolean green = true;
+        animOnWin(new Point(40, 64), listblue, blue);
+        animOnWin(new Point(260, 464), listgreen, green);
+        animOnWin(new Point(160, 264), listred, red);
+        int i = 0;
+        while (blue || red || green) {
+            i++;
+        }
+        startGame(classHero, level);
+    }
 
+    private void animOnWin(Point pt, ArrayList<BufferedImage> list, boolean flag) {
         new AnimationTimer() {
             long start = System.currentTimeMillis();
             int count = 0;
@@ -560,22 +580,45 @@ public class CanvasController implements MazeLayersObserver,
                 long current = System.currentTimeMillis();
                 if (current - start >= 200) {
                     start = System.currentTimeMillis();
-                    gcAnimation.clearRect(0, 0,
-                            animCanvas.getWidth(), animCanvas.getHeight());
+                    gcAnimation.clearRect(pt.x, pt.y,
+                            400, 400);
                     Image imgTo = SwingFXUtils.toFXImage(list.get(count), null);
-                    gcAnimation.drawImage(imgTo, 0, 0,
-                            animCanvas.getWidth(), animCanvas.getHeight());
+                    gcAnimation.drawImage(imgTo, pt.x, pt.y,
+                           400, 400);
                     count++;
                 }
                 if (count == list.size()) {
                     gcAnimation.clearRect(0, 0,
-                            animCanvas.getWidth(), animCanvas.getHeight());
+                            animCanvas.getWidth()/4, animCanvas.getHeight());
                     this.stop();
-                    startGame(classHero, level);
                 }
             }
         }.start();
     }
+
+//    class StatusTimer extends AnimationTimer {
+//
+//        private volatile boolean running;
+//
+//        @Override
+//        public void start() {
+//            super.start();
+//            running = true;
+//        }
+//
+//        @Override
+//        public void stop() {
+//            super.stop();
+//            running = false;
+//        }
+//
+//        public boolean isRunning() {
+//            return running;
+//        }
+//
+//    ...
+//
+//    }
 
     @Override
     public void updateBulletMotionObserver(Point pastPosition, Point currentPosition, boolean destroyed) {
