@@ -5,8 +5,6 @@ import drawables.Drawable;
 import drawables.characters.Hero;
 import drawables.characters.Monster;
 import View.Graphics.ExplosionAnimation;
-import drawables.characters.heros.Flash;
-import drawables.characters.heros.NormalHero;
 import drawables.pickables.Weapon;
 import drawables.roads.Road;
 import gameCore.RunnerGameAdapter;
@@ -98,6 +96,7 @@ public class CanvasController implements MazeLayersObserver,
     //TODO teleport transition
     //TODO bombs modifications for explode and animation
     //TODO change sprites for bomb explosions
+    //TODO draw bullets per pixel
 
     @FXML
     protected void MenuButtonAction(ActionEvent event) {
@@ -502,13 +501,10 @@ public class CanvasController implements MazeLayersObserver,
     @Override
     public void updateBulletMotionObserver(Point pastPosition, Point currentPosition, boolean destroyed) {
         this.gcBullets.setFill(Color.BLACK);
-        this.gcBullets.clearRect(pastPosition.x * cellWidth, (pastPosition.y + 1.5) * cellHeight + shiftDown, cellWidth, cellHeight);
-        this.gcBullets.fillOval(currentPosition.x * cellWidth, (currentPosition.y + 1.5) * cellHeight + shiftDown, cellWidth, cellHeight);
+        this.gcBullets.clearRect(pastPosition.x * cellWidth, (pastPosition.y) * cellHeight + shiftDown, cellWidth, cellHeight);
+        this.gcBullets.fillOval(currentPosition.x * cellWidth, (currentPosition.y) * cellHeight + shiftDown, cellWidth, cellHeight);
         if (destroyed)
-            this.gcBullets.clearRect(currentPosition.x * cellWidth, (currentPosition.y + 1.5) * cellHeight + shiftDown, cellWidth, cellHeight);
+            this.gcBullets.clearRect(currentPosition.x * cellWidth, (currentPosition.y) * cellHeight + shiftDown, cellWidth, cellHeight);
     }
 
-    public void updateMonsterdied() { //TODO clear bullets when monster dies
-        gcBullets.clearRect(0, 0, bulletCanvas.getWidth(), bulletCanvas.getHeight());
-    }
 }
