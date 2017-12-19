@@ -178,6 +178,8 @@ public class RunnerLoop implements GameLoop{
         {
             weapon.registerBulletMotionObserver(observer);
         }
+
+        this.hero.getCurrentWeapon().registerBulletMotionObserver(observer);
     }
 
     @Override

@@ -24,11 +24,6 @@ public class ShootThread extends Thread{
        this.shootingProperties = new ArrayList<>();
     }
 
-    public boolean isEmpty() {
-        if(this.shootingProperties.size() == 0)
-            return true;
-        return false;
-    }
     public void setMaze(Maze maze) {
         this.maze = maze;
     }
@@ -61,7 +56,7 @@ public class ShootThread extends Thread{
             }
 
             try {
-                sleep(860);
+                sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

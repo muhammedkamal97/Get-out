@@ -5,6 +5,8 @@ import drawables.Drawable;
 import drawables.characters.Hero;
 import drawables.characters.Monster;
 import View.Graphics.ExplosionAnimation;
+import drawables.characters.heros.Flash;
+import drawables.characters.heros.NormalHero;
 import drawables.pickables.Weapon;
 import drawables.roads.Road;
 import gameCore.RunnerGameAdapter;
@@ -452,9 +454,9 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
     @Override
     public void updateBulletMotionObserver(Point pastPosition, Point currentPosition, boolean destroyed) {
         this.gcBullets.setFill(Color.BLACK);
-        this.gcBullets.clearRect(pastPosition.x*cellWidth,pastPosition.y*cellHeight,cellWidth,cellHeight);
-        this.gcBullets.fillOval(currentPosition.x*cellWidth,currentPosition.y*cellHeight,cellWidth,cellHeight);
+        this.gcBullets.clearRect(pastPosition.x*cellWidth,(pastPosition.y + 1.5)*cellHeight,cellWidth,cellHeight);
+        this.gcBullets.fillOval(currentPosition.x*cellWidth,(currentPosition.y + 1.5)*cellHeight,cellWidth,cellHeight);
         if(destroyed)
-            this.gcBullets.clearRect(currentPosition.x*cellWidth,currentPosition.y*cellHeight,cellWidth,cellHeight);
+            this.gcBullets.clearRect(currentPosition.x*cellWidth,(currentPosition.y + 1.5)*cellHeight,cellWidth,cellHeight);
     }
 }
