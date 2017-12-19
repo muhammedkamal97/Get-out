@@ -33,18 +33,13 @@ public class Level3 implements LevelProperties {
 
 
     @Override
-    public int getNumberOfLives() {
+    public int getNumberOfMonsters() {
         return 3;
     }
 
     @Override
-    public int getNumberOfMonsters() {
-        return 5;
-    }
-
-    @Override
     public int getNumberOfTraps() {
-        return 4;
+        return 2;
     }
 
     @Override
@@ -54,7 +49,7 @@ public class Level3 implements LevelProperties {
 
     @Override
     public int getNumberOfBombs() {
-        return 5;
+        return 3;
     }
 
     @Override
@@ -64,17 +59,17 @@ public class Level3 implements LevelProperties {
 
     @Override
     public int getNumberOfShields() {
-        return 5;
+        return 2;
     }
 
     @Override
     public int getMazeWidth() {
-        return 40;
+        return 30;
     }
 
     @Override
     public int getMazeLength() {
-        return 40;
+        return 30;
     }
 
     @Override
@@ -84,7 +79,7 @@ public class Level3 implements LevelProperties {
 
     @Override
     public Class[] getAllowedWalls() {
-        return new Class[]{Tree.class, Bricks.class, Wood.class, Steel.class};
+        return new Class[]{Tree.class, Bricks.class, Wood.class};
     }
 
     @Override

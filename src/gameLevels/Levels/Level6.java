@@ -1,104 +1,98 @@
 package gameLevels.Levels;
 
-import drawables.characters.monsters.DestroyerMonster;
+import drawables.characters.monsters.GiantMonster;
 import drawables.characters.monsters.NormalMonster;
+import drawables.characters.monsters.ShootingMonster;
 import drawables.obstacles.bombs.Dynamite;
+import drawables.obstacles.bombs.Lazer;
 import drawables.obstacles.bombs.NormalBomb;
 import drawables.obstacles.traps.Cage;
 import drawables.obstacles.traps.Fire;
-import drawables.obstacles.traps.Hole;
 import drawables.obstacles.traps.RandomTeleport;
-import drawables.obstacles.walls.Tree;
+import drawables.obstacles.walls.Bricks;
+import drawables.obstacles.walls.Steel;
 import drawables.obstacles.walls.Wood;
 import drawables.pickables.gifts.Ammo;
-import drawables.pickables.gifts.Coins;
 import drawables.pickables.gifts.HealthCareProvider;
-import drawables.pickables.shields.BombShield;
-import drawables.pickables.shields.FlameShield;
-import drawables.pickables.shields.MonesterShield;
-import drawables.pickables.shields.TrapShield;
 import drawables.pickables.weapons.AK47;
 import drawables.pickables.weapons.MP5;
-import drawables.pickables.weapons.NormalGun;
 import drawables.pickables.weapons.NuclearHead;
 import drawables.pickables.weapons.RPG;
 import gameLevels.LevelProperties;
 
-public class Level1 implements LevelProperties {
-
-
+public class Level6 implements LevelProperties {
     @Override
     public int getNumberOfMonsters() {
-        return 0;
+        return 8;
     }
 
     @Override
     public int getNumberOfTraps() {
-        return 0;
+        return 7;
     }
 
     @Override
     public int getNumberOfGifts() {
-        return 2;
+        return 3;
     }
 
     @Override
     public int getNumberOfBombs() {
-        return 1;
+        return 6;
     }
 
     @Override
     public int getNumberOfWeapons() {
-        return 1;
+        return 3;
     }
 
     @Override
     public int getNumberOfShields() {
-        return 1;
+        return 0;
     }
 
     @Override
     public int getMazeWidth() {
-        return 20;
+        return 40;
     }
 
     @Override
     public int getMazeLength() {
-        return 20;
+        return 40;
     }
 
     @Override
     public Class[] getAllowedWeapons() {
-        return new Class[]{MP5.class, AK47.class, NuclearHead.class, NormalGun.class, RPG.class};
+        return new Class[]{AK47.class, MP5.class, RPG.class, NuclearHead.class};
     }
 
     @Override
     public Class[] getAllowedWalls() {
-        return new Class[]{Tree.class, Wood.class};
+        return new Class[]{Bricks.class, Wood.class, Steel.class};
     }
 
     @Override
     public Class[] getAllowedMonsters() {
-        return new Class[0];
+        return new Class[]{NormalMonster.class,GiantMonster.class, ShootingMonster.class};
     }
 
     @Override
     public Class[] getAllowedGifts() {
-        return new Class[] {Coins.class, Ammo.class, HealthCareProvider.class};
+        return new Class[]{HealthCareProvider.class, Ammo.class,Ammo.class,Ammo.class};
     }
 
     @Override
     public Class[] getAllowedBombs() {
-        return new Class[]{NormalBomb.class, Dynamite.class};
+        return new Class[]{Lazer.class, Dynamite.class, NormalBomb.class};
     }
 
     @Override
     public Class[] getAllowedTraps() {
-        return new Class[0];
+        return new Class[]{Fire.class, Cage.class, RandomTeleport.class};
     }
 
     @Override
     public Class[] getAllowedShields() {
-        return new Class[]{BombShield.class, FlameShield.class, MonesterShield.class, TrapShield.class};
+        return new Class[0];
     }
 }

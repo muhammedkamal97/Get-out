@@ -15,10 +15,6 @@ import drawables.pickables.weapons.MP5;
 import gameLevels.LevelProperties;
 
 public class level_test implements LevelProperties{
-    @Override
-    public int getNumberOfLives() {
-        return 0;
-    }
 
     @Override
     public int getNumberOfMonsters() {

@@ -12,7 +12,6 @@ import drawables.pickables.Weapon;
 public interface LevelProperties {
 
 
-    public int getNumberOfLives();
     public int getNumberOfMonsters();
     public int getNumberOfTraps();
     public int getNumberOfGifts();

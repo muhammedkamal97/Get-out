@@ -87,7 +87,7 @@ public class CanvasController implements MazeLayersObserver,
     /**
      * dummy values to update hero's postion don't modify them!!!!
      */
-    private int x, y;
+    private double x, y;
 
     //TODO bullet will be an ellipse moving must need to draw bullets image
     //TODO modify stylesheet
@@ -113,18 +113,18 @@ public class CanvasController implements MazeLayersObserver,
         switch (event.getCode()) {
             case LEFT:
             case KP_LEFT:
-                x -= 10;
+                x -= cellWidth/4.0;
                 if (!checkForWallsLeft()) {
-                    if (x < (-cellWidth / 6)) {
+                    if (x == (-cellWidth)) {
                         gameLoop.moveHeroLeft();
                         if (!hero.getPosition().equals(currentPosition)) {
                             x += cellWidth;
                         } else {
-                            x += 10;
+                            x += cellWidth/4.0;
                         }
                     }
                 } else {
-                    x += 10;
+                    x += cellWidth/4.0;
                 }
                 gameLoop.lookLeft();
                 currentPosition = hero.getPosition();
@@ -135,19 +135,19 @@ public class CanvasController implements MazeLayersObserver,
                 break;
             case RIGHT:
             case KP_RIGHT:
-                x += 10;
+                x += cellWidth/4.0;
                 if (!checkForWallsRight()) {
 
-                    if (x > cellWidth / 6) {
+                    if (x == cellWidth) {
                         gameLoop.moveHeroRight();
                         if (!hero.getPosition().equals(currentPosition)) {
                             x -= cellWidth;
                         } else {
-                            x -= 10;
+                            x -= cellWidth/4.0;
                         }
                     }
                 }else {
-                    x -= 10;
+                    x -= cellWidth/4.0;
                 }
                 gameLoop.lookRight();
                 currentPosition = hero.getPosition();
@@ -158,19 +158,19 @@ public class CanvasController implements MazeLayersObserver,
                 break;
             case UP:
             case KP_UP:
-                y -= 10;
+                y -= cellHeight/4.0;
                 if (!checkForWallsUp()) {
 
-                    if (y < -(cellHeight / 6)) {
+                    if (y == -(cellHeight)) {
                         gameLoop.moveHeroUp();
                         if (!hero.getPosition().equals(currentPosition)) {
                             y += cellHeight;
                         } else {
-                            y += 10;
+                            y += cellHeight/4.0;
                         }
                     }
                 }else {
-                    y += 10;
+                    y += cellHeight/4.0;
                 }
                 gameLoop.lookUp();
                 currentPosition = hero.getPosition();
@@ -181,19 +181,19 @@ public class CanvasController implements MazeLayersObserver,
                 break;
             case DOWN:
             case KP_DOWN:
-                y += 10;
+                y += cellHeight/4.0;
                 if (!checkForWallsDown()) {
 
-                    if (y > cellHeight / 6) {
+                    if (y == cellHeight) {
                         gameLoop.moveHeroDown();
                         if (!hero.getPosition().equals(currentPosition)) {
                             y -= cellHeight;
                         } else {
-                            y -= 10;
+                            y -= cellHeight/4.0;
                         }
                     }
                 }else {
-                    y -= 10;
+                    y -= cellHeight/4.0;
                 }
                 gameLoop.lookDown();
                 currentPosition = hero.getPosition();
@@ -361,7 +361,7 @@ public class CanvasController implements MazeLayersObserver,
         this.updateCurrentWeapon(new NormalGun());
         this.updateNumberOfBullets(6);
     }
-
+    Point mazeDimensions;
     private void setGlobalVariables() {
 
         healthBar.setProgress(1.0);
@@ -370,10 +370,10 @@ public class CanvasController implements MazeLayersObserver,
         armorBar.setStyle("-fx-accent: green;");
         setTrials(trials);
         coins.setText("0");
-        Point pt = gameLoop.getMazeDimensions();
-        shiftDown += ((dynamicCanvas.getHeight() - shiftDown) % (pt.getX())) / 2;
-        cellHeight = (int) ((dynamicCanvas.getHeight() - shiftDown) / (pt.getX()));
-        cellWidth = (int) ((dynamicCanvas.getWidth()) / (pt.getY()));
+        mazeDimensions = gameLoop.getMazeDimensions();
+        shiftDown += ((dynamicCanvas.getHeight() - shiftDown) % (mazeDimensions.getX())) / 2;
+        cellHeight = (int) ((dynamicCanvas.getHeight() - shiftDown) / (mazeDimensions.getX()));
+        cellWidth = (int) ((dynamicCanvas.getWidth()) / (mazeDimensions.getY()));
     }
 
     private void setMazeLayers() {

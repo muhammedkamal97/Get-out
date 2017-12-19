@@ -32,18 +32,13 @@ public class Level2 implements LevelProperties {
 
 
     @Override
-    public int getNumberOfLives() {
+    public int getNumberOfMonsters() {
         return 1;
     }
 
     @Override
-    public int getNumberOfMonsters() {
-        return 3;
-    }
-
-    @Override
     public int getNumberOfTraps() {
-        return 3;
+        return 1;
     }
 
     @Override
@@ -53,7 +48,7 @@ public class Level2 implements LevelProperties {
 
     @Override
     public int getNumberOfBombs() {
-        return 5;
+        return 3;
     }
 
     @Override
@@ -83,7 +78,7 @@ public class Level2 implements LevelProperties {
 
     @Override
     public Class[] getAllowedWalls() {
-        return new Class[]{Tree.class, Bricks.class, Wood.class};
+        return new Class[]{ Bricks.class};
     }
 
     @Override
