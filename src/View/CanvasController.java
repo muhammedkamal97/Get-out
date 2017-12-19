@@ -448,8 +448,9 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         this.level++;
         gcAnimation.clearRect(0,0,animCanvas.getWidth(), animCanvas.getHeight());
         gcBullets.clearRect(0,0,bulletCanvas.getWidth(),bulletCanvas.getHeight());
-        anim();
-        }
+//        anim();
+        startGame(classHero, level);
+    }
 
     @Override
     public void updateOnLose() {
@@ -458,7 +459,8 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         setTrials(--trials);
         gcAnimation.clearRect(0,0,animCanvas.getWidth(), animCanvas.getHeight());
         gcBullets.clearRect(0,0,bulletCanvas.getWidth(),bulletCanvas.getHeight());
-        anim();
+//        anim();
+        startGame(classHero, level);
 //       TODO in start scene story mode w select level (get level number)
 
     }
