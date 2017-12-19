@@ -3,60 +3,67 @@ package drawables.pickables.weapons.bullets.bulletDirectionStates;
 import drawables.Drawable;
 import drawables.characters.MovingObject;
 import drawables.pickables.weapons.bullets.Bullet;
+import drawables.pickables.weapons.bullets.BulletShootingProperties;
 import drawables.roads.Road;
 import maze.Maze;
 
 import java.awt.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 /**
  * Created by Mahmoud on 12/13/2017.
  */
 public class ShootThread extends Thread{
 
-
-    private Point position;
-    private Bullet bullet;
     private Maze maze;
-    private int displacementFactorX;
-    private int displacementFactorY;
+    private ArrayList<BulletShootingProperties> shootingProperties;
 
-    public void setPosition(Point position) {
-        this.position = position;
+    public ShootThread()
+    {
+       this.shootingProperties = new ArrayList<>();
     }
 
-    public void setBullet(Bullet bullet) {
-        this.bullet = bullet;
+    public boolean isEmpty() {
+        if(this.shootingProperties.size() == 0)
+            return true;
+        return false;
     }
-
-    public  void setMaze(Maze maze) {
+    public void setMaze(Maze maze) {
         this.maze = maze;
     }
-
-    public void setDisplacement(int displacementFactorX, int displacementFactorY)
-    {
-        this.displacementFactorX = displacementFactorX;
-        this.displacementFactorY = displacementFactorY;
-    }
+    public void addBullet(BulletShootingProperties properties) {this.shootingProperties.add(properties);}
 
     @Override
     public void run()
     {
-        int displacement = 0;
-        while(true)
+        while(this.shootingProperties.size() != 0)
         {
-            displacement++;
-            int displacementX = this.displacementFactorX * displacement;
-            int displacementY = this.displacementFactorY * displacement;
-
-            Point newPosition = new Point((int)this.position.getX() + displacementX,
-                                          (int)this.position.getY() + displacementY);
-
-            Drawable entityInWay = this.maze.getItemInPosition(newPosition);
-
-            if(!(entityInWay instanceof Road))
+            for(int i = 0 ; i < this.shootingProperties.size() ; i++)
             {
-                entityInWay.takeDamage(this.bullet.getDamage());
-                break;
+                boolean destroyed = false;
+                BulletShootingProperties properties = this.shootingProperties.get(i);
+                properties.increment();
+
+                Point newPosition = properties.getCurrentPosition();
+
+                Drawable entityInWay = this.maze.getItemInPosition(newPosition);
+
+                if(!(entityInWay instanceof Road))
+                {
+                    entityInWay.takeDamage(properties.getBullet().getDamage());
+                    this.shootingProperties.remove(properties);
+                    i--;
+                    destroyed = true;
+                }
+
+                properties.getWeapon().notifyBulletMotionObserver(properties.getPastPosition(),properties.getCurrentPosition(),destroyed);
+            }
+
+            try {
+                sleep(860);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }

@@ -20,6 +20,8 @@ import gameLoop.monsterAI.RandomMotion;
 import maze.Maze;
 import observer.BombExplosionObserver;
 import observer.EndOfGameObserver;
+import observer.BulletMotionObserver;
+import observer.HeroStateObserver;
 import observer.MazeLayersObserver;
 
 import java.awt.*;
@@ -110,7 +112,6 @@ public class RunnerLoop implements GameLoop{
 
         thread.setMonster(this.maze.getMonsters());
         thread.setMaze(this.maze);
-        thread.setMotion(motion);
         thread.setDaemon(true);
         thread.start();
 
@@ -163,6 +164,20 @@ public class RunnerLoop implements GameLoop{
     @Override
     public void registerAsMazeLayerObserver(MazeLayersObserver observer) {
         maze.registerMazeLayersObserver(observer);
+    }
+
+    @Override
+    public void registerAsHeroStateObserver(HeroStateObserver observer) {
+        this.hero.registerStateObserver(observer);
+    }
+
+    @Override
+    public void registerAsBulletMotionObserver(BulletMotionObserver observer) {
+        ArrayList<Weapon> tempWeapon = this.maze.getweapons();
+        for(Weapon weapon : tempWeapon)
+        {
+            weapon.registerBulletMotionObserver(observer);
+        }
     }
 
     @Override

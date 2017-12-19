@@ -19,15 +19,18 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import observer.BombExplosionObserver;
+import observer.BulletMotionObserver;
 import observer.EndOfGameObserver;
 import observer.HeroStateObserver;
 import observer.MazeLayersObserver;
 
 import java.awt.*;
 
-public class CanvasController implements MazeLayersObserver, BombExplosionObserver, HeroStateObserver, EndOfGameObserver {
+public class CanvasController implements MazeLayersObserver, BombExplosionObserver, HeroStateObserver, EndOfGameObserver,BulletMotionObserver {
 
     @FXML
     private Button Menu;
@@ -41,6 +44,8 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
     private Canvas mazeCanvas;
     @FXML
     private Canvas animCanvas;
+    @FXML
+    private Canvas bulletCanvas;
     @FXML
     private ImageView weaponImage;
     @FXML
@@ -58,6 +63,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
     private GraphicsContext gcAnimation;
     private GraphicsContext gcM;
     private GraphicsContext gcS;
+    private GraphicsContext gcBullets;
     private int shiftDown = 30;
     private int cellWidth;
     private int cellHeight;
@@ -251,6 +257,8 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         gameLoop.registerEndGameObserver(this);
         gameLoop.registerAsMazeLayerObserver(this);
         gameLoop.registerAsBombObserver(this);
+        gameLoop.registerAsBulletMotionObserver(this);
+////////////////
         setGlobalVariables();
         setMazeLayers();
         x = y = 0;
@@ -264,6 +272,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         gcAnimation = animCanvas.getGraphicsContext2D();
         gcM = mazeCanvas.getGraphicsContext2D();
         gcS = steadyCanvas.getGraphicsContext2D();
+        gcBullets = bulletCanvas.getGraphicsContext2D();
 
         healthBar.setProgress(1.0);
         healthBar.setStyle("-fx-accent: red;");
@@ -439,5 +448,14 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         gcAnimation.clearRect(0,0,animCanvas.getWidth(), animCanvas.getHeight());
         gcM.clearRect(0,0,mazeCanvas.getWidth(),mazeCanvas.getHeight());
         gcS.clearRect(0,0,steadyCanvas.getWidth(),steadyCanvas.getHeight());
+    }
+
+    @Override
+    public void updateBulletMotionObserver(Point pastPosition, Point currentPosition, boolean destroyed) {
+        this.gcBullets.setFill(Color.BLACK);
+        this.gcBullets.clearRect(pastPosition.x*cellWidth,pastPosition.y*cellHeight,cellWidth,cellHeight);
+        this.gcBullets.fillOval(currentPosition.x*cellWidth,currentPosition.y*cellHeight,cellWidth,cellHeight);
+        if(destroyed)
+            this.gcBullets.clearRect(currentPosition.x*cellWidth,currentPosition.y*cellHeight,cellWidth,cellHeight);
     }
 }

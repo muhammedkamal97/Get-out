@@ -113,6 +113,9 @@ public abstract class StandardHero implements Hero {
 				healthPoints -= damage;
 			}
 		}
+
+		notifyChangeInHealth();
+		notifyChangeInArmorPoints();
 	}
 
 	@Override
@@ -236,11 +239,14 @@ public abstract class StandardHero implements Hero {
 		if (healthPoints > getHeroStartingHealth()) {
 			healthPoints = getHeroStartingHealth();
 		}
+
+		notifyChangeInHealth();
 	}
 
 	@Override
 	public void increaseCoins(int coins) {
 		this.coins += coins;
+		notifyChangeInCoins();
 	}
 
 	@Override

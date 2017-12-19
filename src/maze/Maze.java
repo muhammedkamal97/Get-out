@@ -191,7 +191,10 @@ public class Maze implements ObservedSubject, MotionObserver, MonsterObserver , 
         for (int i = 0 ; i < mazeLayersObservers.size() ;i++)
             mazeLayersObservers.get(i).updateRoadsAndWalls(position);
     }
+
     public ArrayList<Bomb> getBombs(){
         return components.bombs;
     }
+
+    public ArrayList<Weapon> getweapons(){return components.weapons;}
 }
