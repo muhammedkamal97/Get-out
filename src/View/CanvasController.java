@@ -101,6 +101,8 @@ public class CanvasController implements MazeLayersObserver,
 
     @FXML
     protected void MenuButtonAction(ActionEvent event) {
+        gameLoop.closeGame();
+
         Stage stage = (Stage) Menu.getScene().getWindow();
         stage.close();
     }
@@ -276,6 +278,7 @@ public class CanvasController implements MazeLayersObserver,
         gameLoop.registerAsMazeLayerObserver(this);
         gameLoop.registerAsBombObserver(this);
         gameLoop.registerAsBulletMotionObserver(this);
+        gameLoop.registerAsHeroStateObserver(this);
 
         setGlobalVariables();
         setMazeLayers();
