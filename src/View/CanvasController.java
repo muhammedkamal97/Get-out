@@ -16,6 +16,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.*;
@@ -104,7 +105,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
             case LEFT:
             case KP_LEFT:
                 x -= 10;
-                if (!checkForWallsLeft()) {
+//                if (!checkForWallsLeft()) {
                     if (x < (-cellWidth / 6)) {
                         gameLoop.moveHeroLeft();
                         if (!hero.getPosition().equals(currentPosition)) {
@@ -113,9 +114,9 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
                             x += 10;
                         }
                     }
-                } else {
-                    x += 10;
-                }
+//                } else {
+//                    x += 10;
+//                }
                 gameLoop.lookLeft();
                 currentPosition = hero.getPosition();
                 System.out.println(currentPosition);
@@ -237,7 +238,17 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
 
     public void initLogin(Class<? extends Hero> hero, int lvl) {
         this.classHero = hero;
+        trials = 100; //TODO to be  set to hero's
+        setImgLabls();
         this.game = new RunnerGameAdapter();
+
+        gcD = dynamicCanvas.getGraphicsContext2D();
+        gcH = heroCanvas.getGraphicsContext2D();
+        gcAnimation = animCanvas.getGraphicsContext2D();
+        gcM = mazeCanvas.getGraphicsContext2D();
+        gcS = steadyCanvas.getGraphicsContext2D();
+        gcBullets = bulletCanvas.getGraphicsContext2D();
+
         startGame(hero, lvl);
 
     }
@@ -264,21 +275,13 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
 
     private void setGlobalVariables() {
 
-        gcD = dynamicCanvas.getGraphicsContext2D();
-        gcH = heroCanvas.getGraphicsContext2D();
-        gcAnimation = animCanvas.getGraphicsContext2D();
-        gcM = mazeCanvas.getGraphicsContext2D();
-        gcS = steadyCanvas.getGraphicsContext2D();
-        gcBullets = bulletCanvas.getGraphicsContext2D();
 
-        //TODO to be mofified to no weapon (probably remove it)
-        weaponImage.setImage(MazeMap.getInstance().getBufferedImage("Trap"));
 
         healthBar.setProgress(1.0);
         healthBar.setStyle("-fx-accent: red;");
         armorBar.setProgress(0.0);
         armorBar.setStyle("-fx-accent: green;");
-        setTrials(); //TODO get trials
+        setTrials(trials);
         coins.setText("0");
         bullets.setText("0");
         Point pt = gameLoop.getMazeDimensions();
@@ -295,6 +298,9 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
 
     private void setMovingObjectsLayer() {
         Drawable[][] maze = gameLoop.getMovingObjectsLayer();
+                gcD.clearRect(0,0,dynamicCanvas.getWidth(),dynamicCanvas.getHeight());
+        gcH.clearRect(0,0,heroCanvas.getWidth(),heroCanvas.getHeight());
+
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[i].length; j++) {
                 if (maze[j][i] != null) {
@@ -316,6 +322,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
 
     private void setPickablesLayer() {
         Drawable[][] maze = gameLoop.getPickablesLayer();
+        gcM.clearRect(0,0,mazeCanvas.getWidth(),mazeCanvas.getHeight());
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[i].length; j++) {
                 if (maze[j][i] != null) {
@@ -330,6 +337,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
 
     private void setRoadAndWallsLayer() {
         this.wallMaze = gameLoop.getRoadAndWallsLayer();
+        gcS.clearRect(0,0,steadyCanvas.getWidth(),steadyCanvas.getHeight());
         for (int i = 0; i < wallMaze.length; i++) {
             for (int j = 0; j < wallMaze[i].length; j++) {
                 if (wallMaze[j][i] != null && !(wallMaze[j][i] instanceof Road)) {
@@ -345,10 +353,10 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
     @Override
     public void updateMonsterPosition(Point oldPos, Monster monster) {
         //need to perform atransition
-        gcD.clearRect(oldPos.getX() * cellWidth, oldPos.getY() * cellHeight + shiftDown, cellWidth, cellHeight);
-        monster.drawOnCanvas(gcD, new Point((int) (monster.getPosition().getX() * cellWidth),
-                        (int) (monster.getPosition().getY() * cellHeight + shiftDown)),
-                cellWidth, cellHeight);
+//        gcD.clearRect(oldPos.getX() * cellWidth, oldPos.getY() * cellHeight + shiftDown, cellWidth, cellHeight);
+//        monster.drawOnCanvas(gcD, new Point((int) (monster.getPosition().getX() * cellWidth),
+//                        (int) (monster.getPosition().getY() * cellHeight + shiftDown)),
+//                cellWidth, cellHeight);
         //            heroOrMonster.getDownSprite().reset();
 //            int i = (int)heroOrMonster.getPosition().getY()-heightCell;
 //            while (i < heroOrMonster.getPosition().getY()) {
@@ -402,10 +410,25 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         weaponImage.setImage(MazeMap.getInstance().getBufferedImage(wep));
     }
 
+    public void setImgLabls () {
+        ImageView img = new ImageView("heart.png");
+        img.setFitHeight(30);
+        img.setFitWidth(30);
+        trialsLabl.setGraphic(img);
+        img = new ImageView("bullet2.png");
+        img.setFitHeight(30);
+        img.setFitWidth(30);
+        bullets.setGraphic(img);
+        img = new ImageView("Bricks.jpg");
+        img.setFitHeight(30);
+        img.setFitWidth(30);
+        coins.setGraphic(img);
+        weaponImage.setImage(new Image("null.png"));
+
+    }
     //TODO setTrials
-    private void setTrials() {
-        trialsLabl.setText(String.valueOf(hero.getTrials())); //TODO here initial trials in controller
-//        trials.setBackground(new Image("Bricks.jpg"));
+    private void setTrials(int trl) {
+        trialsLabl.setText(String.valueOf(trl)); //TODO here initial trials in controller
     }
 
     @Override
@@ -414,24 +437,18 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         System.out.println("You Win!!!!!!!");
         this.level++;
         startGame(this.classHero, this.level);
-        gcD.clearRect(0,0,dynamicCanvas.getWidth(),dynamicCanvas.getHeight());
-        gcH.clearRect(0,0,heroCanvas.getWidth(),heroCanvas.getHeight());
         gcAnimation.clearRect(0,0,animCanvas.getWidth(), animCanvas.getHeight());
-        gcM.clearRect(0,0,mazeCanvas.getWidth(),mazeCanvas.getHeight());
-        gcS.clearRect(0,0,steadyCanvas.getWidth(),steadyCanvas.getHeight());
     }
 
     @Override
     public void updateOnLose() {
         //TODO play gameOver animation
         System.out.println("Game Over!!!!!!!");
+        setTrials(--trials);
         startGame(this.classHero, this.level);
 //       TODO in start scene story mode w select level (get level number)
-        gcD.clearRect(0,0,dynamicCanvas.getWidth(),dynamicCanvas.getHeight());
-        gcH.clearRect(0,0,heroCanvas.getWidth(),heroCanvas.getHeight());
         gcAnimation.clearRect(0,0,animCanvas.getWidth(), animCanvas.getHeight());
-        gcM.clearRect(0,0,mazeCanvas.getWidth(),mazeCanvas.getHeight());
-        gcS.clearRect(0,0,steadyCanvas.getWidth(),steadyCanvas.getHeight());
+
     }
 
     @Override
