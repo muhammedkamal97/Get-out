@@ -108,14 +108,15 @@ public abstract class StandardHero implements Hero {
 			if (damage >= healthPoints) {
 				healthPoints = 0;
 				// check or notify
+				notifyChangeInHealth();
+				notifyChangeInArmorPoints();
 				notifyDeathObservers();
 			} else{
 				healthPoints -= damage;
+				notifyChangeInHealth();
+				notifyChangeInArmorPoints();
 			}
 		}
-
-		notifyChangeInHealth();
-		notifyChangeInArmorPoints();
 	}
 
 	@Override
