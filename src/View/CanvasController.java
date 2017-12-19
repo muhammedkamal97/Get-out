@@ -84,21 +84,20 @@ public class CanvasController implements MazeLayersObserver,
     private RunnerGameAdapter game;
     private Class<? extends Hero> classHero;
     private int level;
+    private ShapeIntersectionDetector intersectionDetector;
     /**
      * dummy values to update hero's postion don't modify them!!!!
      */
     private double x, y;
 
-    //TODO bullet will be an ellipse moving must need to draw bullets image
+    //TODO draw bullets image
     //TODO modify stylesheet
     //TODO camera
-    //TODO collision
     //TODO memento
     //TODO Win/gameOver animation
-    //TODO teleport transition
-    //TODO bombs modifications for explode and animation
+    //TODO teleport transition animation
     //TODO change sprites for bomb explosions
-    //TODO draw bullets per pixel
+    //TODO Traps animation
 
     @FXML
     protected void MenuButtonAction(ActionEvent event) {
@@ -208,13 +207,13 @@ public class CanvasController implements MazeLayersObserver,
     }
 
     private boolean checkForWallsLeft() {
-        if (!hero.intersects(wallMaze[hero.getPosition().y][hero.getPosition().x - 1],
+        if (!intersectionDetector.intersects(wallMaze[hero.getPosition().y][hero.getPosition().x - 1],
                 new Point((int) (currentPosition.getX() * cellWidth + x),
                         (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight , -1 ,0)) {
-            if (!hero.intersects(wallMaze[hero.getPosition().y - 1][hero.getPosition().x - 1],
+            if (!intersectionDetector.intersects(wallMaze[hero.getPosition().y - 1][hero.getPosition().x - 1],
                     new Point((int) (currentPosition.getX() * cellWidth + x),
                             (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight , 0,-1)) {
-                if (!hero.intersects(wallMaze[hero.getPosition().y + 1][hero.getPosition().x - 1],
+                if (!intersectionDetector.intersects(wallMaze[hero.getPosition().y + 1][hero.getPosition().x - 1],
                         new Point((int) (currentPosition.getX() * cellWidth + x),
                                 (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight,0,1)) {
                     return false;
@@ -226,13 +225,13 @@ public class CanvasController implements MazeLayersObserver,
     }
 
     private boolean checkForWallsRight() {
-        if (!hero.intersects(wallMaze[hero.getPosition().y][hero.getPosition().x + 1],
+        if (!intersectionDetector.intersects(wallMaze[hero.getPosition().y][hero.getPosition().x + 1],
                 new Point((int) (currentPosition.getX() * cellWidth + x),
                         (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight,1,0)) {
-            if (!hero.intersects(wallMaze[hero.getPosition().y - 1][hero.getPosition().x + 1],
+            if (!intersectionDetector.intersects(wallMaze[hero.getPosition().y - 1][hero.getPosition().x + 1],
                     new Point((int) (currentPosition.getX() * cellWidth + x),
                             (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight,0,-1)) {
-                if (!hero.intersects(wallMaze[hero.getPosition().y + 1][hero.getPosition().x + 1],
+                if (!intersectionDetector.intersects(wallMaze[hero.getPosition().y + 1][hero.getPosition().x + 1],
                         new Point((int) (currentPosition.getX() * cellWidth + x),
                                 (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight,0,1)) {
                     return false;
@@ -243,13 +242,13 @@ public class CanvasController implements MazeLayersObserver,
         return true;
     }
     private boolean checkForWallsDown() {
-        if (!hero.intersects(wallMaze[hero.getPosition().y + 1][hero.getPosition().x - 1],
+        if (!intersectionDetector.intersects(wallMaze[hero.getPosition().y + 1][hero.getPosition().x - 1],
                 new Point((int) (currentPosition.getX() * cellWidth + x),
                         (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight,-1,0)) {
-            if (!hero.intersects(wallMaze[hero.getPosition().y + 1][hero.getPosition().x],
+            if (!intersectionDetector.intersects(wallMaze[hero.getPosition().y + 1][hero.getPosition().x],
                     new Point((int) (currentPosition.getX() * cellWidth + x),
                             (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight,0,1)) {
-                if (!hero.intersects(wallMaze[hero.getPosition().y + 1][hero.getPosition().x + 1],
+                if (!intersectionDetector.intersects(wallMaze[hero.getPosition().y + 1][hero.getPosition().x + 1],
                         new Point((int) (currentPosition.getX() * cellWidth + x),
                                 (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight,1,0)) {
                     return false;
@@ -260,13 +259,13 @@ public class CanvasController implements MazeLayersObserver,
         return true;
     }
     private boolean checkForWallsUp() {
-        if (!hero.intersects(wallMaze[hero.getPosition().y - 1][hero.getPosition().x],
+        if (!intersectionDetector.intersects(wallMaze[hero.getPosition().y - 1][hero.getPosition().x],
                 new Point((int) (currentPosition.getX() * cellWidth + x),
                         (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight,0,-1)) {
-            if (!hero.intersects(wallMaze[hero.getPosition().y - 1][hero.getPosition().x - 1],
+            if (!intersectionDetector.intersects(wallMaze[hero.getPosition().y - 1][hero.getPosition().x - 1],
                     new Point((int) (currentPosition.getX() * cellWidth + x),
                             (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight,-1,0)) {
-                if (!hero.intersects(wallMaze[hero.getPosition().y - 1][hero.getPosition().x + 1],
+                if (!intersectionDetector.intersects(wallMaze[hero.getPosition().y - 1][hero.getPosition().x + 1],
                         new Point((int) (currentPosition.getX() * cellWidth + x),
                                 (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight,1,0)) {
                     return false;
@@ -315,7 +314,9 @@ public class CanvasController implements MazeLayersObserver,
     }
 
     public void initLogin(Class<? extends Hero> hero, int lvl) {
+        this.intersectionDetector = new ShapeIntersectionDetector();
         this.classHero = hero;
+
         trials = 100; //TODO to be  set to hero's
         setImgLabls();
         this.game = new RunnerGameAdapter();
@@ -499,7 +500,7 @@ public class CanvasController implements MazeLayersObserver,
         }
     }
 
-    public void setImgLabls() {
+    private void setImgLabls() {
         ImageView img = new ImageView("heart.png");
         img.setFitHeight(30);
         img.setFitWidth(30);
