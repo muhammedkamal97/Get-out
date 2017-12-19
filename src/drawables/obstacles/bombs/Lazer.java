@@ -7,7 +7,7 @@ public class Lazer extends StandardBomb implements Bomb {
 
     private final int HEALTH = 25;
     private final int RANGE = 3;
-    private final int DAMAGE = 1000;
+    private final int DAMAGE = 80;
 
     public Lazer() {
         setBombRange();

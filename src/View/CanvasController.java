@@ -444,7 +444,6 @@ public class CanvasController implements MazeLayersObserver,
         img.setFitWidth(30);
         coins.setGraphic(img);
         weaponImage.setImage(new Image("null.png"));
-
     }
 
     private void setTrials(int trl) {

@@ -10,7 +10,7 @@ public class Piston extends StandardBomb {
 
     private final int HEALTH = 250;
     private final int RANGE = 4;
-    private final int DAMAGE = 100;
+    private final int DAMAGE = 75;
 
     public Piston() {
         setBombRange();

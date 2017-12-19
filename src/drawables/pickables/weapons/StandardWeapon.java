@@ -16,7 +16,6 @@ import java.util.ArrayList;
 
 public abstract class StandardWeapon implements Weapon {
 
-
     private Point position;
     private int ammo;
     private int maxMagazineCapacity;

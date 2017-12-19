@@ -2,10 +2,6 @@ package drawables.pickables.weapons;
 
 import drawables.pickables.weapons.bullets.Bullet;
 import drawables.pickables.weapons.bullets.NormalBullet;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-
-import java.awt.*;
 
 public class NormalGun extends StandardWeapon {
 
