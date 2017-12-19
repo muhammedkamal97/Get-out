@@ -116,18 +116,18 @@ public class CanvasController implements MazeLayersObserver,
         switch (event.getCode()) {
             case LEFT:
             case KP_LEFT:
-                x -= cellWidth/4.0;
+                x -= cellWidth / 4.0;
                 if (!checkForWallsLeft()) {
                     if (x == (-cellWidth)) {
                         gameLoop.moveHeroLeft();
                         if (!hero.getPosition().equals(currentPosition)) {
                             x += cellWidth;
                         } else {
-                            x += cellWidth/4.0;
+                            x += cellWidth / 4.0;
                         }
                     }
                 } else {
-                    x += cellWidth/4.0;
+                    x += cellWidth / 4.0;
                 }
                 gameLoop.lookLeft();
                 currentPosition = hero.getPosition();
@@ -138,7 +138,7 @@ public class CanvasController implements MazeLayersObserver,
                 break;
             case RIGHT:
             case KP_RIGHT:
-                x += cellWidth/4.0;
+                x += cellWidth / 4.0;
                 if (!checkForWallsRight()) {
 
                     if (x == cellWidth) {
@@ -146,11 +146,11 @@ public class CanvasController implements MazeLayersObserver,
                         if (!hero.getPosition().equals(currentPosition)) {
                             x -= cellWidth;
                         } else {
-                            x -= cellWidth/4.0;
+                            x -= cellWidth / 4.0;
                         }
                     }
-                }else {
-                    x -= cellWidth/4.0;
+                } else {
+                    x -= cellWidth / 4.0;
                 }
                 gameLoop.lookRight();
                 currentPosition = hero.getPosition();
@@ -161,7 +161,7 @@ public class CanvasController implements MazeLayersObserver,
                 break;
             case UP:
             case KP_UP:
-                y -= cellHeight/4.0;
+                y -= cellHeight / 4.0;
                 if (!checkForWallsUp()) {
 
                     if (y == -(cellHeight)) {
@@ -169,11 +169,11 @@ public class CanvasController implements MazeLayersObserver,
                         if (!hero.getPosition().equals(currentPosition)) {
                             y += cellHeight;
                         } else {
-                            y += cellHeight/4.0;
+                            y += cellHeight / 4.0;
                         }
                     }
-                }else {
-                    y += cellHeight/4.0;
+                } else {
+                    y += cellHeight / 4.0;
                 }
                 gameLoop.lookUp();
                 currentPosition = hero.getPosition();
@@ -184,7 +184,7 @@ public class CanvasController implements MazeLayersObserver,
                 break;
             case DOWN:
             case KP_DOWN:
-                y += cellHeight/4.0;
+                y += cellHeight / 4.0;
                 if (!checkForWallsDown()) {
 
                     if (y == cellHeight) {
@@ -192,11 +192,11 @@ public class CanvasController implements MazeLayersObserver,
                         if (!hero.getPosition().equals(currentPosition)) {
                             y -= cellHeight;
                         } else {
-                            y -= cellHeight/4.0;
+                            y -= cellHeight / 4.0;
                         }
                     }
-                }else {
-                    y -= cellHeight/4.0;
+                } else {
+                    y -= cellHeight / 4.0;
                 }
                 gameLoop.lookDown();
                 currentPosition = hero.getPosition();
@@ -213,13 +213,13 @@ public class CanvasController implements MazeLayersObserver,
     private boolean checkForWallsLeft() {
         if (!intersectionDetector.intersects(wallMaze[hero.getPosition().y][hero.getPosition().x - 1],
                 new Point((int) (currentPosition.getX() * cellWidth + x),
-                        (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight , -1 ,0)) {
+                        (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight, -1, 0)) {
             if (!intersectionDetector.intersects(wallMaze[hero.getPosition().y - 1][hero.getPosition().x - 1],
                     new Point((int) (currentPosition.getX() * cellWidth + x),
-                            (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight , 0,-1)) {
+                            (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight, 0, -1)) {
                 if (!intersectionDetector.intersects(wallMaze[hero.getPosition().y + 1][hero.getPosition().x - 1],
                         new Point((int) (currentPosition.getX() * cellWidth + x),
-                                (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight,0,1)) {
+                                (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight, 0, 1)) {
                     return false;
                 }
             }
@@ -231,13 +231,13 @@ public class CanvasController implements MazeLayersObserver,
     private boolean checkForWallsRight() {
         if (!intersectionDetector.intersects(wallMaze[hero.getPosition().y][hero.getPosition().x + 1],
                 new Point((int) (currentPosition.getX() * cellWidth + x),
-                        (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight,1,0)) {
+                        (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight, 1, 0)) {
             if (!intersectionDetector.intersects(wallMaze[hero.getPosition().y - 1][hero.getPosition().x + 1],
                     new Point((int) (currentPosition.getX() * cellWidth + x),
-                            (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight,0,-1)) {
+                            (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight, 0, -1)) {
                 if (!intersectionDetector.intersects(wallMaze[hero.getPosition().y + 1][hero.getPosition().x + 1],
                         new Point((int) (currentPosition.getX() * cellWidth + x),
-                                (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight,0,1)) {
+                                (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight, 0, 1)) {
                     return false;
                 }
             }
@@ -245,16 +245,17 @@ public class CanvasController implements MazeLayersObserver,
         }
         return true;
     }
+
     private boolean checkForWallsDown() {
         if (!intersectionDetector.intersects(wallMaze[hero.getPosition().y + 1][hero.getPosition().x - 1],
                 new Point((int) (currentPosition.getX() * cellWidth + x),
-                        (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight,-1,0)) {
+                        (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight, -1, 0)) {
             if (!intersectionDetector.intersects(wallMaze[hero.getPosition().y + 1][hero.getPosition().x],
                     new Point((int) (currentPosition.getX() * cellWidth + x),
-                            (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight,0,1)) {
+                            (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight, 0, 1)) {
                 if (!intersectionDetector.intersects(wallMaze[hero.getPosition().y + 1][hero.getPosition().x + 1],
                         new Point((int) (currentPosition.getX() * cellWidth + x),
-                                (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight,1,0)) {
+                                (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight, 1, 0)) {
                     return false;
                 }
             }
@@ -262,16 +263,17 @@ public class CanvasController implements MazeLayersObserver,
         }
         return true;
     }
+
     private boolean checkForWallsUp() {
         if (!intersectionDetector.intersects(wallMaze[hero.getPosition().y - 1][hero.getPosition().x],
                 new Point((int) (currentPosition.getX() * cellWidth + x),
-                        (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight,0,-1)) {
+                        (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight, 0, -1)) {
             if (!intersectionDetector.intersects(wallMaze[hero.getPosition().y - 1][hero.getPosition().x - 1],
                     new Point((int) (currentPosition.getX() * cellWidth + x),
-                            (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight,-1,0)) {
+                            (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight, -1, 0)) {
                 if (!intersectionDetector.intersects(wallMaze[hero.getPosition().y - 1][hero.getPosition().x + 1],
                         new Point((int) (currentPosition.getX() * cellWidth + x),
-                                (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight,1,0)) {
+                                (int) (currentPosition.getY() * cellHeight + y)), cellWidth, cellHeight, 1, 0)) {
                     return false;
                 }
             }
@@ -352,7 +354,7 @@ public class CanvasController implements MazeLayersObserver,
         gameLoop.registerAsBombObserver(this);
         gameLoop.registerAsBulletMotionObserver(this);
         gameLoop.registerAsHeroStateObserver(this);
-        currentPosition = new Point(1,1);
+        currentPosition = new Point(1, 1);
         updateBar();
         setGlobalVariables();
         setMazeLayers();
@@ -366,7 +368,9 @@ public class CanvasController implements MazeLayersObserver,
         this.updateCurrentWeapon(new NormalGun());
         this.updateNumberOfBullets(6);
     }
+
     Point mazeDimensions;
+
     private void setGlobalVariables() {
 
         healthBar.setProgress(1.0);
@@ -540,12 +544,17 @@ public class CanvasController implements MazeLayersObserver,
         setTrials(--trials);
         gcAnimation.clearRect(0, 0, animCanvas.getWidth(), animCanvas.getHeight());
         gcBullets.clearRect(0, 0, bulletCanvas.getWidth(), bulletCanvas.getHeight());
-//        animForWinOrLose();
+//        animOnWin();
         startGame(classHero, level);
 //       TODO in start scene story mode w select level (get level number)
     }
 
-    private void animForWinOrLose() {
+//    private void animForWinOrLose() {
+//
+//        animOnWin(listblue,listred,listblue);
+//    }
+
+    private void animOnWin() {
         ArrayList<BufferedImage> listblue = new ArrayList<>();
         ArrayList<BufferedImage> listgreen = new ArrayList<>();
         ArrayList<BufferedImage> listred = new ArrayList<>();
@@ -554,7 +563,7 @@ public class CanvasController implements MazeLayersObserver,
         int TileW = (int) img.getWidth() / 3;
         int TileH = (int) img.getHeight() / 6;
         for (int j = 0; j < 6; j++) {
-            listblue.add(buffImg.getSubimage(0 * TileW, j * TileH, TileW, TileH));
+            listblue.add(buffImg.getSubimage(0, j * TileH, TileW, TileH));
         }
         for (int j = 0; j < 6; j++) {
             listred.add(buffImg.getSubimage(1 * TileW, j * TileH, TileW, TileH));
@@ -562,67 +571,38 @@ public class CanvasController implements MazeLayersObserver,
         for (int j = 0; j < 6; j++) {
             listgreen.add(buffImg.getSubimage(2 * TileW, j * TileH, TileW, TileH));
         }
-        boolean red = true;
-        boolean blue = true;
-        boolean green = true;
-        animOnWin(new Point(40, 64), listblue, blue);
-        animOnWin(new Point(260, 464), listgreen, green);
-        animOnWin(new Point(160, 264), listred, red);
-        int i = 0;
-        while (blue || red || green) {
-            i++;
-        }
-        startGame(classHero, level);
-    }
 
-    private void animOnWin(Point pt, ArrayList<BufferedImage> list, boolean flag) {
         new AnimationTimer() {
             long start = System.currentTimeMillis();
             int count = 0;
 
             public void handle(long currentNanoTime) {
                 long current = System.currentTimeMillis();
-                if (current - start >= 200) {
-                    start = System.currentTimeMillis();
-                    gcAnimation.clearRect(pt.x, pt.y,
-                            400, 400);
-                    Image imgTo = SwingFXUtils.toFXImage(list.get(count), null);
-                    gcAnimation.drawImage(imgTo, pt.x, pt.y,
-                           400, 400);
-                    count++;
-                }
-                if (count == list.size()) {
+                System.out.println("handle");
+                if (current - start >= 400) {
                     gcAnimation.clearRect(0, 0,
-                            animCanvas.getWidth()/4, animCanvas.getHeight());
+                            animCanvas.getWidth(), animCanvas.getHeight());
+                    start = System.currentTimeMillis();
+                    Image imgTo = SwingFXUtils.toFXImage(listblue.get(count), null);
+                    gcAnimation.drawImage(imgTo, 640, 160,
+                            400, 400);
+                    imgTo = SwingFXUtils.toFXImage(listgreen.get(count), null);
+                    gcAnimation.drawImage(imgTo, 140, 80,
+                            400, 400);
+                    imgTo = SwingFXUtils.toFXImage(listred.get(count), null);
+                    gcAnimation.drawImage(imgTo, 200, 50,
+                            400, 400);
+                    count++;
+                    System.out.println("blue is in");
+                }
+                if (count == listblue.size()) {
+                    System.out.println("blue stops");
+                    startGame(classHero, level);
                     this.stop();
                 }
             }
         }.start();
     }
-
-//    class StatusTimer extends AnimationTimer {
-//
-//        private volatile boolean running;
-//
-//        @Override
-//        public void start() {
-//            super.start();
-//            running = true;
-//        }
-//
-//        @Override
-//        public void stop() {
-//            super.stop();
-//            running = false;
-//        }
-//
-//        public boolean isRunning() {
-//            return running;
-//        }
-//
-//    ...
-//
-//    }
 
     @Override
     public void updateBulletMotionObserver(Point pastPosition, Point currentPosition, boolean destroyed) {
