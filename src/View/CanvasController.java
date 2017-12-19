@@ -23,7 +23,6 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import observer.BombExplosionObserver;
@@ -31,12 +30,13 @@ import observer.BulletMotionObserver;
 import observer.EndOfGameObserver;
 import observer.HeroStateObserver;
 import observer.MazeLayersObserver;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public class CanvasController implements MazeLayersObserver, BombExplosionObserver, HeroStateObserver, EndOfGameObserver,BulletMotionObserver {
+public class CanvasController implements MazeLayersObserver,
+        BombExplosionObserver, HeroStateObserver,
+        EndOfGameObserver, BulletMotionObserver {
 
     @FXML
     private Button Menu;
@@ -84,22 +84,20 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
     private RunnerGameAdapter game;
     private Class<? extends Hero> classHero;
     private int level;
-
-    //dummy values to update hero's postion don't modify them!!!!
+    /**
+     * dummy values to update hero's postion don't modify them!!!!
+     */
     private int x, y;
 
-    //TODO  Weapons Icons //set in map
-    //TODO bullet will be an ellipse moving must have draw function
+    //TODO bullet will be an ellipse moving must need to draw bullets image
     //TODO modify stylesheet
     //TODO camera
     //TODO collision
-    //TODO bullets observer
     //TODO memento
     //TODO Win/gameOver animation
-
-    //TODO HERE shield bar //removed or added
-    //TODO HERE score bar elly heya coins
-    //TODO HERE armorpoints
+    //TODO teleport transition
+    //TODO bombs modifications for explode and animation
+    //TODO change sprites for bomb explosions
 
     @FXML
     protected void MenuButtonAction(ActionEvent event) {
@@ -114,20 +112,20 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
             case KP_LEFT:
                 x -= 10;
 //                if (!checkForWallsLeft()) {
-                    if (x < (-cellWidth / 6)) {
-                        gameLoop.moveHeroLeft();
-                        if (!hero.getPosition().equals(currentPosition)) {
-                            x += cellWidth;
-                        } else {
-                            x += 10;
-                        }
+                if (x < (-cellWidth / 6)) {
+                    gameLoop.moveHeroLeft();
+                    if (!hero.getPosition().equals(currentPosition)) {
+                        x += cellWidth;
+                    } else {
+                        x += 10;
                     }
+                }
 //                } else {
 //                    x += 10;
 //                }
                 gameLoop.lookLeft();
                 currentPosition = hero.getPosition();
-                gcH.clearRect(0,0,heroCanvas.getWidth(), heroCanvas.getHeight());
+                gcH.clearRect(0, 0, heroCanvas.getWidth(), heroCanvas.getHeight());
                 hero.drawOnCanvas(gcH, new Point((int) (currentPosition.getX() * cellWidth + x),
                                 (int) (currentPosition.getY() * cellHeight + y + shiftDown)),
                         cellWidth, cellHeight);
@@ -145,7 +143,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
                 }
                 gameLoop.lookRight();
                 currentPosition = hero.getPosition();
-                gcH.clearRect(0,0,heroCanvas.getWidth(), heroCanvas.getHeight());
+                gcH.clearRect(0, 0, heroCanvas.getWidth(), heroCanvas.getHeight());
                 hero.drawOnCanvas(gcH, new Point((int) (currentPosition.getX() * cellWidth + x),
                                 (int) (currentPosition.getY() * cellHeight + y + shiftDown)),
                         cellWidth, cellHeight);
@@ -163,7 +161,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
                 }
                 gameLoop.lookUp();
                 currentPosition = hero.getPosition();
-                gcH.clearRect(0,0,heroCanvas.getWidth(), heroCanvas.getHeight());
+                gcH.clearRect(0, 0, heroCanvas.getWidth(), heroCanvas.getHeight());
                 hero.drawOnCanvas(gcH, new Point((int) (currentPosition.getX() * cellWidth + x),
                                 (int) (currentPosition.getY() * cellHeight + y + shiftDown))
                         , cellWidth, cellHeight);
@@ -181,7 +179,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
                 }
                 gameLoop.lookDown();
                 currentPosition = hero.getPosition();
-                gcH.clearRect(0,0,heroCanvas.getWidth(), heroCanvas.getHeight());
+                gcH.clearRect(0, 0, heroCanvas.getWidth(), heroCanvas.getHeight());
                 hero.drawOnCanvas(gcH, new Point((int) (currentPosition.getX() * cellWidth + x),
                         (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
                 break;
@@ -251,7 +249,8 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         trials = 100; //TODO to be  set to hero's
         setImgLabls();
         this.game = new RunnerGameAdapter();
-        gcRoad= roadCanvas.getGraphicsContext2D();
+        gcRoad = roadCanvas.getGraphicsContext2D();
+        //shaklo we7sh
 //        gcRoad.drawImage(new Image("GrassRoad.jpg"), 0, 0, roadCanvas.getWidth(), roadCanvas.getHeight());
         gcD = dynamicCanvas.getGraphicsContext2D();
         gcH = heroCanvas.getGraphicsContext2D();
@@ -307,8 +306,8 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
 
     private void setMovingObjectsLayer() {
         Drawable[][] maze = gameLoop.getMovingObjectsLayer();
-        gcD.clearRect(0,0,dynamicCanvas.getWidth(),dynamicCanvas.getHeight());
-        gcH.clearRect(0,0,heroCanvas.getWidth(),heroCanvas.getHeight());
+        gcD.clearRect(0, 0, dynamicCanvas.getWidth(), dynamicCanvas.getHeight());
+        gcH.clearRect(0, 0, heroCanvas.getWidth(), heroCanvas.getHeight());
 
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[i].length; j++) {
@@ -331,7 +330,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
 
     private void setPickablesLayer() {
         Drawable[][] maze = gameLoop.getPickablesLayer();
-        gcM.clearRect(0,0,mazeCanvas.getWidth(),mazeCanvas.getHeight());
+        gcM.clearRect(0, 0, mazeCanvas.getWidth(), mazeCanvas.getHeight());
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[i].length; j++) {
                 if (maze[j][i] != null) {
@@ -346,7 +345,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
 
     private void setRoadAndWallsLayer() {
         this.wallMaze = gameLoop.getRoadAndWallsLayer();
-        gcS.clearRect(0,0,steadyCanvas.getWidth(),steadyCanvas.getHeight());
+        gcS.clearRect(0, 0, steadyCanvas.getWidth(), steadyCanvas.getHeight());
         for (int i = 0; i < wallMaze.length; i++) {
             for (int j = 0; j < wallMaze[i].length; j++) {
                 if (wallMaze[j][i] != null && !(wallMaze[j][i] instanceof Road)) {
@@ -361,12 +360,11 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
 
     @Override
     public void updateMonsterPosition(Point oldPos, Monster monster) {
-        //need to perform atransition
         gcD.clearRect(oldPos.getX() * cellWidth, oldPos.getY() * cellHeight + shiftDown, cellWidth, cellHeight);
-    if(monster!= null)
-        monster.drawOnCanvas(gcD, new Point((int) (monster.getPosition().getX() * cellWidth),
-                        (int) (monster.getPosition().getY() * cellHeight + shiftDown)),
-                cellWidth, cellHeight);
+        if (monster != null)
+            monster.drawOnCanvas(gcD, new Point((int) (monster.getPosition().getX() * cellWidth),
+                            (int) (monster.getPosition().getY() * cellHeight + shiftDown)),
+                    cellWidth, cellHeight);
 //                    heroOrMonster.getDownSprite().reset();
 //            int i = (int)heroOrMonster.getPosition().getY()-heightCell;
 //            while (i < heroOrMonster.getPosition().getY()) {
@@ -383,7 +381,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
 
     @Override
     public void updatePickables(Point position) {
-        gcH.clearRect(0,0,heroCanvas.getWidth(), heroCanvas.getHeight()); // if it is a trap
+        gcH.clearRect(0, 0, heroCanvas.getWidth(), heroCanvas.getHeight()); // if it is a trap
         gcM.clearRect(position.getX() * cellWidth, position.getY() * cellHeight + shiftDown, cellWidth, cellHeight);
     }
 
@@ -421,7 +419,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         weaponImage.setImage(MazeMap.getInstance().getBufferedImage(wep));
     }
 
-    public void setImgLabls () {
+    public void setImgLabls() {
         ImageView img = new ImageView("heart.png");
         img.setFitHeight(30);
         img.setFitWidth(30);
@@ -437,35 +435,34 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
         weaponImage.setImage(new Image("null.png"));
 
     }
+
     private void setTrials(int trl) {
         trialsLabl.setText(String.valueOf(trl));
     }
 
     @Override
     public void updateOnWin() {
-        //TODO play winner animation
         System.out.println("You Win!!!!!!!");
         this.level++;
-        gcAnimation.clearRect(0,0,animCanvas.getWidth(), animCanvas.getHeight());
-        gcBullets.clearRect(0,0,bulletCanvas.getWidth(),bulletCanvas.getHeight());
-//        anim();
+        gcAnimation.clearRect(0, 0, animCanvas.getWidth(), animCanvas.getHeight());
+        gcBullets.clearRect(0, 0, bulletCanvas.getWidth(), bulletCanvas.getHeight());
+        //animForWinOrLose();
         startGame(classHero, level);
     }
 
     @Override
     public void updateOnLose() {
-        //TODO play gameOver animation
         System.out.println("Game Over!!!!!!!");
         setTrials(--trials);
-        gcAnimation.clearRect(0,0,animCanvas.getWidth(), animCanvas.getHeight());
-        gcBullets.clearRect(0,0,bulletCanvas.getWidth(),bulletCanvas.getHeight());
-//        anim();
+        gcAnimation.clearRect(0, 0, animCanvas.getWidth(), animCanvas.getHeight());
+        gcBullets.clearRect(0, 0, bulletCanvas.getWidth(), bulletCanvas.getHeight());
+//        animForWinOrLose();
         startGame(classHero, level);
 //       TODO in start scene story mode w select level (get level number)
 
     }
 
-    private void anim () {
+    private void animForWinOrLose() {
         ArrayList<BufferedImage> list = new ArrayList<>();
         Image img = new Image("win.jpg");
         BufferedImage buffImg = SwingFXUtils.fromFXImage(img, null);
@@ -488,7 +485,7 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
                     gcAnimation.clearRect(0, 0,
                             animCanvas.getWidth(), animCanvas.getHeight());
                     Image imgTo = SwingFXUtils.toFXImage(list.get(count), null);
-                    gcAnimation.drawImage(imgTo,0, 0,
+                    gcAnimation.drawImage(imgTo, 0, 0,
                             animCanvas.getWidth(), animCanvas.getHeight());
                     count++;
                 }
@@ -505,14 +502,13 @@ public class CanvasController implements MazeLayersObserver, BombExplosionObserv
     @Override
     public void updateBulletMotionObserver(Point pastPosition, Point currentPosition, boolean destroyed) {
         this.gcBullets.setFill(Color.BLACK);
-        this.gcBullets.clearRect(pastPosition.x*cellWidth,(pastPosition.y + 1.5)*cellHeight + shiftDown,cellWidth,cellHeight);
-        this.gcBullets.fillOval(currentPosition.x*cellWidth,(currentPosition.y + 1.5)*cellHeight + shiftDown,cellWidth,cellHeight);
-        if(destroyed)
-            this.gcBullets.clearRect(currentPosition.x*cellWidth,(currentPosition.y + 1.5)*cellHeight + shiftDown,cellWidth,cellHeight);
-        //TODO clear bullet when monster dies obser for monster dies
+        this.gcBullets.clearRect(pastPosition.x * cellWidth, (pastPosition.y + 1.5) * cellHeight + shiftDown, cellWidth, cellHeight);
+        this.gcBullets.fillOval(currentPosition.x * cellWidth, (currentPosition.y + 1.5) * cellHeight + shiftDown, cellWidth, cellHeight);
+        if (destroyed)
+            this.gcBullets.clearRect(currentPosition.x * cellWidth, (currentPosition.y + 1.5) * cellHeight + shiftDown, cellWidth, cellHeight);
     }
 
-    public void updateMonsterdied() { //clear bullets when monster dies
-        gcBullets.clearRect(0,0,bulletCanvas.getWidth(),bulletCanvas.getHeight());
+    public void updateMonsterdied() { //TODO clear bullets when monster dies
+        gcBullets.clearRect(0, 0, bulletCanvas.getWidth(), bulletCanvas.getHeight());
     }
 }
