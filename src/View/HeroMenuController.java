@@ -1,11 +1,13 @@
 package View;
 
+import View.Graphics.ImagesMaps.CharactersMap;
 import drawables.characters.Hero;
 import drawables.characters.heros.HeroesFactory;
 import drawables.characters.heros.Hulk;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -17,6 +19,7 @@ import javafx.stage.Stage;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Created by Mahmoud on 12/17/2017.
@@ -26,14 +29,16 @@ public class HeroMenuController {
     @FXML
     private BorderPane pane;
     @FXML
-    private VBox vbox;
+    private ImageView heroPreview;
     @FXML
-    private Button Done;
+    private ComboBox<Integer> levelBox;
 
 
     private GridPane heroGrid;
     private HeroesFactory heroesFactory;
     private Class<? extends Hero> chosenHero;
+    private ArrayList<ImageView> heroesImages;
+    private ArrayList<Class<? extends Hero>> heroesClasses;
 
     public HeroMenuController() {
         this.heroesFactory = new HeroesFactory();
@@ -43,67 +48,76 @@ public class HeroMenuController {
     @FXML
     public void initialize() {
 
-        ArrayList<String> heroesNames = new ArrayList<>();
-        loadHeroes(heroesNames);
-
-
-        ImageView imageView = new ImageView(new Image("Trap.png"));
-
-        imageView.setFitHeight(100.0);
-        imageView.setFitWidth(100.0);
-        ImageView imageView1 = new ImageView(new Image("AK47.png"));
-
-        imageView1.setFitWidth(100.0);
-        imageView1.setFitHeight(100.0);
-
-
-        this.heroGrid.add(imageView, 0, 0);
-        this.heroGrid.add(imageView1, 1, 0);
+        this.heroesClasses = this.heroesFactory.getClasses();
+        loadImages();
 
         this.heroGrid.gridLinesVisibleProperty().setValue(true);
         this.pane.setCenter(this.heroGrid);
 
-        ImageView imageView2 = new ImageView(imageView.getImage());
-        imageView2.setFitWidth(150.0);
-        imageView2.setFitHeight(150.0);
-        vbox.getChildren().add(imageView2);
-
         this.heroGrid.getChildren().forEach(img -> img.setOnMouseClicked(e -> {
-
-            ImageView imageView3 = new ImageView(((ImageView) img).getImage());
-            imageView3.setFitWidth(150.0);
-            imageView3.setFitHeight(150.0);
-            vbox.getChildren().remove(0);
-            vbox.getChildren().add(imageView3);
+            this.heroPreview.setImage(((ImageView) img).getImage());
         }));
 
     }
 
+    private void loadImages() {
+
+        int columns = (int) Math.ceil(Math.sqrt(heroesClasses.size()));
+        this.heroesImages = new ArrayList<>();
+
+        for (Class<? extends Hero> hero : heroesClasses) {
+            ImageView imageView = new ImageView(getImage(hero.getSimpleName()));
+            imageView.setFitHeight(100.0);
+            imageView.setFitWidth(100.0);
+            heroesImages.add(imageView);
+        }
+
+        for (int i = 0; i < heroesImages.size(); i++) {
+            int row = i / columns;
+            int column = i % columns;
+            this.heroGrid.add(heroesImages.get(i), column, row);
+        }
+
+        this.heroPreview.setImage(heroesImages.get(0).getImage());
+
+    }
+
+    private Image getImage(String key) {
+        CharactersMap map = CharactersMap.getInstance();
+        return map.getImageSprite(key).getImageIdentity();
+    }
+
+    private int findHero() {
+        Image heroToFind = this.heroPreview.getImage();
+        for (int i = 0; i < this.heroesImages.size(); i++) {
+            ImageView imageView = this.heroesImages.get(i);
+
+            if (imageView.getImage().equals(heroToFind))
+                return i;
+        }
+
+        throw null;
+    }
+
     @FXML
-    public void doneChoosing(ActionEvent event) {
-//        chosenHero = blah; //TODO set chosenHero
-        Stage stage = (Stage) Done.getScene().getWindow();
-        chosenHero = Hulk.class;
+    public void submitButtonAction() {
+        int index;
+
+        try {
+            index = findHero();
+        } catch (Exception e) {
+            throw new RuntimeException("Fatal error, cannot find hero");
+        }
+
+        Class<? extends Hero> hero = this.heroesClasses.get(index);
+
+        Stage stage = (Stage)this.heroGrid.getScene().getWindow();
         stage.close();
-        //7ab3at class men el Hero
-    }
+        try{
+            new Canvas().startView(hero,1);
+        } catch (Exception e) {
+            throw new RuntimeException("Fatal error, cannot launch canvas");
+        }
 
-
-    @FXML
-    public void chooseCharacter(KeyEvent event) {
-
-        //set Class Hero chosen
-    }
-
-    private void loadHeroes(ArrayList<String> heroesNames) {
-        ArrayList<Class<? extends Hero>> heroesClasses = this.heroesFactory.getClasses();
-
-        for (int i = 0; i < heroesClasses.size(); i++)
-//            heroes.add(this.heroesFactory.factoryMethod(heroesClasses.get(i).getName()));
-            heroesNames.add(heroesClasses.get(i).getSimpleName());
-    }
-
-    public Class<? extends Hero> getChosenHero() {
-        return chosenHero;
     }
 }
