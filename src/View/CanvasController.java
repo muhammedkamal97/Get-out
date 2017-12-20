@@ -87,6 +87,7 @@ public class CanvasController implements MazeLayersObserver,
     private RunnerGameAdapter game;
     private Class<? extends Hero> classHero;
     private int level;
+    private int maxLvl;
     private PerspectiveCamera camera;
     private ShapeIntersectionDetector intersectionDetector;
     private boolean cameraIsOn;
@@ -340,8 +341,9 @@ public class CanvasController implements MazeLayersObserver,
         }
     }
 
-    public void initLogin(Class<? extends Hero> hero, int lvl, PerspectiveCamera camera) {
+    public void initLogin(Class<? extends Hero> hero, int lvl, int maxLvl, PerspectiveCamera camera) {
         this.intersectionDetector = new ShapeIntersectionDetector();
+        this.maxLvl = maxLvl;
         this.classHero = hero;
         this.camera = camera;
         setCameraPosition();
@@ -584,7 +586,17 @@ public class CanvasController implements MazeLayersObserver,
         gcAnimation.clearRect(0, 0, animCanvas.getWidth(), animCanvas.getHeight());
         gcBullets.clearRect(0, 0, bulletCanvas.getWidth(), bulletCanvas.getHeight());
 //        animForWinOrLose();
-        startGame(classHero, level);
+        if(this.level <= this.maxLvl)
+            startGame(classHero, level);
+        else
+        {
+            ((Stage)this.Menu.getScene().getWindow()).close();
+            try {
+                new CreditsScene().startView();
+            } catch (Exception e) {
+                throw new RuntimeException("Could not launch credit");
+            }
+        }
     }
 
     @Override
