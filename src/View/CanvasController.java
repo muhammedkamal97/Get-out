@@ -537,7 +537,6 @@ public class CanvasController implements MazeLayersObserver,
 
     @Override
     public void updatePickables(Point position) {
-        gcH.clearRect(0, 0, heroCanvas.getWidth(), heroCanvas.getHeight()); // if it is a trap
         gcM.clearRect(position.getX() * cellWidth, position.getY() * cellHeight + shiftDown, cellWidth, cellHeight);
     }
 
