@@ -30,4 +30,18 @@ public class MenuController {
         stage.close();
     }
 
+    @FXML
+    public void guides()
+    {
+
+        try {
+            new GuidesScene().startView();
+        } catch (Exception e) {
+            throw new RuntimeException("Could not open credit");
+        }
+
+        Stage stage = (Stage) this.submitButton.getScene().getWindow();
+        stage.close();
+    }
+
 }

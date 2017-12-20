@@ -4,19 +4,20 @@
 }
 
 .button {
-	-fx-background-radius:5,5,5,5;
-    -fx-background-color:white;
-    -fx-border-color:#1B9FC1;
-    -fx-border-radius:5px;
-    -fx-border-width: 1;
+	-fx-background-radius:3,3,3,3;
+    -fx-background-color:#D3D3D3;
+    -fx-border-color:green;
+    -fx-text-fill:green;
+    -fx-border-radius:3px;
+    -fx-border-width: 0;
 }
 .button:pressed {
     -fx-background-radius:5,5,5,5;
-    -fx-background-color:#1B9FC1;
-    -fx-text-fill:white;
-    -fx-border-color:#1B9FC1;
+    -fx-background-color:green;
+    -fx-text-fill:#D3D3D3;
+    -fx-border-color:green;
     -fx-border-radius:5px;
-    -fx-border-width: 1;
+    -fx-border-width: 0;
 }
 
 .MenuButton {
@@ -34,9 +35,9 @@
 
 .toggle-button:selected {  //not working
     -fx-background-radius:5,5,5,5;
-    -fx-background-color:#1B9FC1;
+    -fx-background-color:palegreen;
     -fx-text-fill:white;
-    -fx-border-color:#1B9FC1;
+    -fx-border-color:palegreen;
     -fx-border-radius:5px;
     -fx-border-width: 1;
 }
@@ -48,7 +49,7 @@
 .combo-box {
 	-fx-background-radius:5,5,5,5;
     -fx-background-color:white;
-    -fx-border-color:#1B9FC1;
+    -fx-border-color:palegreen;
     -fx-border-radius:5px;
     -fx-border-width: 1;
 }
@@ -62,7 +63,7 @@
 }
 
 .combo-box .scroll-bar .thumb{
-    -fx-background-color:#1B9FC1;
+    -fx-background-color:palegreen;
 }
 .combo-box .scroll-bar .thumb:hover{
     -fx-background-color:#5DB8DE;
@@ -76,17 +77,28 @@
 .text-area .scroll-bar {
 	-fx-background-radius:5,5,5,5;
     -fx-background-color:white;
-    -fx-border-color:#1B9FC1;
+    -fx-border-color:palegreen;
     -fx-border-radius:5px;
     -fx-border-width: 1;
 }
 
-.text-area .scroll-bar .thumb{
-    -fx-background-color:#1B9FC1;
+.progress-bar {
+	-fx-background-radius:5,5,5,5;
+    -fx-border-color:palegreen;
+    -fx-border-radius:5px;
+    -fx-border-width: 1;
+    -fx-control-inner-background:white;
 }
 
+.progress-bar > .track {
+  -fx-control-inner-background: white;
+}
+
+.text-area .scroll-bar .thumb{
+    -fx-background-color:palegreen
+
 .text-area .scroll-pane > .corner{
-    -fx-background-color:#1B9FC1;
+    -fx-background-color:palegreen;
 }
 
 .tool-bar {

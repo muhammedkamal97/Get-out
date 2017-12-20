@@ -332,12 +332,6 @@ public class CanvasController implements MazeLayersObserver,
             case Q:
                 gameLoop.holdPreviousWeapon();
                 break;
-            case B:
-                camera.setTranslateZ(camera.getTranslateZ() + 500);
-                break;
-            case N:
-                camera.setTranslateZ(camera.getTranslateZ() - 500);
-                break;
             case V:
                 cameraIsOn = !cameraIsOn;
                 if (!cameraIsOn) {

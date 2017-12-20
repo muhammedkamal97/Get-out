@@ -3,9 +3,6 @@ package View;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
@@ -14,26 +11,25 @@ import javafx.stage.Stage;
 /**
  * Created by Mahmoud on 12/20/2017.
  */
-public class CreditsSceneController {
+public class GuidesController {
 
     public TextFlow rollCredit;
     public Button returntoMenu;
 
-    private String credit = "This program exists because thanks to the amazing effort of 5 programmers." +
-            "Thanks to their dedication, this masterpiece is available for free. So while you are enjoying " +
-            "your time playing, we would like you to do us a favor. Pray for us :) " +
-            "Programmers: \n" +
-            "- Aya Ashraf\n" +
-            "- Sarah el dafrawy\n" +
-            "- Abdelrahman Ibrahim\n" +
-            "- Mohammad Kamal\n" +
-            "- Mahmoud Gamal\n";
+    private String credit = "Allowed Movements are using keyboard keys:\n\n"+
+            "key UP: moves hero step up\n" +
+            "key DOWN:moves hero step down\n" +
+            "key LEFT: moves hero step left\n" +
+            "key SPACE: shoots bullets\n" +
+            "key E: holds next weapon\n" +
+            "key Q: holdPreviousWeapon\n" +
+            "key V: zoom in and out \n";
     @FXML
     public void initialize()
     {
         rollCredit.setLineSpacing(1.5);
         rollCredit.setTextAlignment(TextAlignment.JUSTIFY);
-        rollCredit.setPadding(new Insets(0,80,0,80));
+        rollCredit.setPadding(new Insets(0,0,0,100));
         rollCredit.getChildren().add(new Text(credit));
     }
 

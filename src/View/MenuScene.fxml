@@ -9,5 +9,6 @@
       <Region prefHeight="232.0" prefWidth="600.0" />
       <Button fx:id="submitButton" mnemonicParsing="false" onAction="#startHeroMenu" text="Start" />
       <Button mnemonicParsing="false" onAction="#rollCredits" text="About" />
+      <Button mnemonicParsing="false" onAction="#guides" text="User Guide" />
    </children>
 </VBox>
