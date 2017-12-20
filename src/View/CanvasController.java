@@ -69,6 +69,8 @@ public class CanvasController implements MazeLayersObserver,
     private ProgressBar healthBar;
     @FXML
     private ProgressBar armorBar;
+    @FXML
+    private Label scoreLabel;
     private GraphicsContext gcD;
     private GraphicsContext gcH;
     private GraphicsContext gcRoad;
@@ -528,22 +530,35 @@ public class CanvasController implements MazeLayersObserver,
 //                i++;
 //                heroOrMonster.getDownSprite().drawNextSprite(gc, widthCell, heightCell, (int)heroOrMonster.getPosition().getX(), i);
 //            }
+
+        increaseScore(10);
+    }
+
+    private void increaseScore(int value) {
+
+        String valueText = this.scoreLabel.getText();
+        int valueInt = Integer.parseInt(valueText);
+        valueInt += value;
+        this.scoreLabel.setText(Integer.toString(valueInt));
     }
 
     @Override
     public void updateRoadsAndWalls(Point position) {
         gcS.clearRect(position.getX() * cellWidth, position.getY() * cellHeight + shiftDown, cellWidth, cellHeight);
+        //increaseScore();
     }
 
     @Override
     public void updatePickables(Point position) {
         gcM.clearRect(position.getX() * cellWidth, position.getY() * cellHeight + shiftDown, cellWidth, cellHeight);
+        increaseScore(3);
     }
 
     @Override
     public void drawExplosionAnimation(Point position, int range) {
         ExplosionAnimation expl = new ExplosionAnimation(position);
         expl.startAnimation(gcAnimation, cellWidth, cellHeight, range);
+        increaseScore(5);
     }
 
     @Override
@@ -603,6 +618,8 @@ public class CanvasController implements MazeLayersObserver,
         gcAnimation.clearRect(0, 0, animCanvas.getWidth(), animCanvas.getHeight());
         gcBullets.clearRect(0, 0, bulletCanvas.getWidth(), bulletCanvas.getHeight());
 //        animForWinOrLose();
+
+        increaseScore(30);
         if(this.level <= this.maxLvl)
             startGame(classHero, level);
         else
@@ -623,6 +640,8 @@ public class CanvasController implements MazeLayersObserver,
         gcAnimation.clearRect(0, 0, animCanvas.getWidth(), animCanvas.getHeight());
         gcBullets.clearRect(0, 0, bulletCanvas.getWidth(), bulletCanvas.getHeight());
 //        animOnWin();
+
+        increaseScore(-20);
         startGame(classHero, level);
     }
 
