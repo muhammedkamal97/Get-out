@@ -103,6 +103,11 @@ public class CanvasController implements MazeLayersObserver,
     //TODO get maximum lvl to prevent it & display credits  @Gamal
     //TODO decorator @Abdelrahman
     //TODO construct classes
+    //TODO check bullets directions
+    //TODO check comments and TODOs in code
+    //TODO Direction states in bullets to be modified
+    //TODO check animation
+    //TODO hero menu modifications
 
     @FXML
     protected void MenuButtonAction(ActionEvent event) {
@@ -672,7 +677,7 @@ public class CanvasController implements MazeLayersObserver,
     @Override
     public void updateBulletMotionObserver(Bullet bullet, Point pastPosition, Point currentPosition, boolean destroyed) {
         this.gcBullets.clearRect(pastPosition.x * cellWidth, pastPosition.y * cellHeight + shiftDown, cellWidth, cellHeight);
-        bullet.drawOnCanvas(this.gcBullets,currentPosition.x * cellWidth,currentPosition.y* cellHeight + shiftDown,cellWidth, cellHeight);
+        bullet.drawOnCanvas(this.gcBullets,currentPosition.x * cellWidth,currentPosition.y* cellHeight + shiftDown,cellWidth, cellHeight, hero.getDirectionState());
         if (destroyed)
             this.gcBullets.clearRect(currentPosition.x * cellWidth, (currentPosition.y) * cellHeight + shiftDown, cellWidth, cellHeight);
     }
