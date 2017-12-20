@@ -7,6 +7,7 @@ import drawables.characters.Monster;
 import View.Graphics.ExplosionAnimation;
 import drawables.pickables.Weapon;
 import drawables.pickables.weapons.NormalGun;
+import drawables.pickables.weapons.bullets.Bullet;
 import drawables.roads.Road;
 import gameCore.RunnerGameAdapter;
 import gameLoop.GameLoop;
@@ -645,10 +646,9 @@ public class CanvasController implements MazeLayersObserver,
     }
 
     @Override
-    public void updateBulletMotionObserver(Point pastPosition, Point currentPosition, boolean destroyed) {
-        this.gcBullets.setFill(Color.BLACK);
-        this.gcBullets.clearRect(pastPosition.x * cellWidth, (pastPosition.y) * cellHeight + shiftDown, cellWidth, cellHeight);
-        this.gcBullets.fillOval(currentPosition.x * cellWidth, (currentPosition.y) * cellHeight + shiftDown, cellWidth, cellHeight);
+    public void updateBulletMotionObserver(Bullet bullet, Point pastPosition, Point currentPosition, boolean destroyed) {
+        this.gcBullets.clearRect(pastPosition.x * cellWidth, pastPosition.y * cellHeight + shiftDown, cellWidth, cellHeight);
+        bullet.drawOnCanvas(gcBullets,currentPosition.x,currentPosition.y,cellHeight + shiftDown, cellHeight);
         if (destroyed)
             this.gcBullets.clearRect(currentPosition.x * cellWidth, (currentPosition.y) * cellHeight + shiftDown, cellWidth, cellHeight);
     }

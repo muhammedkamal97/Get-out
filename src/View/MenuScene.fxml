@@ -7,7 +7,7 @@
 <VBox id="pane" alignment="BASELINE_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" stylesheets="@../Style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MenuController">
    <children>
       <Region prefHeight="232.0" prefWidth="600.0" />
-      <Button mnemonicParsing="false" onAction="#startHeroMenu" text="Start" />
-      <Button mnemonicParsing="false" text="About" />
+      <Button fx:id="submitButton" mnemonicParsing="false" onAction="#startHeroMenu" text="Start" />
+      <Button mnemonicParsing="false" onAction="#rollCredits" text="About" />
    </children>
 </VBox>

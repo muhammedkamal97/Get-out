@@ -14,28 +14,27 @@ import java.util.ArrayList;
 /**
  * Created by Mahmoud on 12/13/2017.
  */
-public class ShootThread extends Thread{
+public class ShootThread extends Thread {
 
     private Maze maze;
     private ArrayList<BulletShootingProperties> shootingProperties;
 
-    public ShootThread()
-    {
-       this.shootingProperties = new ArrayList<>();
+    public ShootThread() {
+        this.shootingProperties = new ArrayList<>();
     }
 
     public void setMaze(Maze maze) {
         this.maze = maze;
     }
-    public void addBullet(BulletShootingProperties properties) {this.shootingProperties.add(properties);}
+
+    public void addBullet(BulletShootingProperties properties) {
+        this.shootingProperties.add(properties);
+    }
 
     @Override
-    public void run()
-    {
-        while(this.shootingProperties.size() != 0)
-        {
-            for(int i = 0 ; i < this.shootingProperties.size() ; i++)
-            {
+    public void run() {
+        while (this.shootingProperties.size() != 0) {
+            for (int i = 0; i < this.shootingProperties.size(); i++) {
                 boolean destroyed = false;
                 BulletShootingProperties properties = this.shootingProperties.get(i);
                 properties.increment();
@@ -44,15 +43,15 @@ public class ShootThread extends Thread{
 
                 Drawable entityInWay = this.maze.getItemInPosition(newPosition);
 
-                if(!(entityInWay instanceof Road))
-                {
+                if (!(entityInWay instanceof Road)) {
                     entityInWay.takeDamage(properties.getBullet().getDamage());
                     this.shootingProperties.remove(properties);
                     i--;
                     destroyed = true;
                 }
 
-                properties.getWeapon().notifyBulletMotionObserver(properties.getPastPosition(),properties.getCurrentPosition(),destroyed);
+                properties.getWeapon().notifyBulletMotionObserver(properties.getBullet(),
+                        properties.getPastPosition(), properties.getCurrentPosition(), destroyed);
             }
 
             try {
