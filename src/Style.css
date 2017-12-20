@@ -33,7 +33,7 @@
     -fx-border-width: 1;
 }
 
-.toggle-button:selected {  //not working
+.toggle-button:selected {
     -fx-background-radius:5,5,5,5;
     -fx-background-color:palegreen;
     -fx-text-fill:white;
@@ -96,7 +96,7 @@
 
 .text-area .scroll-bar .thumb{
     -fx-background-color:palegreen
-
+}
 .text-area .scroll-pane > .corner{
     -fx-background-color:palegreen;
 }
