@@ -10,11 +10,11 @@ import javafx.stage.Stage;
 
 public class Canvas {
 
-    public void startView(Class<? extends Hero> hero, int lvl) throws Exception {
+    public void startView(Class<? extends Hero> hero, int lvl, int maxLvl) throws Exception {
         Stage stage = new Stage();
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Canvas.fxml"));
-        Parent root = (Parent)fxmlLoader.load();
+        Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root);
         PerspectiveCamera camera = new PerspectiveCamera(true);
@@ -33,7 +33,7 @@ public class Canvas {
         stage.setTitle("FXML Welcome");
         stage.setScene(scene);
         CanvasController controller = fxmlLoader.<CanvasController>getController();
-        controller.initLogin(hero, lvl, camera);
+        controller.initLogin(hero, lvl, maxLvl, camera);
         stage.show();
 
     }

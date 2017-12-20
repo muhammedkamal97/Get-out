@@ -40,7 +40,6 @@ public class HeroMenuController {
     private GridPane heroGrid;
     private HeroesFactory heroesFactory;
     private LevelsFactory levelsFactory;
-    private Class<? extends Hero> chosenHero;
     private ArrayList<ImageView> heroesImages;
     private ArrayList<Class<? extends Hero>> heroesClasses;
     private ArrayList<Class<? extends LevelProperties>> levels;
@@ -60,7 +59,6 @@ public class HeroMenuController {
 
         setGridPane();
     }
-
 
 
     private void loadClasses() {
@@ -93,13 +91,13 @@ public class HeroMenuController {
 
     private void loadLevels() {
 
-        for(Class<? extends LevelProperties> level : this.levels)
-        {
+        for (Class<? extends LevelProperties> level : this.levels) {
             String name = level.getSimpleName();
             this.levelBox.getItems().add(name.substring(name.length() - 1));
         }
 
     }
+
     private Image getImage(String key) {
         CharactersMap map = CharactersMap.getInstance();
         return map.getImageSprite(key).getImageIdentity();
@@ -137,13 +135,20 @@ public class HeroMenuController {
         }
 
         Class<? extends Hero> hero = this.heroesClasses.get(index);
-        int level = Integer.parseInt(this.levelBox.getValue());
 
-        Stage stage = (Stage)this.heroGrid.getScene().getWindow();
+        int level;
+        try {
+            level = Integer.parseInt(this.levelBox.getValue());
+
+        } catch (Exception e) {
+            level = 1;
+        }
+
+        Stage stage = (Stage) this.heroGrid.getScene().getWindow();
         stage.close();
 
-        try{
-            new Canvas().startView(hero,level);
+        try {
+            new Canvas().startView(hero, level, this.levelBox.getItems().size());
         } catch (Exception e) {
             throw new RuntimeException("Fatal error, cannot launch canvas");
         }

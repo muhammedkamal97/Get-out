@@ -1,5 +1,6 @@
 package gameLevels.levelBuilder;
 
+import gameLevels.LevelProperties;
 import gameLevels.Levels.Level3;
 import gameLevels.LevelsFactory;
 import maze.Maze;
@@ -15,10 +16,8 @@ public class LevelEngineer {
     }
 
     public void setLevelBuilder(String level) {
-        //LevelProperties currentLevel = this.levelFactory.factoryMethod("level" + level);
-
-        //LevelProperties currentLevel = new level_test();
-        this.levelBuilder.setLevelProperties(new Level3());
+        LevelProperties currentLevel = this.levelFactory.factoryMethod(level);
+        this.levelBuilder.setLevelProperties(currentLevel);
     }
 
     public Maze buildTheMaze() {
