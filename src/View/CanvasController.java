@@ -115,6 +115,12 @@ public class CanvasController implements MazeLayersObserver,
         gameLoop.closeGame();
         Stage stage = (Stage) Menu.getScene().getWindow();
         stage.close();
+
+        try {
+            new MenuScene().startView();
+        } catch (Exception e) {
+            throw new RuntimeException("Could not open main menu");
+        }
     }
 
     @FXML
