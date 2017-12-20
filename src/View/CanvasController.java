@@ -101,9 +101,7 @@ public class CanvasController implements MazeLayersObserver,
 
     //TODO memento when he dies return him to the last check point
     //TODO get maximum lvl to prevent it & display credits  @Gamal
-    //TODO shield update armor points @Abdelrahman
     //TODO decorator @Abdelrahman
-    //TODO focus return
     //TODO construct classes
 
     @FXML
