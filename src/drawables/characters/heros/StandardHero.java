@@ -78,8 +78,12 @@ public abstract class StandardHero implements Hero {
 
 		@Override
 		public Weapon previousweapon() {
-			index--;
-			index = index%weapons.size();
+			if(index!=0) {
+                index--;
+                index = index % weapons.size();
+            } else {
+			    index = weapons.size() -1;
+            }
 			return weapons.get(index);
 		}
 
