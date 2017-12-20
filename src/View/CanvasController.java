@@ -350,7 +350,7 @@ public class CanvasController implements MazeLayersObserver,
 
         trials = 6; //TODO to be  set to hero's
         setImgLabls();
-        this.game = RunnerGameAdapter.createGameCore();
+        this.game = RunnerGameAdapter.getInstance();
         gcRoad = roadCanvas.getGraphicsContext2D();
 //        shaklo we7sh
 //        gcRoad.drawImage(new Image("GrassRoad.jpg"), 0, 0, roadCanvas.getWidth(), roadCanvas.getHeight());
@@ -420,7 +420,7 @@ public class CanvasController implements MazeLayersObserver,
         this.updateNumberOfBullets(6);
     }
 
-    Point mazeDimensions;
+    private Point mazeDimensions;
 
     private void setGlobalVariables() {
 

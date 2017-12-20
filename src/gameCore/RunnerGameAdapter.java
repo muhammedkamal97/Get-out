@@ -1,6 +1,5 @@
 package gameCore;
 
-import View.Graphics.ImagesMaps.MazeMap;
 import gameLevels.levelBuilder.LevelEngineer;
 import gameLoop.GameLoop;
 import gameLoop.RunnerLoop;
@@ -9,19 +8,6 @@ import maze.Maze;
 public class RunnerGameAdapter implements IGameCore{
 
     Maze maze;
-    private static RunnerGameAdapter gameCore;
-
-    public static RunnerGameAdapter createGameCore(){
-        if(gameCore == null){
-            gameCore = new RunnerGameAdapter();
-            return gameCore;
-        }
-        return gameCore;
-    }
-
-    private RunnerGameAdapter(){
-        //nothing
-    }
 
     private static volatile RunnerGameAdapter instance;
     private static Object mutex = new Object();
