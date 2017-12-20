@@ -1,6 +1,7 @@
 package drawables.pickables.weapons.bullets;
 
 import View.Graphics.ImagesMaps.MazeMap;
+import drawables.characters.heros.states.*;
 import drawables.pickables.Weapon;
 import drawables.pickables.weapons.bullets.bulletDirectionStates.ShootingDirectionState;
 import javafx.scene.canvas.GraphicsContext;
@@ -22,10 +23,21 @@ public abstract class StandardBullet implements Bullet {
     }
 
     @Override
-    public void drawOnCanvas(GraphicsContext gc, int x, int y, int width, int height) {
+    public void drawOnCanvas(GraphicsContext gc, int x, int y, int width, int height, DirectionState state) {
         MazeMap map = MazeMap.getInstance();
-        gc.drawImage(map.getBufferedImage("ShootingBullet"),
-                x, y, width, height);
+        if (state instanceof DirectionDownState) {
+            gc.drawImage(map.getBufferedImage("ShootingBulletDown"),
+                    x, y, width, height);
+        } else if (state instanceof DirectionLeftState) {
+            gc.drawImage(map.getBufferedImage("ShootingBulletLeft"),
+                    x, y, width, height);
+        } else if (state instanceof DirectionRightState) {
+            gc.drawImage(map.getBufferedImage("ShootingBulletRight"),
+                    x, y, width, height);
+        } else if (state instanceof DirectionUpState) {
+            gc.drawImage(map.getBufferedImage("ShootingBulletUp"),
+                    x, y, width, height);
+        }
     }
 
     protected void setDamage(){
