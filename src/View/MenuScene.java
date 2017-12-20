@@ -18,8 +18,8 @@ public class MenuScene extends Application {
         Scene scene = new Scene(root);
         stage.setTitle("The Maze Runner");
         stage.setScene(scene);
-        SoundMap map = SoundMap.getInstance();
-        map.getMediaPlayer("StartMenu").play();
+//        SoundMap map = SoundMap.getInstance();
+//        map.getMediaPlayer("StartMenu").play();
         stage.show();
     }
 }

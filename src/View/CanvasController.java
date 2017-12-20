@@ -566,7 +566,7 @@ public class CanvasController implements MazeLayersObserver,
         img.setFitHeight(30);
         img.setFitWidth(30);
         bullets.setGraphic(img);
-        img = new ImageView("Bricks.jpg");
+        img = new ImageView("coin.png");
         img.setFitHeight(30);
         img.setFitWidth(30);
         coins.setGraphic(img);
@@ -647,7 +647,7 @@ public class CanvasController implements MazeLayersObserver,
     @Override
     public void updateBulletMotionObserver(Bullet bullet, Point pastPosition, Point currentPosition, boolean destroyed) {
         this.gcBullets.clearRect(pastPosition.x * cellWidth, pastPosition.y * cellHeight + shiftDown, cellWidth, cellHeight);
-        bullet.drawOnCanvas(gcBullets,currentPosition.x,currentPosition.y,cellHeight + shiftDown, cellHeight);
+        bullet.drawOnCanvas(this.gcBullets,currentPosition.x * cellWidth,currentPosition.y* cellHeight + shiftDown,cellWidth, cellHeight);
         if (destroyed)
             this.gcBullets.clearRect(currentPosition.x * cellWidth, (currentPosition.y) * cellHeight + shiftDown, cellWidth, cellHeight);
     }
