@@ -50,6 +50,8 @@
             <Label fx:id="coins"/>
             <Label fx:id="bullets"/>
             <ImageView fx:id="weaponImage" fitHeight="30" fitWidth="30"></ImageView>
+            <Label text="Score"/>
+            <Label fx:id="scoreLabel" text="0"/>
         </HBox>
     </ToolBar>
 </GridPane>
