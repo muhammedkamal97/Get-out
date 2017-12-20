@@ -120,6 +120,7 @@ public class CanvasController implements MazeLayersObserver,
         try {
             new MenuScene().startView();
         } catch (Exception e) {
+            //error Logger
             throw new RuntimeException("Could not open main menu");
         }
     }
@@ -535,7 +536,6 @@ public class CanvasController implements MazeLayersObserver,
     }
 
     private void increaseScore(int value) {
-
         String valueText = this.scoreLabel.getText();
         int valueInt = Integer.parseInt(valueText);
         valueInt += value;
