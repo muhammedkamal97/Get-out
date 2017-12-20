@@ -41,9 +41,6 @@
         <HBox alignment="CENTER" spacing="10">
             <Button fx:id="Menu" contentDisplay="CENTER" onAction="#MenuButtonAction" mnemonicParsing="false"
                     text="Menu"/>
-            <Button mnemonicParsing="false" text="Save"/>
-            <ToggleButton fx:id="musicBtn" mnemonicParsing="false" text="Music"/>
-            <ToggleButton mnemonicParsing="false" text="Sound"/>
         </HBox>
         <Pane HBox.hgrow="ALWAYS"/>
         <HBox fx:id="HboxRight" alignment="CENTER" spacing="10">
