@@ -186,6 +186,7 @@ public abstract class StandardHero implements Hero {
     @Override
     public void pick(Pickable item) {
         item.addToHandler(this);
+        
     }
 
     @Override
