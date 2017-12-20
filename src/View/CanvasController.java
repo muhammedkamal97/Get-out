@@ -73,6 +73,10 @@ public class CanvasController implements MazeLayersObserver,
     private ProgressBar armorBar;
     @FXML
     private Label scoreLabel;
+
+    private Label tempScoreLabel = new Label("0");
+    private boolean scoreLabelChanged = false;
+
     private GraphicsContext gcD;
     private GraphicsContext gcH;
     private GraphicsContext gcRoad;
@@ -229,6 +233,11 @@ public class CanvasController implements MazeLayersObserver,
                 break;
         }
 
+        if(scoreLabelChanged)
+        {
+            this.scoreLabel.setText(this.tempScoreLabel.getText());
+            this.scoreLabelChanged = false;
+        }
     }
 
     private boolean checkForWallsLeft() {
@@ -528,20 +537,22 @@ public class CanvasController implements MazeLayersObserver,
 //                heroOrMonster.getDownSprite().drawNextSprite(gc, widthCell, heightCell, (int)heroOrMonster.getPosition().getX(), i);
 //            }
 
-       // increaseScore(10);
+        increaseScore(10);
     }
 
     private void increaseScore(int value) {
         String valueText = this.scoreLabel.getText();
         int valueInt = Integer.parseInt(valueText);
         valueInt += value;
-        this.scoreLabel.setText(Integer.toString(valueInt));
+        this.tempScoreLabel.setText(Integer.toString(valueInt));
+        scoreLabelChanged = true;
     }
 
     @Override
     public void updateRoadsAndWalls(Point position) {
         gcS.clearRect(position.getX() * cellWidth, position.getY() * cellHeight + shiftDown, cellWidth, cellHeight);
         logger.debug("Wall removed");
+        increaseScore(2);
     }
 
     @Override
