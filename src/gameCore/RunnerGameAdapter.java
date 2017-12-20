@@ -8,6 +8,19 @@ import maze.Maze;
 public class RunnerGameAdapter implements IGameCore{
 
     Maze maze;
+    private static RunnerGameAdapter gameCore;
+
+    public static RunnerGameAdapter createGameCore(){
+        if(gameCore == null){
+            gameCore = new RunnerGameAdapter();
+            return gameCore;
+        }
+        return gameCore;
+    }
+
+    private RunnerGameAdapter(){
+        //nothing
+    }
 
     @Override
     public void InitializeMaze(int level) {
