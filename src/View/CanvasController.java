@@ -536,8 +536,8 @@ public class CanvasController implements MazeLayersObserver,
 //                i++;
 //                heroOrMonster.getDownSprite().drawNextSprite(gc, widthCell, heightCell, (int)heroOrMonster.getPosition().getX(), i);
 //            }
-
-        increaseScore(10);
+        else
+            increaseScore(10);
     }
 
     private void increaseScore(int value) {
