@@ -6,6 +6,7 @@ import drawables.pickables.weapons.bullets.Bullet;
 import drawables.pickables.weapons.bullets.BulletShootingProperties;
 import drawables.roads.Road;
 import maze.Maze;
+import org.apache.log4j.Logger;
 
 import java.awt.*;
 import java.lang.reflect.Array;
@@ -18,6 +19,8 @@ public class ShootThread extends Thread {
 
     private Maze maze;
     private ArrayList<BulletShootingProperties> shootingProperties;
+    private Logger logger = Logger.getLogger(ShootThread.class);
+
 
     public ShootThread() {
         this.shootingProperties = new ArrayList<>();
@@ -34,6 +37,7 @@ public class ShootThread extends Thread {
     @Override
     public void run() {
         while (this.shootingProperties.size() != 0) {
+
             for (int i = 0; i < this.shootingProperties.size(); i++) {
                 boolean destroyed = false;
                 BulletShootingProperties properties = this.shootingProperties.get(i);
@@ -60,6 +64,8 @@ public class ShootThread extends Thread {
                 e.printStackTrace();
             }
         }
+
+        logger.info("Bullet Thread terminating");
     }
 }
 

@@ -1,5 +1,7 @@
 package loaders;
 
+import org.apache.log4j.Logger;
+
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -11,14 +13,18 @@ public class ElementLoader<T> {
 	public ElementLoader() {
 		this.elements = new ArrayList<>();
 	}
-	
-	
+	private Logger logger = Logger.getLogger(ElementLoader.class);
+
+
 	public void load(String packageName) {
 		
 		File currentPackage = new File(packageName);
 		
 		if(!currentPackage.exists())
+		{
+			logger.error("Specified package does not exist");
 			throw new RuntimeException();
+		}
 		
 		File[] packageFiles = currentPackage.listFiles();
 		
@@ -38,6 +44,7 @@ public class ElementLoader<T> {
 					this.elements.add((Class<? extends T>) currentClass);
 				
 			} catch (ClassNotFoundException e) {
+				logger.error("Class not found in package");
 				throw new RuntimeException("please check the package");
 			}
 		}	

@@ -17,6 +17,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.apache.log4j.Logger;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -35,6 +36,8 @@ public class HeroMenuController {
     private ImageView heroPreview;
     @FXML
     private ComboBox<String> levelBox;
+
+    private Logger logger = Logger.getLogger(HeroMenuController.class);
 
 
     private GridPane heroGrid;
@@ -131,6 +134,7 @@ public class HeroMenuController {
         try {
             index = findHero();
         } catch (Exception e) {
+            logger.fatal("Could not find hero");
             throw new RuntimeException("Fatal error, cannot find hero");
         }
 
@@ -141,6 +145,7 @@ public class HeroMenuController {
             level = Integer.parseInt(this.levelBox.getValue());
 
         } catch (Exception e) {
+            logger.warn("User did not choose level");
             level = 1;
         }
 
@@ -150,6 +155,7 @@ public class HeroMenuController {
         try {
             new Canvas().startView(hero, level, this.levelBox.getItems().size());
         } catch (Exception e) {
+            logger.fatal("Could not launch Canvas");
             throw new RuntimeException("Fatal error, cannot launch canvas");
         }
 

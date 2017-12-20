@@ -10,6 +10,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import org.apache.log4j.Logger;
 
 /**
  * Created by Mahmoud on 12/20/2017.
@@ -18,6 +19,9 @@ public class CreditsSceneController {
 
     public TextFlow rollCredit;
     public Button returntoMenu;
+
+    private Logger logger = Logger.getLogger(CreditsSceneController.class);
+
 
     private String credit = "This program exists because thanks to the amazing effort of 5 programmers." +
             "Thanks to their dedication, this masterpiece is available for free. So while you are enjoying " +
@@ -46,6 +50,7 @@ public class CreditsSceneController {
         try {
             new MenuScene().startView();
         } catch (Exception e) {
+            logger.fatal("Could not return to menu");
             throw new RuntimeException("Failed to load menu");
         }
     }

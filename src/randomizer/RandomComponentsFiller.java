@@ -1,5 +1,7 @@
 package randomizer;
 
+import org.apache.log4j.Logger;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -7,6 +9,7 @@ import java.util.Random;
 public class RandomComponentsFiller {
 
     private Random random = new Random();
+    private Logger logger = Logger.getLogger(RandomComponentsFiller.class);
 
 
     public Object generateRandomArray(Class[] referenceArray, int maxNumberAllowed) {
@@ -17,7 +20,7 @@ public class RandomComponentsFiller {
             try {
                 randomArray.add(referenceArray[generateRandomNumber(enteredArraySize)].getConstructor().newInstance());
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error("Could not create instance of supplied reference array elements");
             }
         }
         return randomArray;

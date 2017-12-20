@@ -23,6 +23,7 @@ import observer.EndOfGameObserver;
 import observer.BulletMotionObserver;
 import observer.HeroStateObserver;
 import observer.MazeLayersObserver;
+import org.apache.log4j.Logger;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -34,6 +35,8 @@ public class RunnerLoop implements GameLoop{
     private Command moveCommand;
     private ArrayList<EndOfGameObserver> observers = new ArrayList<>();
     private MonsterThread thread;
+    private Logger logger = Logger.getLogger(RunnerLoop.class);
+
 
     @Override
     public void setLoopMaze(Maze maze) {
@@ -100,6 +103,8 @@ public class RunnerLoop implements GameLoop{
 
     @Override
     public void initiateLoop() {
+
+        logger.info("Monster Thread starting");
 
         ArrayList<Monster> monsters = this.maze.getMonsters();
 
@@ -213,6 +218,8 @@ public class RunnerLoop implements GameLoop{
 
     @Override
     public void closeGame() {
+
+        logger.info("Monster Thread terminating");
         thread.terminate();
         try {
             Thread.sleep(1000);

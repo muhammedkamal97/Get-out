@@ -7,8 +7,12 @@ import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
+import org.apache.log4j.Logger;
 
 public class Canvas {
+
+    private Logger logger = Logger.getLogger(Canvas.class);
+
 
     public void startView(Class<? extends Hero> hero, int lvl, int maxLvl) throws Exception {
         Stage stage = new Stage();
@@ -29,6 +33,8 @@ public class Canvas {
         Rotate zRotate = new Rotate(0,0,0,0, Rotate.Z_AXIS);
 
         camera.getTransforms().addAll(xRotate, yRotate, zRotate);
+
+        logger.info("Starting the Canvas");
 
         stage.setTitle("FXML Welcome");
         stage.setScene(scene);

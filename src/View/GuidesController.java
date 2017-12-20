@@ -7,6 +7,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import org.apache.log4j.Logger;
 
 /**
  * Created by Mahmoud on 12/20/2017.
@@ -15,6 +16,8 @@ public class GuidesController {
 
     public TextFlow rollCredit;
     public Button returntoMenu;
+
+    private Logger logger = Logger.getLogger(GuidesController.class);
 
     private String credit = "Allowed Movements are using keyboard keys:\n\n"+
             "key UP: moves hero step up\n" +
@@ -42,6 +45,7 @@ public class GuidesController {
         try {
             new MenuScene().startView();
         } catch (Exception e) {
+            logger.fatal("Could not return to menu");
             throw new RuntimeException("Failed to load menu");
         }
     }

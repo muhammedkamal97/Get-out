@@ -10,6 +10,7 @@ import drawables.pickables.weapons.bullets.bulletDirectionStates.ShootingDirecti
 import javafx.scene.canvas.GraphicsContext;
 import maze.Maze;
 import observer.BulletMotionObserver;
+import org.apache.log4j.Logger;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -24,6 +25,8 @@ public abstract class StandardWeapon implements Weapon {
     private ShootThread bulletThread;
     protected Maze maze;
     private ArrayList<BulletMotionObserver> observers = new ArrayList<>();
+    private Logger logger = Logger.getLogger(Weapon.class);
+
 
     @Override
     public void shoot(ShootingDirectionState state, Point initialPosition) {
@@ -71,6 +74,9 @@ public abstract class StandardWeapon implements Weapon {
 
     @Override
     public void initiateBulletThread(BulletShootingProperties shootingProperties) {
+
+
+        logger.info("Bullet Thread starting");
 
         if (this.bulletThread != null) {
             if (this.bulletThread.isAlive()) {

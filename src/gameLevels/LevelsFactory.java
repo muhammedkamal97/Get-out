@@ -5,15 +5,20 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import drawables.obstacles.Wall;
 import loaders.ElementLoader;
+import org.apache.log4j.Logger;
 
 public class LevelsFactory {
 
     private ArrayList<Class<? extends LevelProperties>> levels;
+    private Logger logger = Logger.getLogger(LevelsFactory.class);
 
     public LevelsFactory() {
 
         if(!loadClasses())
+        {
+            logger.fatal("Could not load levels");
             throw new RuntimeException("Failed to load classes");
+        }
     }
 
 
@@ -36,11 +41,12 @@ public class LevelsFactory {
                     return (LevelProperties) ctor.newInstance();
                 } catch (NoSuchMethodException | SecurityException | InstantiationException
                         | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+                    logger.fatal("Level Factory Failure");
                     throw new RuntimeException("Level Factory Failure");
                 }
             }
         }
-
+        logger.warn("Level does not exist");
         throw new RuntimeException("Level does not exist");
     }
 
@@ -51,6 +57,7 @@ public class LevelsFactory {
             loader.load("src/gameLevels/Levels"); // need to have a separate  path
             this.levels = (ArrayList<Class<? extends LevelProperties>>) loader.getList();
         } catch (RuntimeException e) {
+            logger.error("Loader failure");
             return false;
         }
 

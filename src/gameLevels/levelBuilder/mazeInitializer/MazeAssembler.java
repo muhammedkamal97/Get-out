@@ -15,6 +15,7 @@ import drawables.roads.Road;
 import maze.ImpMaze;
 import maze.Maze;
 import maze.MazeComponents;
+import org.apache.log4j.Logger;
 
 import java.awt.*;
 import java.lang.reflect.Constructor;
@@ -34,6 +35,7 @@ public class MazeAssembler {
     private char[][] map;
     private Point endPoint;
     private Maze maze;
+    private Logger logger = Logger.getLogger(MazeAssembler.class);
 
     public void setEndPoint(Point endPoint){
         this.endPoint = endPoint;
@@ -89,6 +91,7 @@ public class MazeAssembler {
             roadAndWallsLayer[i][j].setPosition(new Point(j,i));
             components.walls.add(wall);
         } catch (Exception e) {
+            logger.fatal("Could not create walls");
             throw new RuntimeException("Failed to create instance");
         }
 

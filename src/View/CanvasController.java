@@ -31,6 +31,8 @@ import observer.BulletMotionObserver;
 import observer.EndOfGameObserver;
 import observer.HeroStateObserver;
 import observer.MazeLayersObserver;
+import org.apache.log4j.Logger;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -95,6 +97,8 @@ public class CanvasController implements MazeLayersObserver,
     private boolean cameraIsOn;
     private boolean soundIsOn;
     private boolean musicIsOn;
+    private Logger logger = Logger.getLogger(CanvasController.class);
+
 
     /**
      * dummy values to update hero's postion don't modify them!!!!
@@ -102,7 +106,6 @@ public class CanvasController implements MazeLayersObserver,
     private double x, y;
 
     //TODO memento when he dies return him to the last check point
-    //TODO get maximum lvl to prevent it & display credits  @Gamal
     //TODO decorator @Abdelrahman
     //TODO construct classes
     //TODO check bullets directions
@@ -112,7 +115,7 @@ public class CanvasController implements MazeLayersObserver,
     //TODO hero menu modifications
 
     @FXML
-    protected void MenuButtonAction(ActionEvent event) {
+    protected void MenuButtonAction() {
         gameLoop.closeGame();
         Stage stage = (Stage) Menu.getScene().getWindow();
         stage.close();
@@ -120,7 +123,7 @@ public class CanvasController implements MazeLayersObserver,
         try {
             new MenuScene().startView();
         } catch (Exception e) {
-            //error Logger
+            logger.fatal("Could not open Menu");
             throw new RuntimeException("Could not open main menu");
         }
     }
@@ -363,12 +366,10 @@ public class CanvasController implements MazeLayersObserver,
         this.camera = camera;
         setCameraPosition();
 
-        trials = 6; //TODO to be  set to hero's
+        trials = 6;
         setImgLabls();
         this.game = RunnerGameAdapter.getInstance();
         gcRoad = roadCanvas.getGraphicsContext2D();
-//        shaklo we7sh
-//        gcRoad.drawImage(new Image("GrassRoad.jpg"), 0, 0, roadCanvas.getWidth(), roadCanvas.getHeight());
         gcD = dynamicCanvas.getGraphicsContext2D();
         gcH = heroCanvas.getGraphicsContext2D();
         gcAnimation = animCanvas.getGraphicsContext2D();
@@ -412,6 +413,7 @@ public class CanvasController implements MazeLayersObserver,
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         game.InitializeMaze(lvl);
         gameLoop = game.getGameLoop();
         gameLoop.setHero(this.hero);
@@ -526,7 +528,7 @@ public class CanvasController implements MazeLayersObserver,
 //                heroOrMonster.getDownSprite().drawNextSprite(gc, widthCell, heightCell, (int)heroOrMonster.getPosition().getX(), i);
 //            }
 
-        increaseScore(10);
+       // increaseScore(10);
     }
 
     private void increaseScore(int value) {
@@ -539,11 +541,13 @@ public class CanvasController implements MazeLayersObserver,
     @Override
     public void updateRoadsAndWalls(Point position) {
         gcS.clearRect(position.getX() * cellWidth, position.getY() * cellHeight + shiftDown, cellWidth, cellHeight);
+        logger.debug("Wall removed");
     }
 
     @Override
     public void updatePickables(Point position) {
         gcM.clearRect(position.getX() * cellWidth, position.getY() * cellHeight + shiftDown, cellWidth, cellHeight);
+        logger.debug("Picked an item");
         increaseScore(3);
     }
 
@@ -551,27 +555,33 @@ public class CanvasController implements MazeLayersObserver,
     public void drawExplosionAnimation(Point position, int range) {
         ExplosionAnimation expl = new ExplosionAnimation(position);
         expl.startAnimation(gcAnimation, cellWidth, cellHeight, range);
+        logger.debug("bomb exploded");
         increaseScore(5);
     }
 
     @Override
     public void updateChangeInHealth(double healthPercentageLeft) {
         healthBar.setProgress(healthPercentageLeft);
+        logger.debug("health changed");
     }
 
     @Override
-    public void updateChangeInArmorPoints(double ArmorPercentageLeft) { //TODO
+    public void updateChangeInArmorPoints(double ArmorPercentageLeft) {
         this.armorBar.setProgress(ArmorPercentageLeft);
+        logger.debug("change in armor points");
     }
 
     @Override
     public void updateCoins(int Coins) {
         this.coins.setText("" + Coins);
+        logger.debug("coins increased");
     }
 
     @Override
     public void updateNumberOfBullets(int Bullets) {
+
         this.bullets.setText("" + Bullets);
+        logger.debug("number of bullets changed");
     }
 
     @Override
@@ -582,6 +592,8 @@ public class CanvasController implements MazeLayersObserver,
         } else {
             weaponImage.setImage(new Image("null.png"));
         }
+
+        logger.debug("changed weapon");
     }
 
     private void setImgLabls() {
@@ -606,7 +618,9 @@ public class CanvasController implements MazeLayersObserver,
 
     @Override
     public void updateOnWin() {
-        System.out.println("You Win!!!!!!!");
+
+        logger.info("User won");
+
         this.level++;
         gcAnimation.clearRect(0, 0, animCanvas.getWidth(), animCanvas.getHeight());
         gcBullets.clearRect(0, 0, bulletCanvas.getWidth(), bulletCanvas.getHeight());
@@ -614,13 +628,18 @@ public class CanvasController implements MazeLayersObserver,
 
         increaseScore(30);
         if(this.level <= this.maxLvl)
+        {
+            logger.info("Open the next level");
             startGame(classHero, level);
+        }
         else
         {
+            logger.info("Game ended, open credits");
             ((Stage)this.Menu.getScene().getWindow()).close();
             try {
                 new CreditsScene().startView();
             } catch (Exception e) {
+                logger.fatal("Could not open Credit");
                 throw new RuntimeException("Could not launch credit");
             }
         }
@@ -628,7 +647,7 @@ public class CanvasController implements MazeLayersObserver,
 
     @Override
     public void updateOnLose() {
-        System.out.println("Game Over!!!!!!!");
+        logger.info("user lost");
         setTrials(--trials);
         gcAnimation.clearRect(0, 0, animCanvas.getWidth(), animCanvas.getHeight());
         gcBullets.clearRect(0, 0, bulletCanvas.getWidth(), bulletCanvas.getHeight());
@@ -637,9 +656,13 @@ public class CanvasController implements MazeLayersObserver,
         increaseScore(-20);
 
         if(this.trials > 0)
+        {
+            logger.info("User has more lives, replay the level");
             startGame(classHero, level);
+        }
         else
         {
+            logger.info("User lost all his lives, Game ended, return to menu");
             gameLoop.closeGame();
             Stage stage = (Stage) Menu.getScene().getWindow();
             stage.close();
@@ -647,6 +670,7 @@ public class CanvasController implements MazeLayersObserver,
             try {
                 new MenuScene().startView();
             } catch (Exception e) {
+                logger.fatal("Could not open menu");
                 throw new RuntimeException("Failed to load menu");
             }
         }
