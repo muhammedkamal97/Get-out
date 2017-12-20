@@ -545,7 +545,6 @@ public class CanvasController implements MazeLayersObserver,
     @Override
     public void updateRoadsAndWalls(Point position) {
         gcS.clearRect(position.getX() * cellWidth, position.getY() * cellHeight + shiftDown, cellWidth, cellHeight);
-        //increaseScore();
     }
 
     @Override
