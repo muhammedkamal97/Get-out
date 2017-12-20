@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 
 public class Soldier implements ImageSprite {
 
-    private final Image imgLeft = new Image("hero3.png");
+    private final Image imgLeft = new Image("hero25.png");
     private final int framesInRow = 1;
     private final int framesInColumn = 3;
 

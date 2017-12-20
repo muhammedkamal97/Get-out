@@ -107,6 +107,7 @@ public class CanvasController implements MazeLayersObserver,
     //TODO focus return
     //TODO change gate
     //TODO construct classes
+    //TODO modify sprites according to new sprites
 
     @FXML
     protected void MenuButtonAction(ActionEvent event) {
@@ -345,7 +346,7 @@ public class CanvasController implements MazeLayersObserver,
         this.camera = camera;
         setCameraPosition();
 
-        trials = 100; //TODO to be  set to hero's
+        trials = 6; //TODO to be  set to hero's
         setImgLabls();
         this.game = new RunnerGameAdapter();
         gcRoad = roadCanvas.getGraphicsContext2D();

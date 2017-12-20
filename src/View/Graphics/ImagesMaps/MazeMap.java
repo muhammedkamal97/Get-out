@@ -50,8 +50,6 @@ public class MazeMap {
         images.put("RPG", new Image ("RPG.png"));
         images.put("Gate", new Image ("Gate.jpg"));
 
-//        images.put("GreyRoad", new Image("GreyRoad.png"));
-//        images.put("WoodWall2", new Image("WoodWall2.png"));
     }
 
     public Image getBufferedImage(String key) {

@@ -7,11 +7,11 @@ import javafx.scene.image.Image;
 
 import java.awt.image.BufferedImage;
 
-public class NormalHero implements ImageSprite {
+public class Brave implements ImageSprite {
 
-    private final Image imgLeft = new Image("hero2.png");
+    private final Image imgLeft = new Image("Brave.png");
     private final int framesInRow = 1;
-    private final int framesInColumn = 3;
+    private final int framesInColumn = 4;
 
     @Override
     public final BufferedImage getImageLeft() {
@@ -37,6 +37,7 @@ public class NormalHero implements ImageSprite {
         BufferedImage buff = SwingFXUtils.fromFXImage(imgLeft, null);
         return buff.getSubimage(0,(int)(3*(imgLeft.getHeight()/4)),(int)imgLeft.getWidth(), (int)(imgLeft.getHeight()/4));
     }
+
     @Override
     public Image getImageIdentity() {
         BufferedImage buff = SwingFXUtils.fromFXImage(imgLeft, null);

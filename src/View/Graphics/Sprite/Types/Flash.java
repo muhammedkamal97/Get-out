@@ -9,20 +9,20 @@ import java.awt.image.BufferedImage;
 
 public class Flash implements ImageSprite {
 
-    private final Image imgLeft = new Image("hero2.png");
+    private final Image imgLeft = new Image("Runner.png");
     private final int framesInRow = 1;
-    private final int framesInColumn = 6;
+    private final int framesInColumn = 4;
 
     @Override
     public final BufferedImage getImageLeft() {
         BufferedImage buff = SwingFXUtils.fromFXImage(imgLeft, null);
-        return buff.getSubimage(0,(int)(2*(imgLeft.getHeight()/4)),(int)imgLeft.getWidth(), (int)(imgLeft.getHeight()/4));
+        return buff.getSubimage(0,(int)(1*(imgLeft.getHeight()/4)),(int)imgLeft.getWidth(), (int)(imgLeft.getHeight()/4));
     }
 
     @Override
     public final BufferedImage getImageRight() {
         BufferedImage buff = SwingFXUtils.fromFXImage(imgLeft, null);
-        return buff.getSubimage(0,(int)(3*(imgLeft.getHeight()/4)),(int)imgLeft.getWidth(), (int)(imgLeft.getHeight()/4));
+        return buff.getSubimage(0,(int)(2*(imgLeft.getHeight()/4)),(int)imgLeft.getWidth(), (int)(imgLeft.getHeight()/4));
     }
 
     @Override
@@ -35,7 +35,7 @@ public class Flash implements ImageSprite {
     @Override
     public final BufferedImage getImageUp() {
         BufferedImage buff = SwingFXUtils.fromFXImage(imgLeft, null);
-        return buff.getSubimage(0,(int)(1*(imgLeft.getHeight()/4)),(int)imgLeft.getWidth(), (int)(imgLeft.getHeight()/4));
+        return buff.getSubimage(0,(int)(3*(imgLeft.getHeight()/4)),(int)imgLeft.getWidth(), (int)(imgLeft.getHeight()/4));
     }
 
     @Override

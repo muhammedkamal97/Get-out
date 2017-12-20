@@ -9,9 +9,9 @@ import java.awt.image.BufferedImage;
 
 public class Hulk implements ImageSprite {
 
-    private final Image imgLeft = new Image("hero3.png");
+    private final Image imgLeft = new Image("horse1.png");
     private final int framesInRow = 1;
-    private final int framesInColumn = 3;
+    private final int framesInColumn = 4;
 
     @Override
     public final BufferedImage getImageLeft() {
