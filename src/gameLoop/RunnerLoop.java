@@ -119,22 +119,22 @@ public class RunnerLoop implements GameLoop{
 
     @Override
     public void lookLeft() {
-        hero.setDirectionState(new DirectionLeftState());
+        hero.setDirectionState(DirectionLeftState.createDirectionLeftState());
     }
 
     @Override
     public void lookRight() {
-        hero.setDirectionState(new DirectionRightState());
+        hero.setDirectionState(DirectionRightState.createDirectionRightState());
     }
 
     @Override
     public void lookUp() {
-        hero.setDirectionState(new DirectionUpState());
+        hero.setDirectionState(DirectionUpState.createDirectionUpState());
     }
 
     @Override
     public void lookDown() {
-        hero.setDirectionState(new DirectionDownState());
+        hero.setDirectionState(DirectionDownState.createDirectionDownState());
     }
 
     @Override

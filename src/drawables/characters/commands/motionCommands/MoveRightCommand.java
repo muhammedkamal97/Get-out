@@ -13,7 +13,7 @@ public class MoveRightCommand implements Command {
     @Override
     public boolean execute(MovingObject object, Maze maze) {
 
-        object.setDirectionState(new DirectionRightState());
+        object.setDirectionState(DirectionRightState.createDirectionRightState());
 
         MoveUtilities utilities = new MoveUtilities();
         Point position = new Point();

@@ -13,7 +13,7 @@ public class Brave extends StandardHero {
     public Brave() {
         setHealthPoints();
         spriteSetters();
-        setDirectionState(new DirectionDownState());
+        setDirectionState(DirectionDownState.createDirectionDownState());
     }
 
     @Override

@@ -15,7 +15,7 @@ public class Hulk extends StandardHero {
         setHealthPoints();
         spriteSetters();
 
-        setDirectionState(new DirectionDownState());
+        setDirectionState(DirectionDownState.createDirectionDownState());
     }
 
     @Override

@@ -11,6 +11,21 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class DirectionLeftState implements DirectionState {
+
+
+    private static DirectionLeftState state = null;
+    public static DirectionLeftState createDirectionLeftState(){
+        if(state == null) {
+
+            state = new DirectionLeftState();
+            return state;
+        }
+        return state;
+    }
+    private DirectionLeftState(){
+        //nothing
+    }
+
     @Override
     public void shoot(Weapon weapon, Point position) {
         weapon.shoot(new ShootLeft(),position);

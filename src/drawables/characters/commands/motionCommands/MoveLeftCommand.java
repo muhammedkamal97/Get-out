@@ -14,7 +14,7 @@ public class MoveLeftCommand implements Command {
     @Override
     public boolean execute(MovingObject object, Maze maze) {
 
-        object.setDirectionState(new DirectionLeftState());
+        object.setDirectionState(DirectionLeftState.createDirectionLeftState());
 
         MoveUtilities utilities = new MoveUtilities();
 

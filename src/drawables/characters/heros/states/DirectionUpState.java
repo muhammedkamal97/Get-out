@@ -9,6 +9,20 @@ import java.awt.*;
 
 public class DirectionUpState implements DirectionState {
 
+
+    private static DirectionUpState state = null;
+    public static DirectionUpState createDirectionUpState(){
+        if(state == null) {
+
+            state = new DirectionUpState();
+            return state;
+        }
+        return state;
+    }
+    private DirectionUpState(){
+        //nothing
+    }
+
     @Override
     public void shoot(Weapon weapon, Point position) {
         weapon.shoot(new ShootUp(), position);

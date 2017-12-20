@@ -14,7 +14,7 @@ public class MoveDownCommand implements Command {
     @Override
     public boolean execute(MovingObject object, Maze maze) {
 
-        object.setDirectionState(new DirectionDownState());
+        object.setDirectionState(DirectionDownState.createDirectionDownState());
         MoveUtilities utilities = new MoveUtilities();
         Point position = new Point();
         position.x = object.getPosition().x;
