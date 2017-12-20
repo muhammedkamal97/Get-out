@@ -41,8 +41,11 @@ public class MonsterThread extends Thread{
                     this.monster.remove(monster);
                     this.motion.remove(i);
                 }
-                while (!monster.move(this.motion.get(i).movementMind(), this.maze))
+            	int count = 0;
+                while (!monster.move(this.motion.get(i).movementMind(), this.maze)&& count < 10){
                     this.motion.get(i).reThink();
+                    count++;
+                }
                 i++;
             }
             try {

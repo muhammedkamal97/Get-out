@@ -5,9 +5,10 @@ import View.Graphics.Sprite.ImageSprite;
 import View.Graphics.Sprite.MySprite;
 import drawables.Drawable;
 import drawables.characters.Hero;
-
+import drawables.characters.IWeaponIterator;
 import drawables.characters.Monster;
 import drawables.characters.commands.Command;
+import drawables.characters.heros.StandardHero.WeaponIterator;
 import drawables.characters.heros.states.DirectionState;
 import drawables.obstacles.Trap;
 import drawables.obstacles.Wall;
@@ -55,7 +56,39 @@ public abstract class StandardHero implements Hero {
     private MySprite upSprite = new MySprite();
     private MySprite rightSprite = new MySprite();
     private MySprite leftSprite = new MySprite();
+    
+    private IWeaponIterator iterator = getIterator();
+    public class WeaponIterator implements IWeaponIterator{
+    	private ArrayList<Weapon> weapons;
+    	private int index = 0;
+    	public WeaponIterator(StandardHero hero) {
+			weapons = hero.allWeapons;
+		}
+		@Override
+		public boolean hasNext() {
+			return index < weapons.size();
+		}
 
+		@Override
+		public Weapon nextweapon() {
+			index++;
+			index = index % weapons.size();
+			return weapons.get(index);
+		}
+
+		@Override
+		public Weapon previousweapon() {
+			index--;
+			index = index%weapons.size();
+			return weapons.get(index);
+		}
+
+		@Override
+		public Weapon getWeapon() {
+			return weapons.get(index);
+		}
+    	
+    }
     @Override
     public int getHealthPoints() {
         return healthPoints;
@@ -130,28 +163,16 @@ public abstract class StandardHero implements Hero {
 
     @Override
     public void holdNextWeapon() {
-        if (currentWeapon != null) {
-            int index = allWeapons.indexOf(currentWeapon);
-            if (index != allWeapons.size() - 1) {
-                currentWeapon = allWeapons.get(index + 1);
-                notifyChangeInCurrentWeapon();
-                notifyChangeInNumberOfBullets();
-            }
-        }
-
+    	currentWeapon = iterator.nextweapon();
+        notifyChangeInCurrentWeapon();
+        notifyChangeInNumberOfBullets();
     }
 
     @Override
     public void holdPreviousWeapon() {
-
-        if (currentWeapon != null) {
-            int index = allWeapons.indexOf(currentWeapon);
-            if (index != 0) {
-                currentWeapon = allWeapons.get(index - 1);
-                notifyChangeInCurrentWeapon();
-                notifyChangeInNumberOfBullets();
-            }
-        }
+    	currentWeapon = iterator.previousweapon();
+        notifyChangeInCurrentWeapon();
+        notifyChangeInNumberOfBullets();
     }
 
 
@@ -445,5 +466,9 @@ public abstract class StandardHero implements Hero {
         allWeapons = new ArrayList<>();
         currentWeapon = null;
         notifyChangeInCurrentWeapon();
+    }
+    @Override
+    public WeaponIterator getIterator(){
+		return new WeaponIterator(this);
     }
 }

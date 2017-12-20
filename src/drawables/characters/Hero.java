@@ -1,6 +1,7 @@
 package drawables.characters;
 
 import drawables.Drawable;
+import drawables.characters.heros.StandardHero.WeaponIterator;
 import drawables.obstacles.Trap;
 import drawables.pickables.Weapon;
 import javafx.scene.canvas.GraphicsContext;
@@ -30,4 +31,5 @@ public interface Hero extends Handler,MovingObject, ObservedSubject, MotionObser
     public void drawOnReleased(GraphicsContext gc, Point pt, int widthCell, int heightCell);
     public void removeAllWeapons();
     public void acceptShield(int shieldPoints);
+    public WeaponIterator getIterator();
 }
