@@ -23,7 +23,7 @@ public class MenuController {
         try {
             new CreditsScene().startView();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException("Could not open credit");
         }
 
         Stage stage = (Stage) this.submitButton.getScene().getWindow();
