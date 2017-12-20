@@ -15,7 +15,7 @@ public class NormalHero extends StandardHero {
     public NormalHero() {
         setHealthPoints();
         spriteSetters();
-        setDirectionState(new DirectionDownState());
+        setDirectionState(DirectionDownState.createDirectionDownState());
     }
 
     @Override

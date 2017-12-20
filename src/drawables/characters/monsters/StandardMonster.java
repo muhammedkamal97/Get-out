@@ -27,7 +27,7 @@ public abstract class StandardMonster implements Monster {
     private Point pastPosition;
     private Maze maze;
     private ArrayList<MonsterObserver> observers = new ArrayList<>();
-    private DirectionState directionState = new DirectionDownState();
+    private DirectionState directionState = DirectionDownState.createDirectionDownState();
 
     private MySprite downSprite = new MySprite();
     private MySprite upSprite = new MySprite();

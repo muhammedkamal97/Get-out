@@ -8,6 +8,21 @@ import javafx.scene.canvas.GraphicsContext;
 import java.awt.*;
 
 public class DirectionRightState implements DirectionState {
+
+    private static DirectionRightState state = null;
+    public static DirectionRightState createDirectionRightState(){
+        if(state == null) {
+
+            state = new DirectionRightState();
+            return state;
+        }
+        return state;
+    }
+    private DirectionRightState(){
+        //nothing
+    }
+
+
     @Override
     public void shoot(Weapon weapon, Point position) {
 

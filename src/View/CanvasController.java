@@ -87,6 +87,7 @@ public class CanvasController implements MazeLayersObserver,
     private RunnerGameAdapter game;
     private Class<? extends Hero> classHero;
     private int level;
+    private int maxLvl;
     private PerspectiveCamera camera;
     private ShapeIntersectionDetector intersectionDetector;
     private boolean cameraIsOn;
@@ -96,12 +97,18 @@ public class CanvasController implements MazeLayersObserver,
      */
     private double x, y;
 
+    //TODO draw bullets image
+    //TODO stylesheet toggle button selected
+    //TODO stylesheet button color
     //TODO memento when he dies return him to the last check point
+    //TODO change sprites for bomb explosions
     //TODO get maximum lvl to prevent it & display credits  @Gamal
     //TODO shield update armor points @Abdelrahman
     //TODO decorator @Abdelrahman
     //TODO focus return
+    //TODO change gate
     //TODO construct classes
+    //TODO modify sprites according to new sprites
 
     @FXML
     protected void MenuButtonAction(ActionEvent event) {
@@ -334,15 +341,16 @@ public class CanvasController implements MazeLayersObserver,
         }
     }
 
-    public void initLogin(Class<? extends Hero> hero, int lvl, PerspectiveCamera camera) {
+    public void initLogin(Class<? extends Hero> hero, int lvl, int maxLvl, PerspectiveCamera camera) {
         this.intersectionDetector = new ShapeIntersectionDetector();
+        this.maxLvl = maxLvl;
         this.classHero = hero;
         this.camera = camera;
         setCameraPosition();
 
         trials = 6; //TODO to be  set to hero's
         setImgLabls();
-        this.game = RunnerGameAdapter.getInstance();
+        this.game = RunnerGameAdapter.createGameCore();
         gcRoad = roadCanvas.getGraphicsContext2D();
 //        shaklo we7sh
 //        gcRoad.drawImage(new Image("GrassRoad.jpg"), 0, 0, roadCanvas.getWidth(), roadCanvas.getHeight());
@@ -412,7 +420,7 @@ public class CanvasController implements MazeLayersObserver,
         this.updateNumberOfBullets(6);
     }
 
-    private Point mazeDimensions;
+    Point mazeDimensions;
 
     private void setGlobalVariables() {
 
@@ -578,7 +586,17 @@ public class CanvasController implements MazeLayersObserver,
         gcAnimation.clearRect(0, 0, animCanvas.getWidth(), animCanvas.getHeight());
         gcBullets.clearRect(0, 0, bulletCanvas.getWidth(), bulletCanvas.getHeight());
 //        animForWinOrLose();
-        startGame(classHero, level);
+        if(this.level <= this.maxLvl)
+            startGame(classHero, level);
+        else
+        {
+            ((Stage)this.Menu.getScene().getWindow()).close();
+            try {
+                new CreditsScene().startView();
+            } catch (Exception e) {
+                throw new RuntimeException("Could not launch credit");
+            }
+        }
     }
 
     @Override

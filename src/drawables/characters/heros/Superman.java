@@ -13,7 +13,7 @@ public class Superman extends StandardHero {
     public Superman(){
         setHealthPoints();
         spriteSetters();
-        setDirectionState(new DirectionDownState());
+        setDirectionState(DirectionDownState.createDirectionDownState());
     }
 
     @Override

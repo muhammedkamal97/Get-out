@@ -13,7 +13,7 @@ public class Flash extends StandardHero {
     public Flash() {
         setHealthPoints();
         spriteSetters();
-        setDirectionState(new DirectionDownState());
+        setDirectionState(DirectionDownState.createDirectionDownState());
     }
 
     @Override

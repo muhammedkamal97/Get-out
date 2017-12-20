@@ -8,7 +8,6 @@ public class RandomComponentsFiller {
 
     private Random random = new Random();
 
-    //add cloneable.
 
     public Object generateRandomArray(Class[] referenceArray, int maxNumberAllowed) {
 

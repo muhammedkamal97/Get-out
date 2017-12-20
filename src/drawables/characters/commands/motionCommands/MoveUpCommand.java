@@ -15,7 +15,7 @@ public class MoveUpCommand implements Command {
     @Override
     public boolean execute(MovingObject object, Maze maze) {
 
-        object.setDirectionState(new DirectionUpState());
+        object.setDirectionState(DirectionUpState.createDirectionUpState());
 
         MoveUtilities utilities = new MoveUtilities();
         Point position = new Point();
