@@ -1,6 +1,5 @@
 package View;
 
-import View.Graphics.ImagesMaps.CharactersMap;
 import View.Graphics.ImagesMaps.MazeMap;
 import drawables.Drawable;
 import drawables.characters.Hero;
@@ -15,6 +14,7 @@ import javafx.animation.AnimationTimer;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.PerspectiveCamera;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -30,7 +30,6 @@ import observer.BulletMotionObserver;
 import observer.EndOfGameObserver;
 import observer.HeroStateObserver;
 import observer.MazeLayersObserver;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -43,6 +42,8 @@ public class CanvasController implements MazeLayersObserver,
     private Button Menu;
     @FXML
     private Canvas dynamicCanvas;
+    @FXML
+    private Canvas dummyCanvas;
     @FXML
     private Canvas roadCanvas;
     @FXML
@@ -85,7 +86,9 @@ public class CanvasController implements MazeLayersObserver,
     private RunnerGameAdapter game;
     private Class<? extends Hero> classHero;
     private int level;
+    private PerspectiveCamera camera;
     private ShapeIntersectionDetector intersectionDetector;
+    private boolean cameraIsOn;
 
     /**
      * dummy values to update hero's postion don't modify them!!!!
@@ -93,20 +96,18 @@ public class CanvasController implements MazeLayersObserver,
     private double x, y;
 
     //TODO draw bullets image
-    //TODO modify stylesheet
-    //TODO camera
-    //TODO memento
-    //TODO Win/gameOver animation
-    //TODO teleport transition animation
+    //TODO stylesheet toggle button selected
+    //TODO stylesheet button color
+    //TODO memento when he dies return him to the last check point
     //TODO change sprites for bomb explosions
-    //TODO Traps animation
-    //TODO get maximum lvl to prevent it & display credits
-    //TODO shield update armor points
+    //TODO get maximum lvl to prevent it & display credits  @Gamal
+    //TODO shield update armor points @Abdelrahman
+    //TODO focus return
+    //TODO change gate
 
     @FXML
     protected void MenuButtonAction(ActionEvent event) {
         gameLoop.closeGame();
-
         Stage stage = (Stage) Menu.getScene().getWindow();
         stage.close();
     }
@@ -135,6 +136,7 @@ public class CanvasController implements MazeLayersObserver,
                 hero.drawOnCanvas(gcH, new Point((int) (currentPosition.getX() * cellWidth + x),
                                 (int) (currentPosition.getY() * cellHeight + y + shiftDown)),
                         cellWidth, cellHeight);
+                setHeroCamera();
                 break;
             case RIGHT:
             case KP_RIGHT:
@@ -158,6 +160,7 @@ public class CanvasController implements MazeLayersObserver,
                 hero.drawOnCanvas(gcH, new Point((int) (currentPosition.getX() * cellWidth + x),
                                 (int) (currentPosition.getY() * cellHeight + y + shiftDown)),
                         cellWidth, cellHeight);
+                setHeroCamera();
                 break;
             case UP:
             case KP_UP:
@@ -181,6 +184,7 @@ public class CanvasController implements MazeLayersObserver,
                 hero.drawOnCanvas(gcH, new Point((int) (currentPosition.getX() * cellWidth + x),
                                 (int) (currentPosition.getY() * cellHeight + y + shiftDown))
                         , cellWidth, cellHeight);
+                setHeroCamera();
                 break;
             case DOWN:
             case KP_DOWN:
@@ -203,6 +207,7 @@ public class CanvasController implements MazeLayersObserver,
                 gcH.clearRect(0, 0, heroCanvas.getWidth(), heroCanvas.getHeight());
                 hero.drawOnCanvas(gcH, new Point((int) (currentPosition.getX() * cellWidth + x),
                         (int) (currentPosition.getY() * cellHeight + y + shiftDown)), cellWidth, cellHeight);
+                setHeroCamera();
                 break;
             default:
                 break;
@@ -308,20 +313,34 @@ public class CanvasController implements MazeLayersObserver,
             case SPACE:
                 gameLoop.shoot();
                 break;
-            case N:
+            case E:
                 gameLoop.holdNextWeapon();
                 break;
-            case P:
+            case Q:
                 gameLoop.holdPreviousWeapon();
+                break;
+            case B:
+                camera.setTranslateZ(camera.getTranslateZ() + 500);
+                break;
+            case N:
+                camera.setTranslateZ(camera.getTranslateZ() - 500);
+                break;
+            case C:
+                cameraIsOn = !cameraIsOn;
+                if (!cameraIsOn) {
+                    setCameraPosition();
+                }
                 break;
             default:
                 break;
         }
     }
 
-    public void initLogin(Class<? extends Hero> hero, int lvl) {
+    public void initLogin(Class<? extends Hero> hero, int lvl, PerspectiveCamera camera) {
         this.intersectionDetector = new ShapeIntersectionDetector();
         this.classHero = hero;
+        this.camera = camera;
+        setCameraPosition();
 
         trials = 100; //TODO to be  set to hero's
         setImgLabls();
@@ -338,6 +357,32 @@ public class CanvasController implements MazeLayersObserver,
 
         startGame(hero, lvl);
 
+    }
+
+    private void setCameraPosition () {
+        camera.setTranslateZ(-1975); // zoom in and out
+        camera.setTranslateX(dummyCanvas.getWidth()/2);
+        camera.setTranslateY(dummyCanvas.getHeight()/2);
+    }
+
+    private void setHeroCamera () {
+        if (cameraIsOn) {
+            camera.setTranslateZ(-1500); // zoom in and out
+            if (currentPosition.x * cellWidth < 706) {
+                camera.setTranslateX(706);
+            } else if (currentPosition.x * cellWidth > (dummyCanvas.getWidth() - 706)) {
+                camera.setTranslateX(dummyCanvas.getWidth() - 706);
+            } else {
+                camera.setTranslateX(currentPosition.x * cellWidth + x);
+            }
+            if (currentPosition.y * cellHeight < 400) {
+                camera.setTranslateY(400);
+            } else if (currentPosition.y * cellHeight > (dummyCanvas.getHeight() - 400)) {
+                camera.setTranslateY(dummyCanvas.getHeight() - 400);
+            } else {
+                camera.setTranslateY(currentPosition.y* cellHeight + y);
+            }
+        }
     }
 
     private void startGame(Class<? extends Hero> hero, int lvl) {
@@ -494,7 +539,7 @@ public class CanvasController implements MazeLayersObserver,
     }
 
     @Override
-    public void updateNumberOfBullets(int Bullets) { //TODO
+    public void updateNumberOfBullets(int Bullets) {
         this.bullets.setText("" + Bullets);
     }
 
@@ -544,9 +589,7 @@ public class CanvasController implements MazeLayersObserver,
         setTrials(--trials);
         gcAnimation.clearRect(0, 0, animCanvas.getWidth(), animCanvas.getHeight());
         gcBullets.clearRect(0, 0, bulletCanvas.getWidth(), bulletCanvas.getHeight());
-//        animOnWin();
-        startGame(classHero, level);
-//       TODO in start scene story mode w select level (get level number)
+        animOnWin();
     }
 
 //    private void animForWinOrLose() {
@@ -575,10 +618,9 @@ public class CanvasController implements MazeLayersObserver,
         new AnimationTimer() {
             long start = System.currentTimeMillis();
             int count = 0;
-
+            //TODO fix Win/gameOver animation
             public void handle(long currentNanoTime) {
                 long current = System.currentTimeMillis();
-                System.out.println("handle");
                 if (current - start >= 400) {
                     gcAnimation.clearRect(0, 0,
                             animCanvas.getWidth(), animCanvas.getHeight());
@@ -593,10 +635,8 @@ public class CanvasController implements MazeLayersObserver,
                     gcAnimation.drawImage(imgTo, 200, 50,
                             400, 400);
                     count++;
-                    System.out.println("blue is in");
                 }
                 if (count == listblue.size()) {
-                    System.out.println("blue stops");
                     startGame(classHero, level);
                     this.stop();
                 }

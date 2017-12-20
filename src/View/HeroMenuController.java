@@ -27,7 +27,7 @@ import java.util.Collection;
 public class HeroMenuController {
 
     @FXML
-    private BorderPane pane;
+    private BorderPane heroPane;
     @FXML
     private ImageView heroPreview;
     @FXML
@@ -52,7 +52,7 @@ public class HeroMenuController {
         loadImages();
 
         this.heroGrid.gridLinesVisibleProperty().setValue(true);
-        this.pane.setCenter(this.heroGrid);
+        this.heroPane.setCenter(this.heroGrid);
 
         this.heroGrid.getChildren().forEach(img -> img.setOnMouseClicked(e -> {
             this.heroPreview.setImage(((ImageView) img).getImage());
