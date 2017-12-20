@@ -641,7 +641,21 @@ public class CanvasController implements MazeLayersObserver,
 //        animOnWin();
 
         increaseScore(-20);
-        startGame(classHero, level);
+
+        if(this.trials > 0)
+            startGame(classHero, level);
+        else
+        {
+            gameLoop.closeGame();
+            Stage stage = (Stage) Menu.getScene().getWindow();
+            stage.close();
+
+            try {
+                new MenuScene().startView();
+            } catch (Exception e) {
+                throw new RuntimeException("Failed to load menu");
+            }
+        }
     }
 
     private void animOnWin() {
