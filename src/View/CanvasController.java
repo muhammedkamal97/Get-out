@@ -91,24 +91,20 @@ public class CanvasController implements MazeLayersObserver,
     private PerspectiveCamera camera;
     private ShapeIntersectionDetector intersectionDetector;
     private boolean cameraIsOn;
+    private boolean soundIsOn;
+    private boolean musicIsOn;
 
     /**
      * dummy values to update hero's postion don't modify them!!!!
      */
     private double x, y;
 
-    //TODO draw bullets image
-    //TODO stylesheet toggle button selected
-    //TODO stylesheet button color
     //TODO memento when he dies return him to the last check point
-    //TODO change sprites for bomb explosions
     //TODO get maximum lvl to prevent it & display credits  @Gamal
     //TODO shield update armor points @Abdelrahman
     //TODO decorator @Abdelrahman
     //TODO focus return
-    //TODO change gate
     //TODO construct classes
-    //TODO modify sprites according to new sprites
 
     @FXML
     protected void MenuButtonAction(ActionEvent event) {
@@ -336,10 +332,22 @@ public class CanvasController implements MazeLayersObserver,
             case N:
                 camera.setTranslateZ(camera.getTranslateZ() - 500);
                 break;
-            case C:
+            case V:
                 cameraIsOn = !cameraIsOn;
                 if (!cameraIsOn) {
                     setCameraPosition();
+                }
+                break;
+            case T:
+                soundIsOn = !soundIsOn;
+                if (!soundIsOn) {
+                    //TODO set sound
+                }
+                break;
+            case R:
+                musicIsOn = !musicIsOn;
+                if (!musicIsOn) {
+                    //TODO set music
                 }
                 break;
             default:
