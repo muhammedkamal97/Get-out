@@ -350,6 +350,7 @@ public class CanvasController implements MazeLayersObserver,
     public void initLogin(Class<? extends Hero> hero, int lvl, int maxLvl, PerspectiveCamera camera) {
         this.intersectionDetector = new ShapeIntersectionDetector();
         this.maxLvl = maxLvl;
+        this.level = lvl;
         this.classHero = hero;
         this.camera = camera;
         setCameraPosition();
