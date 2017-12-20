@@ -230,8 +230,10 @@ public abstract class StandardHero implements Hero {
 
 	@Override
 	public void acceptAmmo() {
-		if (currentWeapon != null)
+		if (currentWeapon != null) {
 			currentWeapon.reload();
+			notifyChangeInNumberOfBullets();
+		}
 	}
 
 
