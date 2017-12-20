@@ -48,7 +48,7 @@ public class MazeMap {
         images.put("NormalGun", new Image ("normal gun.png"));
         images.put("NuclearHead", new Image ("nuclear bomb.Png"));
         images.put("RPG", new Image ("RPG.png"));
-        images.put("Gate", new Image ("RPG.png"));
+        images.put("Gate", new Image ("Gate.jpg"));
 
 //        images.put("GreyRoad", new Image("GreyRoad.png"));
 //        images.put("WoodWall2", new Image("WoodWall2.png"));

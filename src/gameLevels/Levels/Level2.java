@@ -11,17 +11,14 @@ import drawables.obstacles.traps.Fire;
 import drawables.obstacles.traps.Hole;
 import drawables.obstacles.traps.RandomTeleport;
 import drawables.obstacles.walls.Bricks;
-import drawables.obstacles.walls.Tree;
-import drawables.obstacles.walls.Wood;
 import drawables.pickables.gifts.Ammo;
 import drawables.pickables.gifts.Coins;
 import drawables.pickables.gifts.HealthCareProvider;
 import drawables.pickables.gifts.TrialGift;
-import drawables.pickables.shields.BombShield;
-import drawables.pickables.shields.BulletShield;
-import drawables.pickables.shields.FlameShield;
-import drawables.pickables.shields.MonesterShield;
-import drawables.pickables.shields.TrapShield;
+import drawables.pickables.shields.NormalShield;
+import drawables.pickables.shields.PlatinumShield;
+import drawables.pickables.shields.SteelShield;
+import drawables.pickables.shields.WoodenShield;
 import drawables.pickables.weapons.AK47;
 import drawables.pickables.weapons.MP5;
 import drawables.pickables.weapons.NormalGun;
@@ -103,6 +100,6 @@ public class Level2 implements LevelProperties {
 
     @Override
     public Class[] getAllowedShields() {
-        return new Class[]{BombShield.class, BulletShield.class, FlameShield.class, MonesterShield.class, TrapShield.class};
+        return new Class[]{PlatinumShield.class, WoodenShield.class, NormalShield.class, SteelShield.class};
     }
 }

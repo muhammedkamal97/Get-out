@@ -102,8 +102,10 @@ public class CanvasController implements MazeLayersObserver,
     //TODO change sprites for bomb explosions
     //TODO get maximum lvl to prevent it & display credits  @Gamal
     //TODO shield update armor points @Abdelrahman
+    //TODO decorator @Abdelrahman
     //TODO focus return
     //TODO change gate
+    //TODO construct classes
 
     @FXML
     protected void MenuButtonAction(ActionEvent event) {
@@ -346,7 +348,7 @@ public class CanvasController implements MazeLayersObserver,
         setImgLabls();
         this.game = new RunnerGameAdapter();
         gcRoad = roadCanvas.getGraphicsContext2D();
-        //shaklo we7sh
+//        shaklo we7sh
 //        gcRoad.drawImage(new Image("GrassRoad.jpg"), 0, 0, roadCanvas.getWidth(), roadCanvas.getHeight());
         gcD = dynamicCanvas.getGraphicsContext2D();
         gcH = heroCanvas.getGraphicsContext2D();
@@ -589,13 +591,9 @@ public class CanvasController implements MazeLayersObserver,
         setTrials(--trials);
         gcAnimation.clearRect(0, 0, animCanvas.getWidth(), animCanvas.getHeight());
         gcBullets.clearRect(0, 0, bulletCanvas.getWidth(), bulletCanvas.getHeight());
-        animOnWin();
+//        animOnWin();
+        startGame(classHero, level);
     }
-
-//    private void animForWinOrLose() {
-//
-//        animOnWin(listblue,listred,listblue);
-//    }
 
     private void animOnWin() {
         ArrayList<BufferedImage> listblue = new ArrayList<>();

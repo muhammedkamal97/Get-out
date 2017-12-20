@@ -22,11 +22,6 @@ public interface Hero extends Handler,MovingObject, ObservedSubject, MotionObser
     public void increaseCoins(int coins);
     public void increaseTrials();
     public void acceptAmmo();
-	public void protectedFromFlame();
-	public void protectedFromBomb();
-	public void protectedFromTrap();
-	public void protectedFromBullets();
-	public void protectedFromMonester();
 	public void dropKey();
 	public boolean hasKey();
 	public void pickedKey();
@@ -34,4 +29,5 @@ public interface Hero extends Handler,MovingObject, ObservedSubject, MotionObser
     public int getTrials();
     public void drawOnReleased(GraphicsContext gc, Point pt, int widthCell, int heightCell);
     public void removeAllWeapons();
+    public void acceptShield(int shieldPoints);
 }

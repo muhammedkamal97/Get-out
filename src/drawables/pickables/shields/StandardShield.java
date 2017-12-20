@@ -12,11 +12,12 @@ import maze.Maze;
 public abstract  class StandardShield implements Shield {
 	protected Point position;
 	protected Maze maze;
+	private int shieldPoints;
 	
 	@Override
 	public void addToHandler(Hero hero) {		
-		protectedFrom(hero);
-		
+		hero.acceptShield(shieldPoints);
+		destroy();
 	}
 
 	@Override
@@ -49,5 +50,16 @@ public abstract  class StandardShield implements Shield {
 	public void setPosition(Point position) {
 		this.position = position;
 	}
+
+	protected void setShieldPoints(){
+		shieldPoints = getShieldPoints();
+	}
+
+	@Override
+	public void addArmorPoints(Hero hero) {
+		hero.acceptShield(shieldPoints);
+	}
+
+	protected abstract int getShieldPoints();
 
 }

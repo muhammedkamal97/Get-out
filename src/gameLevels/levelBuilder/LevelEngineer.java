@@ -1,9 +1,6 @@
 package gameLevels.levelBuilder;
 
-import gameLevels.LevelProperties;
-import gameLevels.Levels.Level1;
 import gameLevels.Levels.Level3;
-import gameLevels.Levels.level_test;
 import gameLevels.LevelsFactory;
 import maze.Maze;
 
