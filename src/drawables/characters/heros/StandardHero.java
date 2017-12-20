@@ -133,9 +133,9 @@ public abstract class StandardHero implements Hero {
         if (currentWeapon != null) {
             int index = allWeapons.indexOf(currentWeapon);
             if (index != allWeapons.size() - 1) {
-
                 currentWeapon = allWeapons.get(index + 1);
                 notifyChangeInCurrentWeapon();
+                notifyChangeInNumberOfBullets();
             }
         }
 
@@ -149,6 +149,7 @@ public abstract class StandardHero implements Hero {
             if (index != 0) {
                 currentWeapon = allWeapons.get(index - 1);
                 notifyChangeInCurrentWeapon();
+                notifyChangeInNumberOfBullets();
             }
         }
     }
