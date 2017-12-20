@@ -96,18 +96,12 @@ public class CanvasController implements MazeLayersObserver,
      */
     private double x, y;
 
-    //TODO draw bullets image
-    //TODO stylesheet toggle button selected
-    //TODO stylesheet button color
     //TODO memento when he dies return him to the last check point
-    //TODO change sprites for bomb explosions
     //TODO get maximum lvl to prevent it & display credits  @Gamal
     //TODO shield update armor points @Abdelrahman
     //TODO decorator @Abdelrahman
     //TODO focus return
-    //TODO change gate
     //TODO construct classes
-    //TODO modify sprites according to new sprites
 
     @FXML
     protected void MenuButtonAction(ActionEvent event) {
@@ -348,7 +342,7 @@ public class CanvasController implements MazeLayersObserver,
 
         trials = 6; //TODO to be  set to hero's
         setImgLabls();
-        this.game = new RunnerGameAdapter();
+        this.game = RunnerGameAdapter.getInstance();
         gcRoad = roadCanvas.getGraphicsContext2D();
 //        shaklo we7sh
 //        gcRoad.drawImage(new Image("GrassRoad.jpg"), 0, 0, roadCanvas.getWidth(), roadCanvas.getHeight());
@@ -418,7 +412,7 @@ public class CanvasController implements MazeLayersObserver,
         this.updateNumberOfBullets(6);
     }
 
-    Point mazeDimensions;
+    private Point mazeDimensions;
 
     private void setGlobalVariables() {
 
