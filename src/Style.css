@@ -10,6 +10,8 @@
     -fx-text-fill:green;
     -fx-border-radius:3px;
     -fx-border-width: 0;
+    -fx-pref-height: 28px;
+    -fx-pref-width: 125px;
 }
 .button:pressed {
     -fx-background-radius:5,5,5,5;
@@ -18,6 +20,7 @@
     -fx-border-color:green;
     -fx-border-radius:5px;
     -fx-border-width: 0;
+
 }
 
 .MenuButton {

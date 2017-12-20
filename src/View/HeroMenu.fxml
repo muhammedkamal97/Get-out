@@ -5,16 +5,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="heroPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../Style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.HeroMenuController">
+<?import javafx.geometry.Insets?>
+<BorderPane fx:id="heroPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../Style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="View.HeroMenuController">
+   <padding><Insets top="25" right="25" bottom="25" left="25"/></padding>
    <right>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="160.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
             <ImageView fx:id="heroPreview" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+            <ComboBox fx:id="levelBox" prefHeight="25.0" prefWidth="127.0" promptText="Choose Level" BorderPane.alignment="CENTER" />
+            <Pane></Pane>
             <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#submitButtonAction" text="Choose" />
          </children>
       </VBox>
    </right>
-   <left>
-      <ComboBox fx:id="levelBox" prefHeight="25.0" prefWidth="127.0" promptText="Choose Level" BorderPane.alignment="CENTER" />
-   </left>
 </BorderPane>
