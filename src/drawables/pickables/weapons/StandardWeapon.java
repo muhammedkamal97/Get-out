@@ -109,9 +109,9 @@ public abstract class StandardWeapon implements Weapon {
     }
 
     @Override
-    public void notifyBulletMotionObserver(Point pastPosition, Point currenPosition,boolean destroyed) {
+    public void notifyBulletMotionObserver(Bullet bullet, Point pastPosition, Point currenPosition,boolean destroyed) {
         for (int i = 0; i < this.observers.size(); i++)
-            this.observers.get(i).updateBulletMotionObserver(pastPosition, currenPosition,destroyed);
+            this.observers.get(i).updateBulletMotionObserver(bullet, pastPosition, currenPosition,destroyed);
     }
 
     protected void setBulletType() {

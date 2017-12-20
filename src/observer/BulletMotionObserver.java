@@ -1,5 +1,7 @@
 package observer;
 
+import drawables.pickables.weapons.bullets.Bullet;
+
 import java.awt.*;
 
 /**
@@ -7,7 +9,7 @@ import java.awt.*;
  */
 public interface BulletMotionObserver {
 
-    public void updateBulletMotionObserver(Point pastPosition, Point currentPosition, boolean destroyed);
+    public void updateBulletMotionObserver(Bullet bullet, Point pastPosition, Point currentPosition, boolean destroyed);
 
 
 }

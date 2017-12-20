@@ -4,6 +4,8 @@ import View.Graphics.ImagesMaps.CharactersMap;
 import drawables.characters.Hero;
 import drawables.characters.heros.HeroesFactory;
 import drawables.characters.heros.Hulk;
+import gameLevels.LevelProperties;
+import gameLevels.LevelsFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -20,6 +22,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.logging.Level;
 
 /**
  * Created by Mahmoud on 12/17/2017.
@@ -31,32 +34,38 @@ public class HeroMenuController {
     @FXML
     private ImageView heroPreview;
     @FXML
-    private ComboBox<Integer> levelBox;
+    private ComboBox<String> levelBox;
 
 
     private GridPane heroGrid;
     private HeroesFactory heroesFactory;
+    private LevelsFactory levelsFactory;
     private Class<? extends Hero> chosenHero;
     private ArrayList<ImageView> heroesImages;
     private ArrayList<Class<? extends Hero>> heroesClasses;
+    private ArrayList<Class<? extends LevelProperties>> levels;
 
     public HeroMenuController() {
         this.heroesFactory = new HeroesFactory();
+        this.levelsFactory = new LevelsFactory();
         this.heroGrid = new GridPane();
     }
 
     @FXML
     public void initialize() {
 
-        this.heroesClasses = this.heroesFactory.getClasses();
+        loadClasses();
         loadImages();
+        loadLevels();
 
-        this.heroGrid.gridLinesVisibleProperty().setValue(true);
-        this.heroPane.setCenter(this.heroGrid);
+        setGridPane();
+    }
 
-        this.heroGrid.getChildren().forEach(img -> img.setOnMouseClicked(e -> {
-            this.heroPreview.setImage(((ImageView) img).getImage());
-        }));
+
+
+    private void loadClasses() {
+        this.heroesClasses = this.heroesFactory.getClasses();
+        this.levels = this.levelsFactory.getClasses();
 
     }
 
@@ -82,9 +91,27 @@ public class HeroMenuController {
 
     }
 
+    private void loadLevels() {
+
+        for(Class<? extends LevelProperties> level : this.levels)
+        {
+            String name = level.getSimpleName();
+            this.levelBox.getItems().add(name.substring(name.length() - 1));
+        }
+
+    }
     private Image getImage(String key) {
         CharactersMap map = CharactersMap.getInstance();
         return map.getImageSprite(key).getImageIdentity();
+    }
+
+    private void setGridPane() {
+        this.heroGrid.gridLinesVisibleProperty().setValue(true);
+        this.heroPane.setCenter(this.heroGrid);
+
+        this.heroGrid.getChildren().forEach(img -> img.setOnMouseClicked(e -> {
+            this.heroPreview.setImage(((ImageView) img).getImage());
+        }));
     }
 
     private int findHero() {
@@ -110,14 +137,17 @@ public class HeroMenuController {
         }
 
         Class<? extends Hero> hero = this.heroesClasses.get(index);
+        int level = Integer.parseInt(this.levelBox.getValue());
 
         Stage stage = (Stage)this.heroGrid.getScene().getWindow();
         stage.close();
+
         try{
-            new Canvas().startView(hero,1);
+            new Canvas().startView(hero,level);
         } catch (Exception e) {
             throw new RuntimeException("Fatal error, cannot launch canvas");
         }
 
     }
+
 }

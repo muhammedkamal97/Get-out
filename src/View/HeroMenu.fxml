@@ -5,8 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="heroPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.HeroMenuController" stylesheets="@../Style.css">
+<BorderPane fx:id="heroPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../Style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.HeroMenuController">
    <right>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="160.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
