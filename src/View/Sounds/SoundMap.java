@@ -29,9 +29,9 @@ public class SoundMap {
 		}
 		return result;
 	}
-
+//BeginTheGame.mp4
 	private void SoundSystem() {
-		SoundMap.put("StartMenu", new MediaPlayer(new Media(Paths.get("beginTheGame.mp4").toUri().toString())));
+		SoundMap.put("StartMenu", new MediaPlayer(new Media(Paths.get("BeginTheGame.mp4").toUri().toString())));
 		SoundMap.put("StartGame", new MediaPlayer(new Media(Paths.get("StartPlay.mp3").toUri().toString())));
 		SoundMap.put("Explosion", new MediaPlayer(new Media(Paths.get("explosion.mp3").toUri().toString())));
 		SoundMap.put("ShotBullets", new MediaPlayer(new Media(Paths.get("Fire.mp3").toUri().toString())));
